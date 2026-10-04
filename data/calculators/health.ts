@@ -71,7 +71,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'bmi-calculator.faq.q6', a: 'bmi-calculator.faq.a6'},
     ],
     related: ['calorie-calculator'],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     slug: 'calorie-calculator',
@@ -176,7 +176,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'calorie-calculator.faq.q6', a: 'calorie-calculator.faq.a6'},
     ],
     related: ['bmi-calculator'],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     slug: 'age-calculator',
@@ -257,7 +257,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'age-calculator.faq.q5', a: 'age-calculator.faq.a5'},
       {q: 'age-calculator.faq.q6', a: 'age-calculator.faq.a6'},
     ],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     slug: 'tdee-macro-calculator',
@@ -410,7 +410,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'tdee-macro-calculator.faq.q5', a: 'tdee-macro-calculator.faq.a5'},
       {q: 'tdee-macro-calculator.faq.q6', a: 'tdee-macro-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'body-fat-calculator',
@@ -557,7 +557,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'body-fat-calculator.faq.q5', a: 'body-fat-calculator.faq.a5'},
       {q: 'body-fat-calculator.faq.q6', a: 'body-fat-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'ideal-weight-calculator',
@@ -656,7 +656,7 @@ export const healthCalculators: CalculatorConfig[] = [
         a: 'ideal-weight-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'water-intake-calculator',
@@ -763,7 +763,7 @@ export const healthCalculators: CalculatorConfig[] = [
         a: 'water-intake-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'heart-rate-zones-calculator',
@@ -907,7 +907,7 @@ export const healthCalculators: CalculatorConfig[] = [
         a: 'heart-rate-zones-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'pregnancy-due-date-calculator',
@@ -1016,7 +1016,7 @@ export const healthCalculators: CalculatorConfig[] = [
         a: 'pregnancy-due-date-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'sleep-cycle-calculator',
@@ -1083,7 +1083,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'sleep-cycle-calculator.faq.q5', a: 'sleep-cycle-calculator.faq.a5'},
       {q: 'sleep-cycle-calculator.faq.q6', a: 'sleep-cycle-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'vo2-max-estimator',
@@ -1207,7 +1207,7 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'vo2-max-estimator.faq.q5', a: 'vo2-max-estimator.faq.a5'},
       {q: 'vo2-max-estimator.faq.q6', a: 'vo2-max-estimator.faq.a6'},
     ],
-    publishedAt: '2025-01-18',
+    publishedAt: '2026-10-03',
   },
   {
     slug: 'sleep-debt-calculator',

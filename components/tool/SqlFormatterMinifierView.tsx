@@ -22,7 +22,7 @@ type Indent = '2' | '4' | 'tab'
 const DEFAULT_SQL = `select u.id, u.name, u.email, count(o.id) as order_count
 from users u
 left join orders o on o.user_id = u.id
-where u.created_at >= '2024-01-01' and u.status = 'active'
+where u.created_at >= '2026-01-01' and u.status = 'active'
 group by u.id, u.name, u.email
 having count(o.id) > 0
 order by order_count desc

@@ -254,7 +254,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'percentage-calculator.faq.q5', a: 'percentage-calculator.faq.a5'},
       {q: 'percentage-calculator.faq.q6', a: 'percentage-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-15',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'loan-payment-calculator',
@@ -376,7 +376,7 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'loan-payment-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-16',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'compound-interest-calculator',
@@ -509,7 +509,7 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'compound-interest-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'discount-calculator',
@@ -593,7 +593,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'discount-calculator.faq.q5', a: 'discount-calculator.faq.a5'},
       {q: 'discount-calculator.faq.q6', a: 'discount-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'tip-calculator',
@@ -669,7 +669,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'tip-calculator.faq.q5', a: 'tip-calculator.faq.a5'},
       {q: 'tip-calculator.faq.q6', a: 'tip-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'sales-tax-calculator',
@@ -766,7 +766,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'sales-tax-calculator.faq.q5', a: 'sales-tax-calculator.faq.a5'},
       {q: 'sales-tax-calculator.faq.q6', a: 'sales-tax-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'salary-calculator',
@@ -894,7 +894,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'salary-calculator.faq.q5', a: 'salary-calculator.faq.a5'},
       {q: 'salary-calculator.faq.q6', a: 'salary-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'roi-calculator',
@@ -1015,7 +1015,7 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'roi-calculator.faq.q5', a: 'roi-calculator.faq.a5'},
       {q: 'roi-calculator.faq.q6', a: 'roi-calculator.faq.a6'},
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'monthly-investment-calculator',
@@ -1128,7 +1128,7 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'monthly-investment-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'date-difference-calculator',
@@ -1238,7 +1238,7 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'date-difference-calculator.faq.a6',
       },
     ],
-    publishedAt: '2025-01-17',
+    publishedAt: '2026-10-04',
   },
   {
     slug: 'income-tax-calculator',

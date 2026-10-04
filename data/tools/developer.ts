@@ -46,7 +46,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'unit-converter.faq.q6', a: 'unit-converter.faq.a6'},
     ],
     related: ['json-formatter', 'base64-encoder-decoder'],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     kind: 'json-formatter',
@@ -67,7 +67,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'json-formatter.faq.q6', a: 'json-formatter.faq.a6'},
     ],
     related: ['base64-encoder-decoder', 'unit-converter'],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     kind: 'base64',
@@ -88,7 +88,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'base64-encoder-decoder.faq.q6', a: 'base64-encoder-decoder.faq.a6'},
     ],
     related: ['json-formatter', 'unit-converter'],
-    publishedAt: '2024-01-15',
+    publishedAt: '2026-10-02',
   },
   {
     kind: 'uuid-generator',
@@ -109,7 +109,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'uuid-generator.faq.q6', a: 'uuid-generator.faq.a6'},
     ],
     related: ['json-formatter', 'base64-encoder-decoder'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'hash-generator',
@@ -130,7 +130,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'hash-generator.faq.q6', a: 'hash-generator.faq.a6'},
     ],
     related: ['base64-encoder-decoder', 'uuid-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'url-encoder',
@@ -151,7 +151,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'url-encoder-decoder.faq.q6', a: 'url-encoder-decoder.faq.a6'},
     ],
     related: ['base64-encoder-decoder', 'json-formatter'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'timestamp-converter',
@@ -172,7 +172,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'timestamp-converter.faq.q6', a: 'timestamp-converter.faq.a6'},
     ],
     related: ['url-encoder-decoder', 'json-formatter'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'jwt-decoder',
@@ -193,7 +193,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'jwt-decoder.faq.q6', a: 'jwt-decoder.faq.a6'},
     ],
     related: ['base64-encoder-decoder', 'hash-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'jwt-encoder',
@@ -214,7 +214,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'jwt-encoder.faq.q6', a: 'jwt-encoder.faq.a6'},
     ],
     related: ['jwt-decoder', 'hash-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'license-generator',
@@ -235,7 +235,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'license-generator.faq.q6', a: 'license-generator.faq.a6'},
     ],
     related: ['gitignore-generator', 'hash-generator'],
-    publishedAt: '2025-01-21',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'gitignore-generator',
@@ -256,7 +256,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'gitignore-generator.faq.q6', a: 'gitignore-generator.faq.a6'},
     ],
     related: ['license-generator', 'json-formatter'],
-    publishedAt: '2025-01-21',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'markdown-previewer',
@@ -277,7 +277,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'markdown-previewer.faq.q6', a: 'markdown-previewer.faq.a6'},
     ],
     related: ['json-formatter', 'code-minifier'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'sql-formatter-minifier',
@@ -298,7 +298,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'sql-formatter-minifier.faq.q6', a: 'sql-formatter-minifier.faq.a6'},
     ],
     related: ['json-formatter', 'code-minifier'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'code-minifier',
@@ -319,7 +319,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'code-minifier.faq.q6', a: 'code-minifier.faq.a6'},
     ],
     related: ['sql-formatter-minifier', 'css-generator'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'color-picker',
@@ -340,7 +340,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'color-picker.faq.q6', a: 'color-picker.faq.a6'},
     ],
     related: ['color-contrast-checker', 'css-generator'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'color-contrast-checker',
@@ -361,7 +361,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'color-contrast-checker.faq.q6', a: 'color-contrast-checker.faq.a6'},
     ],
     related: ['color-picker', 'color-palette-extractor'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'meta-tag-generator',
@@ -382,7 +382,7 @@ export const developerTools: ToolConfig[] = [
       {q: 'meta-tag-generator.faq.q6', a: 'meta-tag-generator.faq.a6'},
     ],
     related: ['utm-builder', 'json-formatter'],
-    publishedAt: '2025-01-22',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'svg-to-base64',

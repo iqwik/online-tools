@@ -30,7 +30,7 @@ export const generatorTools: ToolConfig[] = [
       {q: 'password-generator.faq.q6', a: 'password-generator.faq.a6'},
     ],
     related: ['qr-code-generator', 'hash-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'qr-code-generator',
@@ -51,7 +51,7 @@ export const generatorTools: ToolConfig[] = [
       {q: 'qr-code-generator.faq.q6', a: 'qr-code-generator.faq.a6'},
     ],
     related: ['password-generator', 'uuid-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'image-compressor',
@@ -72,7 +72,7 @@ export const generatorTools: ToolConfig[] = [
       {q: 'image-compressor.faq.q6', a: 'image-compressor.faq.a6'},
     ],
     related: ['image-watermark', 'bulk-image-resizer'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'image-converter',

@@ -26,7 +26,7 @@ export const businessTools: ToolConfig[] = [
       {q: 'invoice-generator.faq.q6', a: 'invoice-generator.faq.a6'},
     ],
     related: ['utm-builder', 'invoice-number-generator'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'invoice-number-generator',
@@ -65,7 +65,7 @@ export const businessTools: ToolConfig[] = [
       },
     ],
     related: ['invoice-generator', 'profit-margin-calculator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'utm-builder',
@@ -86,7 +86,7 @@ export const businessTools: ToolConfig[] = [
       {q: 'utm-builder.faq.q6', a: 'utm-builder.faq.a6'},
     ],
     related: ['invoice-number-generator', 'invoice-generator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'profit-margin-calculator',
@@ -125,7 +125,7 @@ export const businessTools: ToolConfig[] = [
       },
     ],
     related: ['break-even-calculator', 'invoice-generator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'break-even-calculator',
@@ -146,7 +146,7 @@ export const businessTools: ToolConfig[] = [
       {q: 'break-even-calculator.faq.q6', a: 'break-even-calculator.faq.a6'},
     ],
     related: ['profit-margin-calculator', 'quotation-generator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'quotation-generator',
@@ -167,7 +167,7 @@ export const businessTools: ToolConfig[] = [
       {q: 'quotation-generator.faq.q6', a: 'quotation-generator.faq.a6'},
     ],
     related: ['invoice-generator', 'payslip-generator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
   {
     kind: 'payslip-generator',
@@ -188,6 +188,6 @@ export const businessTools: ToolConfig[] = [
       {q: 'payslip-generator.faq.q6', a: 'payslip-generator.faq.a6'},
     ],
     related: ['invoice-generator', 'quotation-generator'],
-    publishedAt: '2025-01-20',
+    publishedAt: '2026-10-04',
   },
 ]

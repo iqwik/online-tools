@@ -24,7 +24,7 @@ export const textTools: ToolConfig[] = [
       {q: 'word-counter.faq.q6', a: 'word-counter.faq.a6'},
     ],
     related: ['case-converter', 'lorem-ipsum'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'case-converter',
@@ -45,7 +45,7 @@ export const textTools: ToolConfig[] = [
       {q: 'case-converter.faq.q6', a: 'case-converter.faq.a6'},
     ],
     related: ['word-counter', 'lorem-ipsum'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'lorem-ipsum',
@@ -66,7 +66,7 @@ export const textTools: ToolConfig[] = [
       {q: 'lorem-ipsum-generator.faq.q6', a: 'lorem-ipsum-generator.faq.a6'},
     ],
     related: ['word-counter', 'case-converter'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'diff-checker',
@@ -87,7 +87,7 @@ export const textTools: ToolConfig[] = [
       {q: 'diff-checker.faq.q6', a: 'diff-checker.faq.a6'},
     ],
     related: ['word-counter', 'case-converter'],
-    publishedAt: '2025-01-19',
+    publishedAt: '2026-10-03',
   },
   {
     kind: 'number-to-words',
