@@ -367,6 +367,14 @@ export const financeCalculators: CalculatorConfig[] = [
         q: 'loan-payment-calculator.faq.q4',
         a: 'loan-payment-calculator.faq.a4',
       },
+      {
+        q: 'loan-payment-calculator.faq.q5',
+        a: 'loan-payment-calculator.faq.a5',
+      },
+      {
+        q: 'loan-payment-calculator.faq.q6',
+        a: 'loan-payment-calculator.faq.a6',
+      },
     ],
     publishedAt: '2025-01-16',
   },
@@ -492,6 +500,14 @@ export const financeCalculators: CalculatorConfig[] = [
         q: 'compound-interest-calculator.faq.q4',
         a: 'compound-interest-calculator.faq.a4',
       },
+      {
+        q: 'compound-interest-calculator.faq.q5',
+        a: 'compound-interest-calculator.faq.a5',
+      },
+      {
+        q: 'compound-interest-calculator.faq.q6',
+        a: 'compound-interest-calculator.faq.a6',
+      },
     ],
     publishedAt: '2025-01-17',
   },
@@ -574,6 +590,8 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'discount-calculator.faq.q2', a: 'discount-calculator.faq.a2'},
       {q: 'discount-calculator.faq.q3', a: 'discount-calculator.faq.a3'},
       {q: 'discount-calculator.faq.q4', a: 'discount-calculator.faq.a4'},
+      {q: 'discount-calculator.faq.q5', a: 'discount-calculator.faq.a5'},
+      {q: 'discount-calculator.faq.q6', a: 'discount-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-17',
   },
@@ -648,6 +666,8 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'tip-calculator.faq.q2', a: 'tip-calculator.faq.a2'},
       {q: 'tip-calculator.faq.q3', a: 'tip-calculator.faq.a3'},
       {q: 'tip-calculator.faq.q4', a: 'tip-calculator.faq.a4'},
+      {q: 'tip-calculator.faq.q5', a: 'tip-calculator.faq.a5'},
+      {q: 'tip-calculator.faq.q6', a: 'tip-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-17',
   },
@@ -743,6 +763,8 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'sales-tax-calculator.faq.q2', a: 'sales-tax-calculator.faq.a2'},
       {q: 'sales-tax-calculator.faq.q3', a: 'sales-tax-calculator.faq.a3'},
       {q: 'sales-tax-calculator.faq.q4', a: 'sales-tax-calculator.faq.a4'},
+      {q: 'sales-tax-calculator.faq.q5', a: 'sales-tax-calculator.faq.a5'},
+      {q: 'sales-tax-calculator.faq.q6', a: 'sales-tax-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-17',
   },
@@ -869,6 +891,8 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'salary-calculator.faq.q2', a: 'salary-calculator.faq.a2'},
       {q: 'salary-calculator.faq.q3', a: 'salary-calculator.faq.a3'},
       {q: 'salary-calculator.faq.q4', a: 'salary-calculator.faq.a4'},
+      {q: 'salary-calculator.faq.q5', a: 'salary-calculator.faq.a5'},
+      {q: 'salary-calculator.faq.q6', a: 'salary-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-17',
   },
@@ -988,6 +1012,8 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'roi-calculator.faq.q2', a: 'roi-calculator.faq.a2'},
       {q: 'roi-calculator.faq.q3', a: 'roi-calculator.faq.a3'},
       {q: 'roi-calculator.faq.q4', a: 'roi-calculator.faq.a4'},
+      {q: 'roi-calculator.faq.q5', a: 'roi-calculator.faq.a5'},
+      {q: 'roi-calculator.faq.q6', a: 'roi-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-17',
   },
@@ -1093,6 +1119,14 @@ export const financeCalculators: CalculatorConfig[] = [
         q: 'monthly-investment-calculator.faq.q4',
         a: 'monthly-investment-calculator.faq.a4',
       },
+      {
+        q: 'monthly-investment-calculator.faq.q5',
+        a: 'monthly-investment-calculator.faq.a5',
+      },
+      {
+        q: 'monthly-investment-calculator.faq.q6',
+        a: 'monthly-investment-calculator.faq.a6',
+      },
     ],
     publishedAt: '2025-01-17',
   },
@@ -1194,6 +1228,14 @@ export const financeCalculators: CalculatorConfig[] = [
       {
         q: 'date-difference-calculator.faq.q4',
         a: 'date-difference-calculator.faq.a4',
+      },
+      {
+        q: 'date-difference-calculator.faq.q5',
+        a: 'date-difference-calculator.faq.a5',
+      },
+      {
+        q: 'date-difference-calculator.faq.q6',
+        a: 'date-difference-calculator.faq.a6',
       },
     ],
     publishedAt: '2025-01-17',
@@ -1368,6 +1410,14 @@ export const financeCalculators: CalculatorConfig[] = [
         q: 'income-tax-calculator.faq.q4',
         a: 'income-tax-calculator.faq.a4',
       },
+      {
+        q: 'income-tax-calculator.faq.q5',
+        a: 'income-tax-calculator.faq.a5',
+      },
+      {
+        q: 'income-tax-calculator.faq.q6',
+        a: 'income-tax-calculator.faq.a6',
+      },
     ],
     related: ['salary-calculator', 'loan-payment-calculator'],
     publishedAt: '2026-09-29',
@@ -1519,6 +1569,14 @@ export const financeCalculators: CalculatorConfig[] = [
       {
         q: 'savings-goal-calculator.faq.q4',
         a: 'savings-goal-calculator.faq.a4',
+      },
+      {
+        q: 'savings-goal-calculator.faq.q5',
+        a: 'savings-goal-calculator.faq.a5',
+      },
+      {
+        q: 'savings-goal-calculator.faq.q6',
+        a: 'savings-goal-calculator.faq.a6',
       },
     ],
     related: ['monthly-investment-calculator', 'compound-interest-calculator'],
@@ -1676,6 +1734,14 @@ export const financeCalculators: CalculatorConfig[] = [
       {
         q: 'loan-eligibility-calculator.faq.q4',
         a: 'loan-eligibility-calculator.faq.a4',
+      },
+      {
+        q: 'loan-eligibility-calculator.faq.q5',
+        a: 'loan-eligibility-calculator.faq.a5',
+      },
+      {
+        q: 'loan-eligibility-calculator.faq.q6',
+        a: 'loan-eligibility-calculator.faq.a6',
       },
     ],
     related: ['loan-payment-calculator', 'savings-goal-calculator'],
@@ -1862,6 +1928,14 @@ export const financeCalculators: CalculatorConfig[] = [
         q: 'rent-vs-buy-calculator.faq.q4',
         a: 'rent-vs-buy-calculator.faq.a4',
       },
+      {
+        q: 'rent-vs-buy-calculator.faq.q5',
+        a: 'rent-vs-buy-calculator.faq.a5',
+      },
+      {
+        q: 'rent-vs-buy-calculator.faq.q6',
+        a: 'rent-vs-buy-calculator.faq.a6',
+      },
     ],
     related: ['loan-payment-calculator', 'savings-goal-calculator'],
     publishedAt: '2026-09-29',
@@ -1989,6 +2063,14 @@ export const financeCalculators: CalculatorConfig[] = [
       {
         q: 'fixed-deposit-calculator.faq.q4',
         a: 'fixed-deposit-calculator.faq.a4',
+      },
+      {
+        q: 'fixed-deposit-calculator.faq.q5',
+        a: 'fixed-deposit-calculator.faq.a5',
+      },
+      {
+        q: 'fixed-deposit-calculator.faq.q6',
+        a: 'fixed-deposit-calculator.faq.a6',
       },
     ],
     related: ['compound-interest-calculator', 'savings-goal-calculator'],

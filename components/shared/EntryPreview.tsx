@@ -15,7 +15,7 @@ interface EntryPreviewProps {
 export function EntryPreview({slug}: EntryPreviewProps) {
   const tConfig = useTranslations('config')
   const tGlobal = useTranslations('global')
-  const tHome = useTranslations('home')
+  const tCategories = useTranslations('categories')
 
   const iconRef = useRef<IconHandle>(null)
   const arrowIconRef = useRef<IconHandle>(null)
@@ -61,7 +61,7 @@ export function EntryPreview({slug}: EntryPreviewProps) {
           key={config.tags[0]}
           className="font-tag rounded-sm px-2.5 py-0.5 text-[10px] font-medium tracking-wide uppercase bg-muted border text-muted-foreground"
         >
-          {tHome(`filters.${config.tags[0]}`)}
+          {tCategories(`${config.category}.shortName`)}
         </span>
         <span className="text-primary text-sm flex items-center gap-1">
           {tGlobal('open')}

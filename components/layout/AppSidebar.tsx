@@ -42,6 +42,7 @@ import {SidebarSettings} from './SidebarSettings'
 export function AppSidebar() {
   const tSidebar = useTranslations('sidebar')
   const tHome = useTranslations('home')
+  const tCategories = useTranslations('categories')
   const pathname = usePathname()
 
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({})
@@ -140,7 +141,6 @@ export function AppSidebar() {
                     <SidebarMenuItem className="flex-col gap-1.5">
                       <SidebarMenuButton
                         isActive={isActive}
-                        tooltip={tHome(`categories.${cat.slug}`)}
                         className="group/item"
                         render={
                           <CollapsibleTrigger className="cursor-pointer" />
@@ -154,7 +154,7 @@ export function AppSidebar() {
                               'group-data-[collapsible=icon]:truncate',
                             )}
                           >
-                            {tHome(`categories.${cat.slug}`)}
+                            {tCategories(`${cat.slug}.name`)}
                           </span>
                           <div
                             className={cn(

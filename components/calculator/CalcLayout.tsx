@@ -1,7 +1,7 @@
 import {getTranslations} from 'next-intl/server'
 import {getBaseUrl} from '@/helpers'
-import {Link} from '@/i18n/navigation'
 import type {CalculatorConfig} from '@/types'
+import {BreadCrumbs} from '../shared/BreadCrumbs'
 import {ContentSection} from '../shared/ContentSection'
 import {FAQ} from '../shared/FAQ'
 import {FeatureSection} from '../shared/FeatureSection'
@@ -17,28 +17,19 @@ interface Props {
 
 export async function CalcLayout({config}: Props) {
   const tConfig = await getTranslations('config')
-  const tNav = await getTranslations('nav')
-  const tHome = await getTranslations('home')
+  const tCategories = await getTranslations('categories')
   const baseUrl = getBaseUrl()
 
   return (
     <article className="page">
-      <nav className="mb-6 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-foreground">
-          {tNav('home')}
-        </Link>
-        <span className="mx-2">/</span>
-        <Link href={`/${config.category}`} className="hover:text-foreground">
-          {tHome(`categories.${config.category}`)}
-        </Link>
-      </nav>
+      <BreadCrumbs categorySlug={config.category} name={config.h1} />
 
       <header className="mb-8">
         <Badge
           variant="outline"
           className="mb-4 rounded-full border-primary/25 bg-primary/10 px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-primary uppercase"
         >
-          {tHome(`categories.${config.category}`)}
+          {tCategories(`${config.category}.shortName`)}
         </Badge>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {tConfig(config.h1)}

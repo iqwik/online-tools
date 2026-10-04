@@ -1,52 +1,52 @@
-'use client'
-
-import {cn} from 'cn'
 import {useTranslations} from 'next-intl'
 
-interface Props {
+interface ContentSectionProps {
   slug: string
+  namespace?: string
   titleKey: string
   itemsKey: string
   ordered?: boolean
-  className?: string
 }
 
 export function ContentSection({
   slug,
+  namespace = 'config',
   titleKey,
   itemsKey,
   ordered = false,
-  className,
-}: Props) {
-  const t = useTranslations('config')
+}: ContentSectionProps) {
+  const t = useTranslations(namespace)
 
-  const fullTitleKey = `${slug}.${titleKey}`
-  const fullItemsKey = `${slug}.${itemsKey}`
+  if (!t.has(`${slug}.${titleKey}`) || !t.has(`${slug}.${itemsKey}`)) {
+    return null
+  }
 
-  if (!t.has(fullTitleKey) || !t.has(fullItemsKey)) return null
+  const title = t(`${slug}.${titleKey}`)
+  const raw = t.raw(`${slug}.${itemsKey}`)
 
-  const title = t(fullTitleKey)
-  const items = t.raw(fullItemsKey) as string[]
+  if (!Array.isArray(raw)) return null
 
-  if (!Array.isArray(items) || items.length === 0) return null
-
-  const List = ordered ? 'ol' : 'ul'
+  const items = raw as string[]
+  const ListTag = ordered ? 'ol' : 'ul'
 
   return (
-    <section className={cn('mt-8', className)}>
-      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
-      <List
-        className={cn(
-          'mt-3 space-y-1.5 text-sm text-muted-foreground',
-          ordered
-            ? 'list-decimal list-outside pl-5'
-            : 'list-disc list-outside pl-5',
-        )}
-      >
+    <section className="space-y-4">
+      <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
+      <ListTag className="space-y-2">
         {items.map((item, i) => (
-          <li key={i}>{item}</li>
+          <li
+            key={i}
+            className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
+          >
+            {ordered ? (
+              <span className="font-semibold text-foreground">{i + 1}.</span>
+            ) : (
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+            )}
+            <span>{item}</span>
+          </li>
         ))}
-      </List>
+      </ListTag>
     </section>
   )
 }

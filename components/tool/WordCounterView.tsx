@@ -17,6 +17,15 @@ interface Stats {
   avgWordLength: number
 }
 
+const SOCIAL_LIMITS = [
+  {key: 'twitter', limit: 280},
+  {key: 'instagram', limit: 2200},
+  {key: 'linkedin', limit: 3000},
+  {key: 'youtube', limit: 100},
+  {key: 'tiktok', limit: 2200},
+  {key: 'meta', limit: 160},
+] as const
+
 function computeStats(text: string): Stats {
   const trimmed = text.trim()
 
@@ -127,6 +136,38 @@ export function WordCounterView() {
           label={t('word-counter.stats.avgWordLength')}
           value={stats.avgWordLength.toLocaleString('en-US')}
         />
+      </div>
+
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold">
+          {t('word-counter.limits.title')}
+        </h3>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {SOCIAL_LIMITS.map(({key, limit}) => {
+            const remaining = limit - stats.characters
+            const exceeded = remaining < 0
+            return (
+              <div key={key} className="rounded-xl border bg-card p-3">
+                <div className="text-xs text-muted-foreground">
+                  {t(`word-counter.limits.${key}`)}
+                </div>
+                <div
+                  className={`mt-1 text-lg font-bold tabular-nums ${
+                    exceeded
+                      ? 'text-destructive'
+                      : 'text-emerald-600 dark:text-emerald-400'
+                  }`}
+                >
+                  {exceeded
+                    ? t('word-counter.limits.exceeded', {
+                        count: Math.abs(remaining),
+                      })
+                    : t('word-counter.limits.remaining', {count: remaining})}
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`pdf-to-image`** — in progress. `pdfjs-dist@6.3.289` already installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`.
 - **SEO content for remaining 69 tools** — `howToUse` / `features` / `useCases` + FAQ up to 6 questions. Reference: timbrica.com. Order: top traffic → finance (15) → health (15) → developer (26) → text (5) → generators (10) → business (7).
+- **Category `metaDescription` review** — if Google starts truncating on desktop SERP or coverage drops, extend to 150–155 characters. Current values were deliberately kept short to guarantee no truncation.
+- **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq` to match the tool-page format (`q6` / `a6`). Nothing in the components blocks this — the schema renders any number of items.
 - **Wave 6 — interactive trackers & builders**: `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`
 - **Locale refactor in `data/**`:** all hardcoded `'en-US'` / `'en-IN'` (and any hardcoded locale in `toLocaleString` / `toLocaleDateString` / `Intl.*`) — replace with `ctx.locale` passed from `calculate`. Run `grep -rn "toLocaleString('en\|toLocaleDateString('en\|Intl\." data/`. Affects `finance.ts` (`formatInt`, `formatAmount`, `formatINR`), `pregnancy-due-date-calculator`, potentially `health.ts`. After refactor — delete global `formatInt` / `formatAmount`, keep only local `fmt` inside each `calculate` (see `CONTEXT.md`, rules 29–30).
 - `SalarySlipGeneratorView`: replace `payPeriod` text input with two `<Select>` (Month + Year), localize, add `payMonth` / `payYear` to state
@@ -31,6 +33,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog — cannot be removed programmatically
 - Decide on `useCases` format: keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (via a new `UseCaseSection`)
 - Bonus tool: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline, no dependencies. Discuss after Wave 6
+
+## [0.10.0] - 2026-10-04
+
+### Categories: unified translation block, SEO content, and static routes
+
+#### Added
+
+- **Unified root-level `categories` block** in `messages/en.json` and `messages/ru.json` with full SEO fields for all six categories: `name`, `shortName`, `h1`, `metaTitle`, `metaDescription`, `keywords`, `intro`, `howToUse`, `features`, `useCases`, `faq` (5 questions per category).
+- **`categories.all`** — for the "All Tools" filter on the home page.
+- **Six static category routes**: `app/[locale]/{finance,health,text,developer,generators,business}/page.tsx`. Each is a thin wrapper with `generateMetadata` (title, description, keywords, canonical, hreflang, openGraph) and `<CategoryPage category="..." />`.
+- **`namespace` prop** (default `'config'`) in `HowToUseSection`, `FeatureSection`, `ContentSection`, `FAQ` — lets the same components serve both tools (`config.*`) and categories (`categories.*`).
+- **SEO blocks on category pages**: `intro` paragraph, `HowToUseSection`, `FeatureSection`, `ContentSection` (useCases), `FAQ`.
+- **OG locale mapping**: `getOgLocale(locale)` helper converts BCP-47 (`en`, `ru`) into Open Graph format (`en_US`, `ru_RU`), with `alternateLocale` for the other locales.
+
+#### Changed
+
+- **`ToolGrid.tsx`**: filter list built from `categories` (`['all', ...categories.map(c => c.slug)]`); filter by `item.category` instead of `item.tags.includes(filter)`; labels from `categories.{slug}.shortName`.
+- **`CategoryPage.tsx`**: `h1` from `categories.{slug}.name` (was `home.categories.{slug}`). Back-arrow, header markup (`data-role="header"`, `h-11.5`, `gap-1.5`), tool grid — preserved unchanged.
+- **`HowToUseSection.tsx` / `FeatureSection.tsx` / `ContentSection.tsx` / `FAQ.tsx`**: `useTranslations(namespace)` instead of hardcoded `'config'`.
+- **`FAQ.tsx`**: `AccordionItem` keys now `item-${i}` instead of `item.q` — matches the `CONTEXT.md` rule (keys without dots or special characters).
+
+#### Removed
+
+- **`home.categories`** — duplicated `categories.*.name`.
+- **`home.filters`** — duplicated `categories.*.shortName` and hardcoded `calculator`, which is not a category.
+- **`category.title.*`** — duplicated `categories.*.name`.
+- **`app/[locale]/[category]/`** — conflicted with `[slug]` (Next.js error: `You cannot use different slug names for the same dynamic path ('category' !== 'slug')`).
+
+#### Fixed
+
+- **404 on `/ru/health`, `/ru/finance` and every other category** after removing `[category]` — restored via six static routes.
+- **`t.has()` false negatives on category pages** — components now check inside the correct namespace, so SEO blocks render for categories that have them and skip cleanly for the rest.
+- **Open Graph locale silently wrong** (`ru` instead of `ru_RU`) — mapped through a helper with a fallback to `locale.replace('-', '_')` for future locales.
+
+#### Known limitations
+
+- **Category `metaDescription` is 118–142 characters** — comfortably within Google's snippet (150–160) and Yandex (160–200), but slightly shorter than typical. Extend if CTR or coverage tests suggest it.
+- **5 FAQ per category**, not 6 like tool pages — intentional. Category pages are hubs, not tools; 5 well-chosen questions cover the intent.
 
 ## [0.9.0] - 2026-10-04
 

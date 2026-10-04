@@ -11,25 +11,26 @@ import {
 
 interface Props {
   items: FAQItem[]
+  namespace?: string
 }
 
-export function FAQ({items}: Props) {
-  const t = useTranslations('global')
-  const tConfig = useTranslations('config')
+export function FAQ({items, namespace = 'config'}: Props) {
+  const tGlobal = useTranslations('global')
+  const t = useTranslations(namespace)
 
   if (items.length === 0) return null
 
   return (
-    <section className="mt-12">
-      <h2 className="mb-6 text-2xl font-bold">{t('faq')}</h2>
+    <section className="space-y-4">
+      <h2 className="text-2xl font-bold">{tGlobal('faq')}</h2>
       <Accordion className="w-full" multiple>
         {items.map((item, i) => (
-          <AccordionItem key={item.q} value={`item-${i}`}>
+          <AccordionItem key={`item-${i}`} value={`item-${i}`}>
             <AccordionTrigger className="text-left text-base font-semibold hover:no-underline cursor-pointer">
-              {tConfig(item.q)}
+              {t(item.q)}
             </AccordionTrigger>
             <AccordionContent className="leading-relaxed text-muted-foreground">
-              {tConfig(item.a)}
+              {t(item.a)}
             </AccordionContent>
           </AccordionItem>
         ))}

@@ -5,7 +5,7 @@ import {Link} from '@/i18n/navigation'
 
 export default async function NotFound() {
   const t = await getTranslations('notFound')
-  const tHome = await getTranslations('home')
+  const tCategories = await getTranslations('categories')
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-20 text-center">
@@ -32,7 +32,7 @@ export default async function NotFound() {
               className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-2 font-medium transition hover:border-primary hover:bg-primary/5"
             >
               <cat.Icon />
-              {tHome(`categories.${cat.slug}`)}
+              {tCategories(`${cat.slug}.name`)}
             </Link>
           ))}
         </div>

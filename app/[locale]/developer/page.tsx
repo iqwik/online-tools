@@ -1,16 +1,18 @@
 import type {Metadata} from 'next'
-import {getTranslations} from 'next-intl/server'
 import {CategoryPage} from '@/components/category/CategoryPage'
-import {CategorySlug} from '@/types'
+import {buildCategoryMetadata} from '@/helpers'
 
-const CATEGORY: CategorySlug = 'developer'
+const SLUG = 'developer' as const
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('home')
-  return {
-    title: t(`categories.${CATEGORY}`),
-  }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{locale: string}>
+}): Promise<Metadata> {
+  const {locale} = await params
+  return buildCategoryMetadata(locale, SLUG)
 }
-export default function Page() {
-  return <CategoryPage category={CATEGORY} />
+
+export default function DeveloperPage() {
+  return <CategoryPage slug={SLUG} />
 }

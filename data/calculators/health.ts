@@ -66,6 +66,9 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'bmi-calculator.faq.q1', a: 'bmi-calculator.faq.a1'},
       {q: 'bmi-calculator.faq.q2', a: 'bmi-calculator.faq.a2'},
       {q: 'bmi-calculator.faq.q3', a: 'bmi-calculator.faq.a3'},
+      {q: 'bmi-calculator.faq.q4', a: 'bmi-calculator.faq.a4'},
+      {q: 'bmi-calculator.faq.q5', a: 'bmi-calculator.faq.a5'},
+      {q: 'bmi-calculator.faq.q6', a: 'bmi-calculator.faq.a6'},
     ],
     related: ['calorie-calculator'],
     publishedAt: '2024-01-15',
@@ -167,6 +170,10 @@ export const healthCalculators: CalculatorConfig[] = [
     faq: [
       {q: 'calorie-calculator.faq.q1', a: 'calorie-calculator.faq.a1'},
       {q: 'calorie-calculator.faq.q2', a: 'calorie-calculator.faq.a2'},
+      {q: 'calorie-calculator.faq.q3', a: 'calorie-calculator.faq.a3'},
+      {q: 'calorie-calculator.faq.q4', a: 'calorie-calculator.faq.a4'},
+      {q: 'calorie-calculator.faq.q5', a: 'calorie-calculator.faq.a5'},
+      {q: 'calorie-calculator.faq.q6', a: 'calorie-calculator.faq.a6'},
     ],
     related: ['bmi-calculator'],
     publishedAt: '2024-01-15',
@@ -245,6 +252,10 @@ export const healthCalculators: CalculatorConfig[] = [
     faq: [
       {q: 'age-calculator.faq.q1', a: 'age-calculator.faq.a1'},
       {q: 'age-calculator.faq.q2', a: 'age-calculator.faq.a2'},
+      {q: 'age-calculator.faq.q3', a: 'age-calculator.faq.a3'},
+      {q: 'age-calculator.faq.q4', a: 'age-calculator.faq.a4'},
+      {q: 'age-calculator.faq.q5', a: 'age-calculator.faq.a5'},
+      {q: 'age-calculator.faq.q6', a: 'age-calculator.faq.a6'},
     ],
     publishedAt: '2024-01-15',
   },
@@ -396,6 +407,8 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'tdee-macro-calculator.faq.q2', a: 'tdee-macro-calculator.faq.a2'},
       {q: 'tdee-macro-calculator.faq.q3', a: 'tdee-macro-calculator.faq.a3'},
       {q: 'tdee-macro-calculator.faq.q4', a: 'tdee-macro-calculator.faq.a4'},
+      {q: 'tdee-macro-calculator.faq.q5', a: 'tdee-macro-calculator.faq.a5'},
+      {q: 'tdee-macro-calculator.faq.q6', a: 'tdee-macro-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-18',
   },
@@ -541,6 +554,8 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'body-fat-calculator.faq.q2', a: 'body-fat-calculator.faq.a2'},
       {q: 'body-fat-calculator.faq.q3', a: 'body-fat-calculator.faq.a3'},
       {q: 'body-fat-calculator.faq.q4', a: 'body-fat-calculator.faq.a4'},
+      {q: 'body-fat-calculator.faq.q5', a: 'body-fat-calculator.faq.a5'},
+      {q: 'body-fat-calculator.faq.q6', a: 'body-fat-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-18',
   },
@@ -631,6 +646,14 @@ export const healthCalculators: CalculatorConfig[] = [
       {
         q: 'ideal-weight-calculator.faq.q4',
         a: 'ideal-weight-calculator.faq.a4',
+      },
+      {
+        q: 'ideal-weight-calculator.faq.q5',
+        a: 'ideal-weight-calculator.faq.a5',
+      },
+      {
+        q: 'ideal-weight-calculator.faq.q6',
+        a: 'ideal-weight-calculator.faq.a6',
       },
     ],
     publishedAt: '2025-01-18',
@@ -730,6 +753,14 @@ export const healthCalculators: CalculatorConfig[] = [
       {
         q: 'water-intake-calculator.faq.q4',
         a: 'water-intake-calculator.faq.a4',
+      },
+      {
+        q: 'water-intake-calculator.faq.q5',
+        a: 'water-intake-calculator.faq.a5',
+      },
+      {
+        q: 'water-intake-calculator.faq.q6',
+        a: 'water-intake-calculator.faq.a6',
       },
     ],
     publishedAt: '2025-01-18',
@@ -867,6 +898,14 @@ export const healthCalculators: CalculatorConfig[] = [
         q: 'heart-rate-zones-calculator.faq.q4',
         a: 'heart-rate-zones-calculator.faq.a4',
       },
+      {
+        q: 'heart-rate-zones-calculator.faq.q5',
+        a: 'heart-rate-zones-calculator.faq.a5',
+      },
+      {
+        q: 'heart-rate-zones-calculator.faq.q6',
+        a: 'heart-rate-zones-calculator.faq.a6',
+      },
     ],
     publishedAt: '2025-01-18',
   },
@@ -968,6 +1007,14 @@ export const healthCalculators: CalculatorConfig[] = [
         q: 'pregnancy-due-date-calculator.faq.q4',
         a: 'pregnancy-due-date-calculator.faq.a4',
       },
+      {
+        q: 'pregnancy-due-date-calculator.faq.q5',
+        a: 'pregnancy-due-date-calculator.faq.a5',
+      },
+      {
+        q: 'pregnancy-due-date-calculator.faq.q6',
+        a: 'pregnancy-due-date-calculator.faq.a6',
+      },
     ],
     publishedAt: '2025-01-18',
   },
@@ -1033,6 +1080,8 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'sleep-cycle-calculator.faq.q2', a: 'sleep-cycle-calculator.faq.a2'},
       {q: 'sleep-cycle-calculator.faq.q3', a: 'sleep-cycle-calculator.faq.a3'},
       {q: 'sleep-cycle-calculator.faq.q4', a: 'sleep-cycle-calculator.faq.a4'},
+      {q: 'sleep-cycle-calculator.faq.q5', a: 'sleep-cycle-calculator.faq.a5'},
+      {q: 'sleep-cycle-calculator.faq.q6', a: 'sleep-cycle-calculator.faq.a6'},
     ],
     publishedAt: '2025-01-18',
   },
@@ -1155,6 +1204,8 @@ export const healthCalculators: CalculatorConfig[] = [
       {q: 'vo2-max-estimator.faq.q2', a: 'vo2-max-estimator.faq.a2'},
       {q: 'vo2-max-estimator.faq.q3', a: 'vo2-max-estimator.faq.a3'},
       {q: 'vo2-max-estimator.faq.q4', a: 'vo2-max-estimator.faq.a4'},
+      {q: 'vo2-max-estimator.faq.q5', a: 'vo2-max-estimator.faq.a5'},
+      {q: 'vo2-max-estimator.faq.q6', a: 'vo2-max-estimator.faq.a6'},
     ],
     publishedAt: '2025-01-18',
   },
@@ -1263,6 +1314,14 @@ export const healthCalculators: CalculatorConfig[] = [
       {
         q: 'sleep-debt-calculator.faq.q4',
         a: 'sleep-debt-calculator.faq.a4',
+      },
+      {
+        q: 'sleep-debt-calculator.faq.q5',
+        a: 'sleep-debt-calculator.faq.a5',
+      },
+      {
+        q: 'sleep-debt-calculator.faq.q6',
+        a: 'sleep-debt-calculator.faq.a6',
       },
     ],
     related: ['sleep-cycle-calculator', 'heart-rate-zones-calculator'],
@@ -1407,6 +1466,14 @@ export const healthCalculators: CalculatorConfig[] = [
       {
         q: 'menstrual-cycle-calculator.faq.q4',
         a: 'menstrual-cycle-calculator.faq.a4',
+      },
+      {
+        q: 'menstrual-cycle-calculator.faq.q5',
+        a: 'menstrual-cycle-calculator.faq.a5',
+      },
+      {
+        q: 'menstrual-cycle-calculator.faq.q6',
+        a: 'menstrual-cycle-calculator.faq.a6',
       },
     ],
     related: ['pregnancy-due-date-calculator', 'calorie-calculator'],
@@ -1580,6 +1647,14 @@ export const healthCalculators: CalculatorConfig[] = [
         q: 'calorie-deficit-planner.faq.q4',
         a: 'calorie-deficit-planner.faq.a4',
       },
+      {
+        q: 'calorie-deficit-planner.faq.q5',
+        a: 'calorie-deficit-planner.faq.a5',
+      },
+      {
+        q: 'calorie-deficit-planner.faq.q6',
+        a: 'calorie-deficit-planner.faq.a6',
+      },
     ],
     related: ['calorie-calculator', 'tdee-macro-calculator'],
     publishedAt: '2026-09-29',
@@ -1702,6 +1777,14 @@ export const healthCalculators: CalculatorConfig[] = [
       {
         q: 'pregnancy-week-tracker.faq.q4',
         a: 'pregnancy-week-tracker.faq.a4',
+      },
+      {
+        q: 'pregnancy-week-tracker.faq.q5',
+        a: 'pregnancy-week-tracker.faq.a5',
+      },
+      {
+        q: 'pregnancy-week-tracker.faq.q6',
+        a: 'pregnancy-week-tracker.faq.a6',
       },
     ],
     related: ['pregnancy-due-date-calculator', 'menstrual-cycle-calculator'],

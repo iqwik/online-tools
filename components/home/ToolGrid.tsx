@@ -3,21 +3,13 @@
 import {AnimatePresence, motion} from 'motion/react'
 import {useTranslations} from 'next-intl'
 import {useMemo, useState} from 'react'
-import {getAllRegistryEntries} from '@/data'
-import {Tag} from '@/types'
+import {categories, getAllRegistryEntries} from '@/data'
+import {CategorySlug} from '@/types'
 import {EntryPreview} from '../shared/EntryPreview'
 import {Button} from '../ui/button'
 
-const FILTERS: (Tag | 'all')[] = [
-  'all',
-  'calculator',
-  'text',
-  'health',
-  'developer',
-  'generators',
-  'business',
-]
-type Filter = (typeof FILTERS)[number]
+type Filter = CategorySlug | 'all'
+const FILTERS: Filter[] = ['all', ...categories.map(c => c.slug)]
 
 const SPRING = {
   type: 'spring' as const,
@@ -27,7 +19,7 @@ const SPRING = {
 }
 
 export function ToolGrid() {
-  const tHome = useTranslations('home')
+  const tCategories = useTranslations('categories')
   const tCategory = useTranslations('category')
   const [filter, setFilter] = useState<Filter>('all')
 
@@ -51,8 +43,7 @@ export function ToolGrid() {
   }, [all])
 
   const filtered = useMemo(
-    () =>
-      shuffled.filter(item => filter === 'all' || item.tags.includes(filter)),
+    () => shuffled.filter(item => filter === 'all' || item.category === filter),
     [shuffled, filter],
   )
 
@@ -67,7 +58,7 @@ export function ToolGrid() {
               setFilter(f)
             }}
           >
-            {tHome(`filters.${f}`)}
+            {tCategories(`${f}.shortName`)}
           </Button>
         ))}
       </div>
