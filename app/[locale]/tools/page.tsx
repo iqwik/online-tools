@@ -1,12 +1,7 @@
 import type {Metadata} from 'next'
 import {getTranslations} from 'next-intl/server'
-import {CategoryCards} from '@/components/home/CategoryCards'
-import {FeaturedTools} from '@/components/home/FeaturedTools'
-import {Hero} from '@/components/home/Hero'
-import {HomeFaq} from '@/components/home/HomeFaq'
-import {HomeSchema} from '@/components/home/HomeSchema'
-import {PrivacyNote} from '@/components/home/PrivacyNote'
-import {RecentlyAdded} from '@/components/home/RecentlyAdded'
+import {BreadCrumbs} from '@/components/shared/BreadCrumbs'
+import {ToolGrid} from '@/components/tools/ToolGrid'
 import {getBaseUrl, getOgAlternateLocales, getOgLocale} from '@/helpers'
 import {routing} from '@/i18n/routing'
 
@@ -16,14 +11,16 @@ interface PageProps {
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
   const {locale} = await params
-  const t = await getTranslations({locale, namespace: 'meta.home'})
+  const t = await getTranslations({locale, namespace: 'meta.tools'})
   const baseUrl = getBaseUrl()
   const localePath = locale === routing.defaultLocale ? '' : `/${locale}`
-  const canonical = `${baseUrl}${localePath}`
+  const path = '/tools'
+  const canonical = `${baseUrl}${localePath}${path}`
 
   const languages: Record<string, string> = {}
   for (const l of routing.locales) {
-    languages[l] = `${baseUrl}${l === routing.defaultLocale ? '' : `/${l}`}`
+    languages[l] =
+      `${baseUrl}${l === routing.defaultLocale ? '' : `/${l}`}${path}`
   }
 
   const title = t('title')
@@ -41,24 +38,22 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
       locale: getOgLocale(locale),
       alternateLocale: getOgAlternateLocales(locale),
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
+    twitter: {card: 'summary_large_image', title, description},
   }
 }
 
-export default function HomePage() {
+export default async function ToolsPage() {
+  const t = await getTranslations('tools')
   return (
     <>
-      <HomeSchema />
-      <Hero />
-      <CategoryCards />
-      <FeaturedTools />
-      <RecentlyAdded />
-      <HomeFaq />
-      <PrivacyNote />
+      <header className="page mb-2">
+        <BreadCrumbs items={[{title: t('h1')}]} />
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          {t('h1')}
+        </h1>
+        <p className="mt-3 text-muted-foreground">{t('description')}</p>
+      </header>
+      <ToolGrid />
     </>
   )
 }

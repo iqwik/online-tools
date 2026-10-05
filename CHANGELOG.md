@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but no `data/tools/developer.ts` entry and no View. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`.
 - **Regression check for remaining tools** — Stage 4 of Variant C. Systematic verification: open every View, compare against final texts. Known audit issues are all fixed (2026-10-04 + 2026-10-05), but a full pass hasn't been done. Priority tools: password-generator (4 modes + entropy + bulk implementation), meta-tag-generator (siteName / twitter / OG type / locale inputs).
-- **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo) through Google Rich Results Test. Verify HowTo `step` has `name` + `text` in every step.
+- **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo) through Google Rich Results Test. Verify HowTo `step` has `name` + `text` in every step. Home page now emits WebSite + Organization + ItemList + FAQPage — validate all four.
 - **Final EN + RU proofread** — read through all 75 tools × 2 locales one more time in the browser, catching any remaining awkward phrasing.
 - **Category `metaDescription` review** — if Google starts truncating on desktop SERP or coverage drops, extend to 150–155 characters. Current values were deliberately kept short to guarantee no truncation.
 - **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq` to match the tool-page format (`q6` / `a6`). Nothing in the components blocks this — the schema renders any number of items.
@@ -36,6 +36,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Decide on `useCases` format: keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (via a new `UseCaseSection`)
 - **`image-compressor` target file size mode** — binary search on quality to hit a target KB. Removed from texts, implementation in tech debt (3–4 hours).
 - Bonus tool: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline, no dependencies. Discuss after Wave 6
+- Parametrize the "75" literal in `home.featured.viewAll`, `meta.tools.description`, `tools.description` — currently hardcoded in EN + RU. Will need to become `{count}` from `getAllRegistryEntries().length` once the total drifts (e.g. after `pdf-to-image` lands → 76)
+
+## [0.12.0] - 2026-10-05
+
+### Home restructure (Phases A / B / C), search refactoring, sidebar "All tools"
+
+#### Added
+
+**Home page — new composition**
+
+- **`components/home/HomeSchema.tsx`** — server component, emits three JSON-LD blocks: `WebSite` (with `publisher: Organization`), `ItemList` (6 categories with positions), `FAQPage` (3 questions from `home.faq.*`). `SearchAction` intentionally omitted — search is client-side only, no `?q=` URL.
+- **`components/home/CategoryCards.tsx`** — six category cards below the hero. Each card links to `/{slug}`, renders icon + name + tool count (`category.toolsCount` plural ICU). Icons pulled from `data/categories.ts` via `CATEGORY_COLORS[slug]` for consistent background / foreground pairing. `'use client'` — icon animation via `useRef<IconHandle>` + `startAnimation` / `stopAnimation` on hover.
+- **`components/home/FeaturedTools.tsx`** — client component, 18 deterministic-random tools from `seededShuffle(all, 42)` + `slice(0, 18)`. Header row with `h2` (`home.featured.h2`) + "Browse all 75 tools →" link to `/tools` (`home.featured.viewAll`).
+- **`components/home/RecentlyAdded.tsx`** — server component, top 6 by `publishedAt` descending, `null` when empty. Uses `EntryPreview`.
+- **`components/home/HomeFaq.tsx`** — server component, 3 questions rendered via `FAQ` with `namespace="home"`. Reuses `shared/FAQ.tsx` — no new accordion.
+- **`components/home/PrivacyNote.tsx`** — renamed from `components/home/Footer.tsx`. This is not a footer, it is a trust-signal block ("100% private / no upload"). Rendered at the end of home as the closing signal.
+
+**`/tools` route**
+
+- **`app/[locale]/tools/page.tsx`** — new route. `generateMetadata` pulls `title` / `description` from `meta.tools`, canonical / hreflang / OG via `getOgLocale` + `getOgAlternateLocales`. Renders `<h1>` (`tools.h1`) + description (`tools.description`) + full `<ToolGrid />`.
+- Full `ToolGrid` (all 75 tools + category filter buttons + AnimatePresence layout) moved from home to `/tools`. Home keeps only 18 featured.
+
+**Helpers**
+
+- **`helpers/array.ts`** — `seededShuffle<T>(arr, seed): T[]`. Deterministic Fisher-Yates. Extracted from `ToolGrid` because it is now used in two places (home + `/tools`). Re-exported via `helpers/index.ts`.
+- **`helpers/meta-description.ts`** — planned in "Stage 2 final plan" but **not implemented**. `metaDescription` is mandatory (see `0.11.0`), so there is no `?? description` fallback. `generateMetadata` and both schemas call `t(config.metaDescription)` directly.
+
+**Messages — new keys (EN + RU)**
+
+- `meta.home.{title,description}` — localized home page `<title>` / `<meta name="description">`. Previously inherited the EN-only default from `layout.tsx`.
+- `meta.tools.{title,description}` — for `/tools`.
+- `tools.{h1,description}` — page hero on `/tools`.
+- `home.featured.{h2,viewAll}`, `home.recent.h2`, `home.faqTitle`, `home.faq.{q1..q3, a1..a3}`.
+- `home.suggestions.{label, bmi, password, json, tip, word, compress}` — six example chips under the hero search. All six are real user queries that Fuse.js matches against existing `searchSynonyms`.
+
+**Sidebar**
+
+- **"All tools" entry** above the category list in `AppSidebar.tsx`. Icon `LayoutGridIcon` (`@animateicons/react/lucide/layout-grid-icon`), count badge from `categories.reduce((sum, c) => sum + c.tools.length, 0)`. Uses `render={<Link href="/tools" />}` — correct Base UI API, not `asChild`. Active state via `pathname === '/tools'`.
+
+#### Changed
+
+- **`app/[locale]/page.tsx`** — added `generateMetadata` (was inheriting default). New component order: `HomeSchema → Hero → CategoryCards → FeaturedTools → RecentlyAdded → HomeFaq → PrivacyNote`. `ToolGrid` removed from home.
+- **`app/sitemap.ts`** — replaced `const now = new Date()` with `const CONTENT_LASTMOD = new Date('2026-10-05')` for static pages / categories. Tools still use `cfg.publishedAt` with `CONTENT_LASTMOD` fallback. `new Date()` recomputed on every request makes Google distrust `lastModified` — it sees every page as "updated a minute ago". Added `/tools` to static pages with priority `0.9` (above categories `0.8`, below home `1.0`).
+- **`components/home/ToolGrid.tsx`** — now used only on `/tools`. `seededShuffle` imported from `@/helpers` instead of inline. Removed the duplicate seed constant.
+- **`components/home/Stats.tsx`** — "75+ tools" stat is now a `<Link href="/tools">`. Other three stats stay plain text — they are facts, not navigation.
+- **`components/home/Hero.tsx`** — added suggestion chips row under search. Each chip calls `open(tHome('suggestions.${key}'))` on the search context, seeding the modal input. `SearchTrigger` input height bumped from `h-10 sm:h-12` to `h-11 sm:h-14` — search is the primary hero CTA.
+- **`messages/{en,ru}.json`** — `categories.all.name` now used in the sidebar "All tools" entry (was already present, now consumed in a new place).
+
+**Search refactoring**
+
+- **`components/search/SearchProvider.tsx`** — context API changed from `{open: boolean, setOpen: (b) => void}` to `{isOpen: boolean, open: (query?) => void, close: () => void}`. The modal `query` string now lives in the provider instead of the modal, so it survives close / reopen. `open()` without arguments preserves the existing query (used by ⌘K and `SearchTrigger`); `open(str)` overwrites it (used by the hero chips). `⌘K` handler calls `setIsOpen(true)` directly — bypasses `open` to avoid a stale-closure dependency.
+- **`components/search/SearchModal.tsx`** — `query` is now a controlled prop (`query` + `onQueryChange`) instead of local `useState`. Removed the commented-out `useEffect(() => { if (!open) setQuery('') }, [open])` — the query is no longer cleared on close, by design.
+- **`components/search/SearchTrigger.tsx`** — `const {setOpen} = useSearch()` → `const {open} = useSearch()`, `onClick={() => setOpen(true)}` → `onClick={() => open()}`.
+
+**Home / tools split rationale**
+
+Originally the home page rendered all 75 tools with local JS filters (no `<Link>` to category hubs — filters were `<button onClick={setFilter}>`). This meant zero in-content links from the site's strongest page to the six category hubs. After the split: home = hero + 6 category links + 18 featured + 6 recent + FAQ + privacy; `/tools` = full catalog with filters. Six links to category hubs from home is stronger link equity distribution than 75 links to leaf pages.
+
+#### Fixed
+
+- **`utm-builder` garbage keys in `messages/ru.json`** — removed stray `"useCase": []` (wrong plural, unused) and a duplicate `"useCases"` array at the end of the block. The duplicate happened to render correctly (`ContentSection` found the first `useCasesTitle` and the second `useCases`), but was silently confusing.
+- **`CategoryCards.tsx` icon import** — was `import {ArrowRight02Icon} from '@animateicons/react/huge'` (barrel), replaced with a per-file subpath import to avoid pulling the entire huge set into the bundle. Violates `CONTEXT.md` rule 32.
+- **`SearchModal.tsx` icon import** — was `import {Search} from 'lucide-react'`, replaced with `import {SearchIcon as Search} from '@animateicons/react/lucide/search-icon'`. `lucide-react` is forbidden (rule 32).
+- **`home.suggestions.*` keys** — added to both locales. Without them the chips would render translation keys (`home.suggestions.bmi`) as button labels.
+
+#### Removed
+
+- **`components/home/Footer.tsx`** — renamed to `PrivacyNote.tsx` (see Added). The name was misleading: it renders a privacy value-prop block, not site-wide footer links. `messages.home.privacy.*` keys unchanged.
+
+#### Known limitations
+
+- **The `75` literal is hardcoded in three new strings** — `home.featured.viewAll` ("Browse all 75 tools"), `meta.tools.description`, `tools.description`. Adding `pdf-to-image` (76) means editing all three in EN + RU. Tracked in TODO for parametrization via `getAllRegistryEntries().length`.
+- **Search query is not persisted across reloads.** Reloading the page resets the modal to an empty input. Deliberate — a stale query from yesterday's session would be more confusing than helpful. Could be localStorage-backed if user testing suggests otherwise.
+- **`seededShuffle(all, 42)` on home** — deterministic, but the seed is hardcoded. Same 18 tools feature on every visit. No rotation. Acceptable for now; revisit if it hurts perceived freshness.
 
 ## [0.11.0] - 2026-10-05
 
@@ -208,7 +282,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `components/shared/FAQ.tsx` — replaced manual `<div>` / `<h3>` / `<p>` markup with shadcn/ui `Accordion` on Base UI.
 - `openMultiple=true` — multiple answers stay open at the same time (no auto-close of neighbours).
-- Each item uses `value={\`item-${i}\`}` — index-based key instead of `item.q` (translation keys can contain dots that clash with Base UI / ICU internals).
+- Each item uses `value={`item-${i}`}` — index-based key instead of `item.q` (translation keys can contain dots that clash with Base UI / ICU internals).
 - `AccordionTrigger` — `text-left text-base font-semibold hover:no-underline` (Base UI inherits underline on hover otherwise).
 - `AccordionContent` — `leading-relaxed text-muted-foreground`.
 

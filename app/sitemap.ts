@@ -4,10 +4,10 @@ import {getBaseUrl} from '@/helpers'
 import {routing} from '@/i18n/routing'
 
 export const dynamic = 'force-static'
+const CONTENT_LASTMOD = new Date('2026-10-05')
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getBaseUrl()
-  const now = new Date()
 
   function localePath(locale: string): string {
     return locale === routing.defaultLocale ? '' : `/${locale}`
@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: Array<{path: string; priority: number}> = [
     {path: '', priority: 1},
+    {path: '/tools', priority: 0.9},
     {path: '/about', priority: 0.6},
     {path: '/privacy', priority: 0.6},
   ]
@@ -36,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const {path, priority} of staticPages) {
       urls.push({
         url: `${baseUrl}${prefix}${path}`,
-        lastModified: now,
+        lastModified: CONTENT_LASTMOD,
         changeFrequency: 'monthly',
         priority,
         alternates: buildAlternates(path),
@@ -47,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const path = `/${cat.slug}`
       urls.push({
         url: `${baseUrl}${prefix}${path}`,
-        lastModified: now,
+        lastModified: CONTENT_LASTMOD,
         changeFrequency: 'weekly',
         priority: 0.8,
         alternates: buildAlternates(path),
@@ -59,7 +60,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const path = `/${cfg.slug}`
       urls.push({
         url: `${baseUrl}${prefix}${path}`,
-        lastModified: cfg.publishedAt ? new Date(cfg.publishedAt) : now,
+        lastModified: cfg.publishedAt
+          ? new Date(cfg.publishedAt)
+          : CONTENT_LASTMOD,
         changeFrequency: 'weekly',
         priority: 0.75,
         alternates: buildAlternates(path),

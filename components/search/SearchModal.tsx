@@ -1,9 +1,9 @@
 'use client'
 
+import {SearchIcon as Search} from '@animateicons/react/lucide/search-icon'
 import {cn} from 'cn'
-import {Search} from 'lucide-react'
 import {useTranslations} from 'next-intl'
-import {useMemo, useState} from 'react'
+import {useMemo} from 'react'
 import {useSearchIndex} from '@/hooks/use-search-index'
 import {Link} from '@/i18n/navigation'
 import {highlighted} from '../shared/Highlight'
@@ -13,13 +13,13 @@ import {Input} from '../ui/input'
 interface Props {
   open: boolean
   onOpenChange: (open: boolean) => void
+  query: string
+  onQueryChange: (query: string) => void
 }
 
-export function SearchModal({open, onOpenChange}: Props) {
+export function SearchModal({open, onOpenChange, query, onQueryChange}: Props) {
   const t = useTranslations('home')
   const tConfig = useTranslations('config')
-  const [query, setQuery] = useState('')
-
   const fuse = useSearchIndex()
 
   const results = useMemo(() => {
@@ -27,10 +27,6 @@ export function SearchModal({open, onOpenChange}: Props) {
     if (q.length < 2) return []
     return fuse.search(q, {limit: 20}).map(r => r.item)
   }, [fuse, query])
-
-  // useEffect(() => {
-  //   if (!open) setQuery('')
-  // }, [open])
 
   const hasQuery = query.trim().length > 0
 
@@ -49,7 +45,7 @@ export function SearchModal({open, onOpenChange}: Props) {
             placeholder={t('search.placeholder')}
             aria-label={t('search.label')}
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={e => onQueryChange(e.target.value)}
             className="h-12 rounded-none border-0 bg-transparent pr-10 pl-10 text-base shadow-none focus-visible:ring-0"
           />
         </div>

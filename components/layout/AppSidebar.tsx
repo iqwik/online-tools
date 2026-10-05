@@ -1,5 +1,6 @@
 'use client'
 
+import {LayoutGridIcon} from '@animateicons/react/lucide'
 import {cn} from 'cn'
 import {ChevronRight} from 'lucide-react'
 import {useTranslations} from 'next-intl'
@@ -64,6 +65,11 @@ export function AppSidebar() {
   const isSidebarExpanded = state === 'expanded'
   const categories = useMemo(() => getAllCategories(), [])
 
+  const totalTools = useMemo(
+    () => categories.reduce((sum, c) => sum + c.tools.length, 0),
+    [categories],
+  )
+
   const [showPill, setShowPill] = useState(false)
 
   useEffect(() => {
@@ -116,6 +122,23 @@ export function AppSidebar() {
 
         <SidebarContent className="scrollbar-gutter-stable overflow-y-scroll">
           <SidebarGroup>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                isActive={pathname === '/tools'}
+                render={<Link href="/tools" />}
+                className="group/item"
+              >
+                <LayoutGridIcon className="size-4" />
+                <div className="flex flex-1 h-full gap-1.5 overflow-hidden items-center">
+                  <span className="flex-1 wrap-anywhere text-sm leading-4.5 ml-1 font-semibold">
+                    {tCategories('all.name')}
+                  </span>
+                  <div className="font-tag bg-muted text-muted-foreground size-5 rounded-sm flex justify-center items-center text-[10px] truncate">
+                    {totalTools}
+                  </div>
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenu>
               {categories.map(cat => {
                 const href = `/${cat.slug}`

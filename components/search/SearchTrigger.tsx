@@ -26,7 +26,7 @@ export function SearchTrigger({
   kbdClassName,
 }: Props) {
   const t = useTranslations('home')
-  const {setOpen} = useSearch()
+  const {open} = useSearch()
   const [modKey, setModKey] = useState('Ctrl')
 
   const searchIconRef = useRef<SearchIconHandle>(null)
@@ -42,7 +42,7 @@ export function SearchTrigger({
   const button = (
     <button
       type="button"
-      onClick={() => setOpen(true)}
+      onClick={() => open()}
       aria-label={t('search.label')}
       aria-keyshortcuts="Meta+K Control+K"
       onMouseEnter={() => searchIconRef.current?.startAnimation()}

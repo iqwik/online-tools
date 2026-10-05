@@ -3,6 +3,10 @@
     "home": {
       "title": "Free Online Tools for Everyday Tasks",
       "description": "Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser. No signup required."
+    },
+    "tools": {
+      "title": "All Online Tools — Free, No Signup",
+      "description": "Browse all 75 free online tools — calculators, converters, generators, and developer utilities. Everything runs 100% in your browser. No signup."
     }
   },
   "home": {
@@ -20,15 +24,44 @@
       "speed": { "value": "Fast", "label": "Browser Based" }
     },
     "search": {
-      "placeholder": "Search tools, e.g. age, BMI, password",
+      "placeholder": "Try 'bmi calculator' or 'json formatter'...",
       "label": "Search",
       "empty": "No tools found"
+    },
+    "suggestions": {
+      "label": "Try:",
+      "bmi": "bmi calculator",
+      "password": "password generator",
+      "json": "json formatter",
+      "tip": "tip calculator",
+      "word": "word counter",
+      "compress": "compress image"
+    },
+    "featured": {
+      "h2": "Featured tools",
+      "viewAll": "Browse all 75 tools"
+    },
+    "recent": {
+      "h2": "Recently added"
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "q1": "Are all these tools really free?",
+      "a1": "Yes. Every tool is completely free — no accounts, no paywalls, no hidden limits. There is no pro tier, no watermark on any output, and no daily cap on how many times you can use each tool.",
+      "q2": "Do my inputs get sent to a server?",
+      "a2": "No. Everything runs in your browser using JavaScript and native Web APIs. Nothing is uploaded, logged, or transmitted — your passwords, files, and text never leave your device.",
+      "q3": "Do I need to install anything?",
+      "a3": "No. Open the site, use the tool, close the tab. Everything works in any modern browser on desktop and mobile — no extensions, plugins, or downloads required."
     },
     "privacy": {
       "label": "100% Private - Everything Stays in Your Browser",
       "text": "Your passwords, financial calculations, and sensitive text are processed only on your device. Not a single byte is sent to a server. Powered by WebAssembly and Web Workers. Zero network requests. Runs on WebAssembly and Web Workers. Zero network requests.",
       "badge": "client-side only"
     }
+  },
+  "tools": {
+    "h1": "All Online Tools",
+    "description": "75 free tools across six categories — finance, health, text, developer, generators and business. Everything runs locally in your browser, nothing is uploaded."
   },
   "nav": {
     "home": "Home"

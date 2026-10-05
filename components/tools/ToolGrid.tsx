@@ -4,7 +4,8 @@ import {AnimatePresence, motion} from 'motion/react'
 import {useTranslations} from 'next-intl'
 import {useMemo, useState} from 'react'
 import {categories, getAllRegistryEntries} from '@/data'
-import {CategorySlug} from '@/types'
+import {seededShuffle} from '@/helpers'
+import type {CategorySlug} from '@/types'
 import {EntryPreview} from '../shared/EntryPreview'
 import {Button} from '../ui/button'
 
@@ -23,24 +24,10 @@ export function ToolGrid() {
   const tCategory = useTranslations('category')
   const [filter, setFilter] = useState<Filter>('all')
 
-  const all = useMemo(() => getAllRegistryEntries().map(e => e.config), [])
   const shuffled = useMemo(() => {
+    const all = getAllRegistryEntries().map(e => e.config)
     return seededShuffle(all, 42)
-
-    function seededShuffle<T>(arr: T[], seed: number): T[] {
-      const a = [...arr]
-      let s = seed
-      const rand = () => {
-        s = (s * 9301 + 49297) % 233280
-        return s / 233280
-      }
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(rand() * (i + 1))
-        ;[a[i], a[j]] = [a[j], a[i]]
-      }
-      return a
-    }
-  }, [all])
+  }, [])
 
   const filtered = useMemo(
     () => shuffled.filter(item => filter === 'all' || item.category === filter),
@@ -54,9 +41,7 @@ export function ToolGrid() {
           <Button
             key={f}
             variant={f === filter ? 'alternative' : 'secondary'}
-            onClick={() => {
-              setFilter(f)
-            }}
+            onClick={() => setFilter(f)}
           >
             {tCategories(`${f}.shortName`)}
           </Button>
@@ -70,11 +55,7 @@ export function ToolGrid() {
       <motion.div
         layout
         transition={SPRING}
-        style={{
-          overflow: 'hidden',
-          padding: 14,
-          margin: -14,
-        }}
+        style={{overflow: 'hidden', padding: 14, margin: -14}}
       >
         <motion.div
           layout="position"

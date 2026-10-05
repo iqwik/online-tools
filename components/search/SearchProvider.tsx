@@ -5,8 +5,10 @@ import {createContext, useContext, useEffect, useState} from 'react'
 import {SearchModal} from './SearchModal'
 
 interface SearchContextValue {
-  open: boolean
-  setOpen: (open: boolean) => void
+  isOpen: boolean
+  /** Opens the modal. Pass a string to prefill and overwrite the input. */
+  open: (query?: string) => void
+  close: () => void
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null)
@@ -18,13 +20,23 @@ export function useSearch() {
 }
 
 export function SearchProvider({children}: {children: ReactNode}) {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [query, setQuery] = useState('')
+
+  function open(nextQuery?: string) {
+    if (nextQuery !== undefined) setQuery(nextQuery)
+    setIsOpen(true)
+  }
+
+  function close() {
+    setIsOpen(false)
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
-        setOpen(true)
+        setIsOpen(true) // preserve existing query
       }
     }
     window.addEventListener('keydown', onKey)
@@ -32,9 +44,14 @@ export function SearchProvider({children}: {children: ReactNode}) {
   }, [])
 
   return (
-    <SearchContext.Provider value={{open, setOpen}}>
+    <SearchContext.Provider value={{isOpen, open, close}}>
       {children}
-      <SearchModal open={open} onOpenChange={setOpen} />
+      <SearchModal
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        query={query}
+        onQueryChange={setQuery}
+      />
     </SearchContext.Provider>
   )
 }

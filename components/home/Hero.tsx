@@ -1,10 +1,23 @@
+'use client'
+
 import {useTranslations} from 'next-intl'
+import {useSearch} from '../search/SearchProvider'
 import {SearchTrigger} from '../search/SearchTrigger'
 import {Badge} from '../ui/badge'
 import {Stats} from './Stats'
 
+const SUGGESTION_KEYS = [
+  'bmi',
+  'password',
+  'json',
+  'tip',
+  'word',
+  'compress',
+] as const
+
 export function Hero() {
   const tHome = useTranslations('home')
+  const {open} = useSearch()
 
   return (
     <section
@@ -33,12 +46,30 @@ export function Hero() {
 
         <p className="text-muted-foreground">{tHome('subtitle')}</p>
 
-        <SearchTrigger
-          variant="full"
-          placeholder={tHome('search.placeholder')}
-          buttonClassName="m-auto h-10 outline sm:h-12 shadow-md hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl transition-[shadow] duration-200 ease-linear"
-          kbdClassName="inline-block opacity-100!"
-        />
+        <div className="flex flex-col gap-3">
+          <SearchTrigger
+            variant="full"
+            placeholder={tHome('search.placeholder')}
+            buttonClassName="m-auto h-11 outline sm:h-14 shadow-md hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl transition-[shadow] duration-200 ease-linear"
+            kbdClassName="inline-block opacity-100!"
+          />
+
+          <div className="flex flex-wrap items-center justify-center gap-1.5 text-xs">
+            <span className="text-muted-foreground/70 mr-1">
+              {tHome('suggestions.label')}
+            </span>
+            {SUGGESTION_KEYS.map(key => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => open(tHome(`suggestions.${key}`))}
+                className="rounded-full border bg-secondary/50 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                {tHome(`suggestions.${key}`)}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <Stats />
       </div>

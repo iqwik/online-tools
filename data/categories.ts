@@ -1,18 +1,18 @@
+import {Braces} from '@animateicons/react/huge'
 import {
-  Braces,
   Briefcase,
   Calculator,
   FileText,
   HeartPulse,
   Zap,
-} from 'lucide-react'
-import {ComponentType, SVGProps} from 'react'
-import type {CategorySlug} from '@/types'
+} from '@animateicons/react/lucide'
+import {ComponentType, RefAttributes} from 'react'
+import type {CategorySlug, IconHandle, IconProps} from '@/types'
 import {getAllRegistryEntries, RegistryEntry} from './registry'
 
 export interface Category {
   slug: CategorySlug
-  Icon: ComponentType<SVGProps<SVGSVGElement>>
+  Icon: ComponentType<IconProps & RefAttributes<IconHandle>>
 }
 
 export const CATEGORY_COLORS: Record<

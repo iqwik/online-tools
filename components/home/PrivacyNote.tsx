@@ -2,7 +2,7 @@ import {ShieldCheckIcon} from '@animateicons/react/lucide'
 import {useTranslations} from 'next-intl'
 import {Badge} from '../ui/badge'
 
-export function Footer() {
+export function PrivacyNote() {
   const tHome = useTranslations('home')
   return (
     <section className="page flex flex-col gap-6 pt-0">

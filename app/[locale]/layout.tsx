@@ -11,8 +11,8 @@ import {routing} from '@/i18n/routing'
 import '../globals.css'
 
 import {Geist_Mono, Inter, JetBrains_Mono} from 'next/font/google'
-import {cookies} from 'next/headers'
 import {CookieConsent} from '@/components/cookie-consent'
+import {SidebarStateProvider} from '@/components/providers/sidebar-state-provider'
 import {SearchProvider} from '@/components/search/SearchProvider'
 import {Footer} from '@/components/shared/Footer'
 import {TooltipProvider} from '@/components/ui/tooltip'
@@ -57,10 +57,6 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
   const {locale} = await params
   const messages = await getMessages()
 
-  const cookieStore = await cookies()
-  const sidebarState = cookieStore.get('sidebar_state')?.value
-  const defaultOpen = sidebarState !== 'false'
-
   return (
     <html
       lang={locale}
@@ -77,19 +73,21 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
           <NextIntlClientProvider messages={messages}>
             <TooltipProvider>
               <SearchProvider>
-                <SidebarProvider defaultOpen={defaultOpen}>
-                  <AppSidebar />
-                  <main className="flex flex-col flex-1 overflow-y-auto">
-                    <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background px-4 sm:hidden">
-                      <SidebarTrigger />
-                      <div className="flex flex-1 justify-end">
-                        <SearchTrigger variant="icon" />
-                      </div>
-                    </header>
-                    <div className="flex flex-col flex-1">{children}</div>
-                    <Footer />
-                    <CookieConsent />
-                  </main>
+                <SidebarProvider defaultOpen>
+                  <SidebarStateProvider>
+                    <AppSidebar />
+                    <main className="flex flex-col flex-1 overflow-y-auto">
+                      <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background px-4 sm:hidden">
+                        <SidebarTrigger />
+                        <div className="flex flex-1 justify-end">
+                          <SearchTrigger variant="icon" />
+                        </div>
+                      </header>
+                      <div className="flex flex-col flex-1">{children}</div>
+                      <Footer />
+                      <CookieConsent />
+                    </main>
+                  </SidebarStateProvider>
                 </SidebarProvider>
               </SearchProvider>
             </TooltipProvider>

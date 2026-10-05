@@ -26,7 +26,7 @@ export type IconHandle = {
   stopAnimation: () => void
 }
 
-type IconProps = {
+export type IconProps = {
   size?: number
   className?: string
   color?: string
