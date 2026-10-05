@@ -29,5 +29,49 @@
   },
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+
+  "js/ts.tsserver.maxMemory": 6144,
+  "js/ts.tsserver.node.path": "node",
+  "js/ts.tsserver.automaticTypeAcquisition.enabled": true,
+  "js/ts.preferences.importModuleSpecifier": "shortest",
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/.turbo/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/out/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.pnpm-store/**": true,
+    "**/coverage/**": true
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/out": true,
+    "**/coverage": true,
+    "**/pnpm-lock.yaml": true
+  },
+
+  "files.exclude": {
+    "**/.turbo": true
+  },
+
+  "biome.lsp.trace.server": "off",
+  "biome.requireConfiguration": true,
+
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.stickyScroll.enabled": false,
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+
+  "tailwindCSS.experimental.classRegex": [],
+  "tailwindCSS.validate": false
 }

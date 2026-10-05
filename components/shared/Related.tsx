@@ -8,7 +8,7 @@ interface Props {
   slugs: string[]
 }
 
-export function RelatedTools({slugs}: Props) {
+export function Related({slugs}: Props) {
   const t = useTranslations('global')
   const tConfig = useTranslations('config')
 
@@ -27,7 +27,7 @@ export function RelatedTools({slugs}: Props) {
   if (items.length === 0) return null
 
   return (
-    <section className="mt-12 border-t border-border pt-8">
+    <section>
       <h2 className="mb-4 text-xl font-bold">{t('related')}</h2>
       <ul className="space-y-1">
         {items.map(item => (

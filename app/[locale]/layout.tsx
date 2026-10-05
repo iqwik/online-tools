@@ -14,6 +14,7 @@ import {Geist_Mono, Inter, JetBrains_Mono} from 'next/font/google'
 import {cookies} from 'next/headers'
 import {CookieConsent} from '@/components/cookie-consent'
 import {SearchProvider} from '@/components/search/SearchProvider'
+import {Footer} from '@/components/shared/Footer'
 import {TooltipProvider} from '@/components/ui/tooltip'
 
 export function generateStaticParams() {
@@ -78,14 +79,15 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
               <SearchProvider>
                 <SidebarProvider defaultOpen={defaultOpen}>
                   <AppSidebar />
-                  <main className="flex-1 overflow-y-auto">
+                  <main className="flex flex-col flex-1 overflow-y-auto">
                     <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background px-4 sm:hidden">
                       <SidebarTrigger />
                       <div className="flex flex-1 justify-end">
                         <SearchTrigger variant="icon" />
                       </div>
                     </header>
-                    {children}
+                    <div className="flex flex-col flex-1">{children}</div>
+                    <Footer />
                     <CookieConsent />
                   </main>
                 </SidebarProvider>

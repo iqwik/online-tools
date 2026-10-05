@@ -166,6 +166,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'percentage-calculator.title',
     h1: 'percentage-calculator.h1',
     description: 'percentage-calculator.description',
+    metaDescription: 'percentage-calculator.metaDescription',
     keywords: ['percentage-calculator.keywords'],
     Icon: Percent,
     inputs: [
@@ -263,6 +264,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'loan-payment-calculator.title',
     h1: 'loan-payment-calculator.h1',
     description: 'loan-payment-calculator.description',
+    metaDescription: 'loan-payment-calculator.metaDescription',
     keywords: ['loan-payment-calculator.keywords'],
     Icon: Landmark,
     inputs: [
@@ -385,6 +387,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'compound-interest-calculator.title',
     h1: 'compound-interest-calculator.h1',
     description: 'compound-interest-calculator.description',
+    metaDescription: 'compound-interest-calculator.metaDescription',
     keywords: ['compound-interest-calculator.keywords'],
     Icon: ChartNoAxesCombined,
     inputs: [
@@ -518,6 +521,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'discount-calculator.title',
     h1: 'discount-calculator.h1',
     description: 'discount-calculator.description',
+    metaDescription: 'discount-calculator.metaDescription',
     keywords: ['discount-calculator.keywords'],
     Icon: BadgePercent,
     inputs: [
@@ -602,6 +606,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'tip-calculator.title',
     h1: 'tip-calculator.h1',
     description: 'tip-calculator.description',
+    metaDescription: 'tip-calculator.metaDescription',
     keywords: ['tip-calculator.keywords'],
     Icon: Coffee,
     inputs: [
@@ -678,6 +683,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'sales-tax-calculator.title',
     h1: 'sales-tax-calculator.h1',
     description: 'sales-tax-calculator.description',
+    metaDescription: 'sales-tax-calculator.metaDescription',
     keywords: ['sales-tax-calculator.keywords'],
     Icon: CoinsIcon,
     inputs: [
@@ -775,6 +781,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'salary-calculator.title',
     h1: 'salary-calculator.h1',
     description: 'salary-calculator.description',
+    metaDescription: 'salary-calculator.metaDescription',
     keywords: ['salary-calculator.keywords'],
     Icon: BriefcaseBusiness,
     inputs: [
@@ -903,6 +910,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'roi-calculator.title',
     h1: 'roi-calculator.h1',
     description: 'roi-calculator.description',
+    metaDescription: 'roi-calculator.metaDescription',
     keywords: ['roi-calculator.keywords'],
     Icon: ChartLine,
     inputs: [
@@ -1024,6 +1032,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'monthly-investment-calculator.title',
     h1: 'monthly-investment-calculator.h1',
     description: 'monthly-investment-calculator.description',
+    metaDescription: 'monthly-investment-calculator.metaDescription',
     keywords: ['monthly-investment-calculator.keywords'],
     Icon: PiggyBank,
     inputs: [
@@ -1137,6 +1146,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'date-difference-calculator.title',
     h1: 'date-difference-calculator.h1',
     description: 'date-difference-calculator.description',
+    metaDescription: 'date-difference-calculator.metaDescription',
     keywords: ['date-difference-calculator.keywords'],
     Icon: CalendarSearch,
     inputs: [
@@ -1247,6 +1257,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'income-tax-calculator.title',
     h1: 'income-tax-calculator.h1',
     description: 'income-tax-calculator.description',
+    metaDescription: 'income-tax-calculator.metaDescription',
     keywords: ['income-tax-calculator.keywords'],
     Icon: CalculatorIcon,
     inputs: [
@@ -1429,6 +1440,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'savings-goal-calculator.title',
     h1: 'savings-goal-calculator.h1',
     description: 'savings-goal-calculator.description',
+    metaDescription: 'savings-goal-calculator.metaDescription',
     keywords: ['savings-goal-calculator.keywords'],
     Icon: Target,
     inputs: [
@@ -1589,6 +1601,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'loan-eligibility-calculator.title',
     h1: 'loan-eligibility-calculator.h1',
     description: 'loan-eligibility-calculator.description',
+    metaDescription: 'loan-eligibility-calculator.metaDescription',
     keywords: ['loan-eligibility-calculator.keywords'],
     Icon: HandCoins,
     inputs: [
@@ -1754,6 +1767,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'rent-vs-buy-calculator.title',
     h1: 'rent-vs-buy-calculator.h1',
     description: 'rent-vs-buy-calculator.description',
+    metaDescription: 'rent-vs-buy-calculator.metaDescription',
     keywords: ['rent-vs-buy-calculator.keywords'],
     Icon: House,
     inputs: [
@@ -1947,6 +1961,7 @@ export const financeCalculators: CalculatorConfig[] = [
     title: 'fixed-deposit-calculator.title',
     h1: 'fixed-deposit-calculator.h1',
     description: 'fixed-deposit-calculator.description',
+    metaDescription: 'fixed-deposit-calculator.metaDescription',
     keywords: ['fixed-deposit-calculator.keywords'],
     Icon: BanknoteCheck,
     inputs: [

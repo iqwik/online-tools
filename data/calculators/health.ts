@@ -22,6 +22,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'bmi-calculator.title',
     h1: 'bmi-calculator.h1',
     description: 'bmi-calculator.description',
+    metaDescription: 'bmi-calculator.metaDescription',
     tags: ['health'],
     keywords: ['bmi-calculator.keywords'],
     Icon: Weight,
@@ -79,6 +80,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'calorie-calculator.title',
     h1: 'calorie-calculator.h1',
     description: 'calorie-calculator.description',
+    metaDescription: 'calorie-calculator.metaDescription',
     keywords: ['calorie-calculator.keywords'],
     Icon: Flame,
     tags: ['health'],
@@ -184,6 +186,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'age-calculator.title',
     h1: 'age-calculator.h1',
     description: 'age-calculator.description',
+    metaDescription: 'age-calculator.metaDescription',
     keywords: ['age-calculator.keywords'],
     Icon: Cake,
     tags: ['health'],
@@ -266,6 +269,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'tdee-macro-calculator.title',
     h1: 'tdee-macro-calculator.h1',
     description: 'tdee-macro-calculator.description',
+    metaDescription: 'tdee-macro-calculator.metaDescription',
     keywords: ['tdee-macro-calculator.keywords'],
     Icon: Ham,
     inputs: [
@@ -419,6 +423,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'body-fat-calculator.title',
     h1: 'body-fat-calculator.h1',
     description: 'body-fat-calculator.description',
+    metaDescription: 'body-fat-calculator.metaDescription',
     keywords: ['body-fat-calculator.keywords'],
     Icon: Ruler,
     inputs: [
@@ -566,6 +571,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'ideal-weight-calculator.title',
     h1: 'ideal-weight-calculator.h1',
     description: 'ideal-weight-calculator.description',
+    metaDescription: 'ideal-weight-calculator.metaDescription',
     keywords: ['ideal-weight-calculator.keywords'],
     Icon: PersonStanding,
     inputs: [
@@ -665,6 +671,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'water-intake-calculator.title',
     h1: 'water-intake-calculator.h1',
     description: 'water-intake-calculator.description',
+    metaDescription: 'water-intake-calculator.metaDescription',
     keywords: ['water-intake-calculator.keywords'],
     Icon: Droplet,
     inputs: [
@@ -772,6 +779,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'heart-rate-zones-calculator.title',
     h1: 'heart-rate-zones-calculator.h1',
     description: 'heart-rate-zones-calculator.description',
+    metaDescription: 'heart-rate-zones-calculator.metaDescription',
     keywords: ['heart-rate-zones-calculator.keywords'],
     Icon: Heart,
     inputs: [
@@ -916,6 +924,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'pregnancy-due-date-calculator.title',
     h1: 'pregnancy-due-date-calculator.h1',
     description: 'pregnancy-due-date-calculator.description',
+    metaDescription: 'pregnancy-due-date-calculator.metaDescription',
     keywords: ['pregnancy-due-date-calculator.keywords'],
     Icon: UserCircleIcon,
     inputs: [
@@ -1025,6 +1034,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'sleep-cycle-calculator.title',
     h1: 'sleep-cycle-calculator.h1',
     description: 'sleep-cycle-calculator.description',
+    metaDescription: 'sleep-cycle-calculator.metaDescription',
     keywords: ['sleep-cycle-calculator.keywords'],
     Icon: Bed,
     inputs: [
@@ -1092,6 +1102,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'vo2-max-estimator.title',
     h1: 'vo2-max-estimator.h1',
     description: 'vo2-max-estimator.description',
+    metaDescription: 'vo2-max-estimator.metaDescription',
     keywords: ['vo2-max-estimator.keywords'],
     Icon: Wind,
     inputs: [
@@ -1216,6 +1227,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'sleep-debt-calculator.title',
     h1: 'sleep-debt-calculator.h1',
     description: 'sleep-debt-calculator.description',
+    metaDescription: 'sleep-debt-calculator.metaDescription',
     keywords: ['sleep-debt-calculator.keywords'],
     Icon: Moon,
     inputs: [
@@ -1334,6 +1346,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'menstrual-cycle-calculator.title',
     h1: 'menstrual-cycle-calculator.h1',
     description: 'menstrual-cycle-calculator.description',
+    metaDescription: 'menstrual-cycle-calculator.metaDescription',
     keywords: ['menstrual-cycle-calculator.keywords'],
     Icon: Flower,
     inputs: [
@@ -1486,6 +1499,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'calorie-deficit-planner.title',
     h1: 'calorie-deficit-planner.h1',
     description: 'calorie-deficit-planner.description',
+    metaDescription: 'calorie-deficit-planner.metaDescription',
     keywords: ['calorie-deficit-planner.keywords'],
     Icon: TrendingDown,
     inputs: [
@@ -1666,6 +1680,7 @@ export const healthCalculators: CalculatorConfig[] = [
     title: 'pregnancy-week-tracker.title',
     h1: 'pregnancy-week-tracker.h1',
     description: 'pregnancy-week-tracker.description',
+    metaDescription: 'pregnancy-week-tracker.metaDescription',
     keywords: ['pregnancy-week-tracker.keywords'],
     Icon: CalendarHeart,
     inputs: [

@@ -206,30 +206,60 @@ body {
   height: 0 !important;
   background: transparent !important;
 }
+
+/* Global scrollbar — always visible */
 ::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: oklch(0.55 0.02 260 / 0.5);
   border-radius: 4px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
-*:hover > ::-webkit-scrollbar-thumb {
-  background-color: oklch(0.55 0.02 260 / 0.5);
-}
-
-*:hover > ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: oklch(0.55 0.02 260);
 }
 
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+/* Sidebar scrollbar — hidden by default, visible only on hover */
+[data-slot="sidebar-content"]::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
 
-*:hover {
-  scrollbar-color: oklch(0.55 0.02 260 / 0.5) transparent;
+[data-slot="sidebar-content"]:hover::-webkit-scrollbar-thumb {
+  background-color: oklch(0.55 0.02 260 / 0.5);
 }
+
+[data-slot="sidebar-content"]:hover::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(0.55 0.02 260);
+}
+
+/* Dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: oklch(0.72 0.008 260 / 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(0.72 0.008 260);
+}
+
+.dark [data-slot="sidebar-content"]::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.dark [data-slot="sidebar-content"]:hover::-webkit-scrollbar-thumb {
+  background-color: oklch(0.72 0.008 260 / 0.5);
+}
+
+@supports (-moz-appearance: none) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  *:hover {
+    scrollbar-color: oklch(0.55 0.02 260 / 0.5) transparent;
+  }
+}
+
 @media print {
   html,
   body {

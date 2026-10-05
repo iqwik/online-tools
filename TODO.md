@@ -6,16 +6,32 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ---
 
-## 🔥 Next up (v0.11.0)
+## 🔥 Next up (v0.12.0)
+
+### Regression check — Variant C Stage 4
+- [~] **Systematic check: every View vs. its final texts.** Pattern documented in `CONTEXT.md` → «Правило: соответствие текста и кода». Open `components/tool/<Name>View.tsx` or `data/calculators/*.ts`, list every control/result, compare against `config.<slug>` in `messages/*.json`.
+- [x] `word-counter` — fixed: removed «pages» metric (View computes `avgWordLength`, not pages), added TikTok to social limits.
+- [x] `password-generator` — 4 modes + entropy + bulk implemented, texts synced.
+- [x] `image-compressor` — target file size removed from texts.
+- [x] `images-to-pdf` — drag → «стрелки», quality removed from features.
+- [x] `number-to-words-converter` — EN reformulated.
+- [x] `meta-tag-generator` — inputs described in texts (verify View matches).
+- [ ] **Remaining ~69 tools** — spot-check at least 10 random (one from each category) plus any tool mentioned as «readability», «pages», or another feature that might not exist in View.
+
+### Rich Results Test (after deploy)
+- [ ] Run all JSON-LD (WebApplication, FAQPage, HowTo) for 5–10 representative tools through Google Rich Results Test.
+- [ ] Verify HowTo `step` has both `name` and `text` — Google requires both.
+- [ ] Verify FAQPage renders for both calculators and tools.
+- [ ] Fix any schema errors before submitting sitemap.
+
+### Final EN + RU proofread
+- [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
+- [ ] Catch awkward phrasing, natural-language errors, inconsistency between description and metaDescription tone.
+- [ ] Verify each `title` fits in mobile SERP (~50 chars visible).
 
 ### Tools
-- [~] **`pdf-to-image`** — `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter']`. `pdfjs-dist@6.3.289` (worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`) + `jszip`. Page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only). Grid preview + ZIP download. `useSmoothProgress` for page processing. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. PDF only — Word (`.docx`) is out of scope.
+- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned — `getRegistryEntry('pdf-to-image')` returns `undefined`, route not generated. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. PDF only — Word (`.docx`) is out of scope.
 - [ ] **Wave 6 — interactive trackers & builders** (10 tools): `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`. Needs architecture decision: separate `TrackerConfig` or new `ToolConfig` kinds.
-
-### SEO content (69 tools remaining)
-- [ ] **Top-10 tools by traffic** (if GSC data available), then bulk migration in order: finance (15) → health (15) → developer (26) → text (5) → generators (10) → business (7).
-- [ ] Structure per tool: `howToUse` (4 steps, `{title, description}`), `features` (5–6 items, `{title, description}`), `useCases` (4–5 items, strings), FAQ up to 6 questions. Reference: timbrica.com, but write original texts.
-- [ ] Update `title`, `description`, `keywords` with long-tail terms during the pass.
 
 ### Categories — polish
 - [ ] **Extend `metaDescription` to 150–155 chars** if Google starts truncating on desktop SERP. Current values deliberately short (118–142) to guarantee no truncation.
@@ -42,6 +58,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] `images-to-pdf`: image quality slider does not affect print output (browser prints originals). If needed — recompress via Canvas before printing.
 - [ ] `screenshot-beautifier`: huge images (>4000px) at 2×/3× scale may lag — consider a downscaled preview canvas.
 - [ ] Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog — cannot be removed programmatically.
+- [ ] **Footer grows vertically on `/privacy`, `/about`** — `<main>` not wrapped in `flex flex-col`, `<footer>` inside picks up free height. Fix: `main` → `flex flex-1 flex-col min-h-0`, `article` → `flex-1`, `header`/`footer` → `shrink-0`. Not closed.
 
 ### Decisions pending
 - [ ] **`useCases` format** — keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (new `UseCaseSection`)?
@@ -120,6 +137,45 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ---
 
 ## ✅ Done
+
+### v0.11.0 — 2026-10-05
+
+**Universal SEO content rewrite (Variant C, Stages 1–3) + `metaDescription` split + UI/infra fixes**
+
+**SEO content (all 75 tools × EN + RU)**
+- [x] Rewrote `title` for all 75 tools — unified em dash `—`, ≤60 chars, critical part in first ~50
+- [x] Rewrote `description` (page version) — action verb first, live tone, up to 200 chars
+- [x] **Added `metaDescription` field to `BaseConfig`** (`types/common.ts`) — **mandatory**, up to 155 chars, keywords in first phrase
+- [x] Filled `metaDescription` for all 75 tools in `messages/{en,ru}.json`
+- [x] Rewrote `features`, `howToUse`, `useCases`, `faq` for all 75 (features add new facts, not title restating; useCases are live scenarios; FAQ 6 questions with specifics)
+- [x] Rewrote all 75 `searchSynonyms` (EN + RU) — real user queries, not SEO noise
+- [x] **«Free»/«Бесплатный» policy** — removed from first phrase in ~60% of metaDescriptions; kept only in 10 tools where it's a real value prop (invoice, payslip, quotation, images-to-pdf, image-compressor, pdf-to-image, license, meta-tag, password, watermark)
+
+**Infrastructure**
+- [x] `generateMetadata` in `app/[locale]/[slug]/page.tsx` — `t(entry.config.metaDescription)` instead of `t(entry.config.description)`
+- [x] `CalculatorSchema.tsx` / `ToolSchema.tsx` — `webApp.description: t(config.metaDescription)`
+- [x] `CalcLayout.tsx` / `ToolLayout.tsx` — kept `tConfig(config.description)` (page version under h1)
+- [x] Added `metaDescription: '<slug>.metaDescription'` to all 75 data entries in `data/calculators/{finance,health}.ts` and `data/tools/{text,developer,generators,business}.ts`
+
+**Bugs fixed**
+- [x] `BreadCrumbs.tsx` — React key warning: `<>...</>` doesn't accept `key`; wrapped two-sibling output in `<Fragment key={...}>`
+- [x] `ThemeToggle.tsx` — hydration mismatch (next-themes + React 19): added `mounted` guard, `if (!mounted) return Sun` in `useMemo`
+- [x] `globals.css` scrollbar fixes:
+  - `scrollbar-width: thin` moved into `@supports (-moz-appearance: none)` — Chrome 121+ respects the property and ignores `::-webkit-scrollbar-*`, showing native arrows otherwise
+  - Fixed `element > ::-webkit-scrollbar-thumb` → `element::-webkit-scrollbar-thumb` (thumb is nested inside track, not a direct child)
+  - Removed unreliable `transition` on `::-webkit-scrollbar-thumb`
+  - Removed `no-scrollbar` class from `SidebarContent` (its `display: none` overrode custom rules)
+  - Final design: global thumb always visible at `oklch(0.55 0.02 260 / 0.5)`; sidebar thumb visible only on `[data-slot="sidebar-content"]:hover`
+- [x] `word-counter` texts — removed «pages», added TikTok to social limits, fixed FAQ q5
+
+**Dev experience**
+- [x] `.vscode/settings.json` performance tuning:
+  - `typescript.tsserver.maxTsServerMemory: 6144`
+  - `typescript.disableAutomaticTypeAcquisition: true`
+  - `files.watcherExclude` for `node_modules`, `.next`, `.turbo`, `dist`, `build`, `out`, `.git/objects`, `.pnpm-store`, `coverage`
+  - `search.exclude`, `biome.lsp.trace.server: off`, `biome.requireConfiguration: true`
+  - `editor.inlayHints.enabled: offUnlessPressed`, `editor.stickyScroll.enabled: false`, `editor.minimap.enabled: false`, `breadcrumbs.enabled: false`
+  - `tailwindCSS.validate: false`, `tailwindCSS.experimental.classRegex: []`
 
 ### v0.10.0 — 2026-10-04
 
@@ -268,8 +324,33 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 | Metric | Current | Target |
 |---|---|---|
 | Tools shipped | 75 / 83 | 83 |
-| Tools with SEO blocks | 6 / 75 | 75 |
+| Tools with SEO blocks | 75 / 75 | 75 |
+| Tools with `metaDescription` | 75 / 75 | 75 |
+| Tools with `searchSynonyms` | 75 / 75 | 75 |
 | Categories with SEO blocks | 6 / 6 | 6 |
 | Locales | 2 / 2 | 2 (then 5) |
 | SSG coverage | 100% | 100% |
 | AdSense ready | No | Yes |
+
+---
+
+## 🔍 Audit trail (2026-10-04 → 2026-10-05)
+
+**Critical mismatches found and fixed:**
+1. `word-counter` — texts promised readability / keyword density / text utilities / pages; View had 8 stats + 6 social limits. Texts rewritten, «pages» → «avgWordLength», TikTok added to limits list.
+2. `password-generator` — texts promised 4 modes + entropy + bulk; View had 1 mode. **Implemented** in code; texts synced.
+3. `image-compressor` — texts promised target file size mode; View had quality + maxWidth + format only. Removed from texts, in tech debt.
+4. `images-to-pdf` — texts promised drag-and-drop and quality-in-print; View used up/down arrows and print ignored quality. Reformulated (arrows), quality removed from features.
+5. `number-to-words-converter` — EN texts said «English and Russian side by side»; View showed EN only on EN locale. Reformulated.
+6. `meta-tag-generator` — texts described siteName / twitter / OG type / locale inputs; need to verify View matches (Stage 4 regression check).
+
+**Medium issues fixed during rewrite:**
+- `pregnancy-due-date-calculator` — `toLocaleDateString('en-US')` hardcoded → in tech debt (locale refactor).
+- `meta-tag-generator` — preview titles hardcoded in EN → in tech debt.
+- `regex-tester.faq.q5` — reformulated from theory to instrument behaviour (MAX_MATCHES = 10000).
+
+**Infrastructure bugs fixed:**
+- `BreadCrumbs.tsx` — React key warning (Fragment).
+- `ThemeToggle.tsx` — hydration mismatch (mounted pattern).
+- `globals.css` — scrollbar: `scrollbar-width` in universal selector broke Chrome; `>` combinator for thumb; `no-scrollbar` in `SidebarContent`.
+- `.vscode/settings.json` — TS Server memory + watcher excludes for a large project.

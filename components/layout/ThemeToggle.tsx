@@ -1,8 +1,10 @@
 'use client'
 
-import {Monitor, Moon, Sun} from 'lucide-react'
+import {Monitor, Moon, Sun} from '@animateicons/react/lucide'
 import {useTranslations} from 'next-intl'
 import {useTheme} from 'next-themes'
+import {useEffect, useMemo, useRef, useState} from 'react'
+import {IconHandle} from '@/types'
 import {Button} from '../ui/button'
 import {
   DropdownMenu,
@@ -12,35 +14,75 @@ import {
 } from '../ui/dropdown-menu'
 
 export function ThemeToggle() {
-  const {setTheme} = useTheme()
+  const {theme, setTheme} = useTheme()
   const t = useTranslations('sidebar.settings')
+  const [mounted, setMounted] = useState(false)
+  const activeThemIconRef = useRef<IconHandle>(null)
+  const iconSunRef = useRef<IconHandle>(null)
+  const iconMoonRef = useRef<IconHandle>(null)
+  const iconMonitorRef = useRef<IconHandle>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const ActiveThemeIcon = useMemo(() => {
+    if (!mounted) return Sun
+    if (theme === 'light') return Sun
+    if (theme === 'dark') return Moon
+    return Monitor
+  }, [theme, mounted])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={
           <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start gap-2"
+            size="xs"
+            variant="outline"
+            onMouseEnter={() => activeThemIconRef.current?.startAnimation()}
+            onMouseLeave={() => activeThemIconRef.current?.stopAnimation()}
+            className="justify-start gap-2 cursor-pointer"
           />
         }
       >
-        <Sun className="size-4 dark:hidden" />
-        <Moon className="hidden size-4 dark:block" />
+        <ActiveThemeIcon
+          isAnimated={false}
+          ref={activeThemIconRef}
+          className="size-4"
+        />
         <span>{t('theme')}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-40">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          <Sun className="mr-2 size-4" />
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => setTheme('light')}
+          onMouseEnter={() => iconSunRef.current?.startAnimation()}
+          onMouseLeave={() => iconSunRef.current?.stopAnimation()}
+        >
+          <Sun isAnimated={false} ref={iconSunRef} className="mr-2 size-4" />
           {t('themeLight')}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <Moon className="mr-2 size-4" />
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => setTheme('dark')}
+          onMouseEnter={() => iconMoonRef.current?.startAnimation()}
+          onMouseLeave={() => iconMoonRef.current?.stopAnimation()}
+        >
+          <Moon isAnimated={false} ref={iconMoonRef} className="mr-2 size-4" />
           {t('themeDark')}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          <Monitor className="mr-2 size-4" />
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => setTheme('system')}
+          onMouseEnter={() => iconMonitorRef.current?.startAnimation()}
+          onMouseLeave={() => iconMonitorRef.current?.stopAnimation()}
+        >
+          <Monitor
+            isAnimated={false}
+            ref={iconMonitorRef}
+            className="mr-2 size-4"
+          />
           {t('themeSystem')}
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -40,7 +40,11 @@ export interface BaseConfig {
   tags: Tag[]
   title: string
   h1: string
+  /** Translation key — renders under h1 on the page (up to ~200 chars). */
   description: string
+  /** Optional translation key — meta tag + JSON-LD only (up to ~155 chars).
+   *  Falls back to `description` (truncated) when not set. */
+  metaDescription: string
   keywords: string[]
   faq?: FAQItem[]
   related?: string[]

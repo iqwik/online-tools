@@ -41,7 +41,6 @@ import {SidebarSettings} from './SidebarSettings'
 
 export function AppSidebar() {
   const tSidebar = useTranslations('sidebar')
-  const tHome = useTranslations('home')
   const tCategories = useTranslations('categories')
   const pathname = usePathname()
 
@@ -82,7 +81,7 @@ export function AppSidebar() {
         collapsible="offcanvas"
         className="data-[state=collapsed]:pointer-none"
       >
-        <SidebarHeader className="p-2">
+        <SidebarHeader className="border-b p-2">
           <div
             className={cn(
               'flex items-center',
@@ -186,7 +185,7 @@ export function AppSidebar() {
           </SidebarGroup>
         </SidebarContent>
 
-        <SidebarFooter>
+        <SidebarFooter className="border-t px-4">
           <SidebarSettings />
         </SidebarFooter>
       </Sidebar>

@@ -19,7 +19,7 @@ export async function ToolSchema({tool, url}: Props) {
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'Web',
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
-    description: t(tool.description),
+    description: t(tool.metaDescription),
     publisher: {
       '@type': 'Organization',
       name: 'ProjectName',

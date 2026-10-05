@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl'
 
-interface HowToStep {
+export interface HowToUseStep {
   title: string
   description: string
 }
@@ -25,7 +25,7 @@ export function HowToUseSection({
   }
 
   const title = t(`${slug}.${titleKey}`)
-  const steps = t.raw(`${slug}.${itemsKey}`) as HowToStep[]
+  const steps = t.raw(`${slug}.${itemsKey}`) as HowToUseStep[]
 
   return (
     <section className="space-y-4">

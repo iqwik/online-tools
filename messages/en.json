@@ -12,7 +12,7 @@
       "privacy": "Privacy First"
     },
     "h1": "Free Online Tools for Everyday Tasks",
-    "subtitle": "Instant calculators, text utilities, generators, and developer tools. Everything runs in your browser — no data leaves your device.",
+    "subtitle": "Instant calculators, text utilities, generators, and developer tools. Everything runs in your browser - no data leaves your device.",
     "stats": {
       "tools": { "value": "{count}+", "label": "Free Tools" },
       "cost": { "value": "$0", "label": "Cost to Use" },
@@ -25,7 +25,7 @@
       "empty": "No tools found"
     },
     "privacy": {
-      "label": "100% Private — Everything Stays in Your Browser",
+      "label": "100% Private - Everything Stays in Your Browser",
       "text": "Your passwords, financial calculations, and sensitive text are processed only on your device. Not a single byte is sent to a server. Powered by WebAssembly and Web Workers. Zero network requests. Runs on WebAssembly and Web Workers. Zero network requests.",
       "badge": "client-side only"
     }
@@ -39,8 +39,8 @@
       "label": "Search tools"
     },
     "toggle": {
-      "expand": "Expand sidebar",
-      "collapse": "Collapse sidebar"
+      "expand": "Expand",
+      "collapse": "Collapse"
     },
     "categories": {
       "title": "Categories"
@@ -62,433 +62,433 @@
   },
   "categories": {
     "all": {
-      "name": "Все инструменты",
-      "shortName": "Все"
+      "name": "All Tools",
+      "shortName": "All"
     },
     "finance": {
-      "name": "Финансовые калькуляторы",
-      "shortName": "Финансы",
-      "h1": "Бесплатные финансовые калькуляторы",
-      "metaTitle": "Финансовые калькуляторы онлайн — кредиты, вклады, налоги",
-      "metaDescription": "Бесплатные финансовые калькуляторы: кредиты, вклады, налоги, ROI, накопления. Всё работает в браузере без регистрации.",
-      "keywords": "финансовые калькуляторы,калькулятор кредита,калькулятор вклада,ипотека онлайн,расчёт процентов,калькулятор налогов",
-      "intro": "Бесплатные финансовые калькуляторы для кредитов, вкладов, налогов и повседневных денежных решений. Всё работает прямо в браузере — без регистрации, данные не покидают устройство. Введите свои числа и получите мгновенный результат с разбором формулы.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Finance Calculators",
+      "shortName": "Finance",
+      "h1": "Free Finance Calculators",
+      "metaTitle": "Free Finance Calculators — Loans, Interest, Tax & ROI",
+      "metaDescription": "Free online finance calculators: loan payments, compound interest, tax, ROI, savings goals and more. No signup, runs entirely in your browser.",
+      "keywords": "finance calculator,loan calculator,mortgage calculator,compound interest calculator,tax calculator,roi calculator,savings calculator",
+      "intro": "Free finance calculators for loans, investments, taxes and everyday money decisions. Everything runs locally in your browser — no signup, no data leaves your device. Enter your numbers and get instant results with a clear breakdown of the formula.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите калькулятор",
-          "description": "Кредит, сложный процент, подоходный налог, ROI, накопления и другие."
+          "title": "Pick a calculator",
+          "description": "Choose from loan payments, compound interest, income tax, ROI, savings goals and more."
         },
         {
-          "title": "Введите свои числа",
-          "description": "Заполните поля — суммы, ставки, сроки. Все калькуляторы работают с любой валютой."
+          "title": "Enter your numbers",
+          "description": "Fill in the fields — amounts, rates, time periods. All calculators accept any currency."
         },
         {
-          "title": "Посмотрите разбор",
-          "description": "Каждый результат идёт с формулой, промежуточными шагами и полной разбивкой цифр."
+          "title": "Read the breakdown",
+          "description": "Every result comes with the formula, intermediate steps and a full breakdown of the figures."
         },
         {
-          "title": "Сравните сценарии",
-          "description": "Сбросьте и пересчитайте с другими числами, чтобы увидеть, как ставки и сроки влияют на результат."
+          "title": "Compare scenarios",
+          "description": "Reset and re-run with different numbers to see how rates and terms affect the outcome."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "15 финансовых калькуляторов",
-          "description": "Кредиты, ипотека, сложный процент, скидки, чаевые, налоги, зарплата, ROI, накопления и другие."
+          "title": "15 finance calculators",
+          "description": "Loans, mortgages, compound interest, discounts, tips, tax, salary, ROI, savings and more."
         },
         {
-          "title": "Работает с любой валютой",
-          "description": "Никаких привязок к стране — вводите суммы в рублях, долларах, евро или любой другой валюте."
+          "title": "Works in any currency",
+          "description": "No country-specific assumptions — enter amounts in dollars, euros, rubles or anything else."
         },
         {
-          "title": "Формула для каждого результата",
-          "description": "Видно точную формулу и промежуточные шаги, чтобы можно было проверить расчёт самостоятельно."
+          "title": "Formula shown for every result",
+          "description": "See the exact formula and intermediate steps so you can verify the math yourself."
         },
         {
-          "title": "Без регистрации и лимитов",
-          "description": "Используйте каждый калькулятор сколько угодно раз — без аккаунтов, платных тарифов и ограничений."
+          "title": "No signup, no limits",
+          "description": "Use every calculator as many times as you want — no accounts, no paywalls, no usage caps."
         },
         {
-          "title": "100% приватно",
-          "description": "Все вычисления идут в браузере. Ваши финансовые данные не покидают устройство."
+          "title": "100% private",
+          "description": "All calculations run in your browser. Your financial figures never leave your device."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Сравнить ежемесячные платежи по ипотеке с разными сроками",
-        "Спрогнозировать рост накоплений по сложному проценту",
-        "Оценить подоходный налог и сумму на руки",
-        "Рассчитать ROI проекта или инвестиции",
-        "Узнать, сколько откладывать в месяц для цели"
+        "Compare monthly payments on different mortgage terms",
+        "Project how compound interest grows your savings",
+        "Estimate your income tax and take-home pay",
+        "Calculate ROI on a project or investment",
+        "Find out how much to save monthly for a goal"
       ],
       "faq": {
-        "q1": "Эти калькуляторы бесплатны?",
-        "a1": "Да. Каждый калькулятор бесплатен, без регистрации, платных тарифов и ограничений по количеству расчётов.",
-        "q2": "Мои финансовые данные куда-то отправляются?",
-        "a2": "Нет. Все вычисления идут полностью в вашем браузере. Данные о доходах, долгах и накоплениях не покидают устройство.",
-        "q3": "Работают ли калькуляторы с моей валютой?",
-        "a3": "Да. Калькуляторы не привязаны к конкретной валюте — вводите суммы в рублях, долларах, евро или любой другой. Расчёт одинаковый.",
-        "q4": "Насколько точны результаты?",
-        "a4": "Калькуляторы используют стандартные финансовые формулы. Точность зависит от введённых данных. Для кредитов и инвестиций всегда сверяйтесь с цифрами банка или финансового консультанта.",
-        "q5": "Можно использовать для бизнес-планирования?",
-        "a5": "Да. Несколько калькуляторов — ROI, точка безубыточности, маржа — созданы для малого бизнеса и фриланса. Они помогают устанавливать цены, анализировать кампании и планировать денежный поток."
+        "q1": "Are these calculators free to use?",
+        "a1": "Yes. Every calculator is free with no signup, no paywall and no usage limits. You can run as many calculations as you need.",
+        "q2": "Is my financial data sent anywhere?",
+        "a2": "No. All calculations run entirely in your browser. Your income, debts and savings figures never leave your device.",
+        "q3": "Do the calculators work for my country's currency?",
+        "a3": "Yes. The calculators are not tied to any specific currency — enter amounts in dollars, euros, rubles or anything else. The math is identical.",
+        "q4": "How accurate are the results?",
+        "a4": "The calculators use standard financial formulas. Results are as accurate as the numbers you enter. For loans and investments, always compare with the figures your bank or financial advisor provides.",
+        "q5": "Can I use these calculators for business planning?",
+        "a5": "Yes. Several calculators — ROI, break-even, profit margin — are designed for small business and freelance use. They help you price products, analyse campaigns and plan cash flow."
       }
     },
     "health": {
-      "name": "Здоровье и фитнес",
-      "shortName": "Здоровье",
-      "h1": "Бесплатные калькуляторы здоровья и фитнеса",
-      "metaTitle": "Калькуляторы здоровья — ИМТ, калории, БЖУ, пульс",
-      "metaDescription": "Бесплатные калькуляторы здоровья: ИМТ, суточные калории, TDEE, БЖУ, процент жира, пульсовые зоны. Без регистрации, работает в браузере.",
-      "keywords": "калькулятор здоровья,калькулятор имт,калькулятор калорий,tdee калькулятор,калькулятор бжу,процент жира,пульсовые зоны",
-      "intro": "Бесплатные калькуляторы здоровья и фитнеса для контроля веса, питания, тренировок и сна. Всё работает прямо в браузере — без регистрации, данные не собираются. Введите свои показатели и получите мгновенные оценки на основе проверенных формул.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Health & Fitness Calculators",
+      "shortName": "Health",
+      "h1": "Free Health & Fitness Calculators",
+      "metaTitle": "Free Health & Fitness Calculators — BMI, Calories, TDEE",
+      "metaDescription": "Free health and fitness calculators: BMI, daily calories, TDEE, macros, body fat, heart rate zones and more. No signup, runs in your browser.",
+      "keywords": "health calculator,bmi calculator,calorie calculator,tdee calculator,macro calculator,body fat calculator,heart rate zones",
+      "intro": "Free health and fitness calculators to track weight, nutrition, training and sleep. Everything runs locally in your browser — no signup, no data collected. Enter your stats and get instant, evidence-based estimates.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите калькулятор",
-          "description": "ИМТ, суточные калории, БЖУ, процент жира, пульсовые зоны и другие."
+          "title": "Pick a calculator",
+          "description": "Choose from BMI, daily calories, macros, body fat, heart rate zones and more."
         },
         {
-          "title": "Введите свои измерения",
-          "description": "Возраст, рост, вес, уровень активности. Все калькуляторы используют стандартные формулы."
+          "title": "Enter your measurements",
+          "description": "Fill in age, height, weight and activity level. All calculators use standard health formulas."
         },
         {
-          "title": "Посмотрите результаты",
-          "description": "Ваши цифры рядом со здоровыми диапазонами, категориями и практическими рекомендациями."
+          "title": "Read your results",
+          "description": "See your numbers alongside healthy ranges, categories and practical guidance."
         },
         {
-          "title": "Отслеживайте динамику",
-          "description": "Пересчитывайте периодически, чтобы видеть, как меняются показатели по мере прогресса."
+          "title": "Track changes over time",
+          "description": "Re-run the calculator periodically to see how your metrics change as you progress."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "15 калькуляторов здоровья",
-          "description": "ИМТ, калории, TDEE, БЖУ, процент жира, идеальный вес, вода, пульсовые зоны, сон и другие."
+          "title": "15 health calculators",
+          "description": "BMI, calories, TDEE, macros, body fat, ideal weight, water intake, heart rate zones, sleep and more."
         },
         {
-          "title": "Проверенные формулы",
-          "description": "Используются стандартные клинические формулы: Миффлина-Сан Жеора, US Navy, Карвонена, Негеле."
+          "title": "Evidence-based formulas",
+          "description": "Uses standard clinical formulas: Mifflin-St Jeor, US Navy method, Karvonen, Naegele's rule."
         },
         {
-          "title": "Здоровые диапазоны",
-          "description": "Каждый результат идёт с здоровым диапазоном или категорией, чтобы вы понимали своё положение."
+          "title": "Healthy ranges shown",
+          "description": "Every result comes with the healthy range or category so you know where you stand."
         },
         {
-          "title": "Без регистрации и трекинга",
-          "description": "Никаких аккаунтов, сбора медицинских данных и сторонней аналитики по вашим вводам."
+          "title": "No signup, no tracking",
+          "description": "No accounts, no health data collection, no third-party analytics on your inputs."
         },
         {
-          "title": "100% приватно",
-          "description": "Все вычисления идут в браузере. Данные о здоровье не покидают устройство."
+          "title": "100% private",
+          "description": "All calculations run in your browser. Your health data never leaves your device."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Проверить ИМТ и здоровый диапазон веса",
-        "Рассчитать суточные калории для похудения или набора",
-        "Спланировать норму белков, жиров и углеводов для тренировок",
-        "Оценить процент жира без лабораторного оборудования",
-        "Найти оптимальные пульсовые зоны для тренировок"
+        "Check your BMI and healthy weight range",
+        "Calculate daily calorie needs for weight loss or gain",
+        "Plan protein, carb and fat targets for training",
+        "Estimate body fat percentage without lab equipment",
+        "Find your optimal heart rate training zones"
       ],
       "faq": {
-        "q1": "Эти калькуляторы здоровья бесплатны?",
-        "a1": "Да. Каждый калькулятор бесплатен, без регистрации, платных тарифов и ограничений.",
-        "q2": "Собираются ли мои медицинские данные?",
-        "a2": "Нет. Все вычисления идут полностью в вашем браузере. Вес, рост, возраст и другие данные не покидают устройство.",
-        "q3": "Насколько точны эти калькуляторы?",
-        "a3": "Они используют стандартные клинические формулы, применяемые врачами. Однако это скрининговые инструменты, а не диагностические. За медицинской консультацией обращайтесь к врачу.",
-        "q4": "Какую формулу использует калькулятор ИМТ?",
-        "a4": "ИМТ = вес (кг) / рост (м)². Результат классифицируется по взрослым категориям ВОЗ: недостаточный вес (ниже 18,5), норма (18,5–24,9), избыточный (25–29,9), ожирение (30+).",
-        "q5": "Можно использовать для детей?",
-        "a5": "Нет. Взрослые калькуляторы рассчитаны на возраст 18+. Детям и подросткам нужны перцентильные таблицы с учётом возраста и пола. За оценкой здоровья ребёнка обращайтесь к педиатру."
+        "q1": "Are these health calculators free?",
+        "a1": "Yes. Every calculator is free with no signup, no paywall and no usage limits.",
+        "q2": "Is my health data collected?",
+        "a2": "No. All calculations run entirely in your browser. Your weight, height, age and other health data never leave your device.",
+        "q3": "Are these calculators medically accurate?",
+        "a3": "They use standard clinical formulas used by healthcare professionals. However, they are screening tools, not diagnostic tools. Consult a doctor for medical advice.",
+        "q4": "Which formula does the BMI calculator use?",
+        "a4": "BMI = weight (kg) / height (m)². The result is classified using WHO adult categories: underweight (below 18.5), normal (18.5–24.9), overweight (25–29.9), obese (30+).",
+        "q5": "Can I use these calculators for children?",
+        "a5": "No. The adult calculators are designed for ages 18+. Children and teenagers require age- and sex-specific percentile charts. Consult a pediatrician for child health assessments."
       }
     },
     "text": {
-      "name": "Текстовые инструменты",
-      "shortName": "Текст",
-      "h1": "Бесплатные текстовые инструменты",
-      "metaTitle": "Текстовые инструменты онлайн — счётчик слов, регистр, diff",
-      "metaDescription": "Бесплатные текстовые инструменты: счётчик слов, конвертер регистра, сравнение текстов, lorem ipsum, числа прописью. Без регистрации, в браузере.",
-      "keywords": "текстовые инструменты,счётчик слов,конвертер регистра,сравнение текстов,lorem ipsum,число прописью,подсчёт символов",
-      "intro": "Бесплатные текстовые инструменты для писателей, редакторов и разработчиков. Считайте слова, меняйте регистр, сравнивайте тексты, генерируйте текст-заполнитель и пишите числа прописью — всё в браузере без загрузок и регистрации.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Text Tools",
+      "shortName": "Text",
+      "h1": "Free Text Tools & Word Utilities",
+      "metaTitle": "Free Text Tools — Word Counter, Case Converter, Diff Checker",
+      "metaDescription": "Free online text tools: word counter, case converter, diff checker, lorem ipsum generator and number to words. No signup, runs in your browser.",
+      "keywords": "text tools,word counter,character counter,case converter,diff checker,lorem ipsum generator,number to words",
+      "intro": "Free text tools for writers, editors and developers. Count words, convert case, compare texts, generate placeholder content and spell out numbers — all in your browser without uploads or signup.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите инструмент",
-          "description": "Счётчик слов, конвертер регистра, сравнение текстов, lorem ipsum, числа прописью."
+          "title": "Pick a tool",
+          "description": "Choose from word counter, case converter, diff checker, lorem ipsum and number to words."
         },
         {
-          "title": "Вставьте или введите текст",
-          "description": "Вставьте текст в поле ввода — без загрузки файлов, лимит только память браузера."
+          "title": "Paste or type your text",
+          "description": "Drop your text into the input field — no file uploads, no size limits beyond browser memory."
         },
         {
-          "title": "Используйте инструмент",
-          "description": "Считайте, конвертируйте, сравнивайте или генерируйте — результат появляется мгновенно."
+          "title": "Use the tool",
+          "description": "Count, convert, compare or generate — results appear instantly as you type."
         },
         {
-          "title": "Скопируйте результат",
-          "description": "Копирование в буфер в один клик, либо скачивание, где применимо."
+          "title": "Copy the result",
+          "description": "One-click copy to clipboard, or download where applicable."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "5 текстовых инструментов",
-          "description": "Счётчик слов, конвертер регистра, сравнение текстов, lorem ipsum и числа прописью."
+          "title": "5 text tools",
+          "description": "Word counter, case converter, diff checker, lorem ipsum generator and number to words converter."
         },
         {
-          "title": "Мгновенный результат",
-          "description": "Большинство инструментов обновляют результат по мере ввода — кнопку нажимать не нужно."
+          "title": "Instant results",
+          "description": "Every tool updates as you type — no button press needed for most operations."
         },
         {
-          "title": "Читабельность и плотность ключей",
-          "description": "Счётчик слов включает Flesch-Kincaid, Gunning Fog и плотность ключевых слов для SEO-проверки."
+          "title": "Readability and keyword density",
+          "description": "The word counter includes Flesch-Kincaid, Gunning Fog and keyword density for SEO checks."
         },
         {
-          "title": "Без регистрации и загрузок",
-          "description": "Текст остаётся в браузере — ничего не отправляется на сервер, ничего не сохраняется."
+          "title": "No signup, no uploads",
+          "description": "Your text stays in your browser — nothing is sent to a server, nothing is stored."
         },
         {
-          "title": "Работает офлайн",
-          "description": "После загрузки страницы все инструменты работают без интернета."
+          "title": "Works offline",
+          "description": "Once the page loads, every tool works without an internet connection."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Проверить длину текста перед публикацией",
-        "Привести текст к ВЕРХНЕМУ, Title Case или camelCase",
-        "Сравнить две версии документа или файла кода",
-        "Сгенерировать текст-заполнитель для макета",
-        "Написать сумму прописью для чека"
+        "Check word and character count before publishing",
+        "Convert text to UPPERCASE, Title Case or camelCase",
+        "Compare two versions of a document or code file",
+        "Generate placeholder text for a mockup",
+        "Write a cheque amount in words"
       ],
       "faq": {
-        "q1": "Эти текстовые инструменты бесплатны?",
-        "a1": "Да. Каждый инструмент бесплатен, без регистрации, платных тарифов и ограничений.",
-        "q2": "Мой текст куда-то отправляется?",
-        "a2": "Нет. Вся обработка текста идёт полностью в вашем браузере. Текст не покидает устройство.",
-        "q3": "Есть ли ограничение по размеру текста?",
-        "a3": "Практический лимит — память браузера. Текст до нескольких сотен тысяч символов обрабатывается мгновенно. Очень большие файлы могут замедлить браузер.",
-        "q4": "Счётчик слов включает оценку читабельности?",
-        "a4": "Да. Счётчик слов включает Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG и Automated Readability Index, а также плотность ключевых слов для SEO-проверки.",
-        "q5": "Можно использовать lorem ipsum для коммерческих проектов?",
-        "a5": "Да. Lorem Ipsum — текст в общественном достоянии, основанный на произведении Цицерона, а сгенерированный вывод можно использовать где угодно."
+        "q1": "Are these text tools free?",
+        "a1": "Yes. Every tool is free with no signup, no paywall and no usage limits.",
+        "q2": "Is my text uploaded anywhere?",
+        "a2": "No. All text processing runs entirely in your browser. Your text never leaves your device.",
+        "q3": "Is there a size limit for the text?",
+        "a3": "The practical limit is your browser's memory. Text up to a few hundred thousand characters processes instantly. Very large files may slow down the browser.",
+        "q4": "Does the word counter include readability scores?",
+        "a4": "Yes. The word counter includes Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG and Automated Readability Index, plus keyword density for SEO checks.",
+        "q5": "Can I use the lorem ipsum generator for commercial projects?",
+        "a5": "Yes. Lorem Ipsum is public-domain text derived from Cicero's work, and the generated output is free to use anywhere."
       }
     },
     "developer": {
-      "name": "Инструменты разработчика",
-      "shortName": "Разработчику",
-      "h1": "Бесплатные инструменты разработчика",
-      "metaTitle": "Инструменты разработчика — JSON, Base64, Regex, JWT",
-      "metaDescription": "Бесплатные инструменты разработчика: JSON formatter, Base64, regex, JWT decoder, UUID, хеши и другое. Без регистрации, работает в браузере.",
-      "keywords": "инструменты разработчика,json formatter,base64 encoder,regex тестер,jwt decoder,uuid генератор,hash генератор,url encoder",
-      "intro": "Бесплатные инструменты разработчика для повседневных задач. Форматируйте JSON, кодируйте Base64, тестируйте regex, декодируйте JWT, генерируйте UUID и хеши — всё работает локально в браузере без загрузок, логов и регистрации.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Developer Tools",
+      "shortName": "Developer",
+      "h1": "Free Developer Tools & Utilities",
+      "metaTitle": "Free Developer Tools — JSON, Base64, Regex, JWT & More",
+      "metaDescription": "Free online developer tools: JSON formatter, Base64 encoder, regex tester, JWT decoder, UUID generator, hash generator and more. No signup.",
+      "keywords": "developer tools,json formatter,base64 encoder,regex tester,jwt decoder,uuid generator,hash generator,url encoder",
+      "intro": "Free developer tools for everyday coding tasks. Format JSON, encode Base64, test regex, decode JWT, generate UUIDs and hashes — all running locally in your browser with no uploads, no logs and no signup.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите инструмент",
-          "description": "JSON formatter, Base64, regex, JWT decoder, UUID, хеши и другие."
+          "title": "Pick a tool",
+          "description": "Choose from JSON formatter, Base64, regex tester, JWT decoder, UUID, hash and more."
         },
         {
-          "title": "Вставьте данные",
-          "description": "Вставьте код, токен, строку или данные в поле ввода."
+          "title": "Paste your input",
+          "description": "Drop your code, token, string or data into the input field."
         },
         {
-          "title": "Выполните операцию",
-          "description": "Форматирование, кодирование, декодирование, тест или генерация — результат мгновенный."
+          "title": "Run the operation",
+          "description": "Format, encode, decode, test or generate — results appear instantly."
         },
         {
-          "title": "Скопируйте или скачайте",
-          "description": "Копирование в буфер в один клик или скачивание результата файлом."
+          "title": "Copy or download",
+          "description": "One-click copy to clipboard, or download the result as a file where applicable."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "26 инструментов разработчика",
-          "description": "JSON, Base64, URL, JWT, UUID, хеши, regex, timestamp, markdown, SQL, CSS и другие."
+          "title": "26 developer tools",
+          "description": "JSON, Base64, URL encoding, JWT, UUID, hash, regex, timestamp, markdown, SQL, CSS and more."
         },
         {
-          "title": "Только на клиенте",
-          "description": "Каждый инструмент работает в браузере — без сервера, логов и сбора данных. Безопасно для токенов и ключей."
+          "title": "Client-side only",
+          "description": "Every tool runs in your browser — no server, no logs, no data collection. Safe for sensitive tokens and keys."
         },
         {
-          "title": "Мгновенная обратная связь",
-          "description": "Живая валидация, живой предпросмотр и живая подсветка — кнопку нажимать не нужно."
+          "title": "Instant feedback",
+          "description": "Live validation, live preview and live highlighting — no button press needed for most tools."
         },
         {
-          "title": "Криптостойкая генерация",
-          "description": "UUID и пароли генерируются через crypto.getRandomValues — тот же источник случайности, что и в TLS."
+          "title": "Cryptographically secure",
+          "description": "UUID and password generators use crypto.getRandomValues — the same randomness source as TLS."
         },
         {
-          "title": "Работает офлайн",
-          "description": "После загрузки каждый инструмент работает без интернета — удобно в самолёте или защищённой среде."
+          "title": "Works offline",
+          "description": "Once loaded, every tool works without an internet connection — useful on flights or in secure environments."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Форматировать и проверить JSON из ответа API",
-        "Закодировать или декодировать Base64 для data URI",
-        "Проверить regex перед вставкой в код",
-        "Декодировать JWT для просмотра claims и срока действия",
-        "Сгенерировать UUID для первичных ключей БД"
+        "Format and validate JSON from an API response",
+        "Encode or decode Base64 for data URIs",
+        "Test a regex pattern before adding it to code",
+        "Decode a JWT to inspect its claims and expiry",
+        "Generate UUIDs for database primary keys"
       ],
       "faq": {
-        "q1": "Эти инструменты разработчика бесплатны?",
-        "a1": "Да. Каждый инструмент бесплатен, без регистрации, платных тарифов и ограничений.",
-        "q2": "Мой код или данные отправляются на сервер?",
-        "a2": "Нет. Вся обработка идёт полностью в вашем браузере. Код, токены, ключи и данные не покидают устройство.",
-        "q3": "Можно использовать для продакшена?",
-        "a3": "Да. Инструменты рассчитаны на повседневные задачи разработки. Всегда тестируйте вывод в своей среде перед деплоем в продакшен.",
-        "q4": "UUID криптографически безопасны?",
-        "a4": "Да. UUID v4 и v7 генерируются через crypto.randomUUID и crypto.getRandomValues — оба используют криптографически стойкий источник случайности.",
-        "q5": "JWT decoder проверяет подпись?",
-        "a5": "Нет. JWT decoder извлекает header и payload, которые закодированы в Base64URL и не зашифрованы. Проверка подписи требует секретного или публичного ключа и не выполняется."
+        "q1": "Are these developer tools free?",
+        "a1": "Yes. Every tool is free with no signup, no paywall and no usage limits.",
+        "q2": "Is my code or data sent to a server?",
+        "a2": "No. All processing runs entirely in your browser. Your code, tokens, keys and data never leave your device.",
+        "q3": "Can I use these tools for production work?",
+        "a3": "Yes. The tools are designed for everyday development tasks. Always test the output in your own environment before deploying to production.",
+        "q4": "Are the UUIDs cryptographically secure?",
+        "a4": "Yes. UUID v4 and v7 are generated using crypto.randomUUID and crypto.getRandomValues, both of which use a cryptographically secure random source.",
+        "q5": "Does the JWT decoder verify signatures?",
+        "a5": "No. The JWT decoder extracts the header and payload, which are Base64URL-encoded and not encrypted. Signature verification requires the secret or public key and is not performed."
       }
     },
     "generators": {
-      "name": "Генераторы",
-      "shortName": "Генераторы",
-      "h1": "Бесплатные онлайн-генераторы — пароли, QR, изображения",
-      "metaTitle": "Онлайн-генераторы — пароли, QR-коды, изображения",
-      "metaDescription": "Бесплатные онлайн-генераторы: пароли, QR-коды, штрих-коды, сжатие изображений, палитры, favicon. Без регистрации, работает в браузере.",
-      "keywords": "генератор паролей,генератор qr кодов,сжатие изображений,генератор палитры,favicon генератор,штрих-код генератор,онлайн генераторы",
-      "intro": "Бесплатные онлайн-генераторы для паролей, QR-кодов, изображений и цветов. Создавайте надёжные пароли, QR-коды для Wi-Fi или ссылок, сжимайте изображения, извлекайте палитры и собирайте наборы favicon — всё в браузере без загрузок.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Generators",
+      "shortName": "Generators",
+      "h1": "Free Online Generators — Passwords, QR Codes, Images",
+      "metaTitle": "Free Online Generators — Password, QR Code, Image Tools",
+      "metaDescription": "Free online generators: passwords, QR codes, barcodes, image compression, color palettes, favicons and more. No signup, runs in your browser.",
+      "keywords": "password generator,qr code generator,image compressor,color palette generator,favicon generator,barcode generator,online generators",
+      "intro": "Free online generators for passwords, QR codes, images and colors. Generate strong passwords, create QR codes for Wi-Fi or URLs, compress images, extract color palettes and build favicon sets — all in your browser without uploads.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите генератор",
-          "description": "Пароль, QR-код, штрих-код, сжатие, конвертация, палитра, favicon."
+          "title": "Pick a generator",
+          "description": "Choose from password, QR code, barcode, image compressor, image converter, color palette and favicon."
         },
         {
-          "title": "Настройте параметры",
-          "description": "Длина, формат, размер, качество или цвета — у каждого генератора разумные значения по умолчанию."
+          "title": "Set your options",
+          "description": "Adjust length, format, size, quality or colors — every generator has sensible defaults."
         },
         {
-          "title": "Сгенерируйте",
-          "description": "Нажмите кнопку — результат появляется мгновенно. Пароли и QR-коды не покидают устройство."
+          "title": "Generate",
+          "description": "Click the button — the result appears instantly. Passwords and QR codes never leave your device."
         },
         {
-          "title": "Скопируйте или скачайте",
-          "description": "Копирование в буфер, скачивание файлом или прямое использование сгенерированного ресурса."
+          "title": "Copy, download or share",
+          "description": "Copy to clipboard, download as a file, or use the generated asset directly."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "10 генераторов",
-          "description": "Пароль, QR-код, штрих-код, сжатие, конвертация, пакетный ресайз, водяные знаки, палитра, favicon и beautifier скриншотов."
+          "title": "10 generators",
+          "description": "Password, QR code, barcode, image compressor, image converter, bulk resizer, watermark, color palette, favicon and screenshot beautifier."
         },
         {
-          "title": "Криптостойкие пароли",
-          "description": "Пароли генерируются через crypto.getRandomValues — тот же источник случайности, что и в TLS."
+          "title": "Cryptographically secure passwords",
+          "description": "Passwords are generated with crypto.getRandomValues — the same randomness source as TLS."
         },
         {
-          "title": "Пакетная обработка",
-          "description": "Сжимайте, изменяйте размер или накладывайте водяные знаки до 20 изображений за раз — без загрузок и очередей."
+          "title": "Batch processing",
+          "description": "Compress, resize or watermark up to 20 images at once — no uploads, no queues."
         },
         {
-          "title": "Без регистрации и водяных знаков",
-          "description": "Каждый генератор бесплатен, без аккаунтов и брендинга на выводе."
+          "title": "No signup, no watermarks",
+          "description": "Every generator is free with no accounts and no branding added to your output."
         },
         {
-          "title": "100% приватно",
-          "description": "Все генерации идут в браузере. Пароли, изображения и данные не покидают устройство."
+          "title": "100% private",
+          "description": "All generation runs in your browser. Your passwords, images and data never leave your device."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Создать надёжный пароль для нового аккаунта",
-        "Сгенерировать Wi-Fi QR-код для гостей",
-        "Сжать изображения перед загрузкой на сайт",
-        "Извлечь палитру из фото или логотипа",
-        "Собрать набор favicon для нового сайта"
+        "Create a strong password for a new account",
+        "Generate a Wi-Fi QR code for guests",
+        "Compress images before uploading to a website",
+        "Extract a color palette from a photo or logo",
+        "Build a favicon set for a new website"
       ],
       "faq": {
-        "q1": "Эти генераторы бесплатны?",
-        "a1": "Да. Каждый генератор бесплатен, без регистрации, платных тарифов и ограничений.",
-        "q2": "Сгенерированные пароли безопасны?",
-        "a2": "Да. Пароли генерируются через crypto.getRandomValues — криптографически стойкий источник случайности в браузере. Они не покидают устройство и не передаются.",
-        "q3": "Мои изображения куда-то загружаются?",
-        "a3": "Нет. Вся обработка изображений — сжатие, конвертация, ресайз, водяные знаки — идёт в браузере через Canvas API. Изображения не покидают устройство.",
-        "q4": "Можно использовать сгенерированные QR-коды коммерчески?",
-        "a4": "Да. QR-коды, штрих-коды, favicon и палитры, сгенерированные здесь, бесплатны для любого использования — коммерческого или личного.",
-        "q5": "Есть ли лимит на количество файлов?",
-        "a5": "Для инструментов работы с изображениями — 20 файлов за партию. Паролей можно сгенерировать до 500 за раз. Дневных или месячных лимитов нет — запускайте столько партий, сколько нужно."
+        "q1": "Are these generators free?",
+        "a1": "Yes. Every generator is free with no signup, no paywall and no usage limits.",
+        "q2": "Are the generated passwords secure?",
+        "a2": "Yes. Passwords are generated using crypto.getRandomValues, a cryptographically secure random source built into your browser. They never leave your device and are never transmitted.",
+        "q3": "Are my images uploaded anywhere?",
+        "a3": "No. All image processing — compression, conversion, resizing, watermarking — runs entirely in your browser using the Canvas API. Your images never leave your device.",
+        "q4": "Can I use the generated QR codes commercially?",
+        "a4": "Yes. QR codes, barcodes, favicons and color palettes generated here are free to use for any purpose, commercial or personal.",
+        "q5": "Is there a limit on how many files I can process?",
+        "a5": "For image tools, the limit is 20 files per batch. For passwords, you can generate up to 500 at once. There is no daily or monthly limit — run as many batches as you need."
       }
     },
     "business": {
-      "name": "Бизнес-инструменты",
-      "shortName": "Бизнесу",
-      "h1": "Бесплатные бизнес-инструменты — счета, сметы, payslip",
-      "metaTitle": "Бизнес-инструменты — счета, сметы, payslip, UTM",
-      "metaDescription": "Бесплатные бизнес-инструменты: генератор счетов, смет, расчётных листов, UTM-билдер, калькулятор маржи и точки безубыточности. Без регистрации.",
-      "keywords": "бизнес инструменты,генератор счетов,генератор смет,payslip generator,utm билдер,калькулятор маржи,точка безубыточности",
-      "intro": "Бесплатные бизнес-инструменты для счетов, смет, расчётных листов, UTM-ссылок и финансового анализа. Создавайте профессиональные документы, ведите нумерацию счетов, собирайте кампанийные URL и считайте маржу — всё в браузере без регистрации.",
-      "howToUseTitle": "Как пользоваться",
+      "name": "Business Tools",
+      "shortName": "Business",
+      "h1": "Free Business Tools — Invoices, Quotes, Payslips & More",
+      "metaTitle": "Free Business Tools — Invoice, Quote, Payslip & UTM Builder",
+      "metaDescription": "Free business tools: invoice generator, quotation builder, payslip maker, UTM builder, profit margin and break-even calculators. No signup.",
+      "keywords": "business tools,invoice generator,quotation generator,payslip generator,utm builder,profit margin calculator,break even calculator",
+      "intro": "Free business tools for invoices, quotations, payslips, UTM links and financial analysis. Generate professional documents, track invoice numbers, build campaign URLs and calculate margins — all in your browser without signup.",
+      "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Выберите инструмент",
-          "description": "Счёт, смета, расчётный лист, UTM-билдер, маржа или точка безубыточности."
+          "title": "Pick a tool",
+          "description": "Choose from invoice, quotation, payslip, UTM builder, profit margin or break-even."
         },
         {
-          "title": "Заполните данные",
-          "description": "Данные компании и клиента, позиции, налоги и валюта."
+          "title": "Fill in your details",
+          "description": "Enter company and client information, line items, taxes and currency."
         },
         {
-          "title": "Проверьте превью",
-          "description": "Живой предпросмотр документа или расчёта до экспорта."
+          "title": "Review the preview",
+          "description": "See a live preview of the document or calculation before you export."
         },
         {
-          "title": "Скачайте или скопируйте",
-          "description": "Скачайте PDF, скопируйте UTM-ссылку или сохраните номер в локальный трекер."
+          "title": "Download or copy",
+          "description": "Download as PDF, copy the UTM link, or save the number to your local tracker."
         }
       ],
-      "featuresTitle": "Что вы получаете",
+      "featuresTitle": "What you get",
       "features": [
         {
-          "title": "7 бизнес-инструментов",
-          "description": "Счёт, смета, расчётный лист, трекер номеров счетов, UTM-билдер, маржа и точка безубыточности."
+          "title": "7 business tools",
+          "description": "Invoice, quotation, payslip, invoice number tracker, UTM builder, profit margin and break-even calculator."
         },
         {
-          "title": "Профессиональные шаблоны",
-          "description": "Шаблоны счёта Modern и Classic, чистые макеты сметы и расчётного листа."
+          "title": "Professional templates",
+          "description": "Modern and Classic invoice templates, plus a clean quotation and payslip layout."
         },
         {
-          "title": "Логотип и брендинг",
-          "description": "Загрузите логотип и выберите цвет темы под свой бренд."
+          "title": "Logo and branding",
+          "description": "Upload your company logo and choose theme colors to match your brand."
         },
         {
-          "title": "Автосохранение в localStorage",
-          "description": "Черновик счёта, сметы или расчётного листа сохраняется в браузере — обновляйте страницу без потери прогресса."
+          "title": "Auto-save to localStorage",
+          "description": "Your invoice, quote or payslip draft is saved in your browser — reload without losing progress."
         },
         {
-          "title": "Без регистрации и водяных знаков",
-          "description": "Каждый документ бесплатен, без аккаунтов и добавленного брендинга."
+          "title": "No signup, no watermarks",
+          "description": "Every document is free with no accounts and no added branding."
         }
       ],
-      "useCasesTitle": "Типичные сценарии",
+      "useCasesTitle": "Common use cases",
       "useCases": [
-        "Отправить профессиональный счёт клиенту",
-        "Подготовить коммерческое предложение или смету",
-        "Сформировать месячный расчётный лист сотруднику",
-        "Построить UTM-ссылку для рекламной кампании",
-        "Рассчитать маржу или точку безубыточности"
+        "Send a professional invoice to a client",
+        "Prepare a quotation or estimate for a project",
+        "Generate a monthly payslip for an employee",
+        "Build a UTM link for a marketing campaign",
+        "Calculate profit margin or break-even point"
       ],
       "faq": {
-        "q1": "Эти бизнес-инструменты бесплатны?",
-        "a1": "Да. Каждый инструмент бесплатен, без регистрации, платных тарифов и ограничений.",
-        "q2": "Мои бизнес-данные сохраняются на серверах?",
-        "a2": "Нет. Все данные хранятся локально в localStorage вашего браузера. Ничего не загружается на сервер. Очистка данных браузера удалит сохранённое состояние.",
-        "q3": "Как экспортировать документ в PDF?",
-        "a3": "Нажмите «Скачать PDF» и выберите «Сохранить как PDF» в диалоге печати браузера. Печатается только превью документа — форма и элементы управления скрываются автоматически.",
-        "q4": "Можно добавить логотип компании?",
-        "a4": "Да. Загрузите PNG или JPG — он встроится в превью и попадёт в PDF при печати.",
-        "q5": "Юридически ли действителен генератор счетов?",
-        "a5": "В большинстве юрисдикций счёт — это бизнес-документ, а не государственная форма. Требования различаются: в некоторых странах нужны налоговые ID, последовательная нумерация или особые формулировки. Проверяйте местные правила перед использованием для налоговой отчётности."
+        "q1": "Are these business tools free?",
+        "a1": "Yes. Every tool is free with no signup, no paywall and no usage limits.",
+        "q2": "Is my business data saved on your servers?",
+        "a2": "No. All data is stored locally in your browser's localStorage. Nothing is uploaded to any server. Clearing browser data removes the saved state.",
+        "q3": "How do I export a document to PDF?",
+        "a3": "Click Download PDF and choose Save as PDF in your browser's print dialog. Only the document preview is printed — the form and controls are hidden automatically.",
+        "q4": "Can I add my company logo?",
+        "a4": "Yes. Upload a PNG or JPG and it will be embedded into the preview and included in the printed PDF.",
+        "q5": "Is the invoice generator legally compliant?",
+        "a5": "In most jurisdictions, an invoice is a business document, not a government form. Requirements vary — some countries require tax IDs, consecutive numbering or specific wording. Check your local rules before using for tax purposes."
       }
     }
   },
@@ -525,15 +525,15 @@
   "about": {
     "meta": {
       "title": "About",
-      "description": "Learn about ProjectName — free, fast, privacy-first online tools."
+      "description": "Learn about ProjectName - free, fast, privacy-first online tools."
     },
     "title": "About ProjectName",
-    "intro": "ProjectName is a collection of free online tools — calculators, text utilities, generators, and developer utilities — that run entirely in your browser.",
+    "intro": "ProjectName is a collection of free online tools - calculators, text utilities, generators, and developer utilities - that run entirely in your browser.",
     "mission": {
       "title": "Our Mission",
-      "text": "Most online tools require sign-ups, process your data on their servers, or are cluttered with ads. We build simple, fast utilities that respect your privacy. Everything runs locally — nothing is uploaded, stored, or tracked.",
+      "text": "Most online tools require sign-ups, process your data on their servers, or are cluttered with ads. We build simple, fast utilities that respect your privacy. Everything runs locally - nothing is uploaded, stored, or tracked.",
       "points": {
-        "free": "100% free — no paywalls, no hidden fees, no accounts.",
+        "free": "100% free - no paywalls, no hidden fees, no accounts.",
         "fast": "Built with Next.js and React, tools load instantly on any device.",
         "private": "All calculations happen in your browser. Your data never leaves your device."
       }
@@ -541,12 +541,12 @@
     "offer": {
       "title": "What We Offer",
       "text": "Tools across six categories:",
-      "finance": "Financial calculators — loans, interest, returns.",
-      "health": "Health & fitness — BMI, calories, body metrics.",
-      "textTools": "Text tools — counters, converters, formatters.",
-      "developer": "Developer utilities — encoders, validators, generators.",
-      "generators": "Generators — passwords, QR codes, IDs.",
-      "business": "Business tools — invoices, quotes, salary slips."
+      "finance": "Financial calculators - loans, interest, returns.",
+      "health": "Health & fitness - BMI, calories, body metrics.",
+      "textTools": "Text tools - counters, converters, formatters.",
+      "developer": "Developer utilities - encoders, validators, generators.",
+      "generators": "Generators - passwords, QR codes, IDs.",
+      "business": "Business tools - invoices, quotes, salary slips."
     },
     "contact": {
       "title": "Get in Touch",
@@ -556,7 +556,7 @@
   "privacy": {
     "meta": {
       "title": "Privacy Policy",
-      "description": "How ProjectName handles your data — short version: we don't collect it."
+      "description": "How ProjectName handles your data - short version: we don't collect it."
     },
     "title": "Privacy Policy",
     "updated": "Last updated: {date}",
@@ -564,7 +564,7 @@
     "sections": {
       "data": {
         "title": "What data we collect",
-        "text": "None. All tools run entirely in your browser using client-side JavaScript. Calculations, file conversions, text processing — everything happens on your device. Nothing is sent to our servers."
+        "text": "None. All tools run entirely in your browser using client-side JavaScript. Calculations, file conversions, text processing - everything happens on your device. Nothing is sent to our servers."
       },
       "storage": {
         "title": "Local storage",
@@ -590,10 +590,11 @@
   },
   "config": {
     "percentage-calculator": {
-      "title": "Percentage Calculator — Percent Of, Discount, VAT & Change",
+      "title": "Percentage Calculator — Percent Of, Change, Discount & VAT",
       "h1": "Percentage Calculator",
-      "description": "Free percentage calculator: find X% of Y, what percent X is of Y, percentage change, add or subtract a percent. Built-in templates for discounts, tips, VAT and markup. Instant results, no signup.",
-      "keywords": "percentage calculator,percent calculator,percent of a number,what percent,percentage change calculator,percent increase calculator,percent off calculator,vat calculator online",
+      "description": "Work out percentages in seconds: find X% of a number, see what percent one value is of another, or measure the change between two numbers. One-click presets for discounts, tips, VAT and markup.",
+      "metaDescription": "Find X% of a number, what percent one value is of another, or the percentage change. Discount, tip, VAT and markup presets included.",
+      "keywords": "percentage calculator,percent calculator,percentage of a number,what percent,percentage change,percent increase,percent off,vat calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -617,11 +618,11 @@
       "features": [
         {
           "title": "Three calculation modes",
-          "description": "Percent of a number, what percent one number is of another, or percentage change."
+          "description": "Percent of a number, what percent one number is of another, or percentage change — pick the one that matches your problem."
         },
         {
-          "title": "One-click templates",
-          "description": "Ready-made scenarios for discounts, restaurant tips, VAT extraction and markup."
+          "title": "One-click presets",
+          "description": "Four common scenarios: store discount, restaurant tip, VAT extraction from a gross amount, and markup."
         },
         {
           "title": "Shows the formula",
@@ -638,11 +639,11 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Calculate a store discount during a sale",
-        "Work out a restaurant tip and split the bill",
-        "Extract VAT from a gross amount",
-        "Find growth or decline percentage between two periods",
-        "Compare two values as percentages"
+        "Check the real discount on a sale tag before buying",
+        "Split a restaurant bill and work out the tip",
+        "Extract the VAT portion from a gross invoice amount",
+        "See how much a price or metric grew between two periods",
+        "Compare two values as percentages at a glance"
       ],
       "inputs": {
         "mode": "Calculation type",
@@ -677,9 +678,10 @@
       }
     },
     "loan-payment-calculator": {
-      "title": "Loan Payment Calculator – Monthly Payment & Total Interest",
+      "title": "Loan Payment Calculator — Monthly Payment & Total Interest",
       "h1": "Loan Payment Calculator",
-      "description": "Free loan payment calculator for mortgages, car loans and personal loans. Get your monthly payment, total interest and total cost instantly. Works for any currency.",
+      "description": "See your monthly payment for any loan — mortgage, car loan or personal loan. Enter the amount, rate and term to get the monthly figure, total interest and total cost. Works with any currency.",
+      "metaDescription": "See your monthly payment for a mortgage, car loan or personal loan. Get total interest, total cost and the interest share of every payment.",
       "keywords": "loan payment calculator,monthly payment calculator,mortgage calculator,car loan calculator,loan calculator,amortization calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -704,11 +706,11 @@
       "features": [
         {
           "title": "Monthly payment breakdown",
-          "description": "See exactly how much goes to principal and how much to interest each month."
+          "description": "Each payment covers interest first, then principal — see the exact split for the term you choose."
         },
         {
           "title": "Total interest over the life of the loan",
-          "description": "Know the full cost before you sign — not just the monthly figure."
+          "description": "Know the full cost before you sign, not just the monthly figure."
         },
         {
           "title": "Interest share percentage",
@@ -725,9 +727,9 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Compare monthly payments for different mortgage terms",
-        "Check the total interest on a car loan before visiting the dealership",
-        "See how a higher down payment reduces the monthly payment",
+        "Compare monthly payments across different mortgage terms",
+        "Estimate the total interest on a car loan before visiting the dealership",
+        "See how a larger down payment changes the monthly figure",
         "Compare offers from two lenders with different rates"
       ],
       "inputs": {
@@ -761,10 +763,11 @@
       }
     },
     "compound-interest-calculator": {
-      "title": "Compound Interest Calculator – Future Value of Investment",
+      "title": "Compound Interest Calculator — Future Value & Growth",
       "h1": "Compound Interest Calculator",
-      "description": "Free compound interest calculator. See how your money grows with different compounding frequencies and time horizons. Enter principal, rate and years — get future value, interest earned and effective annual rate.",
-      "keywords": "compound interest calculator,compound interest,future value calculator,investment growth calculator,compounding frequency",
+      "description": "See how your money grows over time. Enter the starting amount, expected rate and years to get the future value, total interest earned and the effective annual rate. Compare annual, monthly and daily compounding.",
+      "metaDescription": "See how your money grows over time. Future value, total interest and effective annual rate. Compare annual, monthly and daily compounding.",
+      "keywords": "compound interest calculator,compound interest,future value calculator,investment growth,compounding frequency",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -788,7 +791,7 @@
       "features": [
         {
           "title": "Five compounding frequencies",
-          "description": "Annually, semiannually, quarterly, monthly and daily — see how each affects the final amount."
+          "description": "Annually, semiannually, quarterly, monthly and daily — for the same rate, daily gives the highest return and annual the lowest."
         },
         {
           "title": "Interest earned breakdown",
@@ -809,10 +812,10 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Project the growth of a retirement savings account",
-        "Compare a savings account vs a certificate of deposit",
-        "See how a lump sum grows over 10, 20 or 30 years",
-        "Understand the difference between nominal and effective rates"
+        "Project the growth of a retirement savings account over 20–30 years",
+        "Compare a savings account against a certificate of deposit",
+        "See how a lump sum compounds across different frequencies",
+        "Understand the gap between nominal and effective rates"
       ],
       "inputs": {
         "principal": "Principal",
@@ -850,9 +853,10 @@
       }
     },
     "discount-calculator": {
-      "title": "Discount Calculator – Final Price After Discount & Tax",
+      "title": "Discount Calculator — Final Price & Savings",
       "h1": "Discount Calculator",
-      "description": "Free discount calculator. Find the final price after a percentage discount, then optionally add sales tax. See exactly how much you save and what you pay.",
+      "description": "Find the final price after a discount and see exactly how much you save. Optionally add sales tax — applied to the discounted price, the way it works at checkout. Works for any store, any currency.",
+      "metaDescription": "Find the final price after a discount and see exactly how much you save. Optionally add sales tax applied to the discounted price.",
       "keywords": "discount calculator,sale price calculator,percent off calculator,sales tax calculator,discount price",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -877,7 +881,7 @@
       "features": [
         {
           "title": "Savings breakdown",
-          "description": "Shows exactly how much you save and the price after discount."
+          "description": "Shows the exact amount you save, the discounted price, and the final amount you pay."
         },
         {
           "title": "Optional sales tax",
@@ -894,10 +898,10 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Check the final price during a sale before buying",
-        "Compare a discount at two different stores",
+        "Check the real final price during a sale before buying",
+        "Compare the same discount at two different stores",
         "See the true cost after adding sales tax",
-        "Verify a discount applied at checkout"
+        "Verify the discount the cashier applied at checkout"
       ],
       "inputs": {
         "price": "Original price",
@@ -927,9 +931,10 @@
       }
     },
     "tip-calculator": {
-      "title": "Tip Calculator & Bill Splitter – Free Online Tool",
+      "title": "Tip Calculator & Bill Splitter",
       "h1": "Tip Calculator & Bill Splitter",
-      "description": "Free tip calculator with bill splitter. Calculate tip amount, total bill, and split the cost evenly among friends. Supports custom tip percentages and any currency.",
+      "description": "Split the bill and work out the tip in one step. Enter the bill, choose a tip percentage and set how many people are paying. See the tip amount, the total and exactly what each person owes.",
+      "metaDescription": "Split the bill and calculate the tip in one step. Custom tip percentage, any number of people, any currency. Per-person share shown instantly.",
       "keywords": "tip calculator,bill splitter,gratuity calculator,restaurant tip,split the bill,how much tip",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -954,7 +959,7 @@
       "features": [
         {
           "title": "Bill splitter",
-          "description": "Divides the total evenly among any number of people."
+          "description": "Divides the total evenly among any number of people, from two to thirty."
         },
         {
           "title": "Custom tip percentage",
@@ -971,10 +976,10 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Split a restaurant bill among friends",
-        "Calculate a tip for delivery or taxi service",
-        "Check the per-person cost of a group dinner",
-        "Compare tip percentages (15% vs 20%)"
+        "Split a group dinner bill without awkward math",
+        "Work out a tip for delivery or a taxi ride",
+        "See the per-person cost before the check arrives",
+        "Compare how much 15% and 20% change the total"
       ],
       "inputs": {
         "bill": "Bill amount",
@@ -1005,10 +1010,11 @@
       }
     },
     "sales-tax-calculator": {
-      "title": "Sales Tax Calculator – Add or Remove Tax (VAT, GST)",
+      "title": "Sales Tax Calculator — Add or Remove VAT & GST",
       "h1": "Sales Tax Calculator",
-      "description": "Free sales tax calculator. Add tax to a net price or extract tax from a gross price. Works for sales tax, VAT and GST rates worldwide. Instant results.",
-      "keywords": "sales tax calculator,vat calculator,tax calculator,add tax,remove tax,reverse tax calculator,tax inclusive exclusive",
+      "description": "Add tax to a net price or extract it from a gross price — works for sales tax, VAT and GST at any rate. See the net, tax and gross amounts side by side so you can verify the calculation instantly.",
+      "metaDescription": "Add tax to a net price or extract tax from a gross price. Works for sales tax, VAT and GST rates worldwide. Net, tax and gross amounts side by side.",
+      "keywords": "sales tax calculator,vat calculator,gst calculator,add tax,remove tax,reverse tax calculator,tax inclusive exclusive",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1087,9 +1093,10 @@
       }
     },
     "salary-calculator": {
-      "title": "Salary Calculator – Hourly, Monthly & Annual Pay Converter",
+      "title": "Salary Calculator — Hourly to Annual Pay Converter",
       "h1": "Salary Calculator",
-      "description": "Free salary calculator. Convert hourly pay to annual, or annual to monthly, weekly, and daily. See all pay equivalents on one page. Works for any currency.",
+      "description": "Convert between hourly, daily, weekly, monthly and annual pay in one place. Set your actual hours and days per week to get precise equivalents — no need to assume the standard 40-hour week.",
+      "metaDescription": "Convert hourly pay to annual salary and back. See all equivalents — monthly, weekly, daily, hourly — on one page. Custom hours per week.",
       "keywords": "salary calculator,hourly to annual,annual salary,monthly salary,pay converter,wage calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -1177,9 +1184,10 @@
       }
     },
     "roi-calculator": {
-      "title": "ROI Calculator – Return on Investment",
+      "title": "ROI Calculator — Return on Investment & Margin",
       "h1": "ROI Calculator",
-      "description": "Free ROI calculator. Compute return on investment, profit and margin for any project or investment. Two modes: simple investment and business revenue minus cost.",
+      "description": "Measure the return on any investment or project. Two modes: enter an initial and final amount for a simple ROI, or enter revenue and cost for a business return. See the profit, margin and ROI percentage together.",
+      "metaDescription": "Measure the return on any investment or project. Investment and business modes. Get profit, margin and ROI percentage side by side.",
       "keywords": "roi calculator,return on investment,investment return,profit margin,roi formula",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -1262,10 +1270,11 @@
       }
     },
     "monthly-investment-calculator": {
-      "title": "Monthly Investment Calculator – Future Value of Regular Savings",
+      "title": "Monthly Investment Calculator — Future Value",
       "h1": "Monthly Investment Calculator",
-      "description": "Free monthly investment calculator. Project the future value of regular contributions with a chosen rate of return and time horizon. See total invested, gains and gain share.",
-      "keywords": "monthly investment calculator,compound savings calculator,investment growth calculator,recurring deposit calculator,future value calculator",
+      "description": "Project the future value of regular monthly contributions. Enter the amount, expected return and years to see the total invested, the gains earned and what share of the final amount came from returns.",
+      "metaDescription": "Project the future value of regular monthly contributions. See total invested, gains and gain share. Any return rate and time horizon.",
+      "keywords": "monthly investment calculator,compound savings calculator,investment growth calculator,recurring deposit calculator,future value",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1339,9 +1348,10 @@
       }
     },
     "date-difference-calculator": {
-      "title": "Date Difference Calculator – Days Between Two Dates",
+      "title": "Date Difference Calculator — Days Between Dates",
       "h1": "Date Difference Calculator",
-      "description": "Free date difference calculator. Find the exact number of days, weeks, months and years between any two dates. Useful for deadlines, age and timelines.",
+      "description": "Find the exact number of days, weeks, months and years between any two dates. Pick the start and end dates — or leave the end empty to use today. Handles past and future dates, including leap years.",
+      "metaDescription": "Find the exact number of days, weeks, months and years between any two dates. Handles past and future dates, including leap years.",
       "keywords": "date difference calculator,days between dates,date calculator,how many days,date duration",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -1411,9 +1421,10 @@
       }
     },
     "income-tax-calculator": {
-      "title": "Income Tax Calculator – Custom Brackets, Effective Rate",
+      "title": "Income Tax Calculator — Custom Brackets & Take-Home Pay",
       "h1": "Income Tax Calculator",
-      "description": "Calculate your income tax with custom tax brackets. Enter gross income, deductions, base and higher rates to see total tax, effective rate, marginal rate and take-home pay. Works for any country.",
+      "description": "Estimate income tax with custom brackets that work for any country. Enter gross income, deductions, base and higher rates to see total tax, effective rate, marginal rate and take-home pay.",
+      "metaDescription": "Estimate income tax with custom brackets for any country. Get total tax, effective rate, marginal rate and take-home pay side by side.",
       "keywords": "income tax calculator,tax calculator,progressive tax,effective tax rate,marginal tax rate,take home pay calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -1503,10 +1514,11 @@
       }
     },
     "savings-goal-calculator": {
-      "title": "Savings Goal Calculator – How Much to Save Monthly",
+      "title": "Savings Goal Calculator — How Much to Save Monthly",
       "h1": "Savings Goal Calculator",
-      "description": "Find out how much you need to save every month to reach a financial goal. Enter the target amount, time horizon and expected return rate. See monthly contribution and total invested.",
-      "keywords": "savings goal calculator,how much to save monthly,savings calculator,goal based savings,monthly savings calculator,financial goal calculator",
+      "description": "Find out how much you need to save each month to reach a financial goal. Enter the target amount, any starting deposit and the years you have — get the monthly contribution, total invested and expected gains.",
+      "metaDescription": "Find out how much to save each month for a financial goal. Enter target amount, starting deposit and years to get the monthly contribution.",
+      "keywords": "savings goal calculator,how much to save monthly,savings calculator,goal based savings,monthly savings calculator,financial goal",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1594,10 +1606,11 @@
       }
     },
     "loan-eligibility-calculator": {
-      "title": "Loan Eligibility Calculator – How Much Can You Borrow?",
+      "title": "Loan Eligibility Calculator — How Much Can You Borrow",
       "h1": "Loan Eligibility Calculator",
-      "description": "Find out the maximum loan you can qualify for based on your income, existing debts, and the lender's debt-to-income limit. See available monthly payment and maximum loan amount.",
-      "keywords": "loan eligibility calculator,how much can i borrow,how much loan can i get,debt to income calculator,dti calculator,mortgage eligibility calculator",
+      "description": "See the maximum loan you can qualify for based on income, existing debts and the lender's debt-to-income limit. Enter monthly income and current payments to get your borrowing ceiling and available monthly payment.",
+      "metaDescription": "See the maximum loan you can qualify for based on income, existing debts and the lender's DTI limit. Get your borrowing ceiling fast.",
+      "keywords": "loan eligibility calculator,how much can i borrow,how much loan can i get,debt to income calculator,dti calculator,mortgage eligibility",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1686,10 +1699,11 @@
       }
     },
     "rent-vs-buy-calculator": {
-      "title": "Rent vs Buy Calculator – Should You Buy a Home or Rent?",
+      "title": "Rent vs Buy Calculator — Compare the Long-Term Cost",
       "h1": "Rent vs Buy Calculator",
-      "description": "Compare the long-term financial outcome of buying a home versus renting and investing. Enter your numbers and see which option leaves you better off.",
-      "keywords": "rent vs buy calculator,should i rent or buy,buying vs renting,home purchase calculator,renting vs buying a house,homeownership calculator",
+      "description": "Compare the long-term financial outcome of buying a home versus renting and investing the difference. Enter your numbers and see which option leaves you with more equity or a bigger portfolio after the comparison period.",
+      "metaDescription": "Compare the long-term outcome of buying a home versus renting and investing. Enter your numbers and see which leaves you better off.",
+      "keywords": "rent vs buy calculator,should i rent or buy,buying vs renting,home purchase calculator,renting vs buying a house,homeownership",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1789,10 +1803,11 @@
       }
     },
     "fixed-deposit-calculator": {
-      "title": "Fixed Deposit Calculator – Maturity Value & Interest Earned",
+      "title": "Fixed Deposit Calculator — Maturity Value & Interest",
       "h1": "Fixed Deposit Calculator",
-      "description": "Calculate the maturity value and interest earned on a fixed deposit or term deposit. Choose any compounding frequency and time horizon. Works for any currency.",
-      "keywords": "fixed deposit calculator,fd calculator,term deposit calculator,fd maturity calculator,fixed deposit interest calculator,recurring deposit calculator",
+      "description": "Calculate the maturity value and interest earned on a fixed deposit or term deposit. Choose any compounding frequency — monthly, quarterly, semiannually, annually or daily — and see the effective annual rate.",
+      "metaDescription": "Calculate the maturity value and interest earned on a fixed deposit. Choose any compounding frequency and see the effective annual rate.",
+      "keywords": "fixed deposit calculator,fd calculator,term deposit calculator,cd calculator,fd maturity,fixed deposit interest",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1881,11 +1896,13 @@
         "a6": "Yes for nominal value — deposits are insured up to a limit in most countries (FDIC in the US, DICGC in India, FSCS in the UK). But returns often barely beat inflation, so the real (after-inflation) return can be low or even negative."
       }
     },
+
     "bmi-calculator": {
-      "title": "BMI Calculator – Body Mass Index & Healthy Weight Range",
+      "title": "BMI Calculator — Body Mass Index & Healthy Weight Range",
       "h1": "BMI Calculator",
-      "description": "Free BMI calculator. Check your Body Mass Index instantly, see your weight category, and find the healthy weight range for your height. Works in metric and imperial units.",
-      "keywords": "bmi calculator,bmi calculator online,body mass index,healthy weight range,bmi chart",
+      "description": "Check your Body Mass Index in seconds. Enter your height and weight to see your BMI, your WHO weight category and the healthy weight range for your height. Switch between metric and imperial units.",
+      "metaDescription": "Check your Body Mass Index instantly and see your WHO weight category. Find the healthy weight range for your height in metric or imperial.",
+      "keywords": "bmi calculator,body mass index,healthy weight range,bmi chart,bmi calculator online,ideal bmi",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -1956,10 +1973,11 @@
       }
     },
     "calorie-calculator": {
-      "title": "Calorie Calculator – Daily Calorie Needs (TDEE & BMR)",
+      "title": "Calorie Calculator — Daily Needs (TDEE & BMR)",
       "h1": "Calorie Calculator",
-      "description": "Calculate your daily calorie needs based on age, gender, height, weight, and activity level. See BMR, TDEE, and calorie targets for weight loss and weight gain.",
-      "keywords": "calorie calculator,daily calorie needs,tdee calculator,bmr calculator,how many calories,calorie needs",
+      "description": "Work out how many calories you need per day from your age, gender, height, weight and activity level. See your BMR, your TDEE and calorie targets for losing or gaining weight — all based on the Mifflin-St Jeor equation.",
+      "metaDescription": "Work out your daily calorie needs from age, gender, height, weight and activity. Get BMR, TDEE and targets for weight loss and weight gain.",
+      "keywords": "calorie calculator,daily calorie needs,tdee calculator,bmr calculator,how many calories,calorie intake",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2045,10 +2063,11 @@
       }
     },
     "age-calculator": {
-      "title": "Age Calculator – Exact Age in Years, Months, Days",
+      "title": "Age Calculator — Exact Age in Years, Months, Days",
       "h1": "Age Calculator",
-      "description": "Free age calculator to find your exact age in years, months, and days. Calculate age as of any date — past, present or future.",
-      "keywords": "age calculator,how old am i,age calculator online,date of birth calculator,exact age",
+      "description": "Find your exact age in years, months and days from your birth date. Enter any target date — today, a past date or a future one — and see how many days and weeks you have been alive. Handles February 29 birthdays correctly.",
+      "metaDescription": "Find your exact age in years, months and days from your birth date. Works for any target date — past, present or future. Handles leap years.",
+      "keywords": "age calculator,how old am i,age calculator online,date of birth calculator,exact age,age in days",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2119,10 +2138,11 @@
       }
     },
     "tdee-macro-calculator": {
-      "title": "TDEE & Macro Calculator – Daily Calories and Macros",
+      "title": "TDEE & Macro Calculator — Calories and Macros",
       "h1": "TDEE & Macro Calculator",
-      "description": "Free TDEE calculator with macro breakdown. Find your Total Daily Energy Expenditure and protein, carb and fat targets for your goal.",
-      "keywords": "tdee calculator,macro calculator,total daily energy expenditure,protein carbs fat,daily calories,macro split",
+      "description": "Work out your Total Daily Energy Expenditure and the protein, carb and fat targets that match your goal. Choose lose, maintain or gain — the calculator adjusts both calories and macro split. Uses the Mifflin-St Jeor equation.",
+      "metaDescription": "Work out your Total Daily Energy Expenditure and protein, carb and fat targets. Choose lose, maintain or gain — calories and macros adjust together.",
+      "keywords": "tdee calculator,macro calculator,total daily energy expenditure,protein carbs fat,macro split,daily calories",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2214,10 +2234,11 @@
       }
     },
     "body-fat-calculator": {
-      "title": "Body Fat Calculator – US Navy Method",
+      "title": "Body Fat Calculator — US Navy Method",
       "h1": "Body Fat Calculator",
-      "description": "Free body fat calculator using the US Navy method. Get your body fat percentage, fat mass and lean mass from simple tape measurements.",
-      "keywords": "body fat calculator,us navy body fat,body fat percentage,lean mass calculator,fat mass,body fat percentage calculator",
+      "description": "Estimate your body fat percentage using the US Navy method — a tape-measure formula trusted by the military and fitness professionals. Enter a few circumference measurements and see your body fat percentage, fat mass and lean mass.",
+      "metaDescription": "Estimate your body fat percentage with the US Navy tape-measure method. Get fat mass and lean mass from simple circumference measurements.",
+      "keywords": "body fat calculator,us navy body fat,body fat percentage,lean mass calculator,fat mass,navy method",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2302,9 +2323,10 @@
       }
     },
     "ideal-weight-calculator": {
-      "title": "Ideal Weight Calculator – Devine, Robinson, Miller, Hamwi",
+      "title": "Ideal Weight Calculator — Devine, Robinson, Miller",
       "h1": "Ideal Weight Calculator",
-      "description": "Free ideal body weight calculator using four formulas: Devine, Robinson, Miller and Hamwi. Useful for health goals and clinical estimates.",
+      "description": "Estimate your ideal body weight using four classic formulas — Devine, Robinson, Miller and Hamwi — and see the average. Enter your height and gender to get all four results side by side, plus the clinical reference used in medical settings.",
+      "metaDescription": "Estimate your ideal body weight with four classic formulas — Devine, Robinson, Miller, Hamwi. See the average and each individual result side by side.",
       "keywords": "ideal weight calculator,ideal body weight,devine formula,robinson formula,healthy weight,what should i weigh",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -2372,9 +2394,10 @@
       }
     },
     "water-intake-calculator": {
-      "title": "Water Intake Calculator – Daily Hydration Needs",
+      "title": "Water Intake Calculator — Daily Hydration Needs",
       "h1": "Daily Water Intake Calculator",
-      "description": "Free water intake calculator. Find out how much water you need daily based on body weight, exercise and climate. See your daily target in litres and glasses.",
+      "description": "Find out how much water you actually need each day — not a generic 8 glasses, but a target based on your body weight, daily exercise and climate. See the result in litres and in 250 ml glasses so it is easy to track.",
+      "metaDescription": "Find out how much water you need daily based on body weight, exercise and climate. See the target in litres and 250 ml glasses.",
       "keywords": "water intake calculator,daily water needs,hydration calculator,how much water,water per day,water intake",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -2450,9 +2473,10 @@
       }
     },
     "heart-rate-zones-calculator": {
-      "title": "Heart Rate Zones Calculator – Max HR & Training Zones",
+      "title": "Heart Rate Zones Calculator — Max HR & Training",
       "h1": "Heart Rate Zones Calculator",
-      "description": "Free heart rate zones calculator. Find your 5 training zones using max heart rate or the Karvonen method. Optimize fat burn, endurance and VO2 max.",
+      "description": "Work out your five training zones from your age and resting heart rate — using either the simple 220 − age formula or the more personalised Karvonen method. See the bpm range for recovery, fat burn, aerobic, threshold and VO2 max.",
+      "metaDescription": "Work out your five training zones from age and resting heart rate. Simple or Karvonen method. See bpm ranges for fat burn, threshold and VO2 max.",
       "keywords": "heart rate zones,max heart rate,karvonen formula,training zones,fat burn zone,cardio zones",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -2534,9 +2558,10 @@
       }
     },
     "pregnancy-due-date-calculator": {
-      "title": "Pregnancy Due Date Calculator – Estimate Your Baby's Arrival",
+      "title": "Pregnancy Due Date Calculator — Baby's Arrival",
       "h1": "Pregnancy Due Date Calculator",
-      "description": "Free pregnancy due date calculator. Estimate your baby's arrival based on last menstrual period or conception date. See current week, trimester and days remaining.",
+      "description": "Estimate your baby's due date from your last menstrual period or the conception date. See your current week, trimester and the number of days remaining. Based on Naegele's rule — the standard 280-day count used by obstetricians.",
+      "metaDescription": "Estimate your baby's due date from your last period or conception date. See current week, trimester and days remaining.",
       "keywords": "pregnancy due date calculator,due date calculator,pregnancy calculator,estimated due date,pregnancy week",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -2611,10 +2636,11 @@
       }
     },
     "sleep-cycle-calculator": {
-      "title": "Sleep Cycle Calculator – Best Time to Sleep & Wake",
+      "title": "Sleep Cycle Calculator — Best Time to Sleep & Wake",
       "h1": "Sleep Cycle Calculator",
-      "description": "Free sleep cycle calculator. Find the best times to go to bed or wake up so you finish a full 90-minute cycle and feel more refreshed.",
-      "keywords": "sleep cycle calculator,sleep calculator,best time to sleep,rem cycle,sleep duration,best time to wake up",
+      "description": "Work out the best time to go to bed based on when you need to wake up. The calculator aligns your bedtime with full 90-minute sleep cycles, so you finish a cycle in light sleep instead of waking up groggy in the middle of deep sleep.",
+      "metaDescription": "Work out the best time to sleep based on your wake-up time. Align bedtime with full 90-minute cycles so you wake up at the end of a cycle.",
+      "keywords": "sleep cycle calculator,sleep calculator,best time to sleep,rem cycle,best time to wake up,sleep duration",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2677,10 +2703,11 @@
       }
     },
     "vo2-max-estimator": {
-      "title": "VO2 Max Estimator – Rockport Walk Test Calculator",
+      "title": "VO2 Max Estimator — Rockport Walk Test",
       "h1": "VO2 Max Estimator",
-      "description": "Free VO2 max estimator using the Rockport 1-mile walk test. See your cardio fitness rating against age and gender norms.",
-      "keywords": "vo2 max calculator,rockport walk test,cardio fitness,aerobic capacity,vo2 max estimate,cardio fitness test",
+      "description": "Estimate your VO2 max — the best single measure of aerobic fitness — using the Rockport 1-mile walk test. Walk a mile as fast as you can, record your time and heart rate, and see how you compare to age and gender norms.",
+      "metaDescription": "Estimate your VO2 max with the Rockport 1-mile walk test. See your cardio fitness rating against age and gender norms.",
+      "keywords": "vo2 max calculator,rockport walk test,cardio fitness,aerobic capacity,vo2 max estimate,fitness test",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2768,10 +2795,11 @@
       }
     },
     "sleep-debt-calculator": {
-      "title": "Sleep Debt Calculator – How Much Sleep Do You Owe?",
+      "title": "Sleep Debt Calculator — How Much Sleep Do You Owe?",
       "h1": "Sleep Debt Calculator",
-      "description": "Calculate your accumulated sleep debt over any period. See how many hours you are behind, how serious it is, and how to recover.",
-      "keywords": "sleep debt calculator,sleep debt,sleep deficit calculator,how much sleep do i need,sleep recovery,sleep tracker",
+      "description": "See how much sleep you have accumulated as a deficit over any period. Enter your target and actual sleep, choose how many days the pattern lasted, and get the total debt, severity level and recovery time.",
+      "metaDescription": "See how much sleep you have accumulated as a deficit over any period. Get total sleep debt, severity level and estimated recovery time.",
+      "keywords": "sleep debt calculator,sleep debt,sleep deficit,how much sleep do i need,sleep recovery,sleep tracker",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -2860,9 +2888,10 @@
       }
     },
     "menstrual-cycle-calculator": {
-      "title": "Menstrual Cycle Calculator – Period, Ovulation & Fertile Window",
+      "title": "Menstrual Cycle Calculator — Period & Ovulation",
       "h1": "Menstrual Cycle Calculator",
-      "description": "Predict your next period, ovulation date, and fertile window based on your last period and average cycle length. Free, private, and instant.",
+      "description": "Predict your next period, ovulation date and fertile window from your last period and average cycle length. See your next three period dates and the current day of your cycle. Based on the standard luteal-phase method used by cycle trackers.",
+      "metaDescription": "Predict your next period, ovulation date and fertile window from your last period and average cycle length. Free, private and instant.",
       "keywords": "period calculator,ovulation calculator,menstrual cycle calculator,fertile window calculator,next period predictor,cycle tracker",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -2948,9 +2977,10 @@
       }
     },
     "calorie-deficit-planner": {
-      "title": "Calorie Deficit Planner – Daily Calories for Weight Loss",
+      "title": "Calorie Deficit Planner — Daily Calories for Weight Loss",
       "h1": "Calorie Deficit Planner",
-      "description": "Plan sustainable weight loss. Enter your stats, goal weight and timeframe to get your daily calorie target and safe weekly loss rate.",
+      "description": "Plan a sustainable weight loss pace. Enter your stats, goal weight and timeframe — the planner returns your daily calorie target and a weekly loss estimate, flagging whether the pace is healthy, too slow or too fast.",
+      "metaDescription": "Plan sustainable weight loss. Enter your stats, goal weight and timeframe to get a daily calorie target and a safe weekly loss rate.",
       "keywords": "calorie deficit calculator,weight loss planner,calorie deficit planner,how many calories to lose weight,daily calorie target,weight loss timeline",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3046,9 +3076,10 @@
       }
     },
     "pregnancy-week-tracker": {
-      "title": "Pregnancy Week Tracker – Current Week, Trimester & Progress",
+      "title": "Pregnancy Week Tracker — Current Week & Trimester",
       "h1": "Pregnancy Week Tracker",
-      "description": "Track your pregnancy week by week. Enter your last period or due date to see your current week, trimester, progress and days until birth.",
+      "description": "Track your pregnancy week by week. Enter your last period or due date and see your current week, trimester, progress percentage and days until birth. Uses the medical convention of counting from the last menstrual period, not conception.",
+      "metaDescription": "Track your pregnancy week by week. Enter your last period or due date to see current week, trimester, progress and days until birth.",
       "keywords": "pregnancy week tracker,pregnancy calculator,how many weeks pregnant,pregnancy trimester tracker,due date tracker,pregnancy progress",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3128,11 +3159,13 @@
         "a6": "Trimester boundaries are conventions, not sharp biological transitions. Some sources define the second trimester as weeks 13–27, others as 14–27. In practice, the boundaries matter mostly for medical scheduling (screening tests, viability windows), not for daily pregnancy experience."
       }
     },
+
     "word-counter": {
-      "title": "Word Counter — Count Words, Characters, Readability & SEO",
+      "title": "Word Counter — Words, Characters & Reading Time",
       "h1": "Word & Character Counter",
-      "description": "Free word and character counter: instantly counts words, characters with and without spaces, sentences, paragraphs, pages and reading time. Shows readability score, keyword density and social media limits.",
-      "keywords": "word counter,character counter,word count,character count,reading time calculator,readability checker,seo text analysis,text counter",
+      "description": "Count words, characters (with and without spaces), sentences, paragraphs and pages as you type. See estimated reading and speaking time, plus live counters for Twitter, Instagram, LinkedIn, YouTube and meta description limits.",
+      "metaDescription": "Count words, characters, sentences and paragraphs as you type. See reading time and live counters for Twitter, Instagram, LinkedIn and more.",
+      "keywords": "word counter,character counter,word count,character count,reading time calculator,text counter",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -3144,48 +3177,44 @@
           "description": "Words, characters, sentences and reading time update on every keystroke."
         },
         {
-          "title": "Open the tabs",
-          "description": "Readability, keyword density and social media limits live in the sections below."
+          "title": "Check the social limits",
+          "description": "See how close you are to Twitter, Instagram, LinkedIn and YouTube limits."
         },
         {
-          "title": "Use the utilities",
-          "description": "Change case, find and replace, or remove duplicate lines right inside the editor."
+          "title": "Copy or clear",
+          "description": "Copy the text out or clear the field to start a new piece."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "Words, characters, sentences, paragraphs, pages",
-          "description": "Full breakdown of your text — with and without spaces."
+          "title": "Full text breakdown",
+          "description": "Words, characters with and without spaces, sentences, paragraphs and estimated pages."
         },
         {
           "title": "Reading and speaking time",
           "description": "Estimates based on 200 wpm silent reading and 130 wpm speaking."
         },
         {
-          "title": "Readability scores",
-          "description": "Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG and Automated Readability Index."
-        },
-        {
-          "title": "Keyword density",
-          "description": "Top single, two-word and three-word phrases for SEO checks."
-        },
-        {
           "title": "Social media limits",
-          "description": "Live counters for Twitter, Instagram, LinkedIn, YouTube, TikTok and meta description."
+          "description": "Live counters for X/Twitter, Instagram, LinkedIn, YouTube, TikTok and meta description."
         },
         {
-          "title": "Text utilities",
-          "description": "Case conversion, find and replace, and remove duplicate lines — right inside the editor."
+          "title": "Updates as you type",
+          "description": "Every counter recalculates on each keystroke — no button to press."
+        },
+        {
+          "title": "Runs in your browser",
+          "description": "Your text never leaves your device — nothing is uploaded or stored."
         }
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Check text length before publishing a blog post",
-        "Fit within Twitter or Instagram character limits",
-        "Estimate article reading time",
-        "Check text readability before submission",
-        "Analyse keyword density for SEO"
+        "Check a blog post length before publishing",
+        "Fit a caption inside the Twitter or Instagram character limit",
+        "See how long an article takes to read out loud",
+        "Trim a description to fit a meta description slot",
+        "Estimate pages for a print-ready document"
       ],
       "inputLabel": "Your text",
       "clear": "Clear",
@@ -3221,18 +3250,19 @@
         "a2": "Reading time uses an average speed of 200 words per minute for silent reading and 130 words per minute for speaking aloud.",
         "q3": "Are characters counted with or without spaces?",
         "a3": "Both. We show total characters including spaces, tabs and line breaks, and characters without any whitespace.",
-        "q4": "What is text readability?",
-        "a4": "It is a measure of how easy a text is to read. Classic formulas are used: Flesch-Kincaid, Gunning Fog, Coleman-Liau, SMOG and Automated Readability Index. A higher score means easier reading.",
-        "q5": "How are pages calculated?",
-        "a5": "One page is roughly 1800 characters including spaces, which is the standard manuscript convention. Page count updates automatically.",
+        "q4": "How are pages calculated?",
+        "a4": "One page is roughly 1800 characters including spaces, which is the standard manuscript convention. Page count updates automatically.",
+        "q5": "Is there a size limit for the text?",
+        "a5": "The practical limit is browser memory. Texts up to a few hundred thousand characters process instantly. Very large files can slow the browser down.",
         "q6": "Is my text uploaded anywhere?",
         "a6": "No. Everything runs in your browser. Your text never leaves your device."
       }
     },
     "case-converter": {
-      "title": "Case Converter – UPPER, lower, Title, camelCase & More",
+      "title": "Case Converter — UPPER, lower, Title, camelCase",
       "h1": "Case Converter",
-      "description": "Free case converter. Convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case and more.",
+      "description": "Convert text between nine case styles: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case and CONSTANT_CASE. Pick a style and the result updates instantly — one click to copy.",
+      "metaDescription": "Convert text between nine case styles — UPPER, lower, Title, Sentence, camelCase, snake_case, kebab-case and more. Result appears instantly.",
       "keywords": "case converter,uppercase,lowercase,title case,camelcase,snake case,kebab case,text case",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3309,9 +3339,10 @@
       }
     },
     "lorem-ipsum-generator": {
-      "title": "Lorem Ipsum Generator – Placeholder Text",
+      "title": "Lorem Ipsum Generator — Placeholder Text",
       "h1": "Lorem Ipsum Generator",
-      "description": "Free Lorem Ipsum generator. Create placeholder text by paragraphs, sentences or words. Optional HTML tags. Copy in one click.",
+      "description": "Generate placeholder text by paragraphs, sentences or words. Optionally start with the classic \"Lorem ipsum dolor sit amet\" opening and wrap each paragraph in HTML tags for direct paste into templates. Copy the whole result in one click.",
+      "metaDescription": "Generate placeholder text by paragraphs, sentences or words. Optional HTML wrapping. Start with the classic Lorem ipsum opening line.",
       "keywords": "lorem ipsum generator,placeholder text,dummy text,lipsum,html lorem ipsum",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3385,9 +3416,10 @@
       }
     },
     "diff-checker": {
-      "title": "Diff Checker – Compare Two Texts Online",
+      "title": "Diff Checker — Compare Two Texts Online",
       "h1": "Diff Checker",
-      "description": "Free diff checker. Compare two blocks of text or code with clear line-by-line highlighting. Ideal for developers, writers and data analysts.",
+      "description": "Compare two blocks of text or code and see the differences line by line. Added and removed lines are highlighted automatically. Switch between Split and Unified views — the same format developers know from git diff.",
+      "metaDescription": "Compare two texts or code files line by line. Added and removed lines highlighted automatically. Split and unified views, like git diff.",
       "keywords": "diff checker,text compare,compare two texts,text diff,difference checker,compare code",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3460,10 +3492,11 @@
       }
     },
     "number-to-words-converter": {
-      "title": "Number to Words Converter – Spell Out Numbers (EN & RU)",
+      "title": "Number to Words Converter — Spell Out Numbers",
       "h1": "Number to Words Converter",
-      "description": "Convert any number into words instantly. See the spelled-out form in English and Russian side by side, with correct grammar and plurals. Free and private.",
-      "keywords": "number to words,number to words converter,spell out numbers,write numbers in words,numbers in english,numbers in russian,number spelling",
+      "description": "Convert any number into words. See the number spelled out in English, with Russian added alongside if your browser language is Russian. Handles negatives and integers from −1 trillion to 1 trillion, with correct grammatical forms.",
+      "metaDescription": "Convert any number into words in English. Russian added if your browser language is Russian. Handles negatives and integers up to a trillion.",
+      "keywords": "number to words,number to words converter,spell out numbers,write numbers in words,numbers in english,number spelling",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -3472,18 +3505,18 @@
         },
         {
           "title": "Read the words",
-          "description": "See the number spelled out in English and Russian side by side."
+          "description": "See the number spelled out in English, with Russian alongside if your browser is set to Russian."
         },
         {
           "title": "Copy the result",
-          "description": "Copy either language version to your clipboard."
+          "description": "Copy the spelled-out version to your clipboard."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "English and Russian",
-          "description": "Both languages shown side by side for easy comparison."
+          "title": "English with optional Russian",
+          "description": "Always shows English; adds Russian side-by-side if your browser language is Russian."
         },
         {
           "title": "Correct Russian plurals",
@@ -3491,7 +3524,7 @@
         },
         {
           "title": "Negative numbers",
-          "description": "Handles negatives with \"minus\" in English and \"минус\" in Russian."
+          "description": "Handles negatives with \"minus\" in English and «минус» in Russian."
         },
         {
           "title": "Large number support",
@@ -3502,7 +3535,7 @@
       "useCases": [
         "Write a cheque with the amount in words",
         "Convert a number for a legal document",
-        "Learn how a number is spelled in English or Russian",
+        "Learn how a number is spelled out",
         "Prepare a bilingual document"
       ],
       "inputs": { "number": "Number" },
@@ -3516,7 +3549,7 @@
         "q1": "How does the converter handle large numbers?",
         "a1": "It supports integers from −1 trillion to 1 trillion using the short scale (thousand, million, billion, trillion). Anything outside this range is rejected to avoid ambiguity and precision loss.",
         "q2": "Does it support negative numbers?",
-        "a2": "Yes. Negative values are prefixed with \"minus\" in English and \"минус\" in Russian. For example, −42 becomes \"minus forty-two\" and \"минус сорок два\".",
+        "a2": "Yes. Negative values are prefixed with \"minus\" in English and «минус» in Russian. For example, −42 becomes \"minus forty-two\" and «минус сорок два».",
         "q3": "How are Russian plurals handled?",
         "a3": "Russian requires different word forms depending on the number: одна тысяча, две тысячи, пять тысяч. The converter uses the Intl.PluralRules API (CLDR data) to select the correct grammatical form automatically.",
         "q4": "Is my input sent to any server?",
@@ -3527,10 +3560,12 @@
         "a6": "In the short scale (used in English-speaking countries), 1 billion = 1,000 million. In the long scale (used historically in some European countries), 1 billion = 1,000,000 million. This converter uses the short scale."
       }
     },
+
     "unit-converter": {
-      "title": "Unit Converter – Convert Length, Weight, Temperature & More",
+      "title": "Unit Converter — Length, Weight, Temperature & More",
       "h1": "Unit Converter",
-      "description": "Free unit converter for length, weight, temperature, volume, speed, time, data, pressure and energy. Fast, accurate, and runs entirely in your browser.",
+      "description": "Convert between units of length, weight, temperature, area, volume, speed, time, data, pressure and energy. Enter a value once and see it converted to every other unit in the same category, or swap the direction with one click.",
+      "metaDescription": "Convert between units of length, weight, temperature, volume, speed, time, data, pressure and energy. All conversions in a category at once.",
       "keywords": "unit converter,measurement converter,length converter,weight converter,temperature converter,unit conversion",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3678,9 +3713,10 @@
       }
     },
     "json-formatter": {
-      "title": "JSON Formatter — Beautify, Minify & Validate JSON Online",
+      "title": "JSON Formatter — Beautify, Minify & Validate",
       "h1": "JSON Formatter & Validator",
-      "description": "Free JSON formatter, minifier and validator. Beautify, minify and validate JSON with precise error highlighting — shows the exact line and column. Displays size before and after. Works offline, nothing leaves your browser.",
+      "description": "Beautify, minify and validate JSON. Invalid input gets flagged with the exact line and column where the syntax breaks. Compare payload sizes before and after minification, then copy the result or download it as a .json file.",
+      "metaDescription": "Beautify, minify and validate JSON with precise error highlighting — line and column. See size before and after. Copy or download the result.",
       "keywords": "json formatter,json validator,json beautifier,minify json,pretty print json,json online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3763,9 +3799,10 @@
       }
     },
     "base64-encoder-decoder": {
-      "title": "Base64 Encoder & Decoder – Text & File Conversion",
+      "title": "Base64 Encoder & Decoder — Encode and Decode",
       "h1": "Base64 Encoder & Decoder",
-      "description": "Free Base64 encoder and decoder. Convert text to Base64 and decode it back instantly. 100% private — everything runs in your browser.",
+      "description": "Encode text to Base64 or decode Base64 back to plain text. Switch between Standard (+ and /) and URL-safe (- and _) alphabets depending on where the output will go. Result appears as you type — no button to press.",
+      "metaDescription": "Encode text to Base64 or decode it back. Standard and URL-safe alphabets, instant conversion, character count. Everything runs in your browser.",
       "keywords": "base64 encoder,base64 decoder,base64 to text,text to base64,encode base64 online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3845,9 +3882,10 @@
       }
     },
     "uuid-generator": {
-      "title": "UUID Generator – v4 and v7 UUIDs Online",
+      "title": "UUID Generator — v4 and v7 UUIDs Online",
       "h1": "UUID Generator",
-      "description": "Free UUID generator. Create secure v4 and v7 UUIDs in bulk with custom formatting. Perfect for databases, APIs and development.",
+      "description": "Generate cryptographically secure UUIDs — up to 100 per click. Choose version 4 (fully random) or version 7 (time-ordered, sortable by creation time). Toggle uppercase or lowercase, with or without dashes. Copy results with one click.",
+      "metaDescription": "Generate secure v4 and v7 UUIDs — up to 100 per click. Custom formatting, uppercase or lowercase, with or without dashes.",
       "keywords": "uuid generator,guid generator,uuid v4,uuid v7,generate uuid online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3916,9 +3954,10 @@
       }
     },
     "hash-generator": {
-      "title": "Hash Generator – MD5, SHA-1, SHA-256, SHA-512",
+      "title": "Hash Generator — MD5, SHA-1, SHA-256, SHA-512",
       "h1": "Hash Generator",
-      "description": "Free hash generator. Compute MD5, SHA-1, SHA-256 and SHA-512 hashes instantly. All processing runs locally in your browser.",
+      "description": "Compute MD5, SHA-1, SHA-256 and SHA-512 hashes for any text — all four at once. SHA algorithms use the browser's native Web Crypto API; MD5 runs through a local implementation. Everything happens on your device.",
+      "metaDescription": "Compute MD5, SHA-1, SHA-256 and SHA-512 hashes for any text — all four at once. Everything runs locally in your browser.",
       "keywords": "hash generator,md5 generator,sha256 generator,sha1,sha512,hash online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3986,9 +4025,10 @@
       }
     },
     "url-encoder-decoder": {
-      "title": "URL Encoder & Decoder – Encode and Decode URLs Online",
+      "title": "URL Encoder & Decoder — Encode and Decode URLs",
       "h1": "URL Encoder & Decoder",
-      "description": "Free URL encoder and decoder. Encode or decode URLs and query parameters instantly. 100% private — everything runs in your browser.",
+      "description": "Encode or decode URLs and query parameters. Two modes: Component encodes everything including ?, & and = (use it for query values), Full URL preserves reserved characters (use it for complete URLs). Result updates as you type.",
+      "metaDescription": "Encode or decode URLs and query parameters instantly. Component and Full URL modes. Character count, swap button, 100% in-browser.",
       "keywords": "url encoder,url decoder,encode url,decode url,urlencode,uri encoder,query string encoder",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4065,9 +4105,10 @@
       }
     },
     "timestamp-converter": {
-      "title": "Timestamp Converter – Unix Time to Date",
+      "title": "Timestamp Converter — Unix Time to Date",
       "h1": "Timestamp Converter",
-      "description": "Free timestamp converter. Convert Unix timestamps to ISO, UTC, local dates and back. Supports seconds and milliseconds.",
+      "description": "Convert Unix timestamps to ISO, UTC, local and relative time — and back. Choose seconds or milliseconds, use the quick +/- buttons for hours and days, or paste a whole list of timestamps to convert in one batch.",
+      "metaDescription": "Convert Unix timestamps to ISO, UTC, local and relative time, and back. Batch conversion, seconds or milliseconds, quick +/- buttons.",
       "keywords": "timestamp converter,unix time,epoch converter,unix timestamp,iso 8601 converter",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4156,9 +4197,10 @@
       }
     },
     "jwt-decoder": {
-      "title": "JWT Decoder – Decode & Inspect JSON Web Tokens",
+      "title": "JWT Decoder — Decode & Inspect JSON Web Tokens",
       "h1": "JWT Decoder",
-      "description": "Free JWT decoder. Paste a token to see the header, payload, signature, and expiry. Runs entirely in your browser — nothing is logged or sent anywhere.",
+      "description": "Paste a JWT and see its header, payload, signature and expiry decoded in one view. Checks whether the token is still valid or has expired. Runs entirely in your browser — nothing is logged, stored or sent anywhere.",
+      "metaDescription": "Decode and inspect a JWT: header, payload, signature and expiry in one view. See if the token has expired. Runs entirely in your browser.",
       "keywords": "jwt decoder,json web token decoder,decode jwt online,jwt parser,jwt inspector,jwt debugger",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4240,9 +4282,10 @@
       }
     },
     "jwt-encoder": {
-      "title": "JWT Encoder – Create & Sign JSON Web Tokens",
+      "title": "JWT Encoder — Create & Sign JSON Web Tokens",
       "h1": "JWT Encoder",
-      "description": "Free JWT encoder. Create and sign JSON Web Tokens with HS256, HS384 or HS512 locally in your browser. Nothing is sent to any server.",
+      "description": "Create and sign JSON Web Tokens with HS256, HS384 or HS512 — all locally in your browser via the Web Crypto API. Edit the header, add claims to the payload, enter your secret, and copy the signed token. Your secret never leaves your device.",
+      "metaDescription": "Create and sign JWTs with HS256, HS384 or HS512 locally in your browser. Edit header and payload, add claims, copy the signed token.",
       "keywords": "jwt encoder,jwt generator,create jwt token,sign jwt online,hs256 jwt,jwt creator,json web token tool",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4314,10 +4357,187 @@
         "a6": "Yes. Without exp, a token is valid forever — a serious security risk if it leaks. Use short expirations (15 minutes to 1 hour) for access tokens, and a longer refresh token to renew them."
       }
     },
+    "license-generator": {
+      "title": "Open Source License Generator — MIT, Apache, GPL",
+      "h1": "Open Source License Generator",
+      "description": "Generate standard open source licenses — MIT, Apache 2.0, GPL-3.0, AGPL-3.0, LGPL-3.0, BSD-2, BSD-3, ISC, MPL-2.0, Unlicense — with your year, copyright holder and project name filled in. Copy the LICENSE text or download it as a file.",
+      "metaDescription": "Generate standard open source licenses — MIT, Apache 2.0, GPL-3.0, BSD, ISC, Unlicense — with your details filled in. Copy or download the LICENSE file.",
+      "keywords": "license generator,mit license,apache license,gpl license generator,open source license,software license template",
+      "howToUseTitle": "How to use",
+      "howToUse": [
+        {
+          "title": "Pick a license",
+          "description": "Choose from MIT, Apache 2.0, GPL-3.0, AGPL-3.0, LGPL-3.0, BSD-2, BSD-3, ISC, MPL-2.0 or Unlicense."
+        },
+        {
+          "title": "Fill in year and copyright holder",
+          "description": "Enter the year and the name of the copyright holder."
+        },
+        {
+          "title": "Add a project name (optional)",
+          "description": "Some licenses include the project name in the header."
+        },
+        {
+          "title": "Copy or download",
+          "description": "Copy the LICENSE text or download it as a file."
+        }
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        {
+          "title": "Ten licenses",
+          "description": "MIT, Apache 2.0, GPL-3.0, AGPL-3.0, LGPL-3.0, BSD-2, BSD-3, ISC, MPL-2.0 and Unlicense."
+        },
+        {
+          "title": "Placeholder substitution",
+          "description": "Year, copyright holder and project name are filled in correctly for each license."
+        },
+        {
+          "title": "License hints",
+          "description": "Each license has a short description of when to use it."
+        },
+        {
+          "title": "Copy or download",
+          "description": "Copy the LICENSE text to your clipboard or save it as a file."
+        }
+      ],
+      "useCasesTitle": "Common use cases",
+      "useCases": [
+        "Add a LICENSE file to a new open source project",
+        "Switch a project to a different license",
+        "Prepare a license for a library or framework",
+        "Learn the differences between common licenses"
+      ],
+      "licenseLabel": "License",
+      "yearLabel": "Year",
+      "nameLabel": "Copyright holder",
+      "namePlaceholder": "Your name or organization",
+      "projectLabel": "Project Name (optional)",
+      "projectPlaceholder": "My Project",
+      "outputTitle": "LICENSE",
+      "download": "Download LICENSE",
+      "hints": {
+        "mit": "Short, permissive. Most popular for open source.",
+        "apache2": "Permissive with explicit patent grant. Good for larger projects.",
+        "gpl3": "Copyleft. Derivative works must stay open source.",
+        "agpl3": "Copyleft, extends to network use. SaaS must share source.",
+        "lgpl3": "Weak copyleft. Linking allowed, modifications must stay open.",
+        "bsd2": "Permissive, similar to MIT but with different wording.",
+        "bsd3": "Permissive with no-endorsement clause. Common in academia.",
+        "isc": "Permissive, simpler than MIT. Used by OpenBSD, npm.",
+        "mpl2": "Weak copyleft at file level. Used by Firefox.",
+        "unlicense": "Public domain dedication. No restrictions."
+      },
+      "disclaimer": "These are standard license templates. For important projects, have a lawyer review before publishing.",
+      "faq": {
+        "q1": "Which license should I choose?",
+        "a1": "MIT and Apache 2.0 are permissive — anyone can use your code with minimal conditions. GPL and AGPL require derivative works to stay open source. Choose based on how much control you want over downstream use.",
+        "q2": "What is the difference between MIT and Apache 2.0?",
+        "a2": "Both are permissive. Apache 2.0 also includes an explicit patent grant and a trademark clause. MIT is shorter and simpler. For most projects, either works — pick MIT for simplicity, Apache 2.0 if patents matter.",
+        "q3": "Can I change the license later?",
+        "a3": "You can change the license for future versions, but you cannot retroactively revoke the license on code already released. Contributors retain their rights under the original license.",
+        "q4": "Is this legally binding?",
+        "a4": "These are standard templates used by millions of projects. For important or commercial projects, have a lawyer review. This tool simply fills in the common placeholders correctly.",
+        "q5": "What is the difference between GPL-2.0 and GPL-3.0?",
+        "a5": "GPL-3.0 adds compatibility with Apache 2.0, closes the TiVo loophole (hardware lockdown), and includes an explicit patent grant. GPL-2.0 is simpler and used by older projects like the Linux kernel. New projects generally prefer GPL-3.0.",
+        "q6": "Do I need a license for a private project?",
+        "a6": "For fully private, non-distributed code, no license is legally required. But adding one (even proprietary) clarifies ownership and prevents contributions from creating ambiguity. A short copyright notice is usually sufficient for private code."
+      }
+    },
+    "gitignore-generator": {
+      "title": "Git Ignore Generator — .gitignore by Stack",
+      "h1": "Git Ignore Generator",
+      "description": "Build a .gitignore file for your stack. Pick from 30+ templates covering languages, frameworks, editors, IDEs and operating systems, or choose a quick preset for Web, Mobile, Backend or Data/ML. Add custom patterns and download the file.",
+      "metaDescription": "Build a .gitignore file from 30+ templates — languages, frameworks, editors, IDEs and OS. Quick presets, custom rules, one-click download.",
+      "keywords": "gitignore generator,git ignore file,gitignore template,gitignore by language,create gitignore online,node gitignore,python gitignore",
+      "howToUseTitle": "How to use",
+      "howToUse": [
+        {
+          "title": "Pick your stack",
+          "description": "Select templates for your languages, frameworks, editors and operating systems."
+        },
+        {
+          "title": "Use a preset (optional)",
+          "description": "Quick presets cover common stacks like Web/JS, Mobile, Backend and Data/ML."
+        },
+        {
+          "title": "Add custom rules",
+          "description": "Add extra patterns in the Custom rules field, one per line."
+        },
+        {
+          "title": "Download the file",
+          "description": "Download the .gitignore file or copy the preview."
+        }
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        {
+          "title": "30+ templates",
+          "description": "Languages, frameworks, editors, IDEs and operating systems."
+        },
+        {
+          "title": "Quick presets",
+          "description": "Web, Mobile, Backend, Data/ML, OS/IDE, Infra — one click to select common combinations."
+        },
+        {
+          "title": "Deduplication",
+          "description": "Combines templates and custom rules, removing duplicate lines automatically."
+        },
+        {
+          "title": "Search",
+          "description": "Filter templates by name to find exactly what you need."
+        }
+      ],
+      "useCasesTitle": "Common use cases",
+      "useCases": [
+        "Add a .gitignore to a new Node.js project",
+        "Combine templates for a Python + VS Code + macOS stack",
+        "Add project-specific ignore rules",
+        "Fix a bloated repository by ignoring build artifacts"
+      ],
+      "groups": {
+        "language": "Languages",
+        "framework": "Frameworks",
+        "editor": "Editors & IDEs",
+        "os": "Operating Systems"
+      },
+      "presetsTitle": "Quick presets",
+      "presets": {
+        "web": "Web / JS",
+        "mobile": "Mobile",
+        "backend": "Backend",
+        "data": "Data / ML",
+        "osIde": "OS / IDE",
+        "infra": "Infra"
+      },
+      "searchPlaceholder": "Search languages, frameworks...",
+      "selectedCount": "{count} selected",
+      "emptySearch": "No templates match your search.",
+      "outputTitle": ".gitignore Preview",
+      "download": "Download .gitignore",
+      "customLabel": "Additional patterns (one per line)",
+      "customPlaceholder": "*.log\nsecrets/\n.env",
+      "note": "Combines curated templates with your custom rules. Deduplicates lines. Works offline.",
+      "faq": {
+        "q1": "How many templates are included?",
+        "a1": "Over 30 popular languages, frameworks, editors, and operating systems. You can combine any number of them.",
+        "q2": "Can I edit the generated file?",
+        "a2": "Yes. The preview is read-only here, but you can paste your custom rules into the Custom rules field, or download and edit the file locally.",
+        "q3": "What if I already have a .gitignore?",
+        "a3": "Paste your existing content into the Custom rules field and re-select templates — duplicates are merged automatically.",
+        "q4": "Is my data sent anywhere?",
+        "a4": "No. The entire .gitignore is generated in your browser. Nothing is uploaded to any server.",
+        "q5": "What is the correct order of rules in .gitignore?",
+        "a5": "More specific rules should come after more general ones. A later pattern overrides an earlier one. To un-ignore a file inside an ignored folder, first ignore the folder then negate the file: logs/ followed by !logs/important.log.",
+        "q6": "Can I use .gitignore to ignore files that are already tracked?",
+        "a6": "No. .gitignore only affects untracked files. To stop tracking a file already committed, use git rm --cached filename, then add it to .gitignore. The file stays on disk but is no longer part of the repository."
+      }
+    },
     "markdown-previewer": {
-      "title": "Markdown Previewer – Live HTML Editor with Split View",
+      "title": "Markdown Previewer — Live Editor with Split View",
       "h1": "Markdown Previewer",
-      "description": "Free Markdown to HTML previewer. Write Markdown on the left and see live rendered HTML on the right. Supports GFM, tables, code highlighting, and export.",
+      "description": "Write Markdown on the left, see the rendered HTML on the right. Supports GitHub Flavored Markdown — tables, task lists, strikethrough, autolinks and fenced code blocks. All output is sanitized with DOMPurify. Download the rendered HTML as a standalone file.",
+      "metaDescription": "Write Markdown on the left, see live rendered HTML on the right. Supports GitHub Flavored Markdown, tables and code blocks. Export to HTML.",
       "keywords": "markdown previewer,markdown to html,live markdown editor,github flavored markdown,markdown html converter",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4385,9 +4605,10 @@
       }
     },
     "sql-formatter-minifier": {
-      "title": "SQL Formatter & Minifier – Beautify and Compress SQL",
+      "title": "SQL Formatter & Minifier — Beautify or Compress SQL",
       "h1": "SQL Formatter & Minifier",
-      "description": "Format ugly SQL into readable code or minify it for production. Smart keyword casing, indentation and comment stripping for DBAs and developers.",
+      "description": "Format messy SQL into readable code or minify it into a single line for logs. Control keyword casing (UPPERCASE, lowercase or Preserve) and indentation level. Comments are kept in Format mode and stripped in Minify mode.",
+      "metaDescription": "Format messy SQL into readable code or minify it into one line. Keyword casing, indentation control and comment handling. Runs in your browser.",
       "keywords": "sql formatter,sql beautifier,minify sql,format sql online,sql pretty print,compress sql,sql code formatter",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4462,9 +4683,10 @@
       }
     },
     "code-minifier": {
-      "title": "Code Minifier – Minify HTML, CSS & JavaScript",
+      "title": "Code Minifier — Minify HTML, CSS & JavaScript",
       "h1": "Code Minifier",
-      "description": "Free online code minifier. Compress HTML, CSS, and JavaScript by removing whitespace and comments. See before/after size comparison.",
+      "description": "Compress HTML, CSS or JavaScript by removing whitespace and comments. The language is detected automatically. JavaScript uses Terser in its safest mode — no variable renaming, no logic changes. See the size reduction in bytes after minifying.",
+      "metaDescription": "Compress HTML, CSS and JavaScript by removing whitespace and comments. Automatic language detection. Safe Terser mode for JS. Size comparison.",
       "keywords": "code minifier,html minifier,css minifier,javascript minifier,minify js online,code compressor",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4535,9 +4757,10 @@
       }
     },
     "color-picker": {
-      "title": "Color Picker – HEX, RGB, HSL Converter & Palette Tool",
+      "title": "Color Picker — HEX, RGB, HSL Converter & Palettes",
       "h1": "Color Picker",
-      "description": "Free online color picker. Pick colors, convert between HEX, RGB, HSL, and HSV, generate harmonious palettes, and copy values instantly.",
+      "description": "Pick a color and see it in HEX, RGB, HSL and HSV — all four formats at once. Generate complementary, analogous, triadic, split-complementary and monochromatic palettes. See tints and shades of the current color. Click any swatch to copy it.",
+      "metaDescription": "Pick a color and see it in HEX, RGB, HSL and HSV. Generate complementary, analogous, triadic and monochromatic palettes. Click to copy.",
       "keywords": "color picker online,hex to rgb converter,color palette generator,hsl color picker,web color tools",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4611,9 +4834,10 @@
       }
     },
     "color-contrast-checker": {
-      "title": "Color Contrast Checker – WCAG AA/AAA Compliance Tool",
+      "title": "Color Contrast Checker — WCAG AA/AAA Compliance",
       "h1": "Color Contrast Checker",
-      "description": "Check color contrast ratios against WCAG 2.1 AA and AAA. Live preview, pass/fail status, and suggestions for accessible color pairs.",
+      "description": "Check whether your text and background colors pass WCAG 2.1 AA and AAA. See the contrast ratio, live preview at three text sizes and pass/fail status for normal text, large text and UI components. Swap foreground and background with one click.",
+      "metaDescription": "Check whether text and background colors pass WCAG 2.1 AA and AAA. Contrast ratio, live preview and pass/fail status for each text size.",
       "keywords": "color contrast checker,wcag contrast,aa aaa compliance,accessible colors,contrast ratio calculator,web accessibility tool",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4693,9 +4917,10 @@
       }
     },
     "meta-tag-generator": {
-      "title": "Meta Tag Generator – OpenGraph & Twitter Card Builder",
+      "title": "Meta Tag Generator — OpenGraph & Twitter Card Builder",
       "h1": "Meta Tag Generator",
-      "description": "Free meta tag generator with live preview. Create optimized title, description, OpenGraph, and Twitter Card tags for better SEO and social sharing.",
+      "description": "Build a full set of meta tags with live previews of how the page will look in Google search and when shared on social media. Fill in title, description, URL, social image, site name, Twitter handle and OG type — copy the whole block and paste it into your head section.",
+      "metaDescription": "Build meta tags with live Google and social previews. Title, description, OpenGraph, Twitter Card, robots and theme color — copy-paste ready.",
       "keywords": "meta tag generator,opengraph generator,twitter card generator,seo meta tags,og tags creator,social media tags",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4786,9 +5011,10 @@
       }
     },
     "svg-to-base64": {
-      "title": "SVG to Base64 & Data URI Converter – Free Online Tool",
+      "title": "SVG to Base64 & Data URI Converter",
       "h1": "SVG to Base64 Converter",
-      "description": "Free SVG to Base64 converter. Turn SVG code into Data URIs for CSS backgrounds or inline HTML. Fast and private.",
+      "description": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. Get ready-to-use snippets in four flavours: URL-encoded CSS background, Base64 CSS background, HTML img tag and raw Data URI. Live SVG preview confirms the rendering before you copy.",
+      "metaDescription": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. URL-encoded and Base64 output, HTML img tag, live SVG preview.",
       "keywords": "svg to base64,svg data uri generator,svg to css background,inline svg base64,frontend svg tools",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4860,9 +5086,10 @@
       }
     },
     "base64-to-image": {
-      "title": "Base64 to Image – Decode & Download Instantly (Free)",
+      "title": "Base64 to Image Decoder — Preview & Download",
       "h1": "Base64 to Image Decoder",
-      "description": "Free Base64 to image converter. Paste any Base64 string and instantly preview and download the image. 100% private and offline.",
+      "description": "Paste a Base64 string and see the decoded image instantly. Accepts raw Base64 or a full data URI — with or without the data:image/...;base64, prefix. Detects PNG, JPEG, GIF, WebP, BMP, SVG, ICO and AVIF from the data URI or the file's magic bytes. Download with the right extension.",
+      "metaDescription": "Paste any Base64 string to see the decoded image instantly. Auto-detects PNG, JPEG, GIF, WebP, SVG, ICO and AVIF. Download with the right extension.",
       "keywords": "base64 to image,decode base64 image,base64 image converter,view base64 image,base64 decoder online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4927,9 +5154,10 @@
       }
     },
     "regex-tester": {
-      "title": "Regex Tester – Test & Debug Regular Expressions Live",
+      "title": "Regex Tester — Test JavaScript Regular Expressions",
       "h1": "Regex Tester",
-      "description": "Free regex tester with live highlighting. Test JavaScript regular expressions, see matches, groups, and flags in real time. Perfect for developers.",
+      "description": "Test JavaScript regular expressions with live highlighting. Matches appear as you type. Toggle all six flags — g, i, m, s, u, y — independently. See index, full match and capture groups for every match. Clear error messages for malformed patterns.",
+      "metaDescription": "Test JavaScript regex with live highlighting. Toggle g, i, m, s, u, y flags. See match index, capture groups and clear errors for invalid patterns.",
       "keywords": "regex tester,regular expression tester,regex matcher online,javascript regex debugger,test regex pattern",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5012,9 +5240,10 @@
       }
     },
     "regex-generator": {
-      "title": "Regex Generator – Create Patterns from Example Strings",
+      "title": "Regex Generator — Build Patterns from Examples",
       "h1": "Regex Generator",
-      "description": "Turn example strings into accurate regular expressions. Give positive and negative examples to get a regex with explanation, test cases and flags.",
+      "description": "Give the generator a few example strings that should match — and optionally some that should not — and get a working regular expression. It analyses the common structure, produces a pattern with a plain-English explanation and validates the result against your negative examples.",
+      "metaDescription": "Turn example strings into a regular expression. Positive and negative examples, plain-English explanation, and validation against negatives.",
       "keywords": "regex generator,regular expression from examples,create regex online,regex from text,pattern generator,regex builder,test regex",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5104,9 +5333,10 @@
       }
     },
     "css-generator": {
-      "title": "CSS Box-Shadow & Gradient Generator – Visual Editor",
+      "title": "CSS Generator — Box Shadow & Gradient Editor",
       "h1": "CSS Shadow & Gradient Generator",
-      "description": "Free visual CSS generator. Create beautiful box-shadows and linear, radial, or conic gradients with live preview. Copy ready-to-use CSS instantly.",
+      "description": "Build box-shadows and gradients visually. Add multiple shadow layers, each with its own offsets, blur, spread, color and inset toggle. For gradients, choose linear, radial or conic and add as many color stops as you need. Live preview updates as you adjust.",
+      "metaDescription": "Build CSS box-shadows and gradients visually with live preview. Multiple shadow layers, linear/radial/conic gradients, unlimited color stops.",
       "keywords": "css box shadow generator,css gradient generator,linear gradient css,radial gradient css,visual css editor",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5193,184 +5423,205 @@
         "a6": "Layer multiple shadows: a tight, low-opacity one for definition and a wider, softer one for depth. Real light casts shadows that are both crisper near the object and softer farther away. Use rgba() with 0.05–0.20 opacity rather than pure black."
       }
     },
-    "license-generator": {
-      "title": "Open Source License Generator – MIT, Apache, GPL & More",
-      "h1": "Open Source License Generator",
-      "description": "Generate standard open source licenses (MIT, Apache 2.0, GPL-3.0, BSD, ISC, Unlicense) with your details filled in. Copy or download ready-to-use LICENSE files.",
-      "keywords": "license generator,mit license,apache license,gpl license generator,open source license,software license template",
+    "favicon-generator": {
+      "title": "Favicon Generator — All Sizes Plus PWA Manifest",
+      "h1": "Favicon & App Icon Generator",
+      "description": "Turn a single square image into a complete favicon set — 16, 32, 48, 96, 180, 192 and 512 px, covering browsers, iOS and Android. Get a ready-to-use site.webmanifest, an HTML link snippet, and a ZIP archive with all icons ready to drop into your public folder.",
+      "metaDescription": "Turn one square image into a full favicon set — 16 to 512 px, Apple touch icons and PWA icons. Includes web manifest and HTML snippet.",
+      "keywords": "favicon generator,app icon generator,pwa icons,apple touch icon,generate icons from image,website favicon kit",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Pick a license",
-          "description": "Choose from MIT, Apache 2.0, GPL-3.0, AGPL-3.0, LGPL-3.0, BSD-2, BSD-3, ISC, MPL-2.0 or Unlicense."
+          "title": "Upload a square image",
+          "description": "Drop a square PNG or SVG — 512×512 or larger works best."
         },
         {
-          "title": "Fill in year and copyright holder",
-          "description": "Enter the year and the name of the copyright holder."
+          "title": "Choose fit mode and background",
+          "description": "Fit inside, fill & crop, or stretch. Pick a background color for empty space."
         },
         {
-          "title": "Add a project name (optional)",
-          "description": "Some licenses include the project name in the header."
+          "title": "Review the icons",
+          "description": "Preview every generated size: 16, 32, 48, 96, 180, 192 and 512 px."
         },
         {
-          "title": "Copy or download",
-          "description": "Copy the LICENSE text or download it as a file."
+          "title": "Download the ZIP",
+          "description": "Download the full set as a ZIP, or copy the HTML snippet and manifest."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "Ten licenses",
-          "description": "MIT, Apache 2.0, GPL-3.0, AGPL-3.0, LGPL-3.0, BSD-2, BSD-3, ISC, MPL-2.0 and Unlicense."
+          "title": "Seven sizes",
+          "description": "16, 32, 48, 96, 180, 192 and 512 px — covers browsers, iOS and Android."
         },
         {
-          "title": "Placeholder substitution",
-          "description": "Year, copyright holder and project name are filled in correctly for each license."
+          "title": "PWA manifest included",
+          "description": "Ready-to-use site.webmanifest with icon references and theme color."
         },
         {
-          "title": "License hints",
-          "description": "Each license has a short description of when to use it."
+          "title": "HTML snippet",
+          "description": "Copy-paste the link tags for your HTML head."
         },
         {
-          "title": "Copy or download",
-          "description": "Copy the LICENSE text to your clipboard or save it as a file."
+          "title": "ZIP download",
+          "description": "All icons in one archive, ready to drop into your public folder."
         }
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Add a LICENSE file to a new open source project",
-        "Switch a project to a different license",
-        "Prepare a license for a library or framework",
-        "Learn the differences between common licenses"
+        "Add a favicon to a new website",
+        "Prepare PWA icons for a web app",
+        "Replace an outdated favicon set",
+        "Add an Apple touch icon for iOS home screen"
       ],
-      "licenseLabel": "License",
-      "yearLabel": "Year",
-      "nameLabel": "Copyright holder",
-      "namePlaceholder": "Your name or organization",
-      "projectLabel": "Project Name (optional)",
-      "projectPlaceholder": "My Project",
-      "outputTitle": "LICENSE",
-      "download": "Download LICENSE",
+      "inputs": {
+        "fitMode": "Fit mode",
+        "backgroundColor": "Background color"
+      },
+      "fitModes": {
+        "contain": "Fit inside",
+        "cover": "Fill & crop",
+        "stretch": "Stretch"
+      },
+      "fitHints": {
+        "contain": "Image fits inside the square with the background color visible around it.",
+        "cover": "Image fills the square and edges are cropped. Best for photos and logos that should bleed.",
+        "stretch": "Image is forced to a square, potentially distorting proportions."
+      },
       "hints": {
-        "mit": "Short, permissive. Most popular for open source.",
-        "apache2": "Permissive with explicit patent grant. Good for larger projects.",
-        "gpl3": "Copyleft. Derivative works must stay open source.",
-        "agpl3": "Copyleft, extends to network use. SaaS must share source.",
-        "lgpl3": "Weak copyleft. Linking allowed, modifications must stay open.",
-        "bsd2": "Permissive, similar to MIT but with different wording.",
-        "bsd3": "Permissive with no-endorsement clause. Common in academia.",
-        "isc": "Permissive, simpler than MIT. Used by OpenBSD, npm.",
-        "mpl2": "Weak copyleft at file level. Used by Firefox.",
-        "unlicense": "Public domain dedication. No restrictions."
+        "drop": "Drop an image or click to select",
+        "dropSub": "Square PNG or SVG works best • 512×512 or larger",
+        "backgroundColor": "Shown in the empty space around the image when using Fit inside."
       },
-      "disclaimer": "These are standard license templates. For important projects, have a lawyer review before publishing.",
+      "actions": {
+        "regenerate": "Regenerate",
+        "downloadZip": "Download ZIP",
+        "zippingPercent": "Zipping… {percent}%"
+      },
+      "stats": {
+        "icons": "Icons",
+        "totalSize": "Total size",
+        "themeColor": "Theme color"
+      },
+      "sections": { "html": "HTML snippet", "manifest": "site.webmanifest" },
       "faq": {
-        "q1": "Which license should I choose?",
-        "a1": "MIT and Apache 2.0 are permissive — anyone can use your code with minimal conditions. GPL and AGPL require derivative works to stay open source. Choose based on how much control you want over downstream use.",
-        "q2": "What is the difference between MIT and Apache 2.0?",
-        "a2": "Both are permissive. Apache 2.0 also includes an explicit patent grant and a trademark clause. MIT is shorter and simpler. For most projects, either works — pick MIT for simplicity, Apache 2.0 if patents matter.",
-        "q3": "Can I change the license later?",
-        "a3": "You can change the license for future versions, but you cannot retroactively revoke the license on code already released. Contributors retain their rights under the original license.",
-        "q4": "Is this legally binding?",
-        "a4": "These are standard templates used by millions of projects. For important or commercial projects, have a lawyer review. This tool simply fills in the common placeholders correctly.",
-        "q5": "What is the difference between GPL-2.0 and GPL-3.0?",
-        "a5": "GPL-3.0 adds compatibility with Apache 2.0, closes the TiVo loophole (hardware lockdown), and includes an explicit patent grant. GPL-2.0 is simpler and used by older projects like the Linux kernel. New projects generally prefer GPL-3.0.",
-        "q6": "Do I need a license for a private project?",
-        "a6": "For fully private, non-distributed code, no license is legally required. But adding one (even proprietary) clarifies ownership and prevents contributions from creating ambiguity. A short copyright notice is usually sufficient for private code."
+        "q1": "Do I still need a .ico file?",
+        "a1": "No. Modern browsers use PNG favicons linked from the HTML head. This generator focuses on high-quality PNGs at every required size plus a web manifest for PWA and Android.",
+        "q2": "Which sizes are generated?",
+        "a2": "16, 32, 48 and 96 for classic browsers, 180 for iOS Apple touch icon, and 192 and 512 for PWA and Android home screen.",
+        "q3": "What is site.webmanifest for?",
+        "a3": "It tells browsers how to install your site as a PWA. It declares the app name, icons, theme color and display mode. Link it from the HTML head using a link rel manifest tag.",
+        "q4": "Is my image uploaded anywhere?",
+        "a4": "No. All resizing and ZIP packing happen entirely in your browser. Your image never leaves your device.",
+        "q5": "Why do my favicons look blurry?",
+        "a5": "Small favicons (16×16, 32×32) lose detail when the source has fine features or text. Icons should be simple shapes with high contrast — a logo with detailed small text will always be unreadable at 16×16. Design the icon specifically for the smallest size.",
+        "q6": "Do I need a favicon for SEO?",
+        "a6": "Indirectly. A favicon is required for a site to be added to mobile home screens and appears in browser tabs, bookmarks and search results in some contexts. Google requires a favicon of at least 48×48 for search result display, and its absence can affect brand recognisability rather than rankings."
       }
     },
-    "gitignore-generator": {
-      "title": "Git Ignore Generator – .gitignore by Language & Framework",
-      "h1": "Git Ignore Generator",
-      "description": "Generate .gitignore files for any stack. 30+ templates for Node, Next.js, Python, Java, Go, mobile, OS and IDEs. Add custom rules and download.",
-      "keywords": "gitignore generator,git ignore file,.gitignore template,gitignore by language,create gitignore online,node gitignore,python gitignore",
+    "base64-image-optimizer": {
+      "title": "Base64 Image Optimizer — Compress & Resize",
+      "h1": "Base64 Image Optimizer",
+      "description": "Paste or upload a Base64 image and get back a smaller one. Control output format, maximum width and height, and quality — the tool re-encodes the image through the Canvas API. Handy for shrinking inline data URIs in HTML, CSS or JSON payloads.",
+      "metaDescription": "Paste or upload a Base64 image and get a smaller one. Control format, dimensions and quality. Useful for shrinking inline data URIs.",
+      "keywords": "base64 image optimizer,compress base64 image,optimize base64 image,resize base64 image,base64 image compressor",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Pick your stack",
-          "description": "Select templates for your languages, frameworks, editors and operating systems."
+          "title": "Paste or upload the Base64 image",
+          "description": "Paste a data URI or raw Base64, or upload a file."
         },
         {
-          "title": "Use a preset (optional)",
-          "description": "Quick presets cover common stacks like Web/JS, Mobile, Backend and Data/ML."
+          "title": "Set output options",
+          "description": "Choose format, max width, max height and quality."
         },
         {
-          "title": "Add custom rules",
-          "description": "Add extra patterns in the Custom rules field, one per line."
+          "title": "Click Optimize",
+          "description": "The tool re-encodes the image with the chosen settings."
         },
         {
-          "title": "Download the file",
-          "description": "Download the .gitignore file or copy the preview."
+          "title": "Copy the result",
+          "description": "Copy the optimized Base64 or data URI to your clipboard."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "30+ templates",
-          "description": "Languages, frameworks, editors, IDEs and operating systems."
+          "title": "Format conversion",
+          "description": "Convert between PNG, JPEG, WebP, GIF, BMP and AVIF (output limited by browser support)."
         },
         {
-          "title": "Quick presets",
-          "description": "Web, Mobile, Backend, Data/ML, OS/IDE, Infra — one click to select common combinations."
+          "title": "Resize and compress",
+          "description": "Control max width, max height and quality to shrink the encoded string."
         },
         {
-          "title": "Deduplication",
-          "description": "Combines templates and custom rules, removing duplicate lines automatically."
+          "title": "Size comparison",
+          "description": "See original and optimized size side by side."
         },
         {
-          "title": "Search",
-          "description": "Filter templates by name to find exactly what you need."
+          "title": "Auto-format detection",
+          "description": "Detects the input format from the data URI or magic bytes."
         }
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
-        "Add a .gitignore to a new Node.js project",
-        "Combine templates for a Python + VS Code + macOS stack",
-        "Add project-specific ignore rules",
-        "Fix a bloated repository by ignoring build artifacts"
+        "Shrink a Base64 image embedded in HTML",
+        "Compress a data URI before adding it to a CSS file",
+        "Resize an inline base64 image for an email template",
+        "Convert a large Base64 PNG to a smaller WebP"
       ],
-      "groups": {
-        "language": "Languages",
-        "framework": "Frameworks",
-        "editor": "Editors & IDEs",
-        "os": "Operating Systems"
+      "inputs": {
+        "format": "Output format",
+        "maxWidth": "Max width",
+        "maxHeight": "Max height",
+        "quality": "Quality"
       },
-      "presetsTitle": "Quick presets",
-      "presets": {
-        "web": "Web / JS",
-        "mobile": "Mobile",
-        "backend": "Backend",
-        "data": "Data / ML",
-        "osIde": "OS / IDE",
-        "infra": "Infra"
+      "sections": {
+        "input": "Base64 input",
+        "output": "Optimized base64",
+        "original": "Original",
+        "optimized": "Optimized"
       },
-      "searchPlaceholder": "Search languages, frameworks...",
-      "selectedCount": "{count} selected",
-      "emptySearch": "No templates match your search.",
-      "outputTitle": ".gitignore Preview",
-      "download": "Download .gitignore",
-      "customLabel": "Additional patterns (one per line)",
-      "customPlaceholder": "*.log\nsecrets/\n.env",
-      "note": "Combines curated templates with your custom rules. Deduplicates lines. Works offline.",
+      "placeholders": {
+        "input": "Paste base64 or a data URI here... or upload a file"
+      },
+      "hints": {
+        "privacy": "Everything runs in your browser. Your image data never leaves your device."
+      },
+      "actions": {
+        "optimize": "Optimize",
+        "optimizing": "Optimizing…",
+        "upload": "Upload file"
+      },
+      "errors": {
+        "invalid": "Could not parse the input as a base64 image.",
+        "unknownFormat": "Unsupported image format. Only PNG, JPEG, WebP, GIF, BMP, AVIF and ICO are supported.",
+        "svgNotSupported": "SVG images cannot be re-encoded via Canvas. Convert the SVG to PNG first.",
+        "decode": "Failed to decode the image.",
+        "canvas": "Canvas is not available in this browser.",
+        "encode": "Failed to encode the optimized image."
+      },
       "faq": {
-        "q1": "How many templates are included?",
-        "a1": "Over 30 popular languages, frameworks, editors, and operating systems. You can combine any number of them.",
-        "q2": "Can I edit the generated file?",
-        "a2": "Yes. The preview is read-only here, but you can paste your custom rules into the Custom rules field, or download and edit the file locally.",
-        "q3": "What if I already have a .gitignore?",
-        "a3": "Paste your existing content into the Custom rules field and re-select templates — duplicates are merged automatically.",
-        "q4": "Is my data sent anywhere?",
-        "a4": "No. The entire .gitignore is generated in your browser. Nothing is uploaded to any server.",
-        "q5": "What is the correct order of rules in .gitignore?",
-        "a5": "More specific rules should come after more general ones. A later pattern overrides an earlier one. To un-ignore a file inside an ignored folder, first ignore the folder then negate the file: logs/ followed by !logs/important.log.",
-        "q6": "Can I use .gitignore to ignore files that are already tracked?",
-        "a6": "No. .gitignore only affects untracked files. To stop tracking a file already committed, use git rm --cached filename, then add it to .gitignore. The file stays on disk but is no longer part of the repository."
+        "q1": "How much can it reduce the size?",
+        "a1": "Typical savings are 30–70% depending on the original quality and chosen settings. The tool uses the browser's Canvas with good JPEG and WebP encoders.",
+        "q2": "Does it support transparency?",
+        "a2": "Yes for PNG and WebP output. For JPEG output the background is filled with white because the JPEG format does not support transparency.",
+        "q3": "Is my image data private?",
+        "a3": "Everything is processed locally in your browser using the Canvas API. No data is uploaded or stored.",
+        "q4": "Can I paste just the raw base64 without a data URI prefix?",
+        "a4": "Yes. The tool auto-detects the image format from the magic bytes in the decoded data. Both raw base64 and full data URIs are accepted.",
+        "q5": "Why is my Base64 image so large?",
+        "a5": "Base64 encoding adds about 33% overhead to the binary size, and PNG screenshots are often already large. Converting to WebP or JPEG and reducing the dimensions is usually the fastest way to shrink the string.",
+        "q6": "Is Base64 a good way to embed images in HTML?",
+        "a6": "Only for very small images. Base64 bloats the HTML, prevents separate caching, and blocks rendering until the CSS or HTML finishes loading. Use it for one-off icons and tiny assets — for everything else, use a real image file with proper caching headers."
       }
     },
+
     "password-generator": {
-      "title": "Password Generator — Strong Random Passwords Online",
+      "title": "Password Generator — Strong Random Passwords",
       "h1": "Password Generator",
-      "description": "Free password generator: creates strong random passwords of any length right in your browser via Web Crypto API. Shows entropy and estimated crack time. Four modes: random, pronounceable, PIN, pattern-based.",
+      "description": "Create strong random passwords of any length right in your browser. Four modes: random, pronounceable, numeric PIN, and pattern-based. See the entropy in bits and estimated time to crack. Exclude ambiguous characters. Bulk generate up to 500 at once.",
+      "metaDescription": "Create strong random passwords in your browser. Four modes — random, pronounceable, PIN, pattern. Entropy meter, crack time, bulk up to 500.",
       "keywords": "password generator,strong password,random password,secure password,generate password,password online,password entropy",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5459,9 +5710,10 @@
       }
     },
     "qr-code-generator": {
-      "title": "QR Code Generator – Free QR Code Maker with PNG & SVG",
+      "title": "QR Code Generator — PNG and SVG",
       "h1": "QR Code Generator",
-      "description": "Free QR code generator for URL, text, email, phone, SMS, Wi-Fi and vCard. Customize size, colors, and error correction. Download PNG or SVG.",
+      "description": "Create QR codes for URLs, plain text, email, phone, SMS, Wi-Fi and vCard. Tune size, margin, error correction level and colors. Download as PNG for digital use or as SVG for print. Also supports ten barcode formats including CODE128, EAN and UPC.",
+      "metaDescription": "Create QR codes for URL, text, email, phone, SMS, Wi-Fi and vCard. Custom colors, error correction, PNG or SVG download. Barcodes too.",
       "keywords": "qr code generator,qr code maker,free qr code,wifi qr code,vcard qr code,custom qr code",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5632,10 +5884,11 @@
       }
     },
     "image-compressor": {
-      "title": "Image Compressor — Reduce JPG, PNG, WebP Online",
+      "title": "Image Compressor — JPG, PNG and WebP in Bulk",
       "h1": "Image Compressor",
-      "description": "Free image compressor that runs entirely in your browser. Compress JPG, PNG, WebP and AVIF images by up to 90% with no upload required. Set a target file size or use the quality slider — the tool picks optimal settings automatically.",
-      "keywords": "image compressor,compress image online,jpg compressor,png compressor,webp compressor,image optimizer,reduce image size,shrink photo",
+      "description": "Compress JPG, PNG, WebP and AVIF images without uploading anything. Drop up to 20 files, pick a quality level or a max width, and download the results individually or as a set. See original vs compressed size and savings percentage for each file.",
+      "metaDescription": "Compress JPG, PNG, WebP and AVIF without uploading. Batch up to 20 files, quality slider, max width cap, per-file size comparison.",
+      "keywords": "image compressor,compress image online,jpg compressor,png compressor,webp compressor,image optimizer,reduce image size",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -5644,7 +5897,7 @@
         },
         {
           "title": "Set output settings",
-          "description": "Pick a target size or quality, choose the format, and cap the max width."
+          "description": "Choose a quality level, output format and max width."
         },
         {
           "title": "Compress all",
@@ -5660,10 +5913,6 @@
         {
           "title": "JPG, PNG, WebP, AVIF",
           "description": "Modern formats supported out of the box — plus GIF input."
-        },
-        {
-          "title": "Target file size",
-          "description": "Set 200 KB, 500 KB or 1 MB — the tool picks quality and resolution to fit."
         },
         {
           "title": "Quality slider with preview",
@@ -5715,16 +5964,17 @@
         "a3": "Depends on the original. Typical savings are 50–80% for photos when you set quality to 75–85% and limit max width to 1920px. PNG screenshots compress less.",
         "q4": "Does quality affect PNG?",
         "a4": "No. PNG is lossless, so the quality slider has no effect. Resizing or switching to WebP, JPEG or AVIF is the only way to shrink PNG files.",
-        "q5": "What is target file size mode?",
-        "a5": "It lets you specify the desired output size — for example, 200 KB. The tool automatically picks quality and resolution to fit that limit with minimal quality loss.",
-        "q6": "Can I compress many images at once?",
-        "a6": "Yes. Drop up to 20 files, set your options, and click Compress All. You can download them individually or all together."
+        "q5": "Can I compress many images at once?",
+        "a5": "Yes. Drop up to 20 files, set your options, and click Compress All. You can download them individually or all together.",
+        "q6": "Do the compressed images keep their EXIF metadata?",
+        "a6": "No. The Canvas API used for compression strips EXIF data — GPS coordinates, camera model and timestamps are removed. That improves privacy, but if you rely on EXIF, keep the originals."
       }
     },
     "image-converter": {
-      "title": "Image Converter – WebP, JPEG & PNG in Bulk",
+      "title": "Image Converter — WebP, JPEG and PNG in Bulk",
       "h1": "Image Converter",
-      "description": "Convert and resize images to WebP, JPEG, or PNG right in your browser. Bulk convert, control dimensions and quality, download instantly. No uploads, 100% private.",
+      "description": "Convert images to WebP, JPEG or PNG — and resize them at the same time. Choose fit, fill or stretch for the target dimensions, adjust quality for JPEG and WebP, and download individually or as a batch. Everything happens in your browser.",
+      "metaDescription": "Convert images to WebP, JPEG or PNG and resize in the same pass. Fit, fill or stretch. Quality control for JPEG and WebP. Batch download.",
       "keywords": "image converter,webp converter,jpg to webp,png to jpg,bulk image converter,image resizer,convert images online",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5828,10 +6078,11 @@
       }
     },
     "bulk-image-resizer": {
-      "title": "Bulk Image Resizer – Resize Many Photos in Browser",
+      "title": "Bulk Image Resizer — Resize Many Photos at Once",
       "h1": "Bulk Image Resizer",
-      "description": "Resize dozens of images at once right in your browser. Set max dimensions, exact sizes, or percentage scale, choose a format, and download all results. No uploads, 100% private.",
-      "keywords": "bulk image resizer,resize multiple images,batch photo resizer,resize images online free,image batch resize,compress and resize photos",
+      "description": "Resize dozens of images in one pass. Choose max dimensions, exact pixel size or a percentage scale; pick fit, fill or stretch; and optionally convert format in the same run. See original vs resized size and download all results together.",
+      "metaDescription": "Resize dozens of images in one pass. Max dimensions, exact size or percentage scale. Fit, fill or stretch. Optional format change. Batch download.",
+      "keywords": "bulk image resizer,resize multiple images,batch photo resizer,resize images online,image batch resize,compress and resize photos",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -5954,10 +6205,11 @@
       }
     },
     "image-watermark": {
-      "title": "Image Watermark Tool – Add Text & Logo Watermarks",
+      "title": "Image Watermark — Text and Logo on Photos",
       "h1": "Image Watermark Tool",
-      "description": "Add text and logo watermarks to your images right in your browser. Control position, opacity, rotation, size and color. Works on single images or whole batches.",
-      "keywords": "image watermark,add watermark to photo,text watermark online,logo watermark tool,batch watermark images,protect images with watermark",
+      "description": "Add a text watermark, a logo, or both — right in your browser. Control position, opacity, rotation, font size, color and logo size. Choose from ten anchor positions plus a tile mode that repeats the mark across the whole image. Works on a single image or a whole batch.",
+      "metaDescription": "Add text or logo watermarks to images in your browser. Ten positions plus tile mode, opacity, rotation, size and color. Single or batch.",
+      "keywords": "image watermark,add watermark to photo,text watermark online,logo watermark tool,batch watermark images,protect images",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -6075,9 +6327,10 @@
       }
     },
     "color-palette-extractor": {
-      "title": "Color Palette Extractor – Pull Colors from Any Image",
+      "title": "Color Palette Extractor — Pull Colors from Any Image",
       "h1": "Color Palette Extractor",
-      "description": "Extract dominant color palettes from any image or image URL. Get HEX, RGB, HSL, percentages, and export to CSS variables or JSON. 100% private in your browser.",
+      "description": "Extract the dominant color palette from an image — upload a file or paste a public URL. Choose between 3 and 12 colors. See HEX, RGB, HSL and the percentage share of each color, then export the palette as ready-to-use CSS variables or JSON.",
+      "metaDescription": "Extract the dominant palette from any image. Choose 3–12 colors, get HEX, RGB, HSL and share. Export as CSS variables or JSON.",
       "keywords": "color palette extractor,extract colors from image,color palette from image,dominant colors,hex from image,image color picker",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -6170,202 +6423,12 @@
         "a6": "Two common reasons: the palette is based on pixel area, not visual importance — a large background dominates. And near-duplicate removal merges similar shades. If you want more color variety, increase the color count to 10 or 12."
       }
     },
-    "favicon-generator": {
-      "title": "Favicon + App Icon Generator – All Sizes + PWA Manifest",
-      "h1": "Favicon & App Icon Generator",
-      "description": "Generate a complete favicon set (16×16 to 512×512), Apple touch icons and PWA icons from one image. Includes a ready-to-use web manifest and HTML snippet.",
-      "keywords": "favicon generator,app icon generator,pwa icons,apple touch icon,generate icons from image,website favicon kit",
-      "howToUseTitle": "How to use",
-      "howToUse": [
-        {
-          "title": "Upload a square image",
-          "description": "Drop a square PNG or SVG — 512×512 or larger works best."
-        },
-        {
-          "title": "Choose fit mode and background",
-          "description": "Fit inside, fill & crop, or stretch. Pick a background color for empty space."
-        },
-        {
-          "title": "Review the icons",
-          "description": "Preview every generated size: 16, 32, 48, 96, 180, 192 and 512 px."
-        },
-        {
-          "title": "Download the ZIP",
-          "description": "Download the full set as a ZIP, or copy the HTML snippet and manifest."
-        }
-      ],
-      "featuresTitle": "Features",
-      "features": [
-        {
-          "title": "Seven sizes",
-          "description": "16, 32, 48, 96, 180, 192 and 512 px — covers browsers, iOS and Android."
-        },
-        {
-          "title": "PWA manifest included",
-          "description": "Ready-to-use site.webmanifest with icon references and theme color."
-        },
-        {
-          "title": "HTML snippet",
-          "description": "Copy-paste the link tags for your HTML head."
-        },
-        {
-          "title": "ZIP download",
-          "description": "All icons in one archive, ready to drop into your public folder."
-        }
-      ],
-      "useCasesTitle": "Common use cases",
-      "useCases": [
-        "Add a favicon to a new website",
-        "Prepare PWA icons for a web app",
-        "Replace an outdated favicon set",
-        "Add an Apple touch icon for iOS home screen"
-      ],
-      "inputs": {
-        "fitMode": "Fit mode",
-        "backgroundColor": "Background color"
-      },
-      "fitModes": {
-        "contain": "Fit inside",
-        "cover": "Fill & crop",
-        "stretch": "Stretch"
-      },
-      "fitHints": {
-        "contain": "Image fits inside the square with the background color visible around it.",
-        "cover": "Image fills the square and edges are cropped. Best for photos and logos that should bleed.",
-        "stretch": "Image is forced to a square, potentially distorting proportions."
-      },
-      "hints": {
-        "drop": "Drop an image or click to select",
-        "dropSub": "Square PNG or SVG works best • 512×512 or larger",
-        "backgroundColor": "Shown in the empty space around the image when using Fit inside."
-      },
-      "actions": {
-        "regenerate": "Regenerate",
-        "downloadZip": "Download ZIP",
-        "zippingPercent": "Zipping… {percent}%"
-      },
-      "stats": {
-        "icons": "Icons",
-        "totalSize": "Total size",
-        "themeColor": "Theme color"
-      },
-      "sections": { "html": "HTML snippet", "manifest": "site.webmanifest" },
-      "faq": {
-        "q1": "Do I still need a .ico file?",
-        "a1": "No. Modern browsers use PNG favicons linked from the HTML head. This generator focuses on high-quality PNGs at every required size plus a web manifest for PWA and Android.",
-        "q2": "Which sizes are generated?",
-        "a2": "16, 32, 48 and 96 for classic browsers, 180 for iOS Apple touch icon, and 192 and 512 for PWA and Android home screen.",
-        "q3": "What is site.webmanifest for?",
-        "a3": "It tells browsers how to install your site as a PWA. It declares the app name, icons, theme color and display mode. Link it from the HTML head using a link rel manifest tag.",
-        "q4": "Is my image uploaded anywhere?",
-        "a4": "No. All resizing and ZIP packing happen entirely in your browser. Your image never leaves your device.",
-        "q5": "Why do my favicons look blurry?",
-        "a5": "Small favicons (16×16, 32×32) lose detail when the source has fine features or text. Icons should be simple shapes with high contrast — a logo with detailed small text will always be unreadable at 16×16. Design the icon specifically for the smallest size.",
-        "q6": "Do I need a favicon for SEO?",
-        "a6": "Indirectly. A favicon is required for a site to be added to mobile home screens and appears in browser tabs, bookmarks and search results in some contexts. Google requires a favicon of at least 48×48 for search result display, and its absence can affect brand recognisability rather than rankings."
-      }
-    },
-    "base64-image-optimizer": {
-      "title": "Base64 Image Optimizer – Compress & Resize Base64",
-      "h1": "Base64 Image Optimizer",
-      "description": "Paste or upload a base64 image and get a smaller, optimized version. Control quality, dimensions and output format. Free, private and instant.",
-      "keywords": "base64 image optimizer,compress base64 image,optimize base64 image,resize base64 image,base64 image compressor",
-      "howToUseTitle": "How to use",
-      "howToUse": [
-        {
-          "title": "Paste or upload the Base64 image",
-          "description": "Paste a data URI or raw Base64, or upload a file."
-        },
-        {
-          "title": "Set output options",
-          "description": "Choose format, max width, max height and quality."
-        },
-        {
-          "title": "Click Optimize",
-          "description": "The tool re-encodes the image with the chosen settings."
-        },
-        {
-          "title": "Copy the result",
-          "description": "Copy the optimized Base64 or data URI to your clipboard."
-        }
-      ],
-      "featuresTitle": "Features",
-      "features": [
-        {
-          "title": "Format conversion",
-          "description": "Convert between PNG, JPEG, WebP, GIF, BMP and AVIF (output limited by browser support)."
-        },
-        {
-          "title": "Resize and compress",
-          "description": "Control max width, max height and quality to shrink the encoded string."
-        },
-        {
-          "title": "Size comparison",
-          "description": "See original and optimized size side by side."
-        },
-        {
-          "title": "Auto-format detection",
-          "description": "Detects the input format from the data URI or magic bytes."
-        }
-      ],
-      "useCasesTitle": "Common use cases",
-      "useCases": [
-        "Shrink a Base64 image embedded in HTML",
-        "Compress a data URI before adding it to a CSS file",
-        "Resize an inline base64 image for an email template",
-        "Convert a large Base64 PNG to a smaller WebP"
-      ],
-      "inputs": {
-        "format": "Output format",
-        "maxWidth": "Max width",
-        "maxHeight": "Max height",
-        "quality": "Quality"
-      },
-      "sections": {
-        "input": "Base64 input",
-        "output": "Optimized base64",
-        "original": "Original",
-        "optimized": "Optimized"
-      },
-      "placeholders": {
-        "input": "Paste base64 or a data URI here... or upload a file"
-      },
-      "hints": {
-        "privacy": "Everything runs in your browser. Your image data never leaves your device."
-      },
-      "actions": {
-        "optimize": "Optimize",
-        "optimizing": "Optimizing…",
-        "upload": "Upload file"
-      },
-      "errors": {
-        "invalid": "Could not parse the input as a base64 image.",
-        "unknownFormat": "Unsupported image format. Only PNG, JPEG, WebP, GIF, BMP, AVIF and ICO are supported.",
-        "svgNotSupported": "SVG images cannot be re-encoded via Canvas. Convert the SVG to PNG first.",
-        "decode": "Failed to decode the image.",
-        "canvas": "Canvas is not available in this browser.",
-        "encode": "Failed to encode the optimized image."
-      },
-      "faq": {
-        "q1": "How much can it reduce the size?",
-        "a1": "Typical savings are 30–70% depending on the original quality and chosen settings. The tool uses the browser's Canvas with good JPEG and WebP encoders.",
-        "q2": "Does it support transparency?",
-        "a2": "Yes for PNG and WebP output. For JPEG output the background is filled with white because the JPEG format does not support transparency.",
-        "q3": "Is my image data private?",
-        "a3": "Everything is processed locally in your browser using the Canvas API. No data is uploaded or stored.",
-        "q4": "Can I paste just the raw base64 without a data URI prefix?",
-        "a4": "Yes. The tool auto-detects the image format from the magic bytes in the decoded data. Both raw base64 and full data URIs are accepted.",
-        "q5": "Why is my Base64 image so large?",
-        "a5": "Base64 encoding adds about 33% overhead to the binary size, and PNG screenshots are often already large. Converting to WebP or JPEG and reducing the dimensions is usually the fastest way to shrink the string.",
-        "q6": "Is Base64 a good way to embed images in HTML?",
-        "a6": "Only for very small images. Base64 bloats the HTML, prevents separate caching, and blocks rendering until the CSS or HTML finishes loading. Use it for one-off icons and tiny assets — for everything else, use a real image file with proper caching headers."
-      }
-    },
     "images-to-pdf": {
-      "title": "Images to PDF — Convert JPG, PNG, WebP & AVIF to PDF",
+      "title": "Images to PDF — Combine JPG, PNG and WebP",
       "h1": "Images to PDF",
-      "description": "Free images to PDF converter. Combine JPG, PNG, WebP, AVIF and GIF into a single PDF with custom page size, orientation, grid layout and margins. Drag to reorder, rotate individual images, add page numbers, captions and a title page. Runs entirely in your browser.",
-      "keywords": "images to pdf,jpg to pdf,png to pdf,image to pdf converter,combine images into pdf,merge photos into pdf,webp to pdf,avif to pdf",
+      "description": "Combine JPG, PNG, WebP, AVIF and GIF images into a single PDF. Choose page size and orientation, put 1 to 3 images per row, set margins and gaps, add page numbers, captions or a title page. Reorder and rotate images before export. Everything happens in your browser.",
+      "metaDescription": "Combine JPG, PNG, WebP, AVIF and GIF into one PDF. Custom page size, orientation, grid, margins, page numbers and title page. In-browser.",
+      "keywords": "images to pdf,jpg to pdf,png to pdf,image to pdf converter,combine images into pdf,merge photos into pdf,webp to pdf",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -6374,7 +6437,7 @@
         },
         {
           "title": "Arrange the queue",
-          "description": "Drag to reorder, rotate sideways images, remove the ones you don't need."
+          "description": "Reorder, rotate sideways images, remove the ones you don't need."
         },
         {
           "title": "Choose layout",
@@ -6392,12 +6455,8 @@
           "description": "JPG, PNG, WebP, AVIF and GIF — everything a modern browser can decode."
         },
         {
-          "title": "Drag-and-drop reordering",
-          "description": "Pull tiles around to set the order. The first tile becomes the first page."
-        },
-        {
-          "title": "Rotate each image 90°",
-          "description": "Fix sideways phone photos with one click, no need to re-upload the file."
+          "title": "Reorder and rotate images",
+          "description": "Move images up and down in the queue, and rotate sideways photos with one click."
         },
         {
           "title": "Page sizes and orientation",
@@ -6418,10 +6477,6 @@
         {
           "title": "Title page",
           "description": "Add a cover page with a title and subtitle — inserted as page 1 of the PDF."
-        },
-        {
-          "title": "Quality slider",
-          "description": "Control JPEG and WebP compression. PNG stays lossless — the slider has no effect on it."
         }
       ],
       "useCasesTitle": "Common use cases",
@@ -6494,105 +6549,12 @@
         "a7": "Yes for PNG and WebP output. Transparent areas remain transparent inside the PDF. For JPEG output the background is filled with white because JPEG does not support transparency."
       }
     },
-    "pdf-to-image": {
-      "title": "PDF to Image Converter – Export Pages as PNG, JPG or WebP",
-      "h1": "PDF to Image Converter",
-      "description": "Convert PDF pages to PNG, JPEG or WebP images right in your browser. Extract specific pages, choose scale and quality, download individually or as a ZIP. No uploads, 100% private.",
-      "keywords": "pdf to image,pdf to jpg,pdf to png,pdf to webp,convert pdf pages,extract pdf images,browser pdf converter",
-      "howToUseTitle": "How to use",
-      "howToUse": [
-        {
-          "title": "Upload a PDF",
-          "description": "Drop a PDF file into the window or click to select from your device."
-        },
-        {
-          "title": "Choose page range",
-          "description": "Export all pages, or a specific range like 1-5, 8, 11-13."
-        },
-        {
-          "title": "Set format, scale and quality",
-          "description": "Pick PNG, JPEG or WebP, choose a scale multiplier and adjust quality."
-        },
-        {
-          "title": "Download the images",
-          "description": "Download each page individually or grab everything as a ZIP archive."
-        }
-      ],
-      "featuresTitle": "Features",
-      "features": [
-        {
-          "title": "Three output formats",
-          "description": "PNG (lossless with transparency), JPEG (smaller) and WebP (modern, small)."
-        },
-        {
-          "title": "Page range parser",
-          "description": "Export specific pages using ranges like 1-5, 8, 11-13."
-        },
-        {
-          "title": "Scale multiplier",
-          "description": "Choose 1×, 1.5×, 2× or 3× for higher-resolution output."
-        },
-        {
-          "title": "Grid preview",
-          "description": "See thumbnails of every exported page before downloading."
-        },
-        {
-          "title": "ZIP download",
-          "description": "Bundle all pages into a single ZIP file."
-        },
-        {
-          "title": "Progress indicator",
-          "description": "Smooth progress bar as pages are processed."
-        }
-      ],
-      "useCasesTitle": "Common use cases",
-      "useCases": [
-        "Extract images from a PDF for a blog post",
-        "Convert a presentation PDF to PNG slides",
-        "Turn a scanned document into JPEG images",
-        "Create thumbnails from PDF pages"
-      ],
-      "inputs": {
-        "format": "Output format",
-        "scale": "Scale",
-        "quality": "Quality",
-        "range": "Page range",
-        "transparent": "Transparent background"
-      },
-      "options": { "all": "All pages", "custom": "Custom range" },
-      "hints": {
-        "drop": "Drop a PDF here or click to select",
-        "dropSub": "Single PDF • page range • PNG / JPEG / WebP",
-        "range": "Use commas and dashes: 1-5, 8, 11-13",
-        "transparent": "Only available for PNG output."
-      },
-      "actions": {
-        "select": "Select PDF",
-        "convert": "Convert to images",
-        "convertingPercent": "Converting… {percent}%",
-        "downloadAll": "Download all (ZIP)"
-      },
-      "stats": { "pages": "Pages", "selected": "Selected", "ready": "Ready" },
-      "faq": {
-        "q1": "Is my PDF uploaded anywhere?",
-        "a1": "No. All processing runs entirely in your browser using pdf.js. Your file never leaves your device.",
-        "q2": "Can I export specific pages?",
-        "a2": "Yes. Enter a page range like 1-5, 8, 11-13 in the range field. The parser accepts combinations of individual pages and ranges.",
-        "q3": "What is the difference between PNG, JPEG and WebP?",
-        "a3": "PNG is lossless and supports transparency — best for screenshots and text-heavy pages. JPEG is smaller but lossy — good for photos. WebP is modern with excellent compression — a good balance between the two.",
-        "q4": "Does higher scale mean better quality?",
-        "a4": "Yes, but also larger files and slower processing. 1.5× is fine for on-screen viewing, 2× for retina displays, 3× for print or zoomed-in detail.",
-        "q5": "Can I extract only the images embedded in a PDF?",
-        "a5": "This tool renders each page as a single image — it does not extract the original embedded images separately. For true image extraction (getting the original JPEG or PNG at full resolution), use a dedicated tool like pdfimages (Poppler) or a specialised PDF editor.",
-        "q6": "Why is my output image blurry?",
-        "a6": "PDF pages are vector-based and have no native pixel resolution. The output resolution depends on the scale multiplier. Increase it (2× or 3×) for sharper images. Text-heavy pages benefit most; photos at 1× are often already fine."
-      }
-    },
     "screenshot-beautifier": {
-      "title": "Screenshot Beautifier – Add Gradient Backgrounds & Frames",
+      "title": "Screenshot Beautifier — Backgrounds and Frames",
       "h1": "Screenshot Beautifier",
-      "description": "Turn plain screenshots into polished visuals. Add gradient or solid backgrounds, rounded corners, macOS-style frames, and soft shadows. Free, private, runs 100% in your browser.",
-      "keywords": "screenshot beautifier,beautify screenshot,screenshot background,gradient screenshot,screenshot with shadow,macos window screenshot,pretty screenshot",
+      "description": "Turn a plain screenshot into a polished visual. Add a solid or gradient background, rounded corners, an optional macOS-style window frame and a soft drop shadow. Six gradient presets included, plus custom colors and angles. Export as PNG, JPEG or WebP at up to 3× scale.",
+      "metaDescription": "Turn a screenshot into a polished visual. Gradient or solid background, rounded corners, macOS-style frame, soft shadow. Export at 1×, 2× or 3×.",
+      "keywords": "screenshot beautifier,beautify screenshot,screenshot background,gradient screenshot,screenshot with shadow,macos window screenshot",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -6697,10 +6659,12 @@
         "a6": "Yes. Square or 4:5 outputs work well for Instagram and LinkedIn. Use a gradient background, add 60–120 px padding, and export at 2× for a polished look. Avoid extreme shadow blur — it looks dated on modern feeds."
       }
     },
+
     "invoice-generator": {
-      "title": "Invoice Generator – Free Online Invoice Maker",
+      "title": "Free Invoice Generator — PDF Invoice Maker",
       "h1": "Invoice Generator",
-      "description": "Create professional invoices instantly for your business. Customize details, calculate taxes, and download as a PDF for free, entirely in your browser.",
+      "description": "Create professional invoices in your browser and download them as PDF. Two templates (Modern and Classic), five theme colors, logo upload, discounts and tax. Everything autosaves to your device — no account, no uploads, no watermark.",
+      "metaDescription": "Create professional invoices and download as PDF. Two templates, logo upload, discounts and tax. No account, no watermark, no uploads.",
       "keywords": "invoice generator,free invoice maker,download pdf invoice,create invoice online,receipt maker",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -6841,9 +6805,10 @@
       }
     },
     "invoice-number-generator": {
-      "title": "Invoice Number Generator – Sequential Numbers & Tracker",
+      "title": "Invoice Number Generator — Sequential Tracker",
       "h1": "Invoice Number Generator",
-      "description": "Free invoice number generator with tracker. Generate sequential invoice numbers, log client and PO references, and never reuse a number. Everything runs in your browser.",
+      "description": "Generate sequential invoice numbers with a prefix, starting number and leading-zero padding. Attach client names and PO references to each number and keep a local log so you never reuse the same number twice. Everything is stored in your browser.",
+      "metaDescription": "Generate sequential invoice numbers with a prefix and padding. Attach client and PO references, log every number, never reuse one. Stored locally.",
       "keywords": "invoice number generator,invoice numbering,sequential numbers,invoice tracker,billing numbers",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -6932,9 +6897,10 @@
       }
     },
     "utm-builder": {
-      "title": "UTM Link Builder – Free Campaign URL Builder",
+      "title": "UTM Link Builder — Campaign URL Builder",
       "h1": "UTM Link Builder",
-      "description": "Free UTM link builder for Google Analytics. Generate clean, trackable URLs with source, medium, campaign, term, and content parameters instantly. Runs entirely in your browser.",
+      "description": "Build trackable campaign URLs with UTM parameters for Google Analytics and Yandex Metrica. Fill in source, medium, campaign and optionally term and content — the tracked URL updates as you type. One click to copy the finished link.",
+      "metaDescription": "Build trackable campaign URLs with UTM parameters for Google Analytics and Yandex Metrica. Source, medium, campaign, term, content. Copy in one click.",
       "keywords": "utm builder,utm link builder,campaign url builder,google analytics utm,utm parameters",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -7018,9 +6984,10 @@
       }
     },
     "profit-margin-calculator": {
-      "title": "Profit Margin & Markup Calculator – Advanced Pricing Tool",
+      "title": "Profit Margin & Markup Calculator",
       "h1": "Profit Margin & Markup Calculator",
-      "description": "Calculate gross profit margin, markup percentage and target margin pricing. Compare scenarios with clear explanations for owners and freelancers.",
+      "description": "Work out gross margin, markup and target-margin pricing. Enter cost and price to get margin, markup and profit per 100 in sales. Or reverse it: enter a target margin or markup and get the selling price you need. Works with any currency.",
+      "metaDescription": "Work out gross margin, markup and target-margin pricing. Three directions — from cost and price, from target margin, from markup. Any currency.",
       "keywords": "profit margin calculator,markup calculator,gross margin,pricing calculator,margin vs markup,target profit pricing",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -7108,10 +7075,11 @@
       }
     },
     "break-even-calculator": {
-      "title": "Break-Even Calculator – Find Your Break-Even Point Fast",
+      "title": "Break-Even Calculator — Units and Revenue",
       "h1": "Break-Even Analysis Calculator",
-      "description": "Calculate your break-even point in units and revenue. Enter fixed costs, price and variable costs to see contribution margin and margin of safety.",
-      "keywords": "break even calculator,break even analysis,break even point,fixed costs variable costs,contribution margin calculator,business break even",
+      "description": "Find the point where revenue equals costs. Enter fixed costs, price per unit and variable cost per unit to see break-even volume, break-even revenue and contribution margin. Add expected sales to get your margin of safety.",
+      "metaDescription": "Find your break-even point in units and revenue. Enter fixed costs, price and variable cost to get contribution margin and margin of safety.",
+      "keywords": "break even calculator,break even analysis,break even point,fixed costs variable costs,contribution margin calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -7199,10 +7167,11 @@
       }
     },
     "quotation-generator": {
-      "title": "Quotation & Estimate Generator – Professional Quotes Online",
+      "title": "Free Quotation Generator — Quotes & Estimates",
       "h1": "Quotation & Estimate Generator",
-      "description": "Create professional quotations and estimates in your browser. Add line items, taxes, discounts and validity dates, then print or save as PDF. Fully private.",
-      "keywords": "quotation generator,estimate generator,quote maker,professional quotation,create estimate online,free quote template",
+      "description": "Create professional quotations and estimates in your browser. Fill in company and client details, add line items with quantity and rate, apply discount and tax, set a validity date — then save as PDF or print. Autosaves locally. No account, no watermark.",
+      "metaDescription": "Create professional quotations and estimates in your browser. Line items, tax, discount and validity date. Save as PDF. No account, no watermark.",
+      "keywords": "quotation generator,estimate generator,quote maker,professional quotation,create estimate online,quote template",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -7323,10 +7292,11 @@
       }
     },
     "payslip-generator": {
-      "title": "Payslip Generator – Free Salary Slip & Pay Stub Maker",
+      "title": "Free Payslip Generator — Salary Slip Maker",
       "h1": "Payslip Generator",
-      "description": "Generate professional payslips and salary slips in your browser. Add custom earnings and deductions, then download or print a formatted pay stub. No signup needed.",
-      "keywords": "payslip generator,salary slip generator,pay stub maker,free payslip online,payroll slip generator,employee payslip,monthly payslip",
+      "description": "Generate a professional payslip or salary slip in your browser. Add custom earnings and deductions, and the gross, total deductions and net pay compute automatically. Includes signature lines and an optional net-pay-in-words field. Download as PDF — no signup, no watermark.",
+      "metaDescription": "Generate professional payslips and salary slips in your browser. Custom earnings and deductions, automatic net pay, download as PDF. No signup.",
+      "keywords": "payslip generator,salary slip generator,pay stub maker,payslip online,payroll slip generator,employee payslip,monthly payslip",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -7428,14 +7398,18 @@
       }
     }
   },
+
   "searchSynonyms": {
     "percentage-calculator": [
       "percent of",
       "how much percent",
+      "percentage increase",
+      "percentage decrease",
+      "percentage difference",
       "add percent",
       "subtract percent",
-      "percent increase",
-      "percent difference"
+      "discount percent",
+      "vat percent"
     ],
     "loan-payment-calculator": [
       "loan calculator",
@@ -7443,27 +7417,33 @@
       "monthly payment",
       "emi calculator",
       "amortization",
-      "car loan"
+      "car loan",
+      "home loan",
+      "loan interest"
     ],
     "compound-interest-calculator": [
       "compound interest",
       "investment growth",
       "future value",
-      "interest calculator"
+      "interest calculator",
+      "compounding",
+      "savings growth"
     ],
     "discount-calculator": [
       "sale price",
       "percent off",
       "discount price",
       "final price",
-      "savings calculator"
+      "savings calculator",
+      "discounted total"
     ],
     "tip-calculator": [
       "tip",
       "gratuity",
       "split bill",
       "restaurant tip",
-      "how much tip"
+      "how much tip",
+      "bill splitter"
     ],
     "sales-tax-calculator": [
       "vat",
@@ -7472,7 +7452,8 @@
       "add tax",
       "remove tax",
       "reverse vat",
-      "tax inclusive"
+      "tax inclusive",
+      "tax exclusive"
     ],
     "salary-calculator": [
       "salary",
@@ -7480,61 +7461,72 @@
       "hourly to annual",
       "annual income",
       "pay rate",
-      "income calculator"
+      "income calculator",
+      "hourly rate"
     ],
     "roi-calculator": [
       "return on investment",
       "roi",
       "profit calculator",
       "investment return",
-      "roi formula"
+      "roi formula",
+      "margin"
     ],
     "monthly-investment-calculator": [
       "monthly investment",
       "regular savings",
       "sip calculator",
-      "recurring deposit"
+      "recurring deposit",
+      "dollar cost averaging"
     ],
     "date-difference-calculator": [
       "days between",
       "date difference",
       "how many days",
       "date calculator",
-      "days until"
+      "days until",
+      "time between dates"
     ],
     "income-tax-calculator": [
       "income tax",
       "tax calculator",
       "marginal tax",
       "progressive tax",
-      "take home pay"
+      "take home pay",
+      "tax bracket",
+      "effective tax rate"
     ],
     "savings-goal-calculator": [
       "savings goal",
       "how much to save",
       "goal calculator",
-      "save for target"
+      "save for target",
+      "monthly savings"
     ],
     "loan-eligibility-calculator": [
       "can i get a loan",
       "loan eligibility",
       "borrowing capacity",
       "dti",
-      "how much can i borrow"
+      "how much can i borrow",
+      "mortgage eligibility"
     ],
     "rent-vs-buy-calculator": [
       "rent or buy",
       "should i buy",
       "home buying vs renting",
-      "rent vs own"
+      "rent vs own",
+      "buy or rent a house"
     ],
     "fixed-deposit-calculator": [
       "fixed deposit",
       "fd calculator",
       "term deposit",
       "cd calculator",
-      "deposit interest"
+      "deposit interest",
+      "maturity value"
     ],
+
     "bmi-calculator": [
       "bmi",
       "body mass",
@@ -7569,7 +7561,8 @@
       "body fat",
       "fat percentage",
       "lean mass",
-      "navy method"
+      "navy method",
+      "fat mass"
     ],
     "ideal-weight-calculator": [
       "ideal weight",
@@ -7616,7 +7609,8 @@
       "sleep debt",
       "sleep deficit",
       "how much sleep",
-      "sleep recovery"
+      "sleep recovery",
+      "sleep tracker"
     ],
     "menstrual-cycle-calculator": [
       "period calculator",
@@ -7637,12 +7631,14 @@
       "trimester",
       "pregnancy tracker"
     ],
+
     "word-counter": [
       "word count",
       "character count",
       "word counter",
       "count words",
-      "reading time"
+      "reading time",
+      "text length"
     ],
     "case-converter": [
       "case converter",
@@ -7671,29 +7667,41 @@
       "number to words",
       "spell number",
       "number in words",
-      "write number"
+      "write number",
+      "cheque amount in words"
     ],
+
     "unit-converter": [
       "unit converter",
       "cm to inches",
       "kg to lbs",
       "celsius to fahrenheit",
-      "unit conversion"
+      "unit conversion",
+      "measurement converter"
     ],
     "json-formatter": [
       "json",
       "format json",
       "pretty print json",
       "json validator",
-      "json beautifier"
+      "json beautifier",
+      "minify json"
     ],
     "base64-encoder-decoder": [
       "base64",
       "base64 encode",
       "base64 decode",
-      "encode base64"
+      "encode base64",
+      "base64 to text"
     ],
-    "uuid-generator": ["uuid", "guid", "generate uuid", "unique id", "uuid v4"],
+    "uuid-generator": [
+      "uuid",
+      "guid",
+      "generate uuid",
+      "unique id",
+      "uuid v4",
+      "uuid v7"
+    ],
     "hash-generator": ["hash", "md5", "sha256", "sha1", "sha512", "checksum"],
     "url-encoder-decoder": [
       "url encode",
@@ -7823,21 +7831,18 @@
     "base64-image-optimizer": [
       "optimize base64",
       "compress base64 image",
-      "base64 compress"
+      "base64 compress",
+      "resize base64"
     ],
-    "pdf-to-image": [
-      "pdf to image",
-      "pdf to jpg",
-      "pdf to png",
-      "convert pdf",
-      "pdf extract"
-    ],
+
     "password-generator": [
       "password",
       "generate password",
       "strong password",
       "random password",
-      "password maker"
+      "password maker",
+      "pronounceable password",
+      "pin generator"
     ],
     "qr-code-generator": [
       "qr code",
@@ -7845,14 +7850,16 @@
       "generate qr",
       "qr maker",
       "barcode",
-      "qr generator"
+      "wifi qr",
+      "vcard qr"
     ],
     "image-compressor": [
       "compress image",
       "image compressor",
       "reduce image size",
       "shrink photo",
-      "jpg compress"
+      "jpg compress",
+      "webp compress"
     ],
     "image-converter": [
       "image converter",
@@ -7879,7 +7886,8 @@
       "palette",
       "color palette",
       "colors from image",
-      "extract colors"
+      "extract colors",
+      "image color picker"
     ],
     "images-to-pdf": [
       "images to pdf",
@@ -7895,12 +7903,14 @@
       "pretty screenshot",
       "screenshot frame"
     ],
+
     "invoice-generator": [
       "invoice",
       "invoice maker",
       "create invoice",
       "billing",
-      "invoice template"
+      "invoice template",
+      "free invoice"
     ],
     "invoice-number-generator": [
       "invoice number",

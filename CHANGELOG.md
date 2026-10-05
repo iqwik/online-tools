@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### TODO
 
-- **`pdf-to-image`** — in progress. `pdfjs-dist@6.3.289` already installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`.
-- **SEO content for remaining 69 tools** — `howToUse` / `features` / `useCases` + FAQ up to 6 questions. Reference: timbrica.com. Order: top traffic → finance (15) → health (15) → developer (26) → text (5) → generators (10) → business (7).
+- **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but no `data/tools/developer.ts` entry and no View. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`.
+- **Regression check for remaining tools** — Stage 4 of Variant C. Systematic verification: open every View, compare against final texts. Known audit issues are all fixed (2026-10-04 + 2026-10-05), but a full pass hasn't been done. Priority tools: password-generator (4 modes + entropy + bulk implementation), meta-tag-generator (siteName / twitter / OG type / locale inputs).
+- **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo) through Google Rich Results Test. Verify HowTo `step` has `name` + `text` in every step.
+- **Final EN + RU proofread** — read through all 75 tools × 2 locales one more time in the browser, catching any remaining awkward phrasing.
 - **Category `metaDescription` review** — if Google starts truncating on desktop SERP or coverage drops, extend to 150–155 characters. Current values were deliberately kept short to guarantee no truncation.
 - **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq` to match the tool-page format (`q6` / `a6`). Nothing in the components blocks this — the schema renders any number of items.
 - **Wave 6 — interactive trackers & builders**: `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`
@@ -32,7 +34,72 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `images-to-pdf`: image quality slider does not affect print output (browser prints originals). If needed — recompress via Canvas before printing
 - Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog — cannot be removed programmatically
 - Decide on `useCases` format: keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (via a new `UseCaseSection`)
+- **`image-compressor` target file size mode** — binary search on quality to hit a target KB. Removed from texts, implementation in tech debt (3–4 hours).
 - Bonus tool: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline, no dependencies. Discuss after Wave 6
+
+## [0.11.0] - 2026-10-05
+
+### Universal SEO content rewrite (Variant C, Stages 1–3) + `metaDescription` split
+
+#### Added
+
+- **`metaDescription` field in `BaseConfig`** (`types/common.ts`) — **mandatory**. Split `description` into two roles:
+  - `description` — page version, rendered under `<h1>` via `CalcLayout` / `ToolLayout`. Live tone, up to ~200 chars.
+  - `metaDescription` — `<meta name="description">` + JSON-LD `WebApplication.description`. Up to 155 chars, keywords in the first phrase.
+- **`data/calculators/{finance,health}.ts`, `data/tools/{text,developer,generators,business}.ts`** — added `metaDescription: '<slug>.metaDescription'` next to every `description` field for all 75 entries.
+- **`generateMetadata` in `app/[locale]/[slug]/page.tsx`** — `description: t(entry.config.metaDescription)` instead of `t(entry.config.description)`. Fallback logic intentionally **not** implemented — every tool has `metaDescription`.
+- **`CalculatorSchema.tsx` / `ToolSchema.tsx`** — `webApp.description: t(config.metaDescription)`.
+
+#### Changed
+
+**All 75 tools × 2 locales (`messages/en.json` + `messages/ru.json`)**
+
+- **`title`** — unified em dash `—` (replacing mixed `–` and `-`). Length ≤60 chars with critical part in the first ~50 for mobile SERP.
+- **`description`** (page version) — action verb first (`Find` / `Estimate` / `Project` / `Work out` / `Split` / `Calculate` — `Считайте` / `Рассчитайте` / `Спрогнозируйте` / `Посчитайте` / `Разделите`), live tone, 2–3 concrete facts, up to 200 chars.
+- **`metaDescription`** (meta tag + JSON-LD) — new field, keyword in the first phrase, up to 155 chars.
+- **`features`** — every `description` now adds a **new fact** (number, example, limit) instead of restating `title`. Example: `{"title": "Five compounding frequencies", "description": "Annually, semiannually, quarterly, monthly and daily — for the same rate, daily gives the highest return and annual the lowest."}`.
+- **`howToUse`** — minimum 4 steps, each with concrete detail.
+- **`useCases`** — live scenarios instead of dry phrasing.
+- **`faq`** — 6 questions for most tools, answers 2–4 sentences with specifics (better for featured snippets).
+- **`searchSynonyms`** — rewritten for all 75 (EN + RU). Real user queries instead of SEO noise.
+
+**«Free»/«Бесплатный» policy**
+
+- Removed from the first phrase of `description` / `metaDescription` for ~60% of tools (was a templated-content pattern).
+- Kept as a real value prop only in **10 tools** where there are paid competitors: `invoice-generator`, `payslip-generator`, `quotation-generator`, `images-to-pdf`, `image-compressor`, `pdf-to-image`, `license-generator`, `meta-tag-generator`, `password-generator`, `image-watermark` — and not in the first phrase.
+
+#### Fixed
+
+- **`word-counter` texts vs View** (regression check found two issues):
+  - Removed «pages» metric from `description` and `features[0]` — the View doesn't compute pages. Replaced with «average word length» (present in the View).
+  - `useCases[4]` — replaced «Estimate pages for a print-ready document» with «Check how long the average word is in your text».
+  - `faq.q5` / `faq.a5` — replaced pages calculation with average word length.
+  - Added TikTok to the social limits list in EN + RU `description` (was in the View, missing from texts).
+- **`BreadCrumbs.tsx` — React key warning** — `<>...</>` fragments don't accept `key`. When `.map()` returns two sibling elements (`<Link>` + `<ChevronRight>`), the outer wrapper must be `<Fragment key={...}>`. Imported `Fragment` from `react`, moved `key` from inner elements to the fragment.
+- **`ThemeToggle.tsx` — hydration mismatch (next-themes + React 19)** — server returns `theme = undefined` (fallback to `Monitor` icon), client on hydration already knows `theme = 'light'` from localStorage (renders `Sun`). Different SVG structures → React regenerates the tree. Fix: `const [mounted, setMounted] = useState(false); useEffect(() => setMounted(true), [])`; `if (!mounted) return Sun` in `useMemo`. Small visual flicker on first paint is acceptable.
+- **`globals.css` — scrollbar fixes**:
+  - `scrollbar-width: thin` in the universal selector broke Chrome's `::-webkit-scrollbar-*` rules (Chrome 121+ respects the new property and switches to native rendering, showing arrow buttons). Wrapped in `@supports (-moz-appearance: none)` so it only applies to Firefox.
+  - `element > ::-webkit-scrollbar-thumb` doesn't match — the thumb is nested inside `::-webkit-scrollbar-track`, not a direct child. Replaced with `element::-webkit-scrollbar-thumb`.
+  - Transition on `::-webkit-scrollbar-thumb` unreliable in Chrome — removed all transition delays.
+  - **Final scrollbar design:** global thumb always visible (`oklch(0.55 0.02 260 / 0.5)`, hover → `oklch(0.55 0.02 260)`); sidebar thumb hidden by default, visible only on `[data-slot="sidebar-content"]:hover`; dark mode uses `oklch(0.72 0.008 260 / 0.5)`.
+  - Removed `no-scrollbar` class from `SidebarContent` in `components/ui/sidebar.tsx` (its `display: none` overrode all custom rules). Replaced with `flex min-h-0 flex-1 flex-col overflow-y-auto`.
+
+#### Changed (infrastructure)
+
+- **`.vscode/settings.json`** — performance tuning for a large TypeScript project:
+  - `typescript.tsserver.maxTsServerMemory: 6144` — raised ceiling (default 3 GB caused swapping).
+  - `typescript.disableAutomaticTypeAcquisition: true`.
+  - `files.watcherExclude` for `node_modules`, `.next`, `.turbo`, `dist`, `build`, `out`, `.git/objects`, `.pnpm-store`, `coverage`.
+  - `search.exclude` for the same paths + `pnpm-lock.yaml`.
+  - `biome.lsp.trace.server: off`, `biome.requireConfiguration: true`.
+  - `editor.inlayHints.enabled: offUnlessPressed`, `editor.stickyScroll.enabled: false`, `editor.minimap.enabled: false`, `breadcrumbs.enabled: false`.
+  - `tailwindCSS.validate: false`, `tailwindCSS.experimental.classRegex: []`.
+
+#### Known limitations
+
+- **`pdf-to-image` orphaned translations** — `config.pdf-to-image` and `searchSynonyms.pdf-to-image` exist in both locales, but no data entry and no View. `getRegistryEntry('pdf-to-image')` returns `undefined`, route not generated. Harmless until the View is implemented.
+- **Regression check not exhaustive** — `word-counter` was spot-checked, others not. The audit pattern (open View → compare texts → fix mismatches) is documented in `CONTEXT.md` and should be run before finalization.
+- **`metaDescription` for categories unchanged** — categories still use their short 118–142 char descriptions. No `metaDescription` split was done for them (they already had a single `metaDescription` field).
 
 ## [0.10.0] - 2026-10-04
 

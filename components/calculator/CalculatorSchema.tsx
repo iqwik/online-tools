@@ -20,7 +20,7 @@ export async function CalculatorSchema({calc, url}: Props) {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: t(calc.h1),
-    description: t(calc.description),
+    description: t(calc.metaDescription),
     url,
     inLanguage: locale,
     applicationCategory: 'UtilityApplication',
