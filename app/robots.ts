@@ -12,8 +12,16 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/'],
       },
+      {
+        userAgent: 'Yandex',
+        allow: '/',
+        disallow: ['/api/'],
+        other: {
+          'Clean-param':
+            'utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&_openstat&ysclid&yrclid',
+        },
+      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
   }
 }

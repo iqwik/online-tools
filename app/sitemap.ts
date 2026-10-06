@@ -4,6 +4,10 @@ import {getBaseUrl} from '@/helpers'
 import {routing} from '@/i18n/routing'
 
 export const dynamic = 'force-static'
+
+// Bump manually on each content release. `new Date()` recomputed on every
+// request makes Google distrust lastModified — it sees every page as
+// "updated a minute ago". Tools with `publishedAt` use their own date.
 const CONTENT_LASTMOD = new Date('2026-10-05')
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,12 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const l of routing.locales) {
       languages[l] = `${baseUrl}${localePath(l)}${path}`
     }
+    // x-default points to the default-locale version (en, unprefixed).
     languages['x-default'] = `${baseUrl}${path}`
     return {languages}
   }
 
   const urls: MetadataRoute.Sitemap = []
 
+  // Google ignores priority/changefreq; Yandex uses them weakly.
+  // Kept minimal — only for Yandex's benefit, where priority
+  // still carries a small signal for crawl ordering.
   const staticPages: Array<{path: string; priority: number}> = [
     {path: '', priority: 1},
     {path: '/tools', priority: 0.9},
@@ -38,7 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       urls.push({
         url: `${baseUrl}${prefix}${path}`,
         lastModified: CONTENT_LASTMOD,
-        changeFrequency: 'monthly',
         priority,
         alternates: buildAlternates(path),
       })
@@ -49,7 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       urls.push({
         url: `${baseUrl}${prefix}${path}`,
         lastModified: CONTENT_LASTMOD,
-        changeFrequency: 'weekly',
         priority: 0.8,
         alternates: buildAlternates(path),
       })
@@ -63,7 +69,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: cfg.publishedAt
           ? new Date(cfg.publishedAt)
           : CONTENT_LASTMOD,
-        changeFrequency: 'weekly',
         priority: 0.75,
         alternates: buildAlternates(path),
       })
