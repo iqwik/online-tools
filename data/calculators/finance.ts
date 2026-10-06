@@ -1,5 +1,4 @@
 import {CalculatorIcon} from '@animateicons/react/huge/calculator-icon'
-import {CoinsIcon} from '@animateicons/react/lucide'
 import {BadgePercentIcon as BadgePercent} from '@animateicons/react/lucide/badge-percent-icon'
 import {BanknoteIcon as BanknoteCheck} from '@animateicons/react/lucide/banknote-icon'
 import {BriefcaseIcon as BriefcaseBusiness} from '@animateicons/react/lucide/briefcase-icon'
@@ -7,11 +6,12 @@ import {CalendarSearchIcon as CalendarSearch} from '@animateicons/react/lucide/c
 import {ChartLineIcon as ChartLine} from '@animateicons/react/lucide/chart-line-icon'
 import {ChartNoAxesCombinedIcon as ChartNoAxesCombined} from '@animateicons/react/lucide/chart-no-axes-combined-icon'
 import {CoffeeIcon as Coffee} from '@animateicons/react/lucide/coffee-icon'
+import {CoinsIcon} from '@animateicons/react/lucide/coins-icon'
 import {HandCoinsIcon as HandCoins} from '@animateicons/react/lucide/hand-coins-icon'
-import {HouseIcon as House} from '@animateicons/react/lucide/house-icon'
 import {LandmarkIcon as Landmark} from '@animateicons/react/lucide/landmark-icon'
 import {PercentIcon as Percent} from '@animateicons/react/lucide/percent-icon'
 import {PiggyBankIcon as PiggyBank} from '@animateicons/react/lucide/piggy-bank-icon'
+import {TentIcon} from '@animateicons/react/lucide/tent-icon'
 import {Target01Icon as Target} from '@/components/ui/target-0-1-icon'
 import type {CalculatorConfig} from '@/types'
 
@@ -1769,7 +1769,7 @@ export const financeCalculators: CalculatorConfig[] = [
     description: 'rent-vs-buy-calculator.description',
     metaDescription: 'rent-vs-buy-calculator.metaDescription',
     keywords: ['rent-vs-buy-calculator.keywords'],
-    Icon: House,
+    Icon: TentIcon,
     inputs: [
       {
         name: 'price',

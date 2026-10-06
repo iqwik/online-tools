@@ -1,12 +1,14 @@
 'use client'
 
-import {LayoutGridIcon} from '@animateicons/react/lucide'
+import {HouseIcon} from '@animateicons/react/lucide/house-icon'
+import {LayoutGridIcon} from '@animateicons/react/lucide/layout-grid-icon'
 import {cn} from 'cn'
 import {ChevronRight} from 'lucide-react'
 import {useTranslations} from 'next-intl'
 import {
   ComponentType,
   HTMLAttributes,
+  ReactNode,
   RefAttributes,
   useEffect,
   useMemo,
@@ -41,6 +43,7 @@ import {Tooltip, TooltipContent, TooltipTrigger} from '../ui/tooltip'
 import {SidebarSettings} from './SidebarSettings'
 
 export function AppSidebar() {
+  const tNav = useTranslations('nav')
   const tSidebar = useTranslations('sidebar')
   const tCategories = useTranslations('categories')
   const pathname = usePathname()
@@ -121,24 +124,22 @@ export function AppSidebar() {
         </SidebarHeader>
 
         <SidebarContent className="scrollbar-gutter-stable overflow-y-scroll">
-          <SidebarGroup>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                isActive={pathname === '/tools'}
-                render={<Link href="/tools" />}
-                className="group/item"
-              >
-                <LayoutGridIcon className="size-4" />
-                <div className="flex flex-1 h-full gap-1.5 overflow-hidden items-center">
-                  <span className="flex-1 wrap-anywhere text-sm leading-4.5 ml-1 font-semibold">
-                    {tCategories('all.name')}
-                  </span>
-                  <div className="font-tag bg-muted text-muted-foreground size-5 rounded-sm flex justify-center items-center text-[10px] truncate">
-                    {totalTools}
-                  </div>
+          <SidebarGroup className="gap-1">
+            <SidebarMenuLinkWithAnimatedIcon
+              title={tNav('home')}
+              slug="/"
+              Icon={HouseIcon}
+            />
+            <SidebarMenuLinkWithAnimatedIcon
+              title={tCategories('all.name')}
+              slug="tools"
+              Icon={LayoutGridIcon}
+              rightPrefix={
+                <div className="font-tag bg-muted text-muted-foreground size-5 rounded-sm flex justify-center items-center text-[10px] truncate">
+                  {totalTools}
                 </div>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+              }
+            />
             <SidebarMenu>
               {categories.map(cat => {
                 const href = `/${cat.slug}`
@@ -168,7 +169,7 @@ export function AppSidebar() {
                           <CollapsibleTrigger className="cursor-pointer" />
                         }
                       >
-                        <ChevronRight className="ml-auto size-3 transition-transform duration-250 animate-out group-data-open/collapsible:rotate-90" />
+                        <ChevronRight className="ml-auto size-3.5! transition-transform duration-250 animate-out group-data-open/collapsible:rotate-90" />
                         <div className="flex flex-1 h-full gap-1.5 overflow-hidden items-center group-data-[collapsible=icon]:opacity-20">
                           <span
                             className={cn(
@@ -192,7 +193,7 @@ export function AppSidebar() {
                       <CollapsibleContent>
                         <SidebarMenuSub className="pr-0 mr-0! gap-y-1.5">
                           {cat.tools.map(tool => (
-                            <SidebarMenuLinkWithAnimatedIcon
+                            <SidebarSubMenuLinkWithAnimatedIcon
                               key={tool.slug}
                               slug={tool.slug}
                               Icon={tool.Icon}
@@ -254,6 +255,42 @@ interface IconProps
 }
 
 function SidebarMenuLinkWithAnimatedIcon({
+  title,
+  slug,
+  rightPrefix,
+  Icon,
+}: {
+  title: ReactNode
+  slug: string
+  rightPrefix?: ReactNode
+  Icon: ComponentType<IconProps & RefAttributes<IconHandle>>
+}) {
+  const pathname = usePathname()
+  const href = `/${slug}`
+  const isActive = pathname === href
+  const iconRef = useRef<IconHandle>(null)
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        isActive={isActive}
+        className="group/item"
+        render={<Link href={href} />}
+        onMouseEnter={() => iconRef.current?.startAnimation()}
+        onMouseLeave={() => iconRef.current?.stopAnimation()}
+      >
+        <Icon ref={iconRef} isAnimated={false} className="size-4" />
+        <div className="flex flex-1 h-full gap-1.5 overflow-hidden items-center">
+          <span className="flex-1 wrap-anywhere text-sm leading-4.5 ml-1 font-semibold">
+            {title}
+          </span>
+          {rightPrefix}
+        </div>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  )
+}
+
+function SidebarSubMenuLinkWithAnimatedIcon({
   slug,
   Icon,
 }: {
