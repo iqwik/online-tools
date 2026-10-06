@@ -24,8 +24,13 @@ export const textTools: ToolConfig[] = [
       {q: 'word-counter.faq.q5', a: 'word-counter.faq.a5'},
       {q: 'word-counter.faq.q6', a: 'word-counter.faq.a6'},
     ],
-    related: ['case-converter', 'lorem-ipsum'],
     publishedAt: '2026-10-03',
+    related: [
+      'case-converter',
+      'lorem-ipsum-generator',
+      'diff-checker',
+      'number-to-words-converter',
+    ],
   },
   {
     kind: 'case-converter',
@@ -46,8 +51,13 @@ export const textTools: ToolConfig[] = [
       {q: 'case-converter.faq.q5', a: 'case-converter.faq.a5'},
       {q: 'case-converter.faq.q6', a: 'case-converter.faq.a6'},
     ],
-    related: ['word-counter', 'lorem-ipsum'],
     publishedAt: '2026-10-03',
+    related: [
+      'word-counter',
+      'lorem-ipsum-generator',
+      'diff-checker',
+      'number-to-words-converter',
+    ],
   },
   {
     kind: 'lorem-ipsum',
@@ -68,8 +78,13 @@ export const textTools: ToolConfig[] = [
       {q: 'lorem-ipsum-generator.faq.q5', a: 'lorem-ipsum-generator.faq.a5'},
       {q: 'lorem-ipsum-generator.faq.q6', a: 'lorem-ipsum-generator.faq.a6'},
     ],
-    related: ['word-counter', 'case-converter'],
     publishedAt: '2026-10-03',
+    related: [
+      'word-counter',
+      'case-converter',
+      'diff-checker',
+      'number-to-words-converter',
+    ],
   },
   {
     kind: 'diff-checker',
@@ -90,8 +105,13 @@ export const textTools: ToolConfig[] = [
       {q: 'diff-checker.faq.q5', a: 'diff-checker.faq.a5'},
       {q: 'diff-checker.faq.q6', a: 'diff-checker.faq.a6'},
     ],
-    related: ['word-counter', 'case-converter'],
     publishedAt: '2026-10-03',
+    related: [
+      'word-counter',
+      'case-converter',
+      'lorem-ipsum-generator',
+      'number-to-words-converter',
+    ],
   },
   {
     kind: 'number-to-words',
@@ -130,7 +150,12 @@ export const textTools: ToolConfig[] = [
         a: 'number-to-words-converter.faq.a6',
       },
     ],
-    related: ['word-counter', 'case-converter'],
     publishedAt: '2026-09-29',
+    related: [
+      'word-counter',
+      'case-converter',
+      'lorem-ipsum-generator',
+      'diff-checker',
+    ],
   },
 ]

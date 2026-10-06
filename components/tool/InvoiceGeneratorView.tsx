@@ -9,7 +9,7 @@ import {
   Upload,
   X,
 } from 'lucide-react'
-import {useTranslations} from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {Button} from '../ui/button'
 import {DatePicker} from '../ui/date-picker'
@@ -87,10 +87,10 @@ const THEME_COLORS: Record<
   gray: {hex: '#6b7280', bg: '#f9fafb', ring: '#e5e7eb'},
 }
 
-const FONT_SIZES: Record<FontSize, number> = {
-  small: 12,
-  medium: 13,
-  large: 15,
+const FONT_SIZES: Record<FontSize, '12px' | '13px' | '15px'> = {
+  small: '12px',
+  medium: '13px',
+  large: '15px',
 }
 
 function initialStaticInvoice(): InvoiceData {
@@ -275,6 +275,17 @@ export function InvoiceGeneratorView() {
   `)
     win.document.close()
   }
+
+  const locale = useLocale()
+
+  const fmt = useMemo(() => {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: data.currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  }, [locale, data.currency])
 
   return (
     <div className="space-y-4">
@@ -556,8 +567,7 @@ export function InvoiceGeneratorView() {
                       className="h-9 text-right tabular-nums"
                     />
                     <div className="flex items-center justify-end text-sm font-medium tabular-nums">
-                      {currencySymbol}
-                      {lineTotal.toFixed(2)}
+                      {fmt.format(lineTotal)}
                     </div>
                     <Button
                       type="button"
@@ -658,8 +668,7 @@ export function InvoiceGeneratorView() {
                   className="text-2xl font-black tabular-nums"
                   style={{color: THEME_COLORS[data.themeColor].hex}}
                 >
-                  {currencySymbol}
-                  {totals.total.toFixed(2)}
+                  {fmt.format(totals.total)}
                 </span>
               </div>
             </div>
@@ -795,15 +804,21 @@ function InvoicePreview({
 }: InvoicePreviewProps) {
   const t = useTranslations('config')
   const theme = THEME_COLORS[data.themeColor]
-  const symbol = CURRENCY_SYMBOLS[data.currency] ?? data.currency
   const isModern = data.template === 'modern'
   const fontSize = FONT_SIZES[data.fontSize]
+  const locale = useLocale()
 
-  const fmt = (n: number) =>
-    `${symbol}${n.toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`
+  const fmt = useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: data.currency,
+        currencyDisplay: 'narrowSymbol',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    [locale, data.currency],
+  )
 
   return (
     <div
@@ -957,10 +972,10 @@ function InvoicePreview({
                     className="py-3 text-right text-xs font-medium text-gray-800 tabular-nums"
                     style={{width: '90px'}}
                   >
-                    <div className="truncate">{fmt(item.price)}</div>
+                    <div className="truncate">{fmt.format(item.price)}</div>
                   </td>
                   <td className="truncate py-3 text-right text-xs font-bold text-gray-900 tabular-nums">
-                    {fmt(item.quantity * item.price)}
+                    {fmt.format(item.quantity * item.price)}
                   </td>
                 </tr>
               ))}
@@ -996,7 +1011,7 @@ function InvoicePreview({
                 {t('invoice-generator.previewSubtotal')}
               </span>
               <span className="truncate text-xs font-medium text-gray-900 tabular-nums">
-                {fmt(totals.subtotal)}
+                {fmt.format(totals.subtotal)}
               </span>
             </div>
 
@@ -1006,7 +1021,7 @@ function InvoicePreview({
                   {t('invoice-generator.previewDiscount')}
                 </span>
                 <span className="text-xs font-medium text-gray-900 tabular-nums">
-                  −{fmt(data.discountAmount)}
+                  −{fmt.format(data.discountAmount)}
                 </span>
               </div>
             )}
@@ -1017,7 +1032,7 @@ function InvoicePreview({
                   {t('invoice-generator.previewTax')} ({data.taxRate}%)
                 </span>
                 <span className="text-xs font-medium text-gray-900 tabular-nums">
-                  {fmt(totals.tax)}
+                  {fmt.format(totals.tax)}
                 </span>
               </div>
             )}
@@ -1030,7 +1045,7 @@ function InvoicePreview({
                 className="truncate text-lg font-black tabular-nums"
                 style={{color: isModern ? theme.hex : '#111827'}}
               >
-                {fmt(totals.total)}
+                {fmt.format(totals.total)}
               </span>
             </div>
           </div>

@@ -4,7 +4,7 @@ import {ArrowRightIcon as ArrowRight} from '@animateicons/react/lucide/arrow-rig
 import {motion} from 'motion/react'
 import {useTranslations} from 'next-intl'
 import {useMemo} from 'react'
-import {getAllRegistryEntries} from '@/data'
+import {getAllRegistryEntries, getToolsCount} from '@/data'
 import {seededShuffle} from '@/helpers'
 import {Link} from '@/i18n/navigation'
 import {EntryPreview} from '../shared/EntryPreview'
@@ -14,6 +14,7 @@ const SHUFFLE_SEED = 42
 
 export function FeaturedTools() {
   const t = useTranslations('home.featured')
+  const count = getToolsCount()
 
   const items = useMemo(() => {
     const all = getAllRegistryEntries().map(e => e.config)
@@ -28,7 +29,7 @@ export function FeaturedTools() {
           href="/tools"
           className="group flex items-center gap-1 text-sm font-medium text-primary hover:underline"
         >
-          {t('viewAll')}
+          {t('viewAll', {count})}
           <ArrowRight
             isAnimated={false}
             className="size-4 transition-transform group-hover:translate-x-0.5"

@@ -6,7 +6,7 @@
     },
     "tools": {
       "title": "All Online Tools — Free, No Signup",
-      "description": "Browse all 75 free online tools — calculators, converters, generators, and developer utilities. Everything runs 100% in your browser. No signup."
+      "description": "Browse all {count} free online tools — calculators, converters, generators, and developer utilities. Everything runs 100% in your browser. No signup."
     }
   },
   "home": {
@@ -39,7 +39,7 @@
     },
     "featured": {
       "h2": "Featured tools",
-      "viewAll": "Browse all 75 tools"
+      "viewAll": "Browse all {count, plural, one {# tool} other {# tools}}"
     },
     "recent": {
       "h2": "Recently added"
@@ -61,7 +61,7 @@
   },
   "tools": {
     "h1": "All Online Tools",
-    "description": "75 free tools across six categories — finance, health, text, developer, generators and business. Everything runs locally in your browser, nothing is uploaded."
+    "description": "{count} free tools across six categories — finance, health, text, developer, generators and business. Everything runs locally in your browser, nothing is uploaded."
   },
   "nav": {
     "home": "Home"
@@ -541,7 +541,29 @@
     "copyAll": "Copy all",
     "copiedAll": "Copied",
     "download": "Download",
-    "open": "Open"
+    "open": "Open",
+    "edit": "Edit",
+    "min": "min",
+    "max": "max",
+    "units": {
+      "km": "km",
+      "m": "m",
+      "cm": "cm",
+      "mm": "mm",
+      "kg": "kg",
+      "g": "g",
+      "months": "months",
+      "years": "years",
+      "days": "days",
+      "weeks": "weeks",
+      "hours": "hours",
+      "minutes": "min",
+      "min": "min",
+      "nights": "nights",
+      "bpm": "bpm"
+    },
+    "share": "Share",
+    "shareCopied": "Link copied"
   },
   "cookieConsent": {
     "title": "We use cookies",
@@ -1023,7 +1045,7 @@
       "resultUnit": "each",
       "secondary": {
         "bill": "Bill",
-        "tipAmount": "Tip",
+        "tipAmount": "Tip (%)",
         "total": "Total with tip",
         "people": "People"
       },

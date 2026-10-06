@@ -179,7 +179,7 @@ export function LoremIpsumView() {
   return (
     <div className="space-y-5">
       <div className="grid gap-4 rounded-2xl border bg-card p-4 sm:grid-cols-3">
-        <div className="space-y-1.5">
+        <div>
           <label htmlFor="lorem-count" className="text-sm font-medium">
             {t('lorem-ipsum-generator.countLabel')}
           </label>
@@ -196,7 +196,7 @@ export function LoremIpsumView() {
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div>
           <label htmlFor="lorem-unit" className="text-sm font-medium">
             {t('lorem-ipsum-generator.unitLabel')}
           </label>
@@ -235,8 +235,12 @@ export function LoremIpsumView() {
           </Select>
         </div>
 
-        <div className="flex items-end">
-          <Button type="button" onClick={() => regenerate()} className="w-full">
+        <div className="flex items-center">
+          <Button
+            className="w-full"
+            variant="alternative"
+            onClick={() => regenerate()}
+          >
             <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
             {t('lorem-ipsum-generator.generate')}
           </Button>

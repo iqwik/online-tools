@@ -113,7 +113,13 @@ export function CalculatorForm({slug}: Props) {
               {tConfig(input.label)}
               {input.unit && (
                 <span className="ml-1 text-muted-foreground">
-                  ({tConfig.has(input.unit) ? tConfig(input.unit) : input.unit})
+                  (
+                  {tConfig.has(input.unit)
+                    ? tConfig(input.unit)
+                    : tGlobal.has(input.unit)
+                      ? tGlobal(input.unit)
+                      : input.unit}
+                  )
                 </span>
               )}
             </label>
@@ -148,12 +154,12 @@ export function CalculatorForm({slug}: Props) {
               <Input
                 id={input.name}
                 type={input.type}
-                value={String(values[input.name] ?? '')}
-                onChange={e => handleChange(input.name, e.target.value)}
                 min={input.min}
                 max={input.max}
                 step={input.step}
                 placeholder={input.placeholder}
+                value={String(values[input.name] ?? '')}
+                onChange={e => handleChange(input.name, e.target.value)}
               />
             )}
 
@@ -166,15 +172,19 @@ export function CalculatorForm({slug}: Props) {
         )
       })}
 
-      <div className="flex gap-2 pt-2">
-        {!hasSliders && <Button type="submit">{tGlobal('calculate')}</Button>}
-        <Button type="button" variant="outline" onClick={handleReset}>
+      <div className="flex justify-end w-full gap-2 pt-2">
+        {!hasSliders && (
+          <Button size="sm" variant="alternative" type="submit">
+            {tGlobal('calculate')}
+          </Button>
+        )}
+        <Button size="sm" variant="outline" onClick={handleReset}>
           {tGlobal('reset')}
         </Button>
       </div>
 
       {result && (
-        <div className="mt-6 rounded-xl border bg-muted/30 p-5">
+        <div className="mt-6 rounded-xl bg-secondary p-5">
           <div className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
             {tConfig(calc.resultLabel)}
           </div>

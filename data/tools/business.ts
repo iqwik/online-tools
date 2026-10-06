@@ -26,8 +26,13 @@ export const businessTools: ToolConfig[] = [
       {q: 'invoice-generator.faq.q5', a: 'invoice-generator.faq.a5'},
       {q: 'invoice-generator.faq.q6', a: 'invoice-generator.faq.a6'},
     ],
-    related: ['utm-builder', 'invoice-number-generator'],
     publishedAt: '2026-10-03',
+    related: [
+      'quotation-generator',
+      'payslip-generator',
+      'invoice-number-generator',
+      'profit-margin-calculator',
+    ],
   },
   {
     kind: 'invoice-number-generator',
@@ -66,8 +71,13 @@ export const businessTools: ToolConfig[] = [
         a: 'invoice-number-generator.faq.a6',
       },
     ],
-    related: ['invoice-generator', 'profit-margin-calculator'],
     publishedAt: '2026-10-04',
+    related: [
+      'invoice-generator',
+      'quotation-generator',
+      'payslip-generator',
+      'profit-margin-calculator',
+    ],
   },
   {
     kind: 'utm-builder',
@@ -88,8 +98,13 @@ export const businessTools: ToolConfig[] = [
       {q: 'utm-builder.faq.q5', a: 'utm-builder.faq.a5'},
       {q: 'utm-builder.faq.q6', a: 'utm-builder.faq.a6'},
     ],
-    related: ['invoice-number-generator', 'invoice-generator'],
     publishedAt: '2026-10-04',
+    related: [
+      'invoice-generator',
+      'invoice-number-generator',
+      'quotation-generator',
+      'profit-margin-calculator',
+    ],
   },
   {
     kind: 'profit-margin-calculator',
@@ -128,8 +143,13 @@ export const businessTools: ToolConfig[] = [
         a: 'profit-margin-calculator.faq.a6',
       },
     ],
-    related: ['break-even-calculator', 'invoice-generator'],
     publishedAt: '2026-10-04',
+    related: [
+      'break-even-calculator',
+      'invoice-generator',
+      'quotation-generator',
+      'payslip-generator',
+    ],
   },
   {
     kind: 'break-even-calculator',
@@ -150,8 +170,13 @@ export const businessTools: ToolConfig[] = [
       {q: 'break-even-calculator.faq.q5', a: 'break-even-calculator.faq.a5'},
       {q: 'break-even-calculator.faq.q6', a: 'break-even-calculator.faq.a6'},
     ],
-    related: ['profit-margin-calculator', 'quotation-generator'],
     publishedAt: '2026-10-04',
+    related: [
+      'profit-margin-calculator',
+      'invoice-generator',
+      'quotation-generator',
+      'payslip-generator',
+    ],
   },
   {
     kind: 'quotation-generator',
@@ -172,8 +197,13 @@ export const businessTools: ToolConfig[] = [
       {q: 'quotation-generator.faq.q5', a: 'quotation-generator.faq.a5'},
       {q: 'quotation-generator.faq.q6', a: 'quotation-generator.faq.a6'},
     ],
-    related: ['invoice-generator', 'payslip-generator'],
     publishedAt: '2026-10-04',
+    related: [
+      'invoice-generator',
+      'payslip-generator',
+      'profit-margin-calculator',
+      'break-even-calculator',
+    ],
   },
   {
     kind: 'payslip-generator',
@@ -194,7 +224,12 @@ export const businessTools: ToolConfig[] = [
       {q: 'payslip-generator.faq.q5', a: 'payslip-generator.faq.a5'},
       {q: 'payslip-generator.faq.q6', a: 'payslip-generator.faq.a6'},
     ],
-    related: ['invoice-generator', 'quotation-generator'],
     publishedAt: '2026-10-04',
+    related: [
+      'invoice-generator',
+      'quotation-generator',
+      'profit-margin-calculator',
+      'break-even-calculator',
+    ],
   },
 ]

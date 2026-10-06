@@ -256,6 +256,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'percentage-calculator.faq.q6', a: 'percentage-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'discount-calculator',
+      'tip-calculator',
+      'sales-tax-calculator',
+      'roi-calculator',
+    ],
   },
   {
     slug: 'loan-payment-calculator',
@@ -379,6 +385,12 @@ export const financeCalculators: CalculatorConfig[] = [
       },
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'loan-eligibility-calculator',
+      'rent-vs-buy-calculator',
+      'compound-interest-calculator',
+      'income-tax-calculator',
+    ],
   },
   {
     slug: 'compound-interest-calculator',
@@ -404,6 +416,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'rate',
         label: 'compound-interest-calculator.inputs.rate',
         type: 'slider',
+        unit: '%',
         min: 0.1,
         max: 100,
         step: 0.1,
@@ -513,6 +526,12 @@ export const financeCalculators: CalculatorConfig[] = [
       },
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'monthly-investment-calculator',
+      'savings-goal-calculator',
+      'fixed-deposit-calculator',
+      'roi-calculator',
+    ],
   },
   {
     slug: 'discount-calculator',
@@ -538,6 +557,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'discount',
         label: 'discount-calculator.inputs.discount',
         type: 'slider',
+        unit: '%',
         min: 0,
         max: 90,
         step: 1,
@@ -547,6 +567,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'tax',
         label: 'discount-calculator.inputs.tax',
         type: 'slider',
+        unit: '%',
         min: 0,
         max: 30,
         step: 0.5,
@@ -598,6 +619,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'discount-calculator.faq.q6', a: 'discount-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'percentage-calculator',
+      'tip-calculator',
+      'sales-tax-calculator',
+      'roi-calculator',
+    ],
   },
   {
     slug: 'tip-calculator',
@@ -623,6 +650,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'tip',
         label: 'tip-calculator.inputs.tip',
         type: 'slider',
+        unit: '%',
         min: 0,
         max: 100,
         step: 1,
@@ -665,7 +693,7 @@ export const financeCalculators: CalculatorConfig[] = [
       }
     },
     resultLabel: 'tip-calculator.resultLabel',
-    resultUnit: 'tip-calculator.resultUnit',
+    // resultUnit: 'tip-calculator.resultUnit',
     faq: [
       {q: 'tip-calculator.faq.q1', a: 'tip-calculator.faq.a1'},
       {q: 'tip-calculator.faq.q2', a: 'tip-calculator.faq.a2'},
@@ -675,6 +703,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'tip-calculator.faq.q6', a: 'tip-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'percentage-calculator',
+      'discount-calculator',
+      'sales-tax-calculator',
+      'date-difference-calculator',
+    ],
   },
   {
     slug: 'sales-tax-calculator',
@@ -699,15 +733,19 @@ export const financeCalculators: CalculatorConfig[] = [
       {
         name: 'rate',
         label: 'sales-tax-calculator.inputs.rate',
-        type: 'select',
-        options: [
-          {value: '5', label: 'sales-tax-calculator.options.r5'},
-          {value: '10', label: 'sales-tax-calculator.options.r10'},
-          {value: '15', label: 'sales-tax-calculator.options.r15'},
-          {value: '20', label: 'sales-tax-calculator.options.r20'},
-          {value: '25', label: 'sales-tax-calculator.options.r25'},
-        ],
-        defaultValue: '20',
+        type: 'number',
+        min: 0,
+        max: 100,
+        step: 0.01,
+        defaultValue: 20,
+        // type: 'select',
+        // options: [
+        //   {value: '5', label: 'sales-tax-calculator.options.r5'},
+        //   {value: '10', label: 'sales-tax-calculator.options.r10'},
+        //   {value: '15', label: 'sales-tax-calculator.options.r15'},
+        //   {value: '20', label: 'sales-tax-calculator.options.r20'},
+        //   {value: '25', label: 'sales-tax-calculator.options.r25'},
+        // ],
       },
       {
         name: 'type',
@@ -722,9 +760,10 @@ export const financeCalculators: CalculatorConfig[] = [
     ],
     calculate: ({amount, rate, type}) => {
       const A = Number(amount)
-      const r = Number(rate)
+      const r = Number(String(rate).replace(',', '.'))
 
       if (!Number.isFinite(A) || A <= 0) return {value: '—'}
+      if (!Number.isFinite(r) || r < 0) return {value: '—'}
 
       let base: number
       let tax: number
@@ -754,7 +793,7 @@ export const financeCalculators: CalculatorConfig[] = [
           },
           {
             label: 'sales-tax-calculator.secondary.rate',
-            value: `${r}%`,
+            value: `${parseFloat(r.toFixed(4))}%`,
           },
           {
             label: 'sales-tax-calculator.secondary.gross',
@@ -773,6 +812,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'sales-tax-calculator.faq.q6', a: 'sales-tax-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'percentage-calculator',
+      'discount-calculator',
+      'tip-calculator',
+      'income-tax-calculator',
+    ],
   },
   {
     slug: 'salary-calculator',
@@ -902,6 +947,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'salary-calculator.faq.q6', a: 'salary-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'income-tax-calculator',
+      'loan-payment-calculator',
+      'loan-eligibility-calculator',
+      'savings-goal-calculator',
+    ],
   },
   {
     slug: 'roi-calculator',
@@ -1024,6 +1075,12 @@ export const financeCalculators: CalculatorConfig[] = [
       {q: 'roi-calculator.faq.q6', a: 'roi-calculator.faq.a6'},
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'compound-interest-calculator',
+      'monthly-investment-calculator',
+      'percentage-calculator',
+      'discount-calculator',
+    ],
   },
   {
     slug: 'monthly-investment-calculator',
@@ -1049,6 +1106,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'rate',
         label: 'monthly-investment-calculator.inputs.rate',
         type: 'slider',
+        unit: '%',
         min: 1,
         max: 30,
         step: 0.5,
@@ -1138,6 +1196,12 @@ export const financeCalculators: CalculatorConfig[] = [
       },
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'compound-interest-calculator',
+      'savings-goal-calculator',
+      'fixed-deposit-calculator',
+      'roi-calculator',
+    ],
   },
   {
     slug: 'date-difference-calculator',
@@ -1249,6 +1313,12 @@ export const financeCalculators: CalculatorConfig[] = [
       },
     ],
     publishedAt: '2026-10-04',
+    related: [
+      'savings-goal-calculator',
+      'loan-payment-calculator',
+      'monthly-investment-calculator',
+      'compound-interest-calculator',
+    ],
   },
   {
     slug: 'income-tax-calculator',
@@ -1430,8 +1500,13 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'income-tax-calculator.faq.a6',
       },
     ],
-    related: ['salary-calculator', 'loan-payment-calculator'],
-    publishedAt: '2026-09-29',
+    publishedAt: '2026-10-03',
+    related: [
+      'salary-calculator',
+      'sales-tax-calculator',
+      'loan-payment-calculator',
+      'loan-eligibility-calculator',
+    ],
   },
   {
     slug: 'savings-goal-calculator',
@@ -1467,6 +1542,7 @@ export const financeCalculators: CalculatorConfig[] = [
         name: 'rate',
         label: 'savings-goal-calculator.inputs.rate',
         type: 'slider',
+        unit: '%',
         min: 0,
         max: 30,
         step: 0.5,
@@ -1591,8 +1667,13 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'savings-goal-calculator.faq.a6',
       },
     ],
-    related: ['monthly-investment-calculator', 'compound-interest-calculator'],
-    publishedAt: '2026-09-29',
+    publishedAt: '2026-10-03',
+    related: [
+      'monthly-investment-calculator',
+      'compound-interest-calculator',
+      'fixed-deposit-calculator',
+      'loan-eligibility-calculator',
+    ],
   },
   {
     slug: 'loan-eligibility-calculator',
@@ -1757,8 +1838,13 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'loan-eligibility-calculator.faq.a6',
       },
     ],
-    related: ['loan-payment-calculator', 'savings-goal-calculator'],
-    publishedAt: '2026-09-29',
+    publishedAt: '2026-10-03',
+    related: [
+      'loan-payment-calculator',
+      'savings-goal-calculator',
+      'income-tax-calculator',
+      'salary-calculator',
+    ],
   },
   {
     slug: 'rent-vs-buy-calculator',
@@ -1951,8 +2037,13 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'rent-vs-buy-calculator.faq.a6',
       },
     ],
-    related: ['loan-payment-calculator', 'savings-goal-calculator'],
-    publishedAt: '2026-09-29',
+    publishedAt: '2026-10-03',
+    related: [
+      'loan-payment-calculator',
+      'loan-eligibility-calculator',
+      'savings-goal-calculator',
+      'compound-interest-calculator',
+    ],
   },
   {
     slug: 'fixed-deposit-calculator',
@@ -2088,7 +2179,12 @@ export const financeCalculators: CalculatorConfig[] = [
         a: 'fixed-deposit-calculator.faq.a6',
       },
     ],
-    related: ['compound-interest-calculator', 'savings-goal-calculator'],
-    publishedAt: '2026-09-29',
+    publishedAt: '2026-10-03',
+    related: [
+      'compound-interest-calculator',
+      'savings-goal-calculator',
+      'monthly-investment-calculator',
+      'roi-calculator',
+    ],
   },
 ]

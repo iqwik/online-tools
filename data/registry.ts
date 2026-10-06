@@ -26,6 +26,10 @@ export function getAllRegistryEntries(): RegistryEntry[] {
   ]
 }
 
+export function getToolsCount() {
+  return getAllRegistryEntries().length
+}
+
 export function getRegistryEntriesByCategory(
   category: CategorySlug,
 ): RegistryEntry[] {

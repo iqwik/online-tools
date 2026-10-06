@@ -1,8 +1,8 @@
 'use client'
 
 import {useTranslations} from 'next-intl'
-import {getCalculatorBySlug, getToolBySlug} from '@/data'
-import {Link} from '@/i18n/navigation'
+import {CATEGORY_COLORS, getCalculatorBySlug, getToolBySlug} from '@/data'
+import {RelatedPreview} from './RelatedPreview'
 
 interface Props {
   slugs: string[]
@@ -17,30 +17,44 @@ export function Related({slugs}: Props) {
   const items = slugs
     .map(slug => {
       const calc = getCalculatorBySlug(slug)
-      if (calc) return {slug, titleKey: calc.h1}
+
+      if (calc) {
+        return {
+          slug,
+          titleKey: calc.h1,
+          Icon: calc.Icon,
+          colors: CATEGORY_COLORS?.[calc.category],
+        }
+      }
       const tool = getToolBySlug(slug)
-      if (tool) return {slug, titleKey: tool.h1}
+      if (tool) {
+        return {
+          slug,
+          titleKey: tool.h1,
+          Icon: tool.Icon,
+          colors: CATEGORY_COLORS?.[tool.category],
+        }
+      }
       return null
     })
-    .filter((x): x is {slug: string; titleKey: string} => x !== null)
+    .filter(x => x !== null)
 
   if (items.length === 0) return null
 
   return (
     <section>
       <h2 className="mb-4 text-xl font-bold">{t('related')}</h2>
-      <ul className="space-y-1">
+      <div className="grid sm:grid-cols-4 gap-2">
         {items.map(item => (
-          <li key={item.slug}>
-            <Link
-              href={`/${item.slug}`}
-              className="text-primary hover:underline"
-            >
-              {tConfig(item.titleKey)}
-            </Link>
-          </li>
+          <RelatedPreview
+            key={item.slug}
+            slug={item.slug}
+            Icon={item.Icon}
+            name={tConfig(item.titleKey)}
+            colors={item?.colors}
+          />
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

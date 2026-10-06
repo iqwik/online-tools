@@ -145,7 +145,7 @@ export function CaseConverterView() {
             key={c}
             size="sm"
             type="button"
-            variant={activeCase === c ? 'default' : 'outline'}
+            variant={activeCase === c ? 'alternative' : 'outline'}
             onClick={() => setActiveCase(c)}
           >
             {t(`case-converter.cases.${c}`)}

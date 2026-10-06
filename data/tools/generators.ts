@@ -29,8 +29,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'password-generator.faq.q5', a: 'password-generator.faq.a5'},
       {q: 'password-generator.faq.q6', a: 'password-generator.faq.a6'},
     ],
-    related: ['qr-code-generator', 'hash-generator'],
     publishedAt: '2026-10-03',
+    related: [
+      'qr-code-generator',
+      'hash-generator',
+      'uuid-generator',
+      'license-generator',
+    ],
   },
   {
     kind: 'qr-code-generator',
@@ -51,8 +56,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'qr-code-generator.faq.q5', a: 'qr-code-generator.faq.a5'},
       {q: 'qr-code-generator.faq.q6', a: 'qr-code-generator.faq.a6'},
     ],
-    related: ['password-generator', 'uuid-generator'],
     publishedAt: '2026-10-03',
+    related: [
+      'password-generator',
+      'url-encoder-decoder',
+      'image-converter',
+      'images-to-pdf',
+    ],
   },
   {
     kind: 'image-compressor',
@@ -73,8 +83,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'image-compressor.faq.q5', a: 'image-compressor.faq.a5'},
       {q: 'image-compressor.faq.q6', a: 'image-compressor.faq.a6'},
     ],
-    related: ['image-watermark', 'bulk-image-resizer'],
     publishedAt: '2026-10-03',
+    related: [
+      'bulk-image-resizer',
+      'image-converter',
+      'image-watermark',
+      'images-to-pdf',
+    ],
   },
   {
     kind: 'image-converter',
@@ -95,8 +110,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'image-converter.faq.q5', a: 'image-converter.faq.a5'},
       {q: 'image-converter.faq.q6', a: 'image-converter.faq.a6'},
     ],
-    related: ['image-compressor', 'bulk-image-resizer'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-compressor',
+      'bulk-image-resizer',
+      'image-watermark',
+      'images-to-pdf',
+    ],
   },
   {
     kind: 'bulk-image-resizer',
@@ -117,8 +137,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'bulk-image-resizer.faq.q5', a: 'bulk-image-resizer.faq.a5'},
       {q: 'bulk-image-resizer.faq.q6', a: 'bulk-image-resizer.faq.a6'},
     ],
-    related: ['image-converter', 'image-compressor'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-compressor',
+      'image-converter',
+      'image-watermark',
+      'images-to-pdf',
+    ],
   },
   {
     kind: 'image-watermark',
@@ -139,8 +164,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'image-watermark.faq.q5', a: 'image-watermark.faq.a5'},
       {q: 'image-watermark.faq.q6', a: 'image-watermark.faq.a6'},
     ],
-    related: ['bulk-image-resizer', 'image-converter'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-compressor',
+      'image-converter',
+      'bulk-image-resizer',
+      'color-palette-extractor',
+    ],
   },
   {
     kind: 'color-palette-extractor',
@@ -179,8 +209,13 @@ export const generatorTools: ToolConfig[] = [
         a: 'color-palette-extractor.faq.a6',
       },
     ],
-    related: ['color-picker', 'image-converter'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-watermark',
+      'image-converter',
+      'color-picker',
+      'color-contrast-checker',
+    ],
   },
   {
     kind: 'images-to-pdf',
@@ -202,8 +237,13 @@ export const generatorTools: ToolConfig[] = [
       {q: 'images-to-pdf.faq.q6', a: 'images-to-pdf.faq.a6'},
       {q: 'images-to-pdf.faq.q7', a: 'images-to-pdf.faq.a7'},
     ],
-    related: ['pdf-to-image', 'image-compressor'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-compressor',
+      'image-converter',
+      'bulk-image-resizer',
+      'image-watermark',
+    ],
   },
   {
     kind: 'screenshot-beautifier',
@@ -224,7 +264,12 @@ export const generatorTools: ToolConfig[] = [
       {q: 'screenshot-beautifier.faq.q5', a: 'screenshot-beautifier.faq.a5'},
       {q: 'screenshot-beautifier.faq.q6', a: 'screenshot-beautifier.faq.a6'},
     ],
-    related: ['image-converter', 'image-compressor'],
     publishedAt: '2026-09-29',
+    related: [
+      'image-watermark',
+      'image-compressor',
+      'image-converter',
+      'color-palette-extractor',
+    ],
   },
 ]

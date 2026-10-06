@@ -1,6 +1,8 @@
+import {ArrowRight02Icon} from '@animateicons/react/huge/arrow-right-0-2-icon'
+import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import {getTranslations} from 'next-intl/server'
-import {getCategory, getRegistryEntriesByCategory} from '@/data'
+import {getCategory, getRegistryEntriesByCategory, getToolsCount} from '@/data'
 import type {CategorySlug} from '@/types'
 import {BreadCrumbs} from '../shared/BreadCrumbs'
 import {ContentSection} from '../shared/ContentSection'
@@ -18,6 +20,7 @@ export async function CategoryPage({slug}: Props) {
   if (!cat) notFound()
 
   const t = await getTranslations('categories')
+  const tHomeFeatured = await getTranslations('home.featured')
   const tCat = await getTranslations('category')
 
   const entries = getRegistryEntriesByCategory(slug)
@@ -29,6 +32,8 @@ export async function CategoryPage({slug}: Props) {
     {q: `${slug}.faq.q4`, a: `${slug}.faq.a4`},
     {q: `${slug}.faq.q5`, a: `${slug}.faq.a5`},
   ]
+
+  const count = getToolsCount()
 
   return (
     <div className="page">
@@ -53,6 +58,19 @@ export async function CategoryPage({slug}: Props) {
             ))}
           </div>
         </section>
+
+        <div className="flex justify-center">
+          <Link
+            href="/tools"
+            className="group flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+          >
+            {tHomeFeatured('viewAll', {count})}
+            <ArrowRight02Icon
+              isAnimated={false}
+              className="size-4 transition-transform group-hover:translate-x-0.5"
+            />
+          </Link>
+        </div>
 
         <HowToUseSection slug={slug} namespace="categories" />
         <FeatureSection slug={slug} namespace="categories" />

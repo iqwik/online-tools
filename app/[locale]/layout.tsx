@@ -15,6 +15,7 @@ import {CookieConsent} from '@/components/cookie-consent'
 import {SidebarStateProvider} from '@/components/providers/sidebar-state-provider'
 import {SearchProvider} from '@/components/search/SearchProvider'
 import {Footer} from '@/components/shared/Footer'
+import {ShareButton} from '@/components/shared/ShareButton'
 import {TooltipProvider} from '@/components/ui/tooltip'
 
 export function generateStaticParams() {
@@ -83,6 +84,9 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
                           <SearchTrigger variant="icon" />
                         </div>
                       </header>
+                      <div className="fixed top-3 right-3 z-30 print:hidden">
+                        <ShareButton className="bg-card/80 backdrop-blur border shadow-sm" />
+                      </div>
                       <div className="flex flex-col flex-1">{children}</div>
                       <Footer />
                       <CookieConsent />

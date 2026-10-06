@@ -39,7 +39,9 @@ export function EntryPreview({slug}: EntryPreviewProps) {
       className={cn(
         'group/tool flex h-40 flex-col relative',
         'rounded-xl border bg-card p-3 cursor-pointer',
-        'transition-colors duration-300',
+        'transition-all duration-300',
+        'hover:-translate-y-1',
+        'hover:shadow-md',
         'hover:border-primary',
       )}
     >

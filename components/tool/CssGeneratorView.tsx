@@ -182,7 +182,7 @@ export function CssGeneratorView() {
         className="self-start"
       />
 
-      <div className="flex flex-col gap-6 lg:flex-row">
+      <div className="flex flex-col gap-4 lg:flex-row">
         {/* Left: controls */}
         <div className="flex min-w-0 flex-1 flex-col gap-4">
           {mode === 'shadows' ? (
@@ -190,7 +190,7 @@ export function CssGeneratorView() {
               {shadows.map((shadow, idx) => (
                 <div
                   key={shadow.id}
-                  className="flex flex-col gap-3 rounded-xl border bg-card p-4"
+                  className="flex flex-col gap-4 rounded-xl border bg-card p-4"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <Label className="text-xs font-medium tracking-wide text-muted-foreground">
