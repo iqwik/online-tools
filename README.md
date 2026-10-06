@@ -62,9 +62,10 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     ├── app/
     │   ├── [locale]/
     │   │   ├── layout.tsx              ← root layout (html, body, ThemeProvider, Sidebar)
-    │   │   ├── page.tsx                ← home (Hero + Stats + ToolGrid)
+    │   │   ├── page.tsx                ← home (HomeSchema + Hero + CategoryCards + FeaturedTools + RecentlyAdded + HomeFaq + PrivacyNote)
     │   │   ├── not-found.tsx           ← 404
     │   │   ├── [slug]/page.tsx         ← dispatcher: calculator or tool
+    │   │   ├── tools/page.tsx          ← full catalog (moved from home)
     │   │   ├── about/page.tsx
     │   │   ├── privacy/page.tsx
     │   │   ├── finance/page.tsx        ← category hub (static)
@@ -74,15 +75,15 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   ├── generators/page.tsx     ← category hub (static)
     │   │   └── business/page.tsx       ← category hub (static)
     │   ├── globals.css                 ← Tailwind + shadcn tokens + fonts + print CSS
-    │   ├── robots.ts
-    │   └── sitemap.ts
+    │   ├── robots.ts                   ← Yandex block with Clean-param
+    │   └── sitemap.ts                  ← CONTENT_LASTMOD, no changefreq
     │
     ├── components/
     │   ├── calculator/
     │   │   ├── CalcLayout.tsx          ← server layout for calculator pages
     │   │   ├── CalculatorForm.tsx      ← form + result (client), passes {locale} to calculate
     │   │   ├── CalculatorSchema.tsx    ← JSON-LD WebApplication + FAQPage + HowTo (server)
-    │   │   └── SliderField.tsx         ← slider input
+    │   │   └── SliderField.tsx         ← slider input with editable min/max, cursor preservation
     │   ├── tool/
     │   │   ├── ToolLayout.tsx          ← server layout for tool pages (isWide for wide tools)
     │   │   ├── ToolView.tsx            ← switch by kind + assertNever
@@ -92,7 +93,8 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   └── CategoryPage.tsx        ← shared category hub template (server)
     │   ├── shared/
     │   │   ├── FAQ.tsx                 ← shared FAQ block (accepts namespace)
-    │   │   ├── RelatedTools.tsx        ← related tools (cross-type)
+    │   │   ├── RelatedTools.tsx        ← 4 related preview cards (cross-type)
+    │   │   ├── EntryPreview.tsx        ← tool card preview for grids
     │   │   ├── InputPanel.tsx          ← textarea panel with header + copy
     │   │   ├── OutputPanel.tsx         ← output panel with copy + optional download
     │   │   ├── CopyButton.tsx          ← copy-to-clipboard button
@@ -101,13 +103,20 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   ├── Highlight.tsx           ← search-match highlighting
     │   │   ├── HowToUseSection.tsx     ← renders howToUse (numbered grid)
     │   │   ├── FeatureSection.tsx      ← renders features (checkmark grid)
-    │   │   └── ContentSection.tsx      ← generic list renderer (useCases, fallback)
+    │   │   ├── ContentSection.tsx      ← generic list renderer (useCases, fallback)
+    │   │   └── BreadCrumbs.tsx         ← navigation breadcrumbs
     │   ├── home/
-    │   │   ├── Hero.tsx
-    │   │   ├── Stats.tsx
-    │   │   └── ToolGrid.tsx            ← filters built from data/categories.ts
+    │   │   ├── HomeSchema.tsx          ← WebSite + Organization + ItemList + FAQPage
+    │   │   ├── Hero.tsx                ← hero + search + suggestion chips
+    │   │   ├── CategoryCards.tsx       ← 6 category cards with animated icons
+    │   │   ├── FeaturedTools.tsx       ← 18 seeded-random tools + CTA to /tools
+    │   │   ├── RecentlyAdded.tsx       ← top 6 by publishedAt
+    │   │   ├── HomeFaq.tsx             ← 3 questions, namespace="home"
+    │   │   ├── PrivacyNote.tsx         ← trust-signal block (renamed from Footer)
+    │   │   ├── Stats.tsx               ← «{count}+ tools» linkable → /tools
+    │   │   └── ToolGrid.tsx            ← full catalog with filters, used on /tools only
     │   ├── layout/
-    │   │   ├── AppSidebar.tsx
+    │   │   ├── AppSidebar.tsx          ← sidebar with "All tools" + categories
     │   │   ├── CategoryIcon.tsx
     │   │   ├── LocaleSwitcher.tsx
     │   │   ├── SidebarSettings.tsx
@@ -115,8 +124,8 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   ├── providers/
     │   │   └── theme-provider.tsx
     │   ├── search/
-    │   │   ├── SearchModal.tsx
-    │   │   ├── SearchProvider.tsx
+    │   │   ├── SearchModal.tsx         ← controlled by query prop
+    │   │   ├── SearchProvider.tsx      ← context {isOpen, open(query?), close}
     │   │   └── SearchTrigger.tsx
     │   ├── cookie-consent.tsx
     │   └── ui/                         ← shadcn primitives (Base UI)
@@ -139,16 +148,18 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   └── health.ts               ← 15 health calculators
     │   └── tools/
     │       ├── index.ts
-    │       ├── developer.ts            ← 26 developer tools
+    │       ├── developer.ts            ← 24 developer tools
     │       ├── text.ts                 ← 5 text tools
-    │       ├── generators.ts           ← 10 generators + image tools
+    │       ├── generators.ts           ← 9 generators + image tools
     │       ├── business.ts             ← 7 business tools
     │       ├── unit-categories.ts
     │       ├── license-templates.ts
     │       └── gitignore-templates.ts
     │
     ├── helpers/
-    │   ├── index.ts                    ← assertNever + getBaseUrl re-exports
+    │   ├── index.ts                    ← assertNever, getBaseUrl, seededShuffle, getToolCount
+    │   ├── array.ts                    ← seededShuffle<T>(arr, seed)
+    │   ├── tool-count.ts               ← getToolCount() = getAllRegistryEntries().length
     │   ├── getBaseUrl.ts               ← single source of BASE_URL
     │   ├── og-locale.ts                ← getOgLocale(locale) → 'en_US', 'ru_RU'
     │   └── utils/
@@ -167,12 +178,12 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   └── routing.ts                  ← locales: ['en','ru']
     │
     ├── messages/
-    │   ├── en.json                     ← includes `categories` root block
+    │   ├── en.json                     ← includes `categories` root block + `global.units`
     │   └── ru.json
     │
     ├── types/
     │   ├── index.ts
-    │   ├── common.ts                   ← FAQItem, CategorySlug, Tag, BaseConfig, Values, Option (+params), OperationResult (+params), ResultRange, InputField, IconHandle, IconProps, FeatureItem, HowToStep
+    │   ├── common.ts                   ← FAQItem, CategorySlug, Tag, BaseConfig (with mandatory metaDescription), Values, Option (+params), OperationResult (+params), ResultRange, InputField, IconHandle, IconProps, FeatureItem, HowToStep
     │   ├── calculator.ts               ← CalculatorConfig (+ CalcContext with locale)
     │   └── tool.ts                     ← ToolConfig (discriminated union)
     │
@@ -186,7 +197,7 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
 ## Architecture
 
 - **Data → Helpers → UI → Routing.** All math runs on the client; the server only ships HTML.
-- **Routing:** flat URLs `/[locale]/[slug]` for tools and `/[locale]/<category>` for the six SEO category hubs. Category hubs are **static folders** (`finance/page.tsx`, `health/page.tsx`, …), not a dynamic `[category]` route — a dynamic `[category]` conflicts with `[slug]` in Next.js App Router (`You cannot use different slug names for the same dynamic path`).
+- **Routing:** flat URLs `/[locale]/[slug]` for tools, `/[locale]/<category>` for the six SEO category hubs, and `/[locale]/tools` for the full catalog. Category hubs are **static folders** (`finance/page.tsx`, `health/page.tsx`, …), not a dynamic `[category]` route — a dynamic `[category]` conflicts with `[slug]` in Next.js App Router (`You cannot use different slug names for the same dynamic path`).
 - **SSG:** every page is statically generated via `generateStaticParams`. Category pages are static by definition (one slug per file).
 - **i18n:** `next-intl` v4 with `localePrefix: 'as-needed'` (EN without prefix, RU with `/ru`).
 - **Universal by design.** No country-specific tools, formulas or currencies. Every calculator works in any country. Locale-aware number and date formatting is threaded through `calculate`.
@@ -199,6 +210,22 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
 2. **Tools** (`ToolConfig`, discriminated union by `kind`) — everything that doesn't fit "inputs → calculate" (formatters, converters, generators, form+preview builders, file processing). Configs live in `data/tools/<category>.ts`. Each `kind` has its own view component in `components/tool/`.
 
 The **registry** (`data/registry.ts`) unifies both: `getRegistryEntry(slug)`, `getAllRegistryEntries()`, `getRegistryEntriesByCategory(category)`. The `[slug]/page.tsx` dispatcher resolves through the registry and renders `CalcLayout` or `ToolLayout`.
+
+### Home page composition
+
+The home page (Phase A/B/C restructure) has a fixed component order:
+
+    HomeSchema → Hero → CategoryCards → FeaturedTools → RecentlyAdded → HomeFaq → PrivacyNote
+
+- **HomeSchema** — server component, emits WebSite + Organization + ItemList (6 categories) + FAQPage (3 Q) as JSON-LD. No `SearchAction` — search is client-side only, no `?q=` URL.
+- **Hero** — client, badge + h1 + subtitle + `SearchTrigger` (`h-11 sm:h-14`) + 6 suggestion chips + Stats.
+- **CategoryCards** — 6 category cards linking to `/{slug}`, animated icons on hover.
+- **FeaturedTools** — 18 deterministic-random tools (`seededShuffle(all, 42)`) + "Browse all {count} tools →" CTA.
+- **RecentlyAdded** — server, top 6 by `publishedAt`, `null` when empty.
+- **HomeFaq** — 3 questions, reuses `shared/FAQ` with `namespace="home"`.
+- **PrivacyNote** — trust-signal block ("100% private / no upload"), renamed from `home/Footer.tsx`. Closing signal.
+
+The `/tools` route moved the full catalog with filters off the home page. Before the split, category hubs had no in-content links from home — all six were reached only via the sidebar.
 
 ### Category hubs
 
@@ -225,7 +252,47 @@ All category content lives in a single root-level `categories` block in `message
 - `useCasesTitle` + `useCases` (array of strings)
 - `faq` (5 questions per category)
 
-Plus `categories.all` — for the "All Tools" filter. Nothing is duplicated in `home.categories`, `home.filters`, or `category.title` — those blocks were removed.
+Plus `categories.all` — for the "All Tools" filter and the sidebar "All tools" entry. Nothing is duplicated in `home.categories`, `home.filters`, or `category.title` — those blocks were removed.
+
+### Related tools
+
+Every tool config has a mandatory `related: string[]` field with 4 slugs. `RelatedTools` renders them as a grid of `EntryPreview`. Rules:
+
+- All slugs from the **same category** — categories stay closed clusters.
+- No self-references, no duplicates within a single array.
+- Graph is organized by semantic cluster (e.g. finance: credits, investments, purchases, income, utility; developer: encoding, generators, formatters, color, regex, images).
+- `related` is typed `string[]` — no compile-time check. A typo renders as a broken card silently. Verify slugs against `getRegistryEntry` manually when adding new tools.
+- **`lorem-ipsum` vs `lorem-ipsum-generator`** — the actual slug is the long form. Fixed in v0.13.0.
+- **`pdf-to-image`** — orphaned (translations exist, no data entry). Removed from `images-to-pdf.related`. Restore when the View lands.
+
+### Tool count parametrization
+
+**Never hardcode "75" in messages or components.** Use `getToolCount()` from `@/helpers` (returns `getAllRegistryEntries().length`). In messages use ICU `{count}`:
+
+    "meta.tools.description": "Browse all {count} free online tools — ..."
+    "tools.description": "{count} free tools across six categories — ..."
+
+For counts that need pluralization, use full ICU:
+
+    "viewAll": "Browse all {count, plural, one {# tool} other {# tools}}"
+    "viewAll": "Все {count, plural, one {# инструмент} few {# инструмента} many {# инструментов} other {# инструмента}}"
+
+**RU ICU plural requires 4 categories** (`one` / `few` / `many` / `other`). Omitting `many` renders a literal template string. EN requires 2 (`one` / `other`).
+
+### Global unit translations
+
+All physical and temporal units live in `global.units.*` in `messages/{en,ru}.json`:
+
+    km, m, cm, mm, kg, g, bpm, months, years, days, weeks, hours, minutes, nights
+
+In `data/calculators/*.ts` use unprefixed keys:
+
+    {name: 'height', unit: 'units.cm', ...}
+    {name: 'age',    unit: 'units.years', ...}
+
+`CalculatorForm` resolves `input.unit` in three steps: `tConfig.has(unit)` → `tGlobal.has(unit)` → raw string fallback. Never render raw translation keys in UI — if a unit is missing, it silently falls through.
+
+Units are simple strings (not ICU plural) — as field labels, they are grammatically neutral for any value: `Возраст (лет)`, `Сон (ч)`. Plural per-value agreement is deferred; if needed, migrate to `t(unit, {count: value})`.
 
 ### Locale-aware calculations
 
@@ -242,6 +309,7 @@ Plus `categories.all` — for the "All Tools" filter. Nothing is duplicated in `
 - Locale tag is a short BCP-47 (`'en'`, `'ru'`, `'de'`) — valid, no region mapping needed.
 - If the calculator doesn't need locale, keep `calculate: (values) => ...` without the second argument.
 - Do not create global `formatInt` / `formatAmount` — define a local `fmt` inside each `calculate`.
+- For currencies use `new Intl.NumberFormat(locale, {style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2})`. Cache with `useMemo([locale, currency])`.
 
 ### ICU params in results
 
@@ -267,16 +335,35 @@ All three accept a `namespace` prop (`'config'` by default, `'categories'` for c
 
 Order on the page: form/view → `HowToUseSection` → `FeatureSection` → `ContentSection` → FAQ → RelatedTools.
 
+### description vs metaDescription
+
+Two separate fields in `BaseConfig`:
+
+- **`description`** — page version, rendered under `<h1>` via `CalcLayout` / `ToolLayout`. Live tone, up to ~200 chars.
+- **`metaDescription`** — **mandatory**. `<meta name="description">` + JSON-LD `WebApplication.description`. Up to 155 chars, keywords in first phrase.
+
+`generateMetadata` uses `t(config.metaDescription)`, both schemas use `t(config.metaDescription)`, layouts use `tConfig(config.description)`. No fallback logic — every tool has both.
+
 ### SEO rule
 
 Any tool that is tagged `business` in the source (thequickutils.com) is implemented as a `ToolConfig` — even if mechanically it looks like "inputs → calculate". This keeps it in the `/business` SEO hub.
+
+**Content/code parity is critical.** Every item in `features`, `howToUse`, `useCases`, `faq`, `description`, `metaDescription` must describe functionality that exists in the View. Promise a feature that doesn't exist → Google penalization, AdSense rejection. Before writing SEO text: open the View, list every control and result, only then write. If you write text for a future feature — implement the feature first, or leave a TODO.
+
+### Yandex SEO
+
+- `robots.ts` — separate `Yandex` user-agent block with `Clean-param` directive. Scrubs `utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&_openstat&ysclid&yrclid`. Without this, every ad-click URL becomes a Yandex index duplicate.
+- `Host` directive is **deprecated** (Yandex cancelled it in 2018). Do not add it.
+- `sitemap.ts` — `changefreq` removed (Google ignores, Yandex does not use for crawl budget). `priority` kept for Yandex. `lastmod` honest: `CONTENT_LASTMOD` (bump manually per content release) for static / category pages, `cfg.publishedAt` for tools.
 
 ## Adding a calculator
 
 1. Create the config in `data/calculators/<category>.ts` (object `CalculatorConfig` in the array).
 2. If locale is needed, destructure `{locale}` from the second `calculate` argument and define local `fmt` helpers.
-3. Add translation keys under `config.<slug>` in both `messages/en.json` and `messages/ru.json`: `title`, `h1`, `description`, `keywords`, `inputs.*`, `options.*`, `ranges.*`, `secondary.*`, `hints.*`, `resultLabel`, `resultUnit`, `faq.*`.
-4. Optional SEO blocks: `howToUseTitle` + `howToUse`, `featuresTitle` + `features`, `useCasesTitle` + `useCases`. Migrate them one tool at a time.
+3. Add translation keys under `config.<slug>` in both `messages/en.json` and `messages/ru.json`: `title`, `h1`, `description`, `metaDescription`, `keywords`, `inputs.*`, `options.*`, `ranges.*`, `secondary.*`, `hints.*`, `resultLabel`, `resultUnit`, `faq.*`.
+4. Optional SEO blocks: `howToUseTitle` + `howToUse`, `featuresTitle` + `features`, `useCasesTitle` + `useCases`.
+5. Add `related: [4 slugs]` from the same category.
+6. `publishedAt` — ISO date string.
 
 That's it — routing, sitemap, and the category hub pick it up automatically.
 
@@ -286,10 +373,12 @@ That's it — routing, sitemap, and the category hub pick it up automatically.
 2. Create the config in `data/tools/<category>.ts`.
 3. Create the view component in `components/tool/<Name>View.tsx` and add a branch to `ToolView.tsx`.
 4. Add translation keys under `config.<slug>` in both `messages/*.json`.
-5. If the tool is wide (form + preview), add its `kind` to `isWide` in `ToolLayout.tsx`.
-6. If it uses print, make sure the preview container's `id` ends with `-preview` — the global print CSS uses `[id$='-preview']`.
-7. For color pickers, use `components/ui/color-picker.tsx` (Popover + react-colorful), never native `<input type="color">`.
-8. For two-column layouts, use `flex flex-col lg:flex-row` with `min-w-0 flex-1` on children — not grid.
+5. Add `related: [4 slugs]` from the same category.
+6. Add `publishedAt` — ISO date string.
+7. If the tool is wide (form + preview), add its `kind` to `isWide` in `ToolLayout.tsx`.
+8. If it uses print, make sure the preview container's `id` ends with `-preview` — the global print CSS uses `[id$='-preview']`.
+9. For color pickers, use `components/ui/color-picker.tsx` (Popover + react-colorful), never native `<input type="color">`.
+10. For two-column layouts, use `flex flex-col lg:flex-row` with `min-w-0 flex-1` on children — not grid.
 
 That's it — routing, sitemap, hub, search, and home page pick it up automatically.
 
@@ -310,7 +399,8 @@ That's it — `ToolGrid` filters, the sidebar, `sitemap.ts`, and the `CategoryPa
 - **Function declarations** preferred over `React.FC`.
 - **No barrel imports** for `@/components`. Import directly: `@/components/ui/sidebar`, `@/components/layout/AppSidebar`.
 - **shadcn/ui on Base UI** (not Radix). Use `render={<Component />}`, not `asChild`.
-- **Icons** — only from `@animateicons/react` via direct subpath (`@animateicons/react/lucide/percent-icon`). Never `lucide-react`. Use `as` aliases to preserve original names in configs. Pass `isAnimated={false}` to disable built-in hover and `ref={iconRef}` for imperative `startAnimation()` / `stopAnimation()`.
+- **Icons** — only from `@animateicons/react` via direct subpath (`@animateicons/react/lucide/percent-icon`). Never `lucide-react`. **Never barrel imports** (`@animateicons/react/huge` — pulls the entire set, ~918 kB). Use `as` aliases to preserve original names in configs. Pass `isAnimated={false}` to disable built-in hover and `ref={iconRef}` for imperative `startAnimation()` / `stopAnimation()`.
+- **`useTranslations` in client components.** `getTranslations` from `next-intl/server` fails in `'use client'` with `getTranslations is not supported in Client Components`.
 - **`CopyButton`** for copy-to-clipboard — don't hand-roll. Pass only `getValue`, `disabled`, `className`, `showLabel`, `tooltipSide`, `onSuccess`, `noTooltip`.
 - **Don't pass `CopyButton` into `OutputPanel`** — it's already there.
 - **Base UI focus-guards** break layout inside `space-y-*`. Wrap `PopoverTrigger` / `DropdownMenuTrigger` in `<div style={{display: 'contents'}}>` (see `date-picker.tsx`).
@@ -323,6 +413,10 @@ That's it — `ToolGrid` filters, the sidebar, `sitemap.ts`, and the `CategoryPa
 - **Print pattern for multi-page output** (images-to-pdf and similar) — build clean HTML, load into a hidden `<iframe>`, wait for images, call `iframe.contentWindow.print()`. Do **not** use `window.print()` in the current window — it conflicts with `ToolLayout` and produces a blank second page.
 - **`params` is a Promise in Next.js 15+** — always `await params` in `generateMetadata` and page components.
 - **`output: 'export'`** is incompatible with `localePrefix: 'as-needed'` and `proxy.ts`. Verify builds with `pnpm build && pnpm start`.
+- **SliderField** — local `min`/`max` state (initialized from `input`, editable at runtime), integer parsing (strips locale separators), cursor preservation via meaningful-char position tracking, clamps on blur not on change. Focus ring: `focus-visible:ring-0` (not `ring-transparent` — that keeps ring width). Text size: `text-xs md:text-xs` (base `Input` has `md:text-sm` which overrides `text-xs` at ≥768px).
+- **Font scaling in preview** — use `text-[Nem]` (`0.9em`, `1.35em`, `2.3em`) when the container has a `fontSize` that must scale children. Absolute `text-xs` / `text-sm` classes override the parent.
+- **`getTranslations` in server components only.** Client components must use `useTranslations`.
+- **Theme hydration** — never render theme-dependent UI before `mounted = true`. Server returns `undefined`, client reads `localStorage` → React regenerates the tree. Use `const [mounted, setMounted] = useState(false); useEffect(() => setMounted(true), [])` and `if (!mounted) return <FallbackIcon />`. See `ThemeToggle.tsx`.
 
 ## License
 
