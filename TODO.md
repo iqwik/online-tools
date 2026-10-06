@@ -6,63 +6,84 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ---
 
-## 🔥 Next up (v0.12.0)
+## 🔥 Next up (v0.13.0)
 
 ### Regression check — Variant C Stage 4
 - [~] **Systematic check: every View vs. its final texts.** Pattern documented in `CONTEXT.md` → «Правило: соответствие текста и кода». Open `components/tool/<Name>View.tsx` or `data/calculators/*.ts`, list every control/result, compare against `config.<slug>` in `messages/*.json`.
-- [x] `word-counter` — fixed: removed «pages» metric (View computes `avgWordLength`, not pages), added TikTok to social limits.
+- [x] `word-counter` — fixed: removed «pages» metric, added TikTok to social limits.
 - [x] `password-generator` — 4 modes + entropy + bulk implemented, texts synced.
 - [x] `image-compressor` — target file size removed from texts.
 - [x] `images-to-pdf` — drag → «стрелки», quality removed from features.
 - [x] `number-to-words-converter` — EN reformulated.
-- [x] `meta-tag-generator` — inputs described in texts (verify View matches).
+- [x] `meta-tag-generator` — inputs described in texts.
 - [ ] **Remaining ~69 tools** — spot-check at least 10 random (one from each category) plus any tool mentioned as «readability», «pages», or another feature that might not exist in View.
+
+### Related links — verification
+- [ ] **Broken slug check across all 75 tools.** `related` is `string[]` — typo renders as missing card silently. Run `grep -A4 "related:" data/calculators/*.ts data/tools/*.ts`, cross-check every slug against `getRegistryEntry`.
+- [ ] **Cycle check** — verify no tool references itself, no duplicates within a single array.
+- [ ] Consider **stronger typing** — `Slug` union or `satisfies readonly string[]` so typos fail at build time.
 
 ### Rich Results Test (after deploy)
 - [ ] Run all JSON-LD (WebApplication, FAQPage, HowTo) for 5–10 representative tools through Google Rich Results Test.
 - [ ] Verify HowTo `step` has both `name` and `text` — Google requires both.
 - [ ] Verify FAQPage renders for both calculators and tools.
+- [ ] Verify home — WebSite + Organization + ItemList + FAQPage.
+- [ ] Verify `related` cards don't break schema (RelatedTools renders `<Link>`, must not be inside JSON-LD tree).
 - [ ] Fix any schema errors before submitting sitemap.
+
+### Yandex Webmaster
+- [ ] Verify `Clean-param` directive is read correctly (Yandex Webmaster → Tools → robots.txt analysis).
+- [ ] Verify `priority` in sitemap is parsed (Yandex uses it weakly, but confirms sitemap is valid).
+- [ ] Submit sitemap to Yandex Webmaster.
 
 ### Final EN + RU proofread
 - [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
 - [ ] Catch awkward phrasing, natural-language errors, inconsistency between description and metaDescription tone.
 - [ ] Verify each `title` fits in mobile SERP (~50 chars visible).
+- [ ] Verify `home.featured.viewAll` ICU plural renders correctly in both locales at current count (76 after pdf-to-image).
 
 ### Tools
-- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned — `getRegistryEntry('pdf-to-image')` returns `undefined`, route not generated. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. PDF only — Word (`.docx`) is out of scope.
+- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', ...]`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser, format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related`.**
 - [ ] **Wave 6 — interactive trackers & builders** (10 tools): `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`. Needs architecture decision: separate `TrackerConfig` or new `ToolConfig` kinds.
 
 ### Categories — polish
 - [ ] **Extend `metaDescription` to 150–155 chars** if Google starts truncating on desktop SERP. Current values deliberately short (118–142) to guarantee no truncation.
-- [ ] **Add 6th FAQ question per category** if organic performance suggests. Components already handle any count.
+- [ ] **Add 6th FAQ question per category** if organic performance suggests.
 - [ ] **OG image per category** — after `og-default.jpg` exists.
 
 ### Locale refactor in `data/**`
 - [ ] Replace all hardcoded `'en-US'` / `'en-IN'` (and any hardcoded locale in `toLocaleString` / `toLocaleDateString` / `Intl.*`) with `ctx.locale` passed from `calculate`. Run `grep -rn "toLocaleString('en\|toLocaleDateString('en\|Intl\." data/`.
-- [ ] Affects `finance.ts` (`formatInt`, `formatAmount`, `formatINR`), `pregnancy-due-date-calculator`, potentially `health.ts`. After refactor — delete global helpers, keep only local `fmt` inside each `calculate` (rules 29–30 in `CONTEXT.md`).
+- [ ] Affects `finance.ts` (`formatInt`, `formatAmount`), `age-calculator`, `date-difference-calculator`, `pregnancy-due-date-calculator`, potentially `health.ts`.
+- [ ] After refactor — delete global `formatInt` / `formatAmount`, keep only local `fmt` inside each `calculate`.
+
+### Global units — follow-up
+- [ ] **Cleanup** — delete unused `config.<slug>.units.*` keys from `messages/{en,ru}.json` after `global.units` migration. Run `grep -n "\.units\." messages/en.json messages/ru.json`.
+- [ ] **ICU plural for units** (optional) — currently `global.units.{months, years, days, weeks, hours, nights}` are simple strings. If per-value agreement is needed in labels, migrate to `t(unit, {count: value})` and add plural forms. Deferred — labels are grammatically neutral for now.
 
 ### Tech debt (from `CONTEXT.md`)
-- [ ] `SalarySlipGeneratorView`: replace `payPeriod` text input with two `<Select>` (Month + Year), localize, add `payMonth` / `payYear` to state. Bump localStorage key to `v2`.
-- [ ] Extract `CurrencySelect` — `CURRENCIES` / `CURRENCY_SYMBOLS` duplicated across 3 files.
+- [ ] `SalarySlipGeneratorView`: replace `payPeriod` text input with two `<Select>` (Month + Year). Bump localStorage key to `v2`.
+- [ ] Extract `CurrencySelect` — `CURRENCIES` / `CURRENCY_SYMBOLS` duplicated across 3 files (invoice, quotation, payslip).
 - [ ] `ToolSchema` / `CalculatorSchema`: parametrize hardcoded `publisher.name: 'ProjectName'` — move to `NEXT_PUBLIC_SITE_NAME` env.
-- [ ] `types/common.ts`: extract `FAQItem` (duplicated). Consider merging `FeatureItem` and `HowToStep` — both are `{title, description}`.
+- [ ] `types/common.ts`: extract `FAQItem` (duplicated). Consider merging `FeatureItem` and `HowToStep`.
 - [ ] Audit `placeholder` / `defaultValue` for hardcoded English across all view components.
-- [ ] `CURRENT_YEAR` — wrap in `useMemo` inside the component (currently computed at module import).
+- [ ] `CURRENT_YEAR` — wrap in `useMemo` inside the component.
 - [ ] `CalculatorForm`: switch `<input type="date">` to `DatePicker` for `age-calculator`.
 - [ ] Active category link in sidebar — resolve slug → category (currently strict `===`).
-- [ ] Sidebar state resets on locale switch (`[locale]` layout remounts) — consider hoisting `SidebarProvider` to root.
+- [ ] Sidebar state resets on locale switch — consider hoisting `SidebarProvider` to root.
 - [ ] Mobile sidebar (Sheet) not tested.
 - [ ] `meta-tag-generator`: preview titles (`"Google search preview"`, etc.) hardcoded in EN.
-- [ ] `images-to-pdf`: PDF filename comes from `<title>`; consider setting `document.title = 'images-YYYY-MM-DD.pdf'` inside the print iframe before printing.
-- [ ] `images-to-pdf`: image quality slider does not affect print output (browser prints originals). If needed — recompress via Canvas before printing.
+- [ ] `images-to-pdf`: PDF filename comes from `<title>`; consider setting `document.title` inside the print iframe.
+- [ ] `images-to-pdf`: image quality slider does not affect print output. If needed — recompress via Canvas before printing.
 - [ ] `screenshot-beautifier`: huge images (>4000px) at 2×/3× scale may lag — consider a downscaled preview canvas.
-- [ ] Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog — cannot be removed programmatically.
+- [ ] Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog.
 - [ ] **Footer grows vertically on `/privacy`, `/about`** — `<main>` not wrapped in `flex flex-col`, `<footer>` inside picks up free height. Fix: `main` → `flex flex-1 flex-col min-h-0`, `article` → `flex-1`, `header`/`footer` → `shrink-0`. Not closed.
+- [ ] **Invoice preview font-scaling** — after the em-refactor, verify A4 width isn't exceeded at `fontSize: large`. If it is, cap the largest preset.
+- [ ] **`Intl.NumberFormat` for currency** — confirm JPY produces `¥1,235` (no decimals) in both locales. Not tested in browser yet.
 
 ### Decisions pending
 - [ ] **`useCases` format** — keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (new `UseCaseSection`)?
-- [ ] **Bonus tool**: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline, no dependencies. Discuss after Wave 6.
+- [ ] **Share button** — planned for the header (like DeepSeek), components drafted. Decide: place in mobile header vs floating top-right vs sidebar. Requires `<ShareButton />` from `components/shared/`.
+- [ ] **Bonus tool**: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline. Discuss after Wave 6.
 
 ---
 
@@ -71,7 +92,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] Deploy to Vercel
 - [ ] Custom domain + HTTPS
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to the production URL
-- [ ] Set `NEXT_PUBLIC_SITE_NAME` (used by JSON-LD publisher — see tech debt)
+- [ ] Set `NEXT_PUBLIC_SITE_NAME` (used by JSON-LD publisher)
 - [ ] Connect Google Analytics (`NEXT_PUBLIC_GA_ID`)
 - [ ] Connect Google AdSense (`NEXT_PUBLIC_ADSENSE_CLIENT`)
 - [ ] Submit AdSense for review (after content is ready)
@@ -100,9 +121,9 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ## 🧪 Testing
 
 - [ ] Add Playwright (or Cypress) smoke tests
-- [ ] Test calculator math (unit tests for `calculate()` functions across all 30 calculators)
+- [ ] Test calculator math (unit tests for `calculate()` across all 30 calculators)
 - [ ] Test Unit Converter math (factor conversions, temperature special case)
-- [ ] Test JSON Formatter (valid / invalid input, all three modes)
+- [ ] Test JSON Formatter (valid / invalid, all three modes)
 - [ ] Test Base64 (Standard vs URL-Safe, round-trip)
 - [ ] Test regex tester (catastrophic backtracking, zero-length matches)
 - [ ] Test pdf-to-image (page range parser, ZIP download)
@@ -114,6 +135,9 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] Test canonical URLs and hreflang tags via `view-source:`
 - [ ] Test OG meta tags via Facebook Debugger / Twitter Card Validator
 - [ ] Run Google Rich Results Test for HowTo / FAQPage schemas
+- [ ] **Test SliderField cursor preservation** — type between digits, delete mid-string, paste, clear-to-empty.
+- [ ] **Test related links** — every tool renders exactly 4 cards, no broken/empty entries.
+- [ ] **Test Yandex robots** — `robots.txt` Clean-param visible in Yandex Webmaster.
 
 ---
 
@@ -121,7 +145,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 - [ ] Favorites (pin tools to sidebar)
 - [ ] Recently used tools
-- [ ] Share button on tool pages (copy URL)
+- [x] **Share button** — component drafted (`ShareButton` with `navigator.share` + clipboard fallback). Placement pending.
 - [ ] Embed widget (`<iframe>` for calculators)
 - [ ] Print-friendly styles for calculators
 - [ ] Keyboard shortcuts reference page
@@ -138,184 +162,202 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ## ✅ Done
 
+### v0.13.0 — 2026-10-06
+
+**Related links for all 75 tools, Yandex SEO, global units, SliderField refactor**
+
+**Related links — SEO interlinking**
+- [x] Added `related: Slug[]` (4 items each) to **all 75 tools** across every category
+- [x] Link graph organized by semantic clusters:
+  - **finance** — credits (loan-payment ↔ loan-eligibility ↔ rent-vs-buy), investments (compound-interest ↔ monthly-investment ↔ savings-goal ↔ fixed-deposit ↔ roi), purchases (percentage ↔ discount ↔ tip ↔ sales-tax), income (salary ↔ income-tax), utility (date-difference)
+  - **health** — weight (bmi ↔ body-fat ↔ ideal-weight), nutrition (calorie ↔ tdee-macro ↔ calorie-deficit-planner), fitness (heart-rate ↔ vo2-max ↔ water-intake), sleep (sleep-cycle ↔ sleep-debt), pregnancy (pregnancy-due-date ↔ pregnancy-week-tracker ↔ menstrual-cycle)
+  - **business** — documents (invoice-generator ↔ quotation-generator ↔ payslip-generator + invoice-number-generator), financial math (profit-margin ↔ break-even), marketing (utm-builder)
+  - **developer** — encoding (base64 ↔ url ↔ jwt-decoder ↔ jwt-encoder), generators (uuid ↔ hash ↔ license ↔ gitignore), formatters (json ↔ sql ↔ code-minifier ↔ markdown), color (color-picker ↔ color-contrast ↔ css-generator), regex (regex-tester ↔ regex-generator), images/base64 (svg-to-base64 ↔ base64-to-image ↔ base64-image-optimizer ↔ favicon)
+  - **generators** — images (image-compressor ↔ bulk-image-resizer ↔ image-converter ↔ image-watermark ↔ images-to-pdf) + security (password ↔ qr-code) + palette (color-palette-extractor)
+  - **text** — small category, fully connected (5 × 4)
+- [x] Fixed broken slug — `word-counter` and `case-converter` referenced `lorem-ipsum`, actual slug is `lorem-ipsum-generator`
+- [x] Removed `pdf-to-image` orphan reference from `images-to-pdf.related`
+- [x] ~300 new internal links site-wide
+
+**Yandex-specific SEO**
+- [x] `robots.ts` — added a separate `Yandex` user-agent block with `Clean-param` directive via `other: {'Clean-param': '...'}`. Scrub params: `utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&_openstat&ysclid&yrclid`
+- [x] Removed `host` field (deprecated by Yandex in 2018, never supported by Google)
+- [x] `sitemap.ts` — removed `changefreq` (ignored by Google, unused by Yandex for crawl budget). Kept `priority` for Yandex.
+
+**Global unit translations**
+- [x] `global.units.*` namespace in `messages/{en,ru}.json` — `km`, `m`, `cm`, `mm`, `kg`, `g`, `bpm`, `months`, `years`, `days`, `weeks`, `hours`, `minutes`, `nights`
+- [x] `CalculatorForm` resolves units via `tConfig.has` → `tGlobal.has` → raw string fallback
+- [x] Migrated all `data/calculators/*.ts` from `<slug>.units.*` to `units.*` — `calorie-calculator`, `tdee-macro-calculator`, `heart-rate-zones-calculator`, `vo2-max-estimator`, `water-intake-calculator`, `sleep-debt-calculator`, `menstrual-cycle-calculator`, `calorie-deficit-planner`
+- [x] Fixed `heart-rate-zones-calculator` — units rendered as raw translation keys before the fix
+
+**Parametrized tool count**
+- [x] `helpers/tool-count.ts` — `getToolCount()` = `getAllRegistryEntries().length`
+- [x] `meta.tools.description`, `tools.description` — `{count}` placeholder instead of hardcoded «75»
+- [x] `home.featured.viewAll` — ICU plural: EN `one/other`, RU `one/few/many/other`. `#` placeholder inside ICU
+- [x] After `pdf-to-image` lands → all three strings update automatically
+
+**SliderField refactor**
+- [x] Local `min` / `max` state — initialized from `input`, editable at runtime, clamps `value` outside range
+- [x] Auto-width inputs via `calc(Nch + 1.25rem)`
+- [x] Pencil icon buttons with `focusEnd(el)` → `setSelectionRange(len, len)`
+- [x] Integer parse — `s.replace(/[^\d-]/g, '')` handles locale separators (`1 000`, `1,000`)
+- [x] Cursor preservation — `countMeaningful` / `posAfterMeaningful` / `restoreCursor` + `useLayoutEffect`. Fixes jump-to-end bug when typing between digits.
+- [x] Empty input → 0
+- [x] min/max clamp on blur, not on change — typing `110` with `max=100` keeps `110` visible until blur
+- [x] `focus-visible:ring-0` instead of `focus-visible:ring-transparent` (ring-transparent kept ring-width)
+- [x] `text-xs md:text-xs` for min/max — base `Input` has `md:text-sm` which overrode `text-xs`
+
+**Sales-tax-calculator rate input**
+- [x] Changed `rate` from `select` (5/10/15/20/25 %) to `type: 'number'`, `step: 0.01`
+- [x] `Number(String(rate).replace(',', '.'))` for RU-locale comma input
+- [x] `secondary.rate` — `parseFloat(r.toFixed(4))` strips trailing zeros
+
+**InvoiceGeneratorView refactor**
+- [x] Locale-aware currency via `useMemo(() => new Intl.NumberFormat(locale, {style: 'currency', currency, ...}))` — passed down as `fmt` prop
+- [x] Font size scaling in preview — all `text-*` → `text-[Nem]` (`0.9em`, `1.35em`, `2.3em`). Font Size select now actually works.
+
+### v0.12.0 — 2026-10-05
+
+**Home restructure (Phases A / B / C), search refactoring, sidebar "All tools"**
+
+- [x] `HomeSchema.tsx` — WebSite + Organization + ItemList (6 categories) + FAQPage (3 Q)
+- [x] `CategoryCards.tsx` — 6 category cards, animated icons on hover
+- [x] `FeaturedTools.tsx` — 18 seeded-random (seed 42) + «Browse all {count} tools →» CTA
+- [x] `RecentlyAdded.tsx` — top 6 by `publishedAt`
+- [x] `HomeFaq.tsx` — 3 questions, reuses `shared/FAQ` with `namespace="home"`
+- [x] `PrivacyNote.tsx` — renamed from `home/Footer.tsx`
+- [x] `app/[locale]/tools/page.tsx` — full catalog with `ToolGrid`, localized metadata
+- [x] `helpers/array.ts` — `seededShuffle<T>(arr, seed)`
+- [x] Sidebar — "All tools" entry with `LayoutGridIcon` + `totalTools` counter
+- [x] `Stats.tsx` — «{count}+ tools» clickable → `/tools`
+- [x] `sitemap.ts` — `CONTENT_LASTMOD` instead of `new Date()`. `/tools` priority 0.9
+- [x] `generateMetadata` on home — localized, canonical, hreflang, OG
+- [x] Search refactoring — `SearchProvider` context `{isOpen, open(query?), close}`, query lives in provider
+- [x] `SearchModal` — controlled by `query` prop
+- [x] `SearchTrigger` — `open()` without arguments preserves query
+- [x] Hero suggestion chips — 6 chips, `open(tHome('suggestions.${key}'))`
+- [x] Fixed: `utm-builder` garbage keys in `ru.json`
+- [x] Fixed: `CategoryCards` barrel import → subpath
+- [x] Fixed: `SearchModal` `lucide-react` → `@animateicons/react/lucide/search-icon`
+
 ### v0.11.0 — 2026-10-05
 
 **Universal SEO content rewrite (Variant C, Stages 1–3) + `metaDescription` split + UI/infra fixes**
 
-**SEO content (all 75 tools × EN + RU)**
-- [x] Rewrote `title` for all 75 tools — unified em dash `—`, ≤60 chars, critical part in first ~50
-- [x] Rewrote `description` (page version) — action verb first, live tone, up to 200 chars
-- [x] **Added `metaDescription` field to `BaseConfig`** (`types/common.ts`) — **mandatory**, up to 155 chars, keywords in first phrase
-- [x] Filled `metaDescription` for all 75 tools in `messages/{en,ru}.json`
-- [x] Rewrote `features`, `howToUse`, `useCases`, `faq` for all 75 (features add new facts, not title restating; useCases are live scenarios; FAQ 6 questions with specifics)
-- [x] Rewrote all 75 `searchSynonyms` (EN + RU) — real user queries, not SEO noise
-- [x] **«Free»/«Бесплатный» policy** — removed from first phrase in ~60% of metaDescriptions; kept only in 10 tools where it's a real value prop (invoice, payslip, quotation, images-to-pdf, image-compressor, pdf-to-image, license, meta-tag, password, watermark)
-
-**Infrastructure**
-- [x] `generateMetadata` in `app/[locale]/[slug]/page.tsx` — `t(entry.config.metaDescription)` instead of `t(entry.config.description)`
-- [x] `CalculatorSchema.tsx` / `ToolSchema.tsx` — `webApp.description: t(config.metaDescription)`
-- [x] `CalcLayout.tsx` / `ToolLayout.tsx` — kept `tConfig(config.description)` (page version under h1)
-- [x] Added `metaDescription: '<slug>.metaDescription'` to all 75 data entries in `data/calculators/{finance,health}.ts` and `data/tools/{text,developer,generators,business}.ts`
-
-**Bugs fixed**
-- [x] `BreadCrumbs.tsx` — React key warning: `<>...</>` doesn't accept `key`; wrapped two-sibling output in `<Fragment key={...}>`
-- [x] `ThemeToggle.tsx` — hydration mismatch (next-themes + React 19): added `mounted` guard, `if (!mounted) return Sun` in `useMemo`
-- [x] `globals.css` scrollbar fixes:
-  - `scrollbar-width: thin` moved into `@supports (-moz-appearance: none)` — Chrome 121+ respects the property and ignores `::-webkit-scrollbar-*`, showing native arrows otherwise
-  - Fixed `element > ::-webkit-scrollbar-thumb` → `element::-webkit-scrollbar-thumb` (thumb is nested inside track, not a direct child)
-  - Removed unreliable `transition` on `::-webkit-scrollbar-thumb`
-  - Removed `no-scrollbar` class from `SidebarContent` (its `display: none` overrode custom rules)
-  - Final design: global thumb always visible at `oklch(0.55 0.02 260 / 0.5)`; sidebar thumb visible only on `[data-slot="sidebar-content"]:hover`
-- [x] `word-counter` texts — removed «pages», added TikTok to social limits, fixed FAQ q5
-
-**Dev experience**
-- [x] `.vscode/settings.json` performance tuning:
-  - `typescript.tsserver.maxTsServerMemory: 6144`
-  - `typescript.disableAutomaticTypeAcquisition: true`
-  - `files.watcherExclude` for `node_modules`, `.next`, `.turbo`, `dist`, `build`, `out`, `.git/objects`, `.pnpm-store`, `coverage`
-  - `search.exclude`, `biome.lsp.trace.server: off`, `biome.requireConfiguration: true`
-  - `editor.inlayHints.enabled: offUnlessPressed`, `editor.stickyScroll.enabled: false`, `editor.minimap.enabled: false`, `breadcrumbs.enabled: false`
-  - `tailwindCSS.validate: false`, `tailwindCSS.experimental.classRegex: []`
+- [x] Rewrote `title` for all 75 tools — unified em dash `—`, ≤60 chars
+- [x] Rewrote `description` (page version) — action verb first, up to 200 chars
+- [x] **Added `metaDescription` field to `BaseConfig`** — mandatory, up to 155 chars
+- [x] Filled `metaDescription` for all 75 tools
+- [x] Rewrote `features`, `howToUse`, `useCases`, `faq` for all 75
+- [x] Rewrote all 75 `searchSynonyms` (EN + RU)
+- [x] «Free»/«Бесплатный» policy — kept in 10 tools
+- [x] `generateMetadata` — `t(config.metaDescription)`
+- [x] `CalculatorSchema` / `ToolSchema` — `webApp.description: t(metaDescription)`
+- [x] Fixed `BreadCrumbs.tsx` React key warning
+- [x] Fixed `ThemeToggle.tsx` hydration mismatch
+- [x] Fixed `globals.css` scrollbar issues
+- [x] `.vscode/settings.json` performance tuning
 
 ### v0.10.0 — 2026-10-04
 
 **Categories: unified translation block, SEO content, and static routes**
 
-- [x] Unified root-level `categories` block in `messages/{en,ru}.json` with full SEO fields (`name`, `shortName`, `h1`, `metaTitle`, `metaDescription`, `keywords`, `intro`, `howToUse`, `features`, `useCases`, `faq` — 5 questions each)
-- [x] `categories.all` for the "All Tools" filter
-- [x] Six static category routes: `app/[locale]/{finance,health,text,developer,generators,business}/page.tsx`
-- [x] `CategoryPage.tsx` — server component, renders header + tool grid + SEO blocks + FAQ
-- [x] `generateMetadata` per category: title, description, keywords, canonical, hreflang, openGraph
-- [x] `namespace` prop in `HowToUseSection`, `FeatureSection`, `ContentSection`, `FAQ` — default `'config'`, `'categories'` for hubs
-- [x] `getOgLocale()` + `getOgAlternateLocales()` in `helpers/og-locale.ts` — BCP-47 → Open Graph `language_TERRITORY`
-- [x] `ToolGrid.tsx` — filters built from `data/categories.ts`, filter by `item.category`
-- [x] Removed: `home.categories`, `home.filters`, `category.title.*`, `app/[locale]/[category]/`
-- [x] Fixed 404 on `/ru/health`, `/ru/finance`, and every other category after removing the dynamic `[category]` route
+- [x] Unified root-level `categories` block in `messages/{en,ru}.json`
+- [x] Six static category routes
+- [x] `CategoryPage.tsx` — server component
+- [x] `namespace` prop in `HowToUseSection`, `FeatureSection`, `ContentSection`, `FAQ`
+- [x] `getOgLocale()` + `getOgAlternateLocales()`
+- [x] `ToolGrid.tsx` — filters built from `data/categories.ts`
+- [x] Removed: `home.categories`, `home.filters`, `category.title.*`, `[category]/` route
+- [x] Fixed 404 on `/ru/health` and other categories
 
 ### v0.9.0 — 2026-10-04
 
 **Structured content blocks + JSON-LD HowTo + FAQPage for calculators**
 
-- [x] `HowToUseSection.tsx` — numbered grid with round badges, `<ol>` semantics, `{title, description}` steps
-- [x] `FeatureSection.tsx` — checkmark grid with `CheckIcon`, `{title, description}` items
-- [x] `ContentSection.tsx` retained as universal fallback for `useCases` (`string[]`)
-- [x] New types: `FeatureItem`, `HowToStep` in `types/common.ts`
-- [x] `CalculatorSchema.tsx` — added `FAQPage` (was missing) and `HowTo` (gated by `howToUseTitle` + `howToUse`)
-- [x] `ToolSchema.tsx` — added `HowTo` block
-- [x] Migrated `howToUse` and `features` from `string[]` to `{title, description}[]` for 6 tools: `percentage-calculator`, `word-counter`, `json-formatter`, `password-generator`, `image-compressor`, `images-to-pdf`
+- [x] `HowToUseSection.tsx`, `FeatureSection.tsx`, `ContentSection.tsx`
+- [x] New types: `FeatureItem`, `HowToStep`
+- [x] `CalculatorSchema.tsx` — added `FAQPage` and `HowTo`
+- [x] `ToolSchema.tsx` — added `HowTo`
+- [x] Migrated `howToUse` / `features` from `string[]` to `{title, description}[]` for 6 tools
 - [x] `images-to-pdf`: 4-step howToUse, 9 features, 5 useCases, FAQ 4 → 7
 
 ### v0.8.0 — 2026-10-03
 
 **SEO content blocks + FAQ accordion + SEO texts for 5 tools**
 
-- [x] `ContentSection.tsx` — universal component for `howToUse` / `features` / `useCases`, `t.has()` guard
+- [x] `ContentSection.tsx`
 - [x] Content keys: `howToUseTitle` + `howToUse`, `featuresTitle` + `features`, `useCasesTitle` + `useCases`
-- [x] Wired into `CalcLayout` and `ToolLayout`: form → howToUse → features → useCases → FAQ → RelatedTools
-- [x] JSON-LD `HowTo` in `CalculatorSchema` / `ToolSchema`
-- [x] `FAQ.tsx` — replaced manual markup with `Accordion` (Base UI), `openMultiple=true`, `value={`item-${i}`}`
-- [x] Extended SEO texts for `percentage-calculator`, `word-counter`, `json-formatter`, `password-generator`, `image-compressor` — FAQ up to 6, long-tail keywords
-- [x] Cookie consent banner (fixed bottom, z-50), saves to `localStorage`
+- [x] JSON-LD `HowTo`
+- [x] `FAQ.tsx` — Base UI Accordion, `openMultiple=true`
+- [x] Extended SEO texts for 5 tools
+- [x] Cookie consent banner
 
 ### v0.7.0 — 2026-10-03
 
 **Smart search (Fuse.js) + animated icons + scrollbar + theme tokens**
 
-- [x] `useSearchIndex` — Fuse.js index from current locale messages, weights `0.5 / 0.3 / 0.15 / 0.05`
-- [x] `searchSynonyms` section in `messages/*.json` — 3–6 synonyms per tool for all 75 tools
-- [x] `SearchModal` — `fuse.search(query, {limit: 20})`, results sorted by relevance
-- [x] All Lucide icons → `@animateicons/react@0.9.0` (Hugeicons + Lucide animated sets)
-- [x] New types: `IconHandle`, `IconProps`. Config type: `ComponentType<IconProps & RefAttributes<IconHandle>>`
-- [x] Cookie consent banner (fixed bottom, z-50)
-- [x] Theme tokens: `--success-custom`, `--secondary-hover`, `@utility shadow-md-primary`
-- [x] `html { font-size: 14px }` — base font size
-- [x] Custom thin scrollbar (DeepSeek style), 8px, transparent by default, visible on hover
-- [x] `html { scrollbar-gutter: stable }`, `html, body { overflow-x: clip }`
-- [x] Renamed `tax-regime-comparator` → `income-tax-calculator` (universal, custom brackets)
+- [x] `useSearchIndex` — Fuse.js index
+- [x] `searchSynonyms` section for all 75 tools
+- [x] All Lucide icons → `@animateicons/react@0.9.0`
+- [x] New types: `IconHandle`, `IconProps`
+- [x] Theme tokens, custom scrollbar
+- [x] Renamed `tax-regime-comparator` → `income-tax-calculator`
 
 ### v0.6.0 — 2026-09-29
 
 **images-to-pdf + pdf-to-image (in progress) + print pattern**
 
-- [x] `images-to-pdf` — combine JPG / PNG / WebP / GIF into a single PDF. Page size, orientation, columns, margins, gap, fit mode, rotation, background, page numbers, captions, quality slider
-- [~] `pdf-to-image` — `pdfjs-dist@6.3.289` + `jszip`, page range parser, scale, quality, transparent background
-- [x] New print pattern: build HTML string → hidden `<iframe>` → `iframe.contentWindow.print()`. Solves orientation, background printing, extra blank page
-- [x] `PreviewPage` — self-scaling via `ResizeObserver`, no horizontal scroll
-- [x] Removed `pdf-lib` and `@pdf-lib/fontkit` (no longer needed)
-- [x] Removed `public/fonts/` (13 MB Inter TTF)
+- [x] `images-to-pdf` — combine images into a single PDF
+- [~] `pdf-to-image` — `pdfjs-dist` + `jszip`, page range parser
+- [x] Print pattern: HTML string → hidden iframe → `print()`
+- [x] `PreviewPage` — self-scaling via `ResizeObserver`
+- [x] Removed `pdf-lib` and `@pdf-lib/fontkit`
+- [x] Removed `public/fonts/` (13 MB)
 
 ### v0.5.0 — 2026-09-29
 
 **15 new tools + locale-aware calculate + ICU params**
 
-- [x] Finance (5): savings-goal, loan-eligibility, rent-vs-buy, fixed-deposit, number-to-words
-- [x] Health (4): sleep-debt, menstrual-cycle, calorie-deficit-planner, pregnancy-week-tracker
-- [x] Developer (5): svg-to-base64, base64-to-image, regex-tester, regex-generator, css-generator
-- [x] Renamed to universal: `emi-calculator` → `loan-payment-calculator`, `gst-calculator` → `sales-tax-calculator`, `sip-calculator` → `monthly-investment-calculator`, `salary-slip-generator` → `payslip-generator`
-- [x] `CalcContext { locale }`, `calculate(values, {locale})`, local `fmt` helpers
-- [x] `Option.params` / `OperationResult.params` for ICU pluralization
+- [x] Finance (5), Health (4), Developer (5)
+- [x] Renamed to universal: `emi-calculator`, `gst-calculator`, `sip-calculator`, `salary-slip-generator`
+- [x] `CalcContext { locale }`
+- [x] `Option.params` / `OperationResult.params`
 - [x] `n2words@6.2.0` integration
 
 ### v0.4.0 — 2026-09-29
 
 **7 developer tools + 7 business tools + ColorPicker + OutputPanel download**
 
-- [x] Developer (7): color-picker, color-contrast-checker, markdown-previewer, sql-formatter-minifier, code-minifier, meta-tag-generator, gitignore-generator
-- [x] Business (7): invoice-generator, invoice-number-generator, utm-builder, profit-margin-calculator, break-even-calculator, quotation-generator, salary-slip-generator
-- [x] `ColorPicker` in `components/ui/color-picker.tsx` — Popover + react-colorful
-- [x] `OutputPanel`: `onDownload` / `downloadLabel` props
+- [x] Developer (7), Business (7)
+- [x] `ColorPicker`, `OutputPanel` download props
 - [x] Print CSS via `[id$='-preview']`
 
 ### v0.3.0 — 2026-09-28
 
-**9 developer tools + 4 text tools + 3 generators + 18 calculators**
+**9 developer + 4 text + 3 generators + 18 calculators**
 
-- [x] Developer (9): unit-converter, json-formatter, base64-encoder-decoder, uuid-generator, hash-generator, url-encoder-decoder, timestamp-converter, jwt-decoder, jwt-encoder
-- [x] Text (4): word-counter, case-converter, lorem-ipsum-generator, diff-checker
-- [x] Generators (3): password-generator, qr-code-generator, image-compressor
-- [x] Finance (10): percentage, emi, compound-interest, discount, tip, gst, salary, roi, sip, date-difference
-- [x] Health (8 new): tdee-macro, body-fat, ideal-weight, water-intake, heart-rate-zones, pregnancy-due-date, sleep-cycle, vo2-max-estimator
+- [x] All tool categories populated
 - [x] `ToolConfig` union with 17 kinds
 - [x] `data/tools/`, `data/registry.ts`, `ToolLayout`, `ToolView`, `ToolSchema`
 
 ### v0.2.0 — 2026-09-28
 
-- [x] Tool system — independent types (`ToolConfig`), data (`data/tools/`), registry (`data/registry.ts`)
-- [x] `[slug]/page.tsx` dispatcher — resolves via registry, renders `CalcLayout` or `ToolLayout`
-- [x] 3 developer tools shipped: Unit Converter, JSON Formatter, Base64 Encoder/Decoder
-- [x] Shared components moved to `components/shared/` — `FAQ`, `RelatedTools`
-- [x] `RelatedTools` resolves both calculators and tools by slug
-- [x] `Stats`, `ToolGrid`, `SearchModal`, `CategoryPage` use `getAllRegistryEntries()`
-- [x] `messages/*/config` extended with 3 tool configs (EN + RU)
-- [x] Translation namespace `calculator` → `global` (shared strings)
-- [x] `SearchTrigger` — two variants (`full` / `icon`)
-- [x] Search + `SidebarTrigger` moved into the sidebar
-- [x] Mobile header with sidebar trigger + search icon
-- [x] `next/root-params` migration — `setRequestLocale` removed, `generateStaticParams` in `[locale]/layout.tsx`
-- [x] `pnpm build` — all routes SSG (`●` / `○`)
-- [x] `SearchModal` — compact on empty query, fixed-height results when typing, centered empty state
-- [x] `theme-provider.tsx` — dev-only console filter for React 19 `<script>` warning
+- [x] Tool system — independent types, data, registry
+- [x] `[slug]/page.tsx` dispatcher via registry
+- [x] 3 developer tools
+- [x] Shared components: `FAQ`, `RelatedTools`
+- [x] `SearchTrigger` variants
+- [x] `next/root-params` migration
 
 ### v0.1.0 — 2026-09-27
 
-- [x] Stack: Next.js 16 + React 19 + TS + Tailwind 4 + Biome
-- [x] i18n: next-intl v4, locales `en` / `ru`, `localePrefix: 'as-needed'`
-- [x] Flat routing: `/[locale]/[slug]` + 6 SEO hubs
-- [x] 6 categories (`finance`, `health`, `text`, `developer`, `generators`, `business`)
-- [x] `data/` — new structure with `health.ts` (bmi / calorie / age) and empty `finance.ts`
-- [x] shadcn/ui on Base UI
-- [x] Theme: `next-themes` + light / dark / system
-- [x] Fonts: Inter + Geist Mono via `next/font/google`
-- [x] Sidebar with search, categories, settings popover
-- [x] Search modal (`SearchModal`) + `⌘K` trigger
-- [x] Home: Hero + Stats + ToolGrid
-- [x] Category pages (`CategoryPage`) + "Back" button
-- [x] Calculator page: form, result, range badge, FAQ, related
-- [x] `CalculatorForm` receives `slug` (fixes `Functions cannot be passed…`)
-- [x] `messages/en.json` and `ru.json` — all sections + `config` for 3 calculators
+- [x] Stack, i18n, flat routing, 6 categories
+- [x] shadcn/ui on Base UI, theme, fonts
+- [x] Sidebar + search modal
+- [x] Home + category pages + calculator page
 - [x] About + Privacy + 404
-- [x] SEO: metadata, canonical, `sitemap.ts`, `robots.ts`, JSON-LD `WebApplication`
-- [x] Category icons via Lucide (`CategoryIcon`)
+- [x] SEO basics
 
 ---
 
@@ -327,30 +369,51 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 | Tools with SEO blocks | 75 / 75 | 75 |
 | Tools with `metaDescription` | 75 / 75 | 75 |
 | Tools with `searchSynonyms` | 75 / 75 | 75 |
+| Tools with `related` (4 links each) | 75 / 75 | 75 |
 | Categories with SEO blocks | 6 / 6 | 6 |
 | Locales | 2 / 2 | 2 (then 5) |
 | SSG coverage | 100% | 100% |
+| Internal links (from related) | ~300 | — |
 | AdSense ready | No | Yes |
 
 ---
 
-## 🔍 Audit trail (2026-10-04 → 2026-10-05)
+## 🔍 Audit trail
+
+### 2026-10-06 (v0.13.0)
+
+**Related links fixes:**
+1. `lorem-ipsum` slug — `word-counter` and `case-converter` referenced `'lorem-ipsum'`, actual slug is `'lorem-ipsum-generator'`. Fixed.
+2. `pdf-to-image` orphan — `images-to-pdf.related` included an entry that has no data (translations exist, no view). Removed to prevent broken cards.
+
+**Yandex SEO:**
+- `robots.ts` — Clean-param directive for UTM/tracking param scrubbing. Removed deprecated `Host`.
+
+**Global units:**
+- `heart-rate-zones-calculator` — units rendered as raw keys `heart-rate-zones-calculator.units.years` before migration. Fixed via `global.units`.
+
+**SliderField:**
+- Cursor jumped to end when typing between digits. Fixed via meaningful-char position tracking.
+- Value clamped on every keystroke — impossible to clear-then-retype. Fixed: clamp on blur.
+- `focus-visible:ring-transparent` didn't remove the ring. Fixed: `ring-0`.
+- `text-xs` overridden by base `md:text-sm`. Fixed: `text-xs md:text-xs`.
+
+**Invoice generator:**
+- Currency always formatted as `en-US`. Fixed via `Intl.NumberFormat` + `useLocale()`.
+- Font Size select did nothing. Fixed via em-based text sizes in preview.
+
+### 2026-10-04 → 2026-10-05
 
 **Critical mismatches found and fixed:**
-1. `word-counter` — texts promised readability / keyword density / text utilities / pages; View had 8 stats + 6 social limits. Texts rewritten, «pages» → «avgWordLength», TikTok added to limits list.
-2. `password-generator` — texts promised 4 modes + entropy + bulk; View had 1 mode. **Implemented** in code; texts synced.
-3. `image-compressor` — texts promised target file size mode; View had quality + maxWidth + format only. Removed from texts, in tech debt.
-4. `images-to-pdf` — texts promised drag-and-drop and quality-in-print; View used up/down arrows and print ignored quality. Reformulated (arrows), quality removed from features.
-5. `number-to-words-converter` — EN texts said «English and Russian side by side»; View showed EN only on EN locale. Reformulated.
-6. `meta-tag-generator` — texts described siteName / twitter / OG type / locale inputs; need to verify View matches (Stage 4 regression check).
-
-**Medium issues fixed during rewrite:**
-- `pregnancy-due-date-calculator` — `toLocaleDateString('en-US')` hardcoded → in tech debt (locale refactor).
-- `meta-tag-generator` — preview titles hardcoded in EN → in tech debt.
-- `regex-tester.faq.q5` — reformulated from theory to instrument behaviour (MAX_MATCHES = 10000).
+1. `word-counter` — removed «pages», replaced with «average word length». Added TikTok to social limits.
+2. `password-generator` — implemented 4 modes + entropy + bulk in code.
+3. `image-compressor` — target file size removed from texts (in tech debt).
+4. `images-to-pdf` — drag → arrows, quality removed from features.
+5. `number-to-words-converter` — EN reformulated.
+6. `meta-tag-generator` — inputs described in texts.
 
 **Infrastructure bugs fixed:**
-- `BreadCrumbs.tsx` — React key warning (Fragment).
-- `ThemeToggle.tsx` — hydration mismatch (mounted pattern).
-- `globals.css` — scrollbar: `scrollbar-width` in universal selector broke Chrome; `>` combinator for thumb; `no-scrollbar` in `SidebarContent`.
-- `.vscode/settings.json` — TS Server memory + watcher excludes for a large project.
+- `BreadCrumbs.tsx` — React key warning.
+- `ThemeToggle.tsx` — hydration mismatch.
+- `globals.css` — scrollbar `scrollbar-width` in universal selector, `>` combinator for thumb, `no-scrollbar` in `SidebarContent`.
+- `.vscode/settings.json` — TS Server memory + watcher excludes.
