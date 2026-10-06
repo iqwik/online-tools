@@ -25,6 +25,7 @@
     },
     "search": {
       "placeholder": "Например: калькулятор ИМТ или JSON formatter",
+      "placeholderTry": "{q}",
       "label": "Поиск",
       "empty": "Ничего не найдено"
     },

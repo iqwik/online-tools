@@ -27,15 +27,20 @@ export function CookieConsent() {
   if (!isVisible) return null
 
   return (
-    <Alert className="fixed bottom-4 left-1/2 z-50 w-full max-w-max -translate-x-1/2 px-4 shadow-lg">
-      <AlertDescription className="flex items-center justify-between gap-4">
-        <span>
+    <Alert className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 px-4 py-3 shadow-lg pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+      <AlertDescription className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <span className="text-sm">
           {t('description')}{' '}
           <Link href="/privacy" className="text-primary underline">
             {t('privacyLink')}
           </Link>
         </span>
-        <Button variant="alternative" size="sm" onClick={handleAccept}>
+        <Button
+          size="sm"
+          variant="alternative"
+          className="w-full shrink-0 sm:w-auto"
+          onClick={handleAccept}
+        >
           {t('accept')}
         </Button>
       </AlertDescription>

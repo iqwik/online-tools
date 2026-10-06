@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import {useTranslations} from 'next-intl'
 import {getAllRegistryEntries} from '@/data'
-import {Link} from '@/i18n/navigation'
 
 export function Stats() {
   const t = useTranslations('home')
@@ -12,7 +12,10 @@ export function Stats() {
       label: t('stats.tools.label').toLowerCase(),
       href: '/tools',
     },
-    {value: t('stats.cost.value'), label: t('stats.cost.label').toLowerCase()},
+    {
+      value: t('stats.cost.value'),
+      label: t('stats.cost.label').toLowerCase(),
+    },
     {
       value: t('stats.signup.value'),
       label: t('stats.signup.label').toLowerCase(),
@@ -24,33 +27,27 @@ export function Stats() {
   ]
 
   return (
-    <div className="flex gap-3 m-auto py-4">
+    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-4">
       {items.map((item, i) => {
         const inner = (
-          <div className="flex items-center gap-1">
+          <div key={`inner-${i}`} className="flex items-baseline gap-1">
             <div className="font-extrabold">{item.value}</div>
-            <div className="font-medium text-xs h-full text-muted-foreground">
+            <div className="font-medium text-xs text-muted-foreground">
               {item.label}
             </div>
           </div>
         )
 
-        return (
-          <div key={item.label} className="flex items-center gap-1 text-sm">
-            {item.href ? (
-              <Link
-                href={item.href}
-                className="transition-opacity hover:opacity-80"
-              >
-                {inner}
-              </Link>
-            ) : (
-              inner
-            )}
-            {i < items.length - 1 && (
-              <span className="text-muted-foreground/50 ml-2">•</span>
-            )}
-          </div>
+        return item.href ? (
+          <Link
+            key={item.label}
+            href={item.href}
+            className="transition-opacity hover:opacity-80"
+          >
+            {inner}
+          </Link>
+        ) : (
+          <div key={item.label}>{inner}</div>
         )
       })}
     </div>

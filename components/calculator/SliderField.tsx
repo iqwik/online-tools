@@ -154,7 +154,13 @@ export function SliderField({input, label, value, onChange}: Props) {
           {label}
           {input.unit && (
             <span className="ml-1 text-muted-foreground">
-              ({t.has(input.unit) ? t(input.unit) : input.unit})
+              (
+              {t.has(input.unit)
+                ? t(input.unit)
+                : tGlobal.has(input.unit)
+                  ? tGlobal(input.unit)
+                  : input.unit}
+              )
             </span>
           )}
         </label>

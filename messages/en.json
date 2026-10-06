@@ -25,6 +25,7 @@
     },
     "search": {
       "placeholder": "Try 'bmi calculator' or 'json formatter'...",
+      "placeholderTry": "{q}",
       "label": "Search",
       "empty": "No tools found"
     },

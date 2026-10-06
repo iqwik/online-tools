@@ -1,4 +1,4 @@
-import type {Metadata} from 'next'
+import type {Metadata, Viewport} from 'next'
 import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 import {ReactNode} from 'react'
@@ -49,6 +49,12 @@ export const metadata: Metadata = {
   description: 'Free, fast, privacy-first online tools.',
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
+
 interface LayoutProps {
   children: ReactNode
   params: Promise<{locale: string}>
@@ -80,11 +86,12 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
                     <main className="flex flex-col flex-1 overflow-y-auto">
                       <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background px-4 sm:hidden">
                         <SidebarTrigger />
-                        <div className="flex flex-1 justify-end">
+                        <div className="flex flex-1 items-center justify-end gap-1.5">
                           <SearchTrigger variant="icon" />
+                          <ShareButton className="bg-card/80 size-9 rounded-lg backdrop-blur border" />
                         </div>
                       </header>
-                      <div className="fixed top-3 right-3 z-30 print:hidden">
+                      <div className="hidden sm:block fixed top-3 right-3 z-30 print:hidden">
                         <ShareButton className="bg-card/80 backdrop-blur border shadow-sm" />
                       </div>
                       <div className="flex flex-col flex-1">{children}</div>

@@ -129,7 +129,7 @@ export function UuidGeneratorView() {
         </div>
 
         <Button type="button" size="sm" onClick={generate}>
-          <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
+          <RefreshCw className="mr-1.5 size-3.5" />
           {tConfig('uuid-generator.generate')}
         </Button>
 
@@ -141,9 +141,9 @@ export function UuidGeneratorView() {
           disabled={items.length === 0}
         >
           {copiedAll ? (
-            <Check className="mr-1.5 h-3.5 w-3.5" />
+            <Check className="mr-1.5 size-3.5" />
           ) : (
-            <Copy className="mr-1.5 h-3.5 w-3.5" />
+            <Copy className="mr-1.5 size-3.5" />
           )}
           {tGlobal(copiedAll ? 'copiedAll' : 'copyAll')}
         </Button>
@@ -167,7 +167,7 @@ export function UuidGeneratorView() {
             type="checkbox"
             checked={uppercase}
             onChange={e => setUppercase(e.target.checked)}
-            className="h-4 w-4 rounded border-input"
+            className="size-4 rounded border-input"
           />
           {tConfig('uuid-generator.uppercase')}
         </label>
@@ -198,9 +198,9 @@ export function UuidGeneratorView() {
                 className="h-7 px-2 text-xs"
               >
                 {copiedId === item.id ? (
-                  <CheckCircle2 className="h-3.5 w-3.5 text-green-500" />
+                  <CheckCircle2 className="size-3.5 text-green-500" />
                 ) : (
-                  <Copy className="h-3.5 w-3.5" />
+                  <Copy className="size-3.5" />
                 )}
               </Button>
             </li>

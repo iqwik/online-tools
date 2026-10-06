@@ -6,7 +6,23 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ---
 
-## 🔥 Next up (v0.13.0)
+## 🔥 Next up (v0.14.0)
+
+### Rich Results Test (after deploy) — TOP PRIORITY
+- [ ] Run all JSON-LD (WebApplication, FAQPage, HowTo) for 5–10 representative tools through Google Rich Results Test. Suggested set: `invoice-generator`, `images-to-pdf`, `salary-slip-generator`, `income-tax-calculator`, `unit-converter`, `color-picker`, `regex-tester`, `json-formatter`.
+- [ ] Verify HowTo `step` has both `name` and `text` — Google requires both.
+- [ ] Verify FAQPage renders for both calculators and tools.
+- [ ] Verify home — WebSite + Organization + ItemList + FAQPage.
+- [ ] Verify one category page (`/finance`, `/developer`).
+- [ ] Verify `related` cards don't break schema (`Related` renders `<Link>`, must not be inside JSON-LD tree).
+- [ ] Fix any schema errors before submitting sitemap.
+
+### Final EN + RU proofread
+- [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
+- [ ] Catch awkward phrasing, natural-language errors, inconsistency between description and metaDescription tone.
+- [ ] Verify each `title` fits in mobile SERP (~50 chars visible).
+- [ ] Verify `home.featured.viewAll` ICU plural renders correctly in both locales at current count (76 after pdf-to-image).
+- [ ] Spot-check `home.search.placeholderTry` typewriter in both locales (EN `Try {q}` / RU `Попробуйте {q}`).
 
 ### Regression check — Variant C Stage 4
 - [~] **Systematic check: every View vs. its final texts.** Pattern documented in `CONTEXT.md` → «Правило: соответствие текста и кода». Open `components/tool/<Name>View.tsx` or `data/calculators/*.ts`, list every control/result, compare against `config.<slug>` in `messages/*.json`.
@@ -23,28 +39,19 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **Cycle check** — verify no tool references itself, no duplicates within a single array.
 - [ ] Consider **stronger typing** — `Slug` union or `satisfies readonly string[]` so typos fail at build time.
 
-### Rich Results Test (after deploy)
-- [ ] Run all JSON-LD (WebApplication, FAQPage, HowTo) for 5–10 representative tools through Google Rich Results Test.
-- [ ] Verify HowTo `step` has both `name` and `text` — Google requires both.
-- [ ] Verify FAQPage renders for both calculators and tools.
-- [ ] Verify home — WebSite + Organization + ItemList + FAQPage.
-- [ ] Verify `related` cards don't break schema (RelatedTools renders `<Link>`, must not be inside JSON-LD tree).
-- [ ] Fix any schema errors before submitting sitemap.
-
 ### Yandex Webmaster
 - [ ] Verify `Clean-param` directive is read correctly (Yandex Webmaster → Tools → robots.txt analysis).
 - [ ] Verify `priority` in sitemap is parsed (Yandex uses it weakly, but confirms sitemap is valid).
 - [ ] Submit sitemap to Yandex Webmaster.
 
-### Final EN + RU proofread
-- [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
-- [ ] Catch awkward phrasing, natural-language errors, inconsistency between description and metaDescription tone.
-- [ ] Verify each `title` fits in mobile SERP (~50 chars visible).
-- [ ] Verify `home.featured.viewAll` ICU plural renders correctly in both locales at current count (76 after pdf-to-image).
-
 ### Tools
-- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', ...]`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser, format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related`.**
+- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', 'svg-to-base64', 'base64-to-image']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related` (first) and `image-converter.related` (third).**
 - [ ] **Wave 6 — interactive trackers & builders** (10 tools): `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`. Needs architecture decision: separate `TrackerConfig` or new `ToolConfig` kinds.
+
+### P3 mobile cleanup (deferred from v0.14.0)
+- [ ] **`lucide-react` → `@animateicons/react` sweep.** Known files: `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, possibly others. Run `grep -rn "lucide-react" components/`. Replace with per-file subpath. Gotcha: `CheckCircle2` → `CircleCheck` in animateicons — verify subpath exists before bulk replace.
+- [ ] **Tap targets ≥ 44px on mobile.** Toolbar buttons / inputs at `h-8` (32px) fail the guideline. Fix pattern: `h-9 sm:h-8` or `h-10 sm:h-8`. Affected: `UuidGeneratorView` toolbar, likely other View toolbars. Sweep with `grep -rn 'size="sm"' components/tool/ components/calculator/ components/shared/`.
+- [ ] **Small spacing / font polish** across toolbars, forms, and previews on 320–375px. No structural issues left — only cosmetic.
 
 ### Categories — polish
 - [ ] **Extend `metaDescription` to 150–155 chars** if Google starts truncating on desktop SERP. Current values deliberately short (118–142) to guarantee no truncation.
@@ -70,19 +77,17 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] `CalculatorForm`: switch `<input type="date">` to `DatePicker` for `age-calculator`.
 - [ ] Active category link in sidebar — resolve slug → category (currently strict `===`).
 - [ ] Sidebar state resets on locale switch — consider hoisting `SidebarProvider` to root.
-- [ ] Mobile sidebar (Sheet) not tested.
 - [ ] `meta-tag-generator`: preview titles (`"Google search preview"`, etc.) hardcoded in EN.
 - [ ] `images-to-pdf`: PDF filename comes from `<title>`; consider setting `document.title` inside the print iframe.
 - [ ] `images-to-pdf`: image quality slider does not affect print output. If needed — recompress via Canvas before printing.
 - [ ] `screenshot-beautifier`: huge images (>4000px) at 2×/3× scale may lag — consider a downscaled preview canvas.
 - [ ] Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog.
-- [ ] **Footer grows vertically on `/privacy`, `/about`** — `<main>` not wrapped in `flex flex-col`, `<footer>` inside picks up free height. Fix: `main` → `flex flex-1 flex-col min-h-0`, `article` → `flex-1`, `header`/`footer` → `shrink-0`. Not closed.
 - [ ] **Invoice preview font-scaling** — after the em-refactor, verify A4 width isn't exceeded at `fontSize: large`. If it is, cap the largest preset.
 - [ ] **`Intl.NumberFormat` for currency** — confirm JPY produces `¥1,235` (no decimals) in both locales. Not tested in browser yet.
+- [ ] **`ShareIcon` `<title>` id collision risk** — 2 ShareButton instances exist but mutually exclusive via breakpoints. If a third instance is ever added (e.g. in SidebarSettings), either drop `<title>` + `aria-hidden="true"` or switch to `useId()`.
 
 ### Decisions pending
 - [ ] **`useCases` format** — keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (new `UseCaseSection`)?
-- [ ] **Share button** — planned for the header (like DeepSeek), components drafted. Decide: place in mobile header vs floating top-right vs sidebar. Requires `<ShareButton />` from `components/shared/`.
 - [ ] **Bonus tool**: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline. Discuss after Wave 6.
 
 ---
@@ -138,6 +143,8 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **Test SliderField cursor preservation** — type between digits, delete mid-string, paste, clear-to-empty.
 - [ ] **Test related links** — every tool renders exactly 4 cards, no broken/empty entries.
 - [ ] **Test Yandex robots** — `robots.txt` Clean-param visible in Yandex Webmaster.
+- [ ] **Test typewriter placeholder** — cycle of 6 strings in Hero, correct restart on locale switch, `prefers-reduced-motion` fallback.
+- [ ] **Test safe-area** — CookieConsent / Footer on iPhone with notch (both orientations).
 
 ---
 
@@ -145,7 +152,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 - [ ] Favorites (pin tools to sidebar)
 - [ ] Recently used tools
-- [x] **Share button** — component drafted (`ShareButton` with `navigator.share` + clipboard fallback). Placement pending.
+- [x] **Share button** — implemented (`ShareButton` with `navigator.share` + clipboard fallback). Dual instance: mobile header + floating `sm:block`.
 - [ ] Embed widget (`<iframe>` for calculators)
 - [ ] Print-friendly styles for calculators
 - [ ] Keyboard shortcuts reference page
@@ -161,6 +168,44 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ---
 
 ## ✅ Done
+
+### v0.14.0 — 2026-10-06
+
+**Mobile adaptation (P0–P3) + typewriter placeholder in Hero**
+
+**Typewriter placeholder**
+- [x] `hooks/use-typewriter.ts` — cyclic character-by-character typing of a string array. Phases: `start → typing → holding → erasing → between`. Respects `prefers-reduced-motion`. Restarts on locale switch via `texts.join('\u0000')` deps comparison.
+- [x] `SearchTrigger` — new prop `placeholders?: string[]`, static `placeholder?: string` fallback, blinking caret `bg-current animate-pulse`.
+- [x] `Hero.tsx` — builds placeholders from `SUGGESTION_KEYS` via `home.search.placeholderTry`.
+- [x] `messages/{en,ru}.json` — new key `home.search.placeholderTry` (`Try {q}` / `Попробуйте {q}`).
+
+**Viewport & safe-area**
+- [x] `export const viewport: Viewport` in `app/[locale]/layout.tsx` — `viewportFit: 'cover'`.
+- [x] `CookieConsent` — `pb-[calc(0.75rem+env(safe-area-inset-bottom))]`.
+- [x] `Footer` — `pb-[calc(0.625rem+env(safe-area-inset-bottom))]`.
+
+**Mobile header & ShareButton**
+- [x] Mobile header (`sm:hidden`) now contains `ShareButton` (`bg-card/80 size-9 rounded-lg backdrop-blur border`) + `SearchTrigger variant="icon"` with `gap-1.5`.
+- [x] Floating `ShareButton` gated behind `hidden sm:block fixed top-3 right-3 z-30`.
+- [x] No more overlap with `SearchTrigger` in sticky header.
+
+**Global layout — `.page`**
+- [x] `width: 100%` added to `@utility page` — fixes overflow on every page at 320–393px.
+- [x] `padding-inline: 1rem` (mobile) / `1.5rem` (sm+) — via `@media (min-width: 640px)` outside `@utility`.
+
+**Mobile layout fixes**
+- [x] `Hero.tsx` — inner div `w-full`. Badge — `flex-wrap justify-center whitespace-normal max-w-full`.
+- [x] `FeaturedTools.tsx` — header `flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between`.
+- [x] `Stats.tsx` — removed `•` separators, `flex-wrap items-center justify-center gap-x-6 gap-y-2`, `items-baseline`.
+- [x] `PrivacyNote.tsx` — content div `min-w-0`, label + badge `flex-col sm:flex-row sm:flex-wrap`, icon `size-10 sm:size-12`.
+- [x] `BreadCrumbs.tsx` — `flex-wrap items-center gap-x-1 gap-y-0.5`, `shrink-0` on icons. Fixes 3+ segment overflow.
+- [x] `CookieConsent` — `w-[calc(100%-2rem)] max-w-lg`, `flex-col sm:flex-row`.
+- [x] `Footer` — `flex-col gap-1.5 sm:flex-row sm:justify-between`.
+
+**Closed from earlier backlog**
+- [x] `Share button` — placement decision closed (dual instance).
+- [x] Mobile sidebar (Sheet) — verified on 360px / 375px.
+- [x] Footer vertical growth on `/privacy`, `/about` — resolved by mobile layout pass.
 
 ### v0.13.0 — 2026-10-06
 
@@ -374,11 +419,31 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 | Locales | 2 / 2 | 2 (then 5) |
 | SSG coverage | 100% | 100% |
 | Internal links (from related) | ~300 | — |
+| Mobile adaptation | Done (P0–P2) | — |
 | AdSense ready | No | Yes |
 
 ---
 
 ## 🔍 Audit trail
+
+### 2026-10-06 (v0.14.0)
+
+**Mobile adaptation — root cause of horizontal overflow:**
+1. `.page` inside `<main className="flex flex-col">` — flex item with `margin-inline: auto` did not stretch to parent width. Expanded by content when any child's `min-content` exceeded viewport. `overflow-x: clip` on `html, body` hid the symptom. Fix: `width: 100%` in `@utility page`.
+2. `BreadCrumbs` — `flex items-center` without `flex-wrap` couldn't compress below `min-content`, pushed `.page` past viewport. Fix: `flex-wrap` + `gap-x-1 gap-y-0.5`.
+3. `Hero` inner div — no `w-full`, `items-center` on outer flex column let it shrink-to-fit by content. Fix: `w-full`.
+4. `PrivacyNote` — content div without `min-w-0` couldn't shrink, label collapsed to ~50px column, badge overlaid text. Fix: `min-w-0` + `flex-col sm:flex-row`.
+
+**Safe-area / viewport:**
+- Added `viewportFit: 'cover'` — without it `env(safe-area-inset-*)` is ignored on iPhone.
+- CookieConsent and Footer overlapped home-indicator. Fixed via `pb-[calc(X+env(safe-area-inset-bottom))]`.
+
+**ShareButton placement:**
+- Floating `top-3 right-3 z-30` overlaid `SearchTrigger` in mobile header (`h-14 z-10`). Fixed: mobile instance inside header, floating gated behind `hidden sm:block`.
+
+**Typewriter placeholder:**
+- `use-typewriter.ts` — cyclic typing of 6 strings. Restart on locale switch via `texts.join('\u0000')` deps.
+- Caret via `animate-pulse`.
 
 ### 2026-10-06 (v0.13.0)
 

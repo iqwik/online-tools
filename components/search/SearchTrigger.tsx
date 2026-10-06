@@ -4,6 +4,7 @@ import {TooltipPositionerProps} from '@base-ui/react/tooltip'
 import {cn} from 'cn'
 import {useTranslations} from 'next-intl'
 import {useEffect, useRef, useState} from 'react'
+import {useTypewriter} from '@/hooks/use-typewriter'
 import {SearchIcon, SearchIconHandle} from '../ui/search-icon'
 import {Tooltip, TooltipContent, TooltipTrigger} from '../ui/tooltip'
 import {useSearch} from './SearchProvider'
@@ -12,7 +13,10 @@ interface Props {
   variant?: 'full' | 'icon'
   tooltip?: boolean
   tooltipSide?: TooltipPositionerProps['side']
+  /** Static placeholder. Ignored if `placeholders` is provided. */
   placeholder?: string
+  /** Array of placeholders to cycle through with a typewriter animation. */
+  placeholders?: string[]
   buttonClassName?: string
   kbdClassName?: string
 }
@@ -22,6 +26,7 @@ export function SearchTrigger({
   tooltip,
   tooltipSide = 'bottom',
   placeholder,
+  placeholders,
   buttonClassName,
   kbdClassName,
 }: Props) {
@@ -38,6 +43,16 @@ export function SearchTrigger({
 
   const isFull = variant === 'full'
   const hotKey = `${modKey}+K`
+
+  const fullPlaceholders =
+    placeholders && placeholders.length > 0
+      ? placeholders
+      : [placeholder || t('search.label')]
+  const shouldAnimate = isFull && Boolean(placeholders?.length)
+  const typed = useTypewriter({
+    texts: fullPlaceholders,
+    enabled: shouldAnimate,
+  })
 
   const button = (
     <button
@@ -76,7 +91,13 @@ export function SearchTrigger({
       {isFull && (
         <>
           <span className="min-w-0 flex-1 truncate pr-2 text-left">
-            {placeholder || t('search.label')}
+            {shouldAnimate ? typed : fullPlaceholders[0]}
+            {shouldAnimate && (
+              <span
+                aria-hidden
+                className="ml-0.5 inline-block h-[1em] w-px align-text-bottom bg-current animate-pulse"
+              />
+            )}
           </span>
 
           <kbd

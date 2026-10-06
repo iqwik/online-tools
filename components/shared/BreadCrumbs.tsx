@@ -11,15 +11,15 @@ export async function BreadCrumbs({items}: Props) {
   const tNav = await getTranslations('nav')
 
   return (
-    <nav className="text-xs text-muted-foreground flex items-center mb-6">
+    <nav className="text-xs text-muted-foreground mb-6 flex flex-wrap items-center gap-x-1 gap-y-0.5">
       <Link
         href="/"
         className="hover:text-foreground flex items-center gap-1 underline"
       >
-        <Home className="size-3" />
+        <Home className="size-3 shrink-0" />
         {tNav('home')}
       </Link>
-      <ChevronRight className="mx-1 size-3" />
+      <ChevronRight className="size-3 shrink-0" />
       {items.map((it, i) => {
         if (it?.href) {
           return (
@@ -27,7 +27,7 @@ export async function BreadCrumbs({items}: Props) {
               <Link href={it.href} className="hover:text-foreground underline">
                 {it.title}
               </Link>
-              <ChevronRight className="mx-1 size-3" />
+              <ChevronRight className="size-3 shrink-0" />
             </Fragment>
           )
         }

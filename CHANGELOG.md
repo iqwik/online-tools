@@ -10,9 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### TODO
 
 - **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but no `data/tools/developer.ts` entry and no View. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. When implemented, re-add `pdf-to-image` to `related` in `images-to-pdf` (removed in 0.13.0 to avoid broken links).
+- **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo) through Google Rich Results Test. Verify HowTo `step` has `name` + `text` in every step. Home page emits WebSite + Organization + ItemList + FAQPage — validate all four. Related tools are now 4 per page × 75 pages — check nothing broke in sitemap/schema. **Top of queue.**
 - **Regression check for remaining tools** — Stage 4 of Variant C. Systematic verification: open every View, compare against final texts. Known audit issues are all fixed, but a full pass hasn't been done.
-- **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo) through Google Rich Results Test. Verify HowTo `step` has `name` + `text` in every step. Home page emits WebSite + Organization + ItemList + FAQPage — validate all four. Related tools are now 4 per page × 75 pages — check nothing broke in sitemap/schema.
 - **Final EN + RU proofread** — read through all 75 tools × 2 locales one more time in the browser.
+- **`lucide-react` cleanup** — remaining imports in `UuidGeneratorView.tsx`, `BreadCrumbs.tsx` and possibly other View / shared components. Replace with `@animateicons/react/lucide/<name>-icon`. Run `grep -rn "lucide-react" components/` for the full list. Note: in `UuidGeneratorView` `CheckCircle2` renamed to `CircleCheck` in animateicons — verify subpath.
+- **Tap targets on mobile** — toolbar buttons / inputs at `h-8` (32px) fail the ≥44px guideline. Apply `h-9 sm:h-8` or `h-10 sm:h-8` on mobile. Affected: `UuidGeneratorView` toolbar, likely other View toolbars. Sweep with `grep -rn 'size="sm"' components/tool/ components/calculator/`.
+- **P3 mobile cosmetics** — deferred items from the 0.14.0 review: spacing tweaks, font sizes in toolbars, small tap-area polish. No structural issues left.
 - **Category `metaDescription` review** — if Google starts truncating on desktop SERP or coverage drops, extend to 150–155 characters.
 - **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq`.
 - **Wave 6 — interactive trackers & builders**: `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`
@@ -27,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `CalculatorForm`: switch `<input type="date">` to `DatePicker` for `age-calculator`
 - Active category link in sidebar — slug → category (currently `===`)
 - Sidebar state resets on locale switch
-- Mobile sidebar (Sheet) not tested
 - `meta-tag-generator`: preview titles (`"Google search preview"`, etc.) hardcoded in EN
 - OG image (`og-default.jpg`), AdSense, GA
 - `images-to-pdf`: PDF filename comes from `<title>`; consider setting `document.title = 'images-YYYY-MM-DD.pdf'` inside the print iframe before printing
@@ -37,6 +39,69 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`image-compressor` target file size mode** — binary search on quality to hit a target KB. Removed from texts, implementation in tech debt (3–4 hours).
 - Bonus tool: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline, no dependencies. Discuss after Wave 6
 - **Custom unit plural in labels** — `global.units.{months, years, days, weeks, hours, nights}` are simple strings (не ICU plural), используются как метки полей. Если понадобится согласование с числом — надо перейти на `t(unit, {count: value})` во всех `SliderField`/`CalculatorForm` и передавать значение. Отложено.
+
+## [0.14.0] - 2026-10-06
+
+### Mobile adaptation (P0–P3) + typewriter placeholder in Hero
+
+#### Added
+
+**Typewriter placeholder in Hero**
+
+- **`hooks/use-typewriter.ts`** — `useTypewriter({texts, typeSpeed?, eraseSpeed?, holdDuration?, startDelay?, betweenDelay?, enabled?})`. Cycles through an array of strings, typing and erasing character by character. Phases: `start → typing → holding → erasing → between → next`. Defaults: `typeSpeed: 55`, `eraseSpeed: 25`, `holdDuration: 1600`, `startDelay: 300`, `betweenDelay: 400`. Respects `prefers-reduced-motion` (renders `texts[0]` statically). Restarts on locale switch — compares `texts.join('\u0000')` in deps, uses `textsRef` for content stability against unstable array references. JSDoc and inline comments in English.
+- **`SearchTrigger` — new prop `placeholders?: string[]`** — array of strings for the typewriter. When present and `variant='full'` — animation enabled; `placeholder?: string` remains as static fallback. Blinking caret rendered as `<span aria-hidden className="ml-0.5 inline-block h-[1em] w-px align-text-bottom bg-current animate-pulse" />`.
+- **`Hero.tsx`** — builds the placeholders array from `SUGGESTION_KEYS = ['bmi', 'password', 'json', 'tip', 'word', 'compress']` via `tHome('search.placeholderTry', {q: tHome(`suggestions.${key}`)})`. Every cycle matches the visible suggestion chips below the input.
+- **Messages key `home.search.placeholderTry`** (EN + RU) — `Try {q}` / `Попробуйте {q}`.
+
+**Viewport & safe-area**
+
+- **`export const viewport: Viewport` in `app/[locale]/layout.tsx`** — `width: 'device-width'`, `initialScale: 1`, `viewportFit: 'cover'`. Enables `env(safe-area-inset-*)` on iPhone with notch.
+
+**Mobile header & ShareButton placement**
+
+- **Mobile header** (`sticky top-0 z-10 h-14 sm:hidden`) — now contains `SidebarTrigger` + `ShareButton` + `SearchTrigger variant="icon"` in `gap-1.5`. ShareButton styled as `bg-card/80 size-9 rounded-lg backdrop-blur border` (icon-only, matches SearchTrigger height).
+- **`ShareButton` — second instance on mobile** — the floating `fixed top-3 right-3 z-30` version is now `hidden sm:block`. On mobile the button lives inside the header, avoiding overlap with `SearchTrigger`.
+
+#### Changed
+
+**`.page` (globals.css)**
+
+- **`width: 100%`** added to `@utility page`. Root cause: `<main className="flex flex-col flex-1">` is a flex column — a flex item with `margin-inline: auto` does **not** stretch to the parent's width, it shrinks to its content's intrinsic width. If any descendant's `min-content` exceeded the viewport, `.page` grew beyond it, `margin: auto` centered the overflow on **both** sides, and `overflow-x: clip` on `html, body` hid the scrollbar without fixing the layout. `width: 100%` forces stretch, `max-width: 1100px` still caps on desktop.
+- **`padding-inline: 1rem` on mobile** (was 0 — only `margin: 24px auto`), **`1.5rem` at `sm+`**. Applied via `@media (min-width: 640px)` outside the `@utility` block (Tailwind 4 nested `@media` inside `@utility` unreliable in 4.0.x).
+
+**Mobile layout fixes — Hero / Home**
+
+- **`Hero.tsx`** — inner `<div>` now `w-full flex flex-col gap-4 max-w-2xl mx-auto`. Previously without `w-full`, `items-center` on the outer flex column let the inner div shrink-to-fit by content, expanding past `max-w-2xl` on narrow viewports.
+- **`Hero.tsx` Badge** — added `flex-wrap justify-center whitespace-normal max-w-full text-center`. On 360px the three badge items (100% free / no signup / privacy) now wrap inside the badge instead of forcing horizontal overflow.
+- **`FeaturedTools.tsx` header** — `flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between`. On mobile the h2 and "Browse all" link stack vertically; link gets `self-start sm:self-auto`.
+- **`Stats.tsx`** — removed `•` separators. `flex-wrap items-center justify-center gap-x-6 gap-y-2` (`m-auto` → `justify-center`), `items-baseline` inside each item, `<span>` instead of `<div>` (both label and value are inline). Fixes orphan `•` and vertical-misaligned `₽` / `$` on wrap.
+- **`PrivacyNote.tsx`** — content div gets `min-w-0` (flex `min-width: auto` prevented shrink below `min-content`). Label + badge container: `flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:items-center`. Badge gets `self-start sm:self-auto`. Icon `size-10 sm:size-12`, inner icon `size-8 sm:size-10`. Padding `p-3.5 sm:p-4`. On 360px the label wraps to full width and the badge sits below it.
+
+**Mobile layout fixes — Shared**
+
+- **`BreadCrumbs.tsx`** — `flex flex-wrap items-center gap-x-1 gap-y-0.5` instead of `flex items-center` + `mx-1` on chevrons. `shrink-0` on `<Home />` and `<ChevronRight />`. Without `flex-wrap`, a long chain (e.g. "Инструменты разработчика › Генератор UUID") could not compress below its `min-content` and pushed the whole `<nav>` — and therefore the whole `.page` — past the viewport.
+- **`CookieConsent`** — `w-[calc(100%-2rem)] max-w-lg` (was `w-full max-w-max`), `flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4`. Button gets `w-full sm:w-auto shrink-0`. Padding bottom: `pb-[calc(0.75rem+env(safe-area-inset-bottom))]`. Text `text-sm`.
+- **`Footer.tsx`** — `flex-col gap-1.5 sm:flex-row sm:justify-between sm:gap-0`. Padding bottom: `pb-[calc(0.625rem+env(safe-area-inset-bottom))]`. On 360px: links row on top, copyright below.
+
+#### Fixed
+
+- **Horizontal overflow on every page at 320–393px** — root cause was `.page` in the flex-column `<main>` without `width: 100%`. Fixed via `@utility page`. Symptom on `<main>`: content clipped on both sides (h1, description, breadcrumbs, cards) because `overflow-x: clip` on `html, body` hides the missing scrollbar.
+- **`BreadCrumbs` overflow with 3+ segments** — fixed via `flex-wrap` (see above).
+- **`PrivacyNote` collapsed to ~50px column on mobile** — label squeezed next to badge, badge overlaid text. Fixed via `min-w-0` + `flex-col sm:flex-row` (see above).
+- **ShareButton overlapped mobile header** — floating `top-3 right-3 z-30` sat directly over `SearchTrigger` in the `h-14 z-10` sticky header. Fixed by moving mobile Share into the header and gating the floating version behind `hidden sm:block`.
+- **CookieConsent / Footer overlapped home-indicator** — after `viewportFit: 'cover'` was enabled, `bottom-4` placed the banner under the iPhone home-indicator. Fixed via `env(safe-area-inset-bottom)` padding.
+- **Stats `•` orphans on wrap** — separators floated to line start/end when items wrapped. Removed in favor of `gap-x-6`.
+
+#### Removed
+
+- **`•` separators in `Stats.tsx`** — replaced with `gap-x-6 gap-y-2`.
+
+#### Known limitations
+
+- **`lucide-react` still imported in some files** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, likely others. Rule 32 violation. Sweep in P3 — see `[Unreleased]`.
+- **Tap targets below 44px in some toolbars** — `h-8` / `size="sm"` buttons in `UuidGeneratorView` toolbar and similar. Fix scoped to P3.
+- **`useTypewriter` comment language** — JSDoc and inline comments intentionally in English, matching the rest of `hooks/`; consistent with CONTEXT rule 32 exception convention.
+- **`ShareIcon` `<title>` ID collision risk** — two ShareButton instances exist but are mutually exclusive via breakpoints (`sm:hidden` vs `hidden sm:block`). If a third is ever added (e.g. in SidebarSettings), either drop `<title>` + `aria-hidden="true"` or switch to `useId()`. Note in CONTEXT rule 70.
 
 ## [0.13.0] - 2026-10-06
 
