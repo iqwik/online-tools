@@ -2,7 +2,7 @@
 
 Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser. No signup required.
 
-Live at [toolyland.com](https://toolyland.com). Hosted on **Amvera** (RU + world availability). Deployed from GitHub.
+Live at [toolyland.com](https://toolyland.com). Deployed from GitHub.
 
 Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, no `src/`.
 
@@ -30,9 +30,6 @@ Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, n
 | Diff | diff |
 | PDF → image | pdfjs-dist 6.3.289 |
 | ZIP archive | jszip |
-| **Hosting** | **Amvera** (tariff «Начальный», 290 ₽/mo, SLA) |
-| **Domain** | **toolyland.com** (registered at Timeweb) |
-| **SSL** | Let's Encrypt (automatic via Amvera) |
 
 ## Getting Started
 
@@ -66,21 +63,6 @@ In production (Amvera):
     NEXT_PUBLIC_SITE_NAME=Toolyland
 
 Both are used by `sitemap.ts`, `robots.ts`, canonical URLs, hreflang, Open Graph, and JSON-LD `publisher`. `NEXT_PUBLIC_*` vars are **inlined at build time** — after changing them, rebuild.
-
-## Deployment
-
-Hosted on **Amvera** (Russian PaaS, similar UX to Vercel). Chosen because Vercel is **blocked in RU** without VPN (IP blocking + OCSP stapling issues on Hobby plan).
-
-Setup steps:
-
-1. Create project in Amvera, connect GitHub repo.
-2. Tariff «Начальный» (290 ₽/mo, includes SLA). «Пробный» (170 ₽/mo) has no SLA — not recommended for AdSense monetization.
-3. Add custom domain `toolyland.com` in Amvera project settings → get A-record IP + TXT verification value.
-4. In Timeweb DNS: A `@` → Amvera IP, A `www` → same IP, TXT `@` → verification value.
-5. Wait for propagation → Let's Encrypt SSL issued automatically.
-6. Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_SITE_NAME` in Amvera env vars → rebuild.
-
-Verify after deploy: site is reachable from RU (home internet + mobile operators) **and** from the world (VPN check).
 
 ## Project structure
 
