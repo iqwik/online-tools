@@ -2,7 +2,7 @@
 
 Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser. No signup required.
 
-Live at [toolyland.com](https://toolyland.com). Hosted on **Amvera** (RU + world availability). Deployed from GitHub.
+Live at [toolyland.com](https://toolyland.com). Deployed from GitHub.
 
 Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, no `src/`.
 
