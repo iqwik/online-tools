@@ -1,10 +1,7 @@
 import {getLocale, getTranslations} from 'next-intl/server'
 import {categories} from '@/data'
-import {getBaseUrl} from '@/helpers'
+import {getBaseUrl, getPublisher} from '@/helpers'
 import {routing} from '@/i18n/routing'
-
-// TODO: parametrize via NEXT_PUBLIC_SITE_NAME (see tech debt)
-const PUBLISHER_NAME = 'ProjectName'
 
 export async function HomeSchema() {
   const t = await getTranslations('categories')
@@ -15,21 +12,18 @@ export async function HomeSchema() {
 
   const website = {
     '@context': 'https://schema.org',
+    '@id': `${baseUrl}${localePath}#website`,
     '@type': 'WebSite',
-    name: PUBLISHER_NAME,
+    name: getPublisher().name,
     url: `${baseUrl}${localePath}`,
     inLanguage: locale,
-    publisher: {
-      '@type': 'Organization',
-      name: PUBLISHER_NAME,
-      url: baseUrl,
-    },
+    publisher: getPublisher(),
   }
 
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: t('all.name'),
+    name: t('all.title'),
     numberOfItems: categories.length,
     itemListElement: categories.map((cat, i) => ({
       '@type': 'ListItem',

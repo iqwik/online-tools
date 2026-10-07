@@ -2,9 +2,9 @@
 
 import {ArrowRight02Icon} from '@animateicons/react/huge/arrow-right-0-2-icon'
 import {cn} from 'cn'
-import Link from 'next/link'
 import {useRef} from 'react'
 import {CATEGORY_COLORS, Category} from '@/data/categories'
+import {Link} from '@/i18n/navigation'
 import {IconHandle} from '@/types'
 
 export interface RelatedPreviewProps extends Pick<Category, 'Icon'> {

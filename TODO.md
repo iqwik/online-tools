@@ -6,16 +6,37 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ---
 
-## 🔥 Next up (v0.14.0)
+## 🔥 Next up (v0.16.0)
 
-### Rich Results Test (after deploy) — TOP PRIORITY
-- [ ] Run all JSON-LD (WebApplication, FAQPage, HowTo) for 5–10 representative tools through Google Rich Results Test. Suggested set: `invoice-generator`, `images-to-pdf`, `salary-slip-generator`, `income-tax-calculator`, `unit-converter`, `color-picker`, `regex-tester`, `json-formatter`.
+### Deploy to Amvera — TOP PRIORITY
+- [ ] Create project in Amvera, connect GitHub repo.
+- [ ] Choose tariff «Начальный» (290 ₽/mo, SLA) — not «Пробный» (no SLA).
+- [ ] In Amvera project settings → add custom domain `toolyland.com` (HTTPS, own domain).
+- [ ] Copy A-record IP + TXT verification value from Amvera.
+- [ ] In Timeweb DNS for `toolyland.com`: add A `@` → Amvera IP, A `www` → same IP, TXT `@` → verification value.
+- [ ] Wait for DNS propagation (15 min – few hours).
+- [ ] Confirm domain in Amvera → automatic Let's Encrypt SSL issuance.
+- [ ] Set env vars in Amvera: `NEXT_PUBLIC_SITE_URL=https://toolyland.com`, `NEXT_PUBLIC_SITE_NAME=Toolyland`.
+- [ ] Rebuild project after env set (`NEXT_PUBLIC_*` inlined at build time).
+- [ ] Verify accessibility: home internet (RU), mobile internet (MTS/Megafon/Beeline/Tele2), VPN (world).
+- [ ] Verify canonical + JSON-LD url = `https://toolyland.com/...` (both EN and RU pages).
+
+### Rich Results Test (after Amvera deploy)
+- [ ] Run all JSON-LD through Google Rich Results Test. Pages: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`.
+- [ ] Verify URL in JSON-LD matches canonical (with locale prefix on RU pages) — this was fixed in 0.15.0.
 - [ ] Verify HowTo `step` has both `name` and `text` — Google requires both.
 - [ ] Verify FAQPage renders for both calculators and tools.
-- [ ] Verify home — WebSite + Organization + ItemList + FAQPage.
-- [ ] Verify one category page (`/finance`, `/developer`).
+- [ ] Verify home — WebSite (`@id`) + ItemList (6 categories) + FAQPage (3 Q).
+- [ ] Verify one category page — CollectionPage + ItemList + FAQPage (5 Q) + BreadcrumbList.
+- [ ] Verify `/tools` — CollectionPage + ItemList (75 tools).
 - [ ] Verify `related` cards don't break schema (`Related` renders `<Link>`, must not be inside JSON-LD tree).
 - [ ] Fix any schema errors before submitting sitemap.
+
+### OG image + favicon set
+- [ ] Create `og-default.jpg` (1200×630) based on Toolyland logo — navy background, teal T, coral dot, «Toolyland» wordmark, tagline. Place in `public/`.
+- [ ] Wire OG image in `generateMetadata` for home, `/tools`, categories, tools.
+- [ ] Generate favicon set via realfavicongenerator.net from 512×512 master: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-{192,512}.png`, `site.webmanifest`.
+- [ ] Wire favicon via `metadata.icons` in `app/[locale]/layout.tsx`.
 
 ### Final EN + RU proofread
 - [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
@@ -32,20 +53,21 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [x] `images-to-pdf` — drag → «стрелки», quality removed from features.
 - [x] `number-to-words-converter` — EN reformulated.
 - [x] `meta-tag-generator` — inputs described in texts.
-- [ ] **Remaining ~69 tools** — spot-check at least 10 random (one from each category) plus any tool mentioned as «readability», «pages», or another feature that might not exist in View.
-
-### Related links — verification
-- [ ] **Broken slug check across all 75 tools.** `related` is `string[]` — typo renders as missing card silently. Run `grep -A4 "related:" data/calculators/*.ts data/tools/*.ts`, cross-check every slug against `getRegistryEntry`.
-- [ ] **Cycle check** — verify no tool references itself, no duplicates within a single array.
-- [ ] Consider **stronger typing** — `Slug` union or `satisfies readonly string[]` so typos fail at build time.
+- [ ] **Remaining ~69 tools** — spot-check at least 10 random (one from each category) plus any tool mentioned as «readability», «pages», or another feature that might not exist in View. Suggested: `InvoiceGeneratorView`, `SalarySlipGeneratorView`, `ColorPickerView`, `RegexTesterView`, `JsonFormatterView`.
 
 ### Yandex Webmaster
 - [ ] Verify `Clean-param` directive is read correctly (Yandex Webmaster → Tools → robots.txt analysis).
 - [ ] Verify `priority` in sitemap is parsed (Yandex uses it weakly, but confirms sitemap is valid).
 - [ ] Submit sitemap to Yandex Webmaster.
 
+### Google Search Console
+- [ ] Verify site ownership (DNS TXT or HTML file).
+- [ ] Submit `sitemap.xml`.
+- [ ] Check Coverage report after 1–2 weeks.
+- [ ] Check Core Web Vitals after traffic starts.
+
 ### Tools
-- [~] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', 'svg-to-base64', 'base64-to-image']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related` (first) and `image-converter.related` (third).**
+- [ ] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', 'svg-to-base64', 'base64-to-image']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related` (first) and `image-converter.related` (third).**
 - [ ] **Wave 6 — interactive trackers & builders** (10 tools): `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`. Needs architecture decision: separate `TrackerConfig` or new `ToolConfig` kinds.
 
 ### P3 mobile cleanup (deferred from v0.14.0)
@@ -55,7 +77,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ### Categories — polish
 - [ ] **Extend `metaDescription` to 150–155 chars** if Google starts truncating on desktop SERP. Current values deliberately short (118–142) to guarantee no truncation.
-- [ ] **Add 6th FAQ question per category** if organic performance suggests.
+- [ ] **Add 6th FAQ question per category** if organic performance suggests. Note: `CategorySchema` FAQ iterates `q1..q5` — update to include q6 when expanding.
 - [ ] **OG image per category** — after `og-default.jpg` exists.
 
 ### Locale refactor in `data/**`
@@ -70,7 +92,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ### Tech debt (from `CONTEXT.md`)
 - [ ] `SalarySlipGeneratorView`: replace `payPeriod` text input with two `<Select>` (Month + Year). Bump localStorage key to `v2`.
 - [ ] Extract `CurrencySelect` — `CURRENCIES` / `CURRENCY_SYMBOLS` duplicated across 3 files (invoice, quotation, payslip).
-- [ ] `ToolSchema` / `CalculatorSchema`: parametrize hardcoded `publisher.name: 'ProjectName'` — move to `NEXT_PUBLIC_SITE_NAME` env.
+- [x] ~~`ToolSchema` / `CalculatorSchema`: parametrize hardcoded `publisher.name: 'ProjectName'`~~ — **DONE in 0.15.0** via `helpers/site.ts → getPublisher()`.
 - [ ] `types/common.ts`: extract `FAQItem` (duplicated). Consider merging `FeatureItem` and `HowToStep`.
 - [ ] Audit `placeholder` / `defaultValue` for hardcoded English across all view components.
 - [ ] `CURRENT_YEAR` — wrap in `useMemo` inside the component.
@@ -85,6 +107,9 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **Invoice preview font-scaling** — after the em-refactor, verify A4 width isn't exceeded at `fontSize: large`. If it is, cap the largest preset.
 - [ ] **`Intl.NumberFormat` for currency** — confirm JPY produces `¥1,235` (no decimals) in both locales. Not tested in browser yet.
 - [ ] **`ShareIcon` `<title>` id collision risk** — 2 ShareButton instances exist but mutually exclusive via breakpoints. If a third instance is ever added (e.g. in SidebarSettings), either drop `<title>` + `aria-hidden="true"` or switch to `useId()`.
+- [ ] **Related slug typization** — `string[]` doesn't catch typos (like the old `lorem-ipsum`). Consider `Slug` union type or `satisfies readonly string[]` assertion so typos fail at build time.
+- [ ] **`getToolCount()` is sync** — fine at 75, fine at 500. If registry grows beyond ~1000 entries with heavy per-entry initialization, consider a cached constant or build-time inlining.
+- [ ] **`helpers/site.ts` uses `getBaseUrl()` inside `getPublisher()`** — evaluates at request time, not module load. Good. But `SITE_NAME` is const — if `NEXT_PUBLIC_SITE_NAME` changes at build time, requires full rebuild (already noted in env var section).
 
 ### Decisions pending
 - [ ] **`useCases` format** — keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (new `UseCaseSection`)?
@@ -94,24 +119,39 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ## 🚀 Production
 
-- [ ] Deploy to Vercel
-- [ ] Custom domain + HTTPS
-- [ ] Set `NEXT_PUBLIC_SITE_URL` to the production URL
-- [ ] Set `NEXT_PUBLIC_SITE_NAME` (used by JSON-LD publisher)
-- [ ] Connect Google Analytics (`NEXT_PUBLIC_GA_ID`)
-- [ ] Connect Google AdSense (`NEXT_PUBLIC_ADSENSE_CLIENT`)
-- [ ] Submit AdSense for review (after content is ready)
-- [ ] Generate `manifest.webmanifest` + favicon set
-- [ ] Create OG image (`og-default.jpg`, 1200×630)
-- [ ] Submit `sitemap.xml` to Google Search Console
-- [ ] Submit to Yandex Webmaster
-- [ ] Add `robots.txt` verification
+### Hosting — Amvera (decided)
+- [x] ~~Deploy to Vercel~~ — **REJECTED**: IP blocking + OCSP stapling issues in RU. Probe deploy on `vercel-probe` confirmed inaccessible without VPN.
+- [x] Choose hosting — **Amvera** (Russian PaaS, RU + world availability).
+- [ ] Deploy to Amvera (tariff «Начальный»).
+- [ ] Custom domain `toolyland.com` — DNS setup in Timeweb.
+- [ ] HTTPS via Let's Encrypt (automatic in Amvera).
+
+### Domain — toolyland.com (decided)
+- [x] Domain purchased at Timeweb.
+- [ ] Verify DNS setup.
+- [ ] Verify accessibility from RU + world.
+
+### Env vars
+- [ ] Set `NEXT_PUBLIC_SITE_URL=https://toolyland.com` (in Amvera dashboard).
+- [ ] Set `NEXT_PUBLIC_SITE_NAME=Toolyland` (in Amvera dashboard).
+- [ ] Rebuild after env set.
+
+### Analytics & monetization
+- [ ] Connect Google Analytics (`NEXT_PUBLIC_GA_ID`).
+- [ ] Connect Google AdSense (`NEXT_PUBLIC_ADSENSE_CLIENT`).
+- [ ] Submit AdSense for review (after 2–3 months of stable traffic).
+- [ ] Connect Yandex Metrica (optional, for RU audience).
+
+### Search engines
+- [ ] Submit `sitemap.xml` to Google Search Console.
+- [ ] Submit to Yandex Webmaster.
+- [ ] Verify `robots.txt` in both consoles.
 
 ---
 
 ## 🎨 Polish
 
-- [ ] Replace `<ProjectName>` with the real project name (search & replace across the repo)
+- [x] ~~Replace `<ProjectName>` with the real project name~~ — **DONE in 0.15.0**: unified via `helpers/site.ts → SITE_NAME`.
 - [ ] Remove leftover barrel imports, if any
 - [ ] Fix `useExhaustiveDependencies` warning in `sidebar.tsx` (Biome)
 - [ ] Remove `display: contents` wrapper after `@base-ui/react` update (PR #4350)
@@ -145,6 +185,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **Test Yandex robots** — `robots.txt` Clean-param visible in Yandex Webmaster.
 - [ ] **Test typewriter placeholder** — cycle of 6 strings in Hero, correct restart on locale switch, `prefers-reduced-motion` fallback.
 - [ ] **Test safe-area** — CookieConsent / Footer on iPhone with notch (both orientations).
+- [ ] **Test Amvera deploy** — accessibility from RU (home + mobile) and world (VPN).
 
 ---
 
@@ -168,6 +209,56 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ---
 
 ## ✅ Done
+
+### v0.15.0 — 2026-10-07
+
+**SEO finalization (static part) + domain + hosting + brand identity**
+
+**JSON-LD on all page types**
+- [x] `components/tools/ToolsSchema.tsx` — new. `CollectionPage` + `ItemList` (all 75 tools). Mounted on `/tools`.
+- [x] `components/category/CategorySchema.tsx` — new. `CollectionPage` + `ItemList` + `FAQPage` (5 Q) + `BreadcrumbList`. Mounted in `CategoryPage` before `.page` div.
+- [x] `helpers/site.ts` — new. `SITE_NAME` + `getPublisher()`. Re-exported from `helpers/index.ts`.
+- [x] All 5 schema components (`HomeSchema`, `CategorySchema`, `ToolsSchema`, `CalculatorSchema`, `ToolSchema`) now use `getPublisher()`.
+- [x] Removed hardcoded `'ProjectName'` from all schemas.
+
+**URL in JSON-LD = canonical**
+- [x] `CalcLayout` / `ToolLayout` — `url` built as `${baseUrl}${localePath}/${config.slug}`.
+- [x] `CategorySchema` / `ToolsSchema` — same pattern with `localePath`.
+- [x] Fixes "url mismatch" in Rich Results Test on RU pages.
+
+**Locale-aware Link everywhere**
+- [x] Mass replace `import Link from 'next/link'` → `import {Link} from '@/i18n/navigation'`.
+- [x] Affected: `EntryPreview.tsx`, `RelatedPreview.tsx`, `CategoryPage.tsx`, `BreadCrumbs.tsx`, `Footer.tsx`, all Views.
+- [x] Fixes EN redirect hop on RU pages.
+
+**ICU plural + semantic fixes**
+- [x] `category.toolsCount` (EN) — `{count, plural, one {# tool} other {# tools}}`.
+- [x] New key `categories.all.title` («Categories» / «Категории»).
+- [x] `HomeSchema.ItemList.name` — from `all.name` («All Tools») to `all.title` («Categories») — matches `numberOfItems: 6`.
+- [x] `CategorySchema.BreadcrumbList` position 1 — `nav.home` («Home» / «Главная») instead of `all.name`.
+
+**Domain + hosting decisions**
+- [x] Domain purchased — `toolyland.com` at Timeweb.
+- [x] Hosting chosen — Amvera «Начальный» (290 ₽/mo, SLA).
+- [x] Vercel rejected after probe deploy — blocked in RU without VPN.
+
+**Brand identity**
+- [x] Logo finalized — navy `#0F172A` background, teal `#14B8A6` letter T, coral `#FB7185` dot.
+- [x] Wordmark «toolyland».
+
+**Verified (static check)**
+- [x] Related links — 300 slugs across 75 tools, 0 broken, 0 self-ref, 0 duplicates.
+- [x] FAQ structure — 6 Q for all 75 tools (7 for `images-to-pdf`), 3 Q for home, 5 Q for categories.
+- [x] searchSynonyms present for all 75 × 2 locales.
+- [x] Titles ≤ 60 chars (spot-checked).
+- [x] metaDescription ≤ 155 chars (spot-checked).
+
+**Known limitations (tracked in [Unreleased])**
+- Rich Results Test not run yet (needs deployed site).
+- Regression check still pending for ~69 tools.
+- EN + RU proofread pending.
+- OG image + favicon set pending.
+- `related` still `string[]` — no compile-time typo check.
 
 ### v0.14.0 — 2026-10-06
 
@@ -420,11 +511,36 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 | SSG coverage | 100% | 100% |
 | Internal links (from related) | ~300 | — |
 | Mobile adaptation | Done (P0–P2) | — |
+| JSON-LD coverage | Done (all page types) | — |
+| Domain | toolyland.com (Timeweb) | — |
+| Hosting | Amvera «Начальный» | — |
+| Deployed | No | Yes |
 | AdSense ready | No | Yes |
 
 ---
 
 ## 🔍 Audit trail
+
+### 2026-10-07 (v0.15.0)
+
+**JSON-LD url vs canonical mismatch on RU pages:**
+- `CalcLayout` / `ToolLayout` / `CategorySchema` / `ToolsSchema` were building JSON-LD urls as `${baseUrl}/${slug}` — without locale prefix. RU canonical is `https://toolyland.com/ru/bmi-calculator`, but JSON-LD emitted `https://toolyland.com/bmi-calculator`. Rich Results Test would flag "url mismatch". Fixed via `localePath` — added `getLocale()` + `routing.defaultLocale` check to all four schema builders.
+
+**`next/link` on RU pages:**
+- `EntryPreview`, `RelatedPreview`, `CategoryPage`, `BreadCrumbs` used `next/link` — internal links emitted EN URLs. RU visitor clicking related card got a 301 redirect hop. Fixed via mass replace to `@/i18n/navigation` → `Link`.
+
+**`ItemList.name` semantic mismatch:**
+- `HomeSchema.ItemList.name` was `categories.all.name` («All Tools»), but `numberOfItems: 6` (categories). Rich Results Test would warn. Fixed: new key `categories.all.title` («Categories»), `name` set to `all.title`.
+- Same fix in `CategorySchema.BreadcrumbList` position 1 — `nav.home` for the root URL, not `all.name`.
+
+**`category.toolsCount` EN missing plural:**
+- `{count} tools` → would render "1 tools" if a category ever had one tool. Fixed: ICU plural `one/other`. RU already had 4-category form.
+
+**Publisher unification:**
+- `'ProjectName'` hardcoded in 4 files (`HomeSchema`, `CategorySchema`, `CalculatorSchema`, `ToolSchema`). Fixed: `helpers/site.ts → getPublisher()` + `SITE_NAME` from `NEXT_PUBLIC_SITE_NAME` env. All 5 schemas import it.
+
+**Vercel rejected:**
+- Probe deploy on `vercel-probe` (static hello-world) confirmed inaccessible from RU without VPN. Root cause: IP blocking + OCSP stapling issues on Hobby plan. Decision: Amvera (Russian PaaS) — RU + world availability.
 
 ### 2026-10-06 (v0.14.0)
 

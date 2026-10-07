@@ -1,5 +1,5 @@
 import {getTranslations} from 'next-intl/server'
-import {getBaseUrl} from '@/helpers'
+import {getPublisher} from '@/helpers'
 import type {ToolConfig} from '@/types'
 import {HowToUseStep} from '../shared/HowToUseSection'
 
@@ -20,11 +20,7 @@ export async function ToolSchema({tool, url}: Props) {
     operatingSystem: 'Web',
     offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
     description: t(tool.metaDescription),
-    publisher: {
-      '@type': 'Organization',
-      name: 'ProjectName',
-      url: getBaseUrl(),
-    },
+    publisher: getPublisher(),
   }
 
   const faq =

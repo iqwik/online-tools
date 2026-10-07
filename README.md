@@ -1,6 +1,8 @@
-# <ProjectName>
+# Toolyland
 
 Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser. No signup required.
+
+Live at [toolyland.com](https://toolyland.com). Hosted on **Amvera** (RU + world availability). Deployed from GitHub.
 
 Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, no `src/`.
 
@@ -28,6 +30,9 @@ Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, n
 | Diff | diff |
 | PDF → image | pdfjs-dist 6.3.289 |
 | ZIP archive | jszip |
+| **Hosting** | **Amvera** (tariff «Начальный», 290 ₽/mo, SLA) |
+| **Domain** | **toolyland.com** (registered at Timeweb) |
+| **SSL** | Let's Encrypt (automatic via Amvera) |
 
 ## Getting Started
 
@@ -53,19 +58,40 @@ Open http://localhost:3000.
 Create `.env.local`:
 
     NEXT_PUBLIC_SITE_URL=http://localhost:3000
+    NEXT_PUBLIC_SITE_NAME=Toolyland
 
-In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`, canonical URLs, JSON-LD).
+In production (Amvera):
+
+    NEXT_PUBLIC_SITE_URL=https://toolyland.com
+    NEXT_PUBLIC_SITE_NAME=Toolyland
+
+Both are used by `sitemap.ts`, `robots.ts`, canonical URLs, hreflang, Open Graph, and JSON-LD `publisher`. `NEXT_PUBLIC_*` vars are **inlined at build time** — after changing them, rebuild.
+
+## Deployment
+
+Hosted on **Amvera** (Russian PaaS, similar UX to Vercel). Chosen because Vercel is **blocked in RU** without VPN (IP blocking + OCSP stapling issues on Hobby plan).
+
+Setup steps:
+
+1. Create project in Amvera, connect GitHub repo.
+2. Tariff «Начальный» (290 ₽/mo, includes SLA). «Пробный» (170 ₽/mo) has no SLA — not recommended for AdSense monetization.
+3. Add custom domain `toolyland.com` in Amvera project settings → get A-record IP + TXT verification value.
+4. In Timeweb DNS: A `@` → Amvera IP, A `www` → same IP, TXT `@` → verification value.
+5. Wait for propagation → Let's Encrypt SSL issued automatically.
+6. Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_SITE_NAME` in Amvera env vars → rebuild.
+
+Verify after deploy: site is reachable from RU (home internet + mobile operators) **and** from the world (VPN check).
 
 ## Project structure
 
     .
     ├── app/
     │   ├── [locale]/
-    │   │   ├── layout.tsx              ← root layout (html, body, ThemeProvider, Sidebar)
+    │   │   ├── layout.tsx              ← root layout (html, body, ThemeProvider, Sidebar, Footer, CookieConsent, viewport: viewportFit 'cover')
     │   │   ├── page.tsx                ← home (HomeSchema + Hero + CategoryCards + FeaturedTools + RecentlyAdded + HomeFaq + PrivacyNote)
     │   │   ├── not-found.tsx           ← 404
     │   │   ├── [slug]/page.tsx         ← dispatcher: calculator or tool
-    │   │   ├── tools/page.tsx          ← full catalog (moved from home)
+    │   │   ├── tools/page.tsx          ← full catalog (ToolsSchema + ToolGrid)
     │   │   ├── about/page.tsx
     │   │   ├── privacy/page.tsx
     │   │   ├── finance/page.tsx        ← category hub (static)
@@ -89,25 +115,31 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   ├── ToolView.tsx            ← switch by kind + assertNever
     │   │   ├── ToolSchema.tsx          ← JSON-LD WebApplication + FAQPage + HowTo
     │   │   └── *View.tsx               ← one view per tool kind (45 total)
+    │   ├── tools/
+    │   │   └── ToolsSchema.tsx         ← JSON-LD CollectionPage + ItemList (75 tools)
     │   ├── category/
-    │   │   └── CategoryPage.tsx        ← shared category hub template (server)
+    │   │   ├── CategoryPage.tsx        ← shared category hub template (server)
+    │   │   └── CategorySchema.tsx      ← JSON-LD CollectionPage + ItemList + FAQPage + BreadcrumbList
     │   ├── shared/
     │   │   ├── FAQ.tsx                 ← shared FAQ block (accepts namespace)
-    │   │   ├── RelatedTools.tsx        ← 4 related preview cards (cross-type)
-    │   │   ├── EntryPreview.tsx        ← tool card preview for grids
+    │   │   ├── Related.tsx             ← 4 related preview cards (client)
+    │   │   ├── RelatedPreview.tsx      ← compact preview card for Related block
+    │   │   ├── EntryPreview.tsx        ← main catalog card (client, i18n Link)
     │   │   ├── InputPanel.tsx          ← textarea panel with header + copy
     │   │   ├── OutputPanel.tsx         ← output panel with copy + optional download
     │   │   ├── CopyButton.tsx          ← copy-to-clipboard button
     │   │   ├── ExpandableSplit.tsx     ← split-view with fullscreen dialog
-    │   │   ├── CardPreview.tsx         ← tool card preview (takes slug, resolves config)
+    │   │   ├── CardPreview.tsx         ← legacy tool card preview (see TODO — check usage)
     │   │   ├── Highlight.tsx           ← search-match highlighting
     │   │   ├── HowToUseSection.tsx     ← renders howToUse (numbered grid)
     │   │   ├── FeatureSection.tsx      ← renders features (checkmark grid)
     │   │   ├── ContentSection.tsx      ← generic list renderer (useCases, fallback)
-    │   │   └── BreadCrumbs.tsx         ← navigation breadcrumbs
+    │   │   ├── BreadCrumbs.tsx         ← navigation breadcrumbs (i18n Link)
+    │   │   ├── Footer.tsx              ← site-wide footer
+    │   │   └── ShareButton.tsx         ← navigator.share + clipboard fallback
     │   ├── home/
-    │   │   ├── HomeSchema.tsx          ← WebSite + Organization + ItemList + FAQPage
-    │   │   ├── Hero.tsx                ← hero + search + suggestion chips
+    │   │   ├── HomeSchema.tsx          ← WebSite (@id) + ItemList + FAQPage
+    │   │   ├── Hero.tsx                ← hero + search + suggestion chips + typewriter
     │   │   ├── CategoryCards.tsx       ← 6 category cards with animated icons
     │   │   ├── FeaturedTools.tsx       ← 18 seeded-random tools + CTA to /tools
     │   │   ├── RecentlyAdded.tsx       ← top 6 by publishedAt
@@ -122,11 +154,12 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   │   ├── SidebarSettings.tsx
     │   │   └── ThemeToggle.tsx
     │   ├── providers/
-    │   │   └── theme-provider.tsx
+    │   │   ├── theme-provider.tsx
+    │   │   └── sidebar-state-provider.tsx
     │   ├── search/
     │   │   ├── SearchModal.tsx         ← controlled by query prop
     │   │   ├── SearchProvider.tsx      ← context {isOpen, open(query?), close}
-    │   │   └── SearchTrigger.tsx
+    │   │   └── SearchTrigger.tsx       ← full / icon variants, optional typewriter placeholders
     │   ├── cookie-consent.tsx
     │   └── ui/                         ← shadcn primitives (Base UI)
     │       ├── accordion.tsx, badge.tsx, button.tsx, calendar.tsx
@@ -157,11 +190,13 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │       └── gitignore-templates.ts
     │
     ├── helpers/
-    │   ├── index.ts                    ← assertNever, getBaseUrl, seededShuffle, getToolCount
+    │   ├── index.ts                    ← assertNever, getBaseUrl, getPublisher, SITE_NAME, seededShuffle, getToolCount, buildCategoryMetadata
+    │   ├── site.ts                     ← SITE_NAME (env), getPublisher() → Organization
     │   ├── array.ts                    ← seededShuffle<T>(arr, seed)
     │   ├── tool-count.ts               ← getToolCount() = getAllRegistryEntries().length
     │   ├── getBaseUrl.ts               ← single source of BASE_URL
     │   ├── og-locale.ts                ← getOgLocale(locale) → 'en_US', 'ru_RU'
+    │   ├── buildCategoryMetadata.ts    ← shared generateMetadata for category routes
     │   └── utils/
     │       ├── colors.ts               ← hexToRgb, rgbToHex, rgbToHsl, contrastRatio, WCAG
     │       ├── base64-image.ts         ← blobToDataUri, bytesToBase64, parseBase64Image
@@ -170,7 +205,8 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     ├── hooks/
     │   ├── use-event.ts                ← stable useCallback wrapper
     │   ├── use-smooth-progress.ts      ← smoothed progress for long-running operations
-    │   └── use-search-index.ts         ← Fuse.js index built from current locale messages
+    │   ├── use-search-index.ts         ← Fuse.js index built from current locale messages
+    │   └── use-typewriter.ts           ← cyclic character-by-character typing for Hero
     │
     ├── i18n/
     │   ├── navigation.ts               ← Link, useRouter, usePathname
@@ -178,7 +214,7 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
     │   └── routing.ts                  ← locales: ['en','ru']
     │
     ├── messages/
-    │   ├── en.json                     ← includes `categories` root block + `global.units`
+    │   ├── en.json                     ← includes `categories` root block + `global.units` + `global.share`
     │   └── ru.json
     │
     ├── types/
@@ -202,6 +238,8 @@ In production — set it to your real domain (used by `sitemap.ts`, `robots.ts`,
 - **i18n:** `next-intl` v4 with `localePrefix: 'as-needed'` (EN without prefix, RU with `/ru`).
 - **Universal by design.** No country-specific tools, formulas or currencies. Every calculator works in any country. Locale-aware number and date formatting is threaded through `calculate`.
 - **OG locale:** `og:locale` requires the `language_TERRITORY` format (`en_US`, `ru_RU`), not raw BCP-47. Use `getOgLocale(locale)` from `@/helpers/og-locale` in every `generateMetadata` that emits Open Graph.
+- **Locale-aware Link:** always use `import {Link} from '@/i18n/navigation'`, never `next/link`. The plain `next/link` doesn't add the locale prefix, so a click from `/ru/finance` would emit an EN URL and force a redirect hop. See `EntryPreview`, `RelatedPreview`, `CategoryPage`, `BreadCrumbs`, `Footer`.
+- **JSON-LD url = canonical.** Every schema must build URLs as `${baseUrl}${localePath}/...`. A locale-agnostic `${baseUrl}/slug` causes a mismatch with canonical on RU pages (Rich Results Test flags "url mismatch").
 
 ### Two independent data systems
 
@@ -217,8 +255,8 @@ The home page (Phase A/B/C restructure) has a fixed component order:
 
     HomeSchema → Hero → CategoryCards → FeaturedTools → RecentlyAdded → HomeFaq → PrivacyNote
 
-- **HomeSchema** — server component, emits WebSite + Organization + ItemList (6 categories) + FAQPage (3 Q) as JSON-LD. No `SearchAction` — search is client-side only, no `?q=` URL.
-- **Hero** — client, badge + h1 + subtitle + `SearchTrigger` (`h-11 sm:h-14`) + 6 suggestion chips + Stats.
+- **HomeSchema** — server component, emits WebSite (`@id`) + Organization + ItemList (6 categories, `name` from `categories.all.title`) + FAQPage (3 Q) as JSON-LD. No `SearchAction` — search is client-side only, no `?q=` URL.
+- **Hero** — client, badge + h1 + subtitle + `SearchTrigger` (`h-11 sm:h-14`) with typewriter placeholders + 6 suggestion chips + Stats.
 - **CategoryCards** — 6 category cards linking to `/{slug}`, animated icons on hover.
 - **FeaturedTools** — 18 deterministic-random tools (`seededShuffle(all, 42)`) + "Browse all {count} tools →" CTA.
 - **RecentlyAdded** — server, top 6 by `publishedAt`, `null` when empty.
@@ -237,26 +275,26 @@ Six static routes: `app/[locale]/{finance,health,text,developer,generators,busin
     }
 
     export default function FinancePage() {
-      return <CategoryPage category="finance" />
+      return <CategoryPage slug="finance" />
     }
 
-`CategoryPage.tsx` is a **server component** that renders: header (`h1` + back arrow) → tools count → tool grid → SEO blocks (`intro`, `HowToUseSection`, `FeatureSection`, `ContentSection` for useCases) → `FAQ`.
+`CategoryPage.tsx` is a **server component** that renders: `<CategorySchema slug={slug} />` → header (`h1` + intro) → tools count → tool grid → CTA to `/tools` → SEO blocks (`HowToUseSection`, `FeatureSection`, `ContentSection` for useCases) → `FAQ`.
 
 All category content lives in a single root-level `categories` block in `messages/{en,ru}.json`:
 
-- `name`, `shortName`, `h1`
+- `name`, `shortName`, `h1`, `title` (for `categories.all` only)
 - `metaTitle`, `metaDescription`, `keywords`
 - `intro`
 - `howToUseTitle` + `howToUse` (array of `{title, description}`)
 - `featuresTitle` + `features` (array of `{title, description}`)
 - `useCasesTitle` + `useCases` (array of strings)
-- `faq` (5 questions per category)
+- `faq` (5 questions per category — `q1..q5` / `a1..a5`)
 
-Plus `categories.all` — for the "All Tools" filter and the sidebar "All tools" entry. Nothing is duplicated in `home.categories`, `home.filters`, or `category.title` — those blocks were removed.
+Plus `categories.all` — for the "All Tools" filter, the sidebar "All tools" entry, and `HomeSchema.ItemList.name` (`categories.all.title` = "Categories"). Nothing is duplicated in `home.categories`, `home.filters`, or `category.title` — those blocks were removed.
 
 ### Related tools
 
-Every tool config has a mandatory `related: string[]` field with 4 slugs. `RelatedTools` renders them as a grid of `EntryPreview`. Rules:
+Every tool config has a mandatory `related: string[]` field with 4 slugs. `Related` renders them as a grid of `RelatedPreview` cards. Rules:
 
 - All slugs from the **same category** — categories stay closed clusters.
 - No self-references, no duplicates within a single array.
@@ -264,6 +302,7 @@ Every tool config has a mandatory `related: string[]` field with 4 slugs. `Relat
 - `related` is typed `string[]` — no compile-time check. A typo renders as a broken card silently. Verify slugs against `getRegistryEntry` manually when adding new tools.
 - **`lorem-ipsum` vs `lorem-ipsum-generator`** — the actual slug is the long form. Fixed in v0.13.0.
 - **`pdf-to-image`** — orphaned (translations exist, no data entry). Removed from `images-to-pdf.related`. Restore when the View lands.
+- Full verification of all 300 related links across 75 tools completed in v0.15.0 — 0 broken, 0 self-ref, 0 duplicates.
 
 ### Tool count parametrization
 
@@ -276,6 +315,7 @@ For counts that need pluralization, use full ICU:
 
     "viewAll": "Browse all {count, plural, one {# tool} other {# tools}}"
     "viewAll": "Все {count, plural, one {# инструмент} few {# инструмента} many {# инструментов} other {# инструмента}}"
+    "toolsCount": "{count, plural, one {# tool} other {# tools}}"
 
 **RU ICU plural requires 4 categories** (`one` / `few` / `many` / `other`). Omitting `many` renders a literal template string. EN requires 2 (`one` / `other`).
 
@@ -333,7 +373,7 @@ Three shared components render structured SEO content on both tool and category 
 
 All three accept a `namespace` prop (`'config'` by default, `'categories'` for category pages) and silently return `null` if the required keys are missing — tools/categories without SEO blocks render nothing instead of erroring.
 
-Order on the page: form/view → `HowToUseSection` → `FeatureSection` → `ContentSection` → FAQ → RelatedTools.
+Order on the page: form/view → `HowToUseSection` → `FeatureSection` → `ContentSection` → FAQ → Related.
 
 ### description vs metaDescription
 
@@ -350,6 +390,27 @@ Any tool that is tagged `business` in the source (thequickutils.com) is implemen
 
 **Content/code parity is critical.** Every item in `features`, `howToUse`, `useCases`, `faq`, `description`, `metaDescription` must describe functionality that exists in the View. Promise a feature that doesn't exist → Google penalization, AdSense rejection. Before writing SEO text: open the View, list every control and result, only then write. If you write text for a future feature — implement the feature first, or leave a TODO.
 
+### JSON-LD (Schema.org)
+
+Single publisher: `helpers/site.ts → getPublisher()` returns `{@type: Organization, name: SITE_NAME, url: getBaseUrl()}`. `SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? 'Toolyland'`.
+
+Schema map by page type:
+
+| Page | Component | Blocks |
+|---|---|---|
+| `/` | `HomeSchema` | WebSite (`@id`) + ItemList (6 categories) + FAQPage (3 Q) |
+| `/tools` | `ToolsSchema` | CollectionPage + ItemList (75 tools) |
+| `/{category}` | `CategorySchema` | CollectionPage + ItemList + FAQPage (5 Q) + BreadcrumbList |
+| `/[slug]` calculator | `CalculatorSchema` | WebApplication + FAQPage + HowTo |
+| `/[slug]` tool | `ToolSchema` | WebApplication + FAQPage + HowTo |
+
+Rules:
+
+- URL in JSON-LD **must** include `localePath` — same as canonical.
+- `HowTo` rendered only when `howToUseTitle` + `howToUse` exist.
+- Each `HowToStep` needs both `name` and `text`.
+- `ItemList.name` should describe the items: `categories.all.title` for 6 categories on home, `categories.<slug>.name` for tools in a category, `tools.h1` for the full catalog.
+
 ### Yandex SEO
 
 - `robots.ts` — separate `Yandex` user-agent block with `Clean-param` directive. Scrubs `utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&_openstat&ysclid&yrclid`. Without this, every ad-click URL becomes a Yandex index duplicate.
@@ -365,7 +426,7 @@ Any tool that is tagged `business` in the source (thequickutils.com) is implemen
 5. Add `related: [4 slugs]` from the same category.
 6. `publishedAt` — ISO date string.
 
-That's it — routing, sitemap, and the category hub pick it up automatically.
+That's it — routing, sitemap, and the category hub pick it up automatically. `getToolCount()` updates everywhere.
 
 ## Adding a tool
 
@@ -379,17 +440,26 @@ That's it — routing, sitemap, and the category hub pick it up automatically.
 8. If it uses print, make sure the preview container's `id` ends with `-preview` — the global print CSS uses `[id$='-preview']`.
 9. For color pickers, use `components/ui/color-picker.tsx` (Popover + react-colorful), never native `<input type="color">`.
 10. For two-column layouts, use `flex flex-col lg:flex-row` with `min-w-0 flex-1` on children — not grid.
+11. Use `import {Link} from '@/i18n/navigation'` for any internal navigation — not `next/link`.
 
 That's it — routing, sitemap, hub, search, and home page pick it up automatically.
 
 ## Adding a category
 
 1. Add an entry to `categories` in `data/categories.ts` with `slug` and `Icon`.
-2. Create `app/[locale]/<slug>/page.tsx` — copy the pattern from any existing category.
+2. Create `app/[locale]/<slug>/page.tsx` — copy the pattern from any existing category (thin wrapper with `buildCategoryMetadata` + `<CategoryPage slug="..." />`).
 3. Add a root-level `categories.<slug>` block to both `messages/en.json` and `messages/ru.json` with all fields (`name`, `shortName`, `h1`, `metaTitle`, `metaDescription`, `keywords`, `intro`, `howToUse`, `features`, `useCases`, `faq`).
 4. Add an icon to `components/layout/CategoryIcon.tsx` if needed.
+5. Update `CategorySchema.tsx` — the FAQ loop iterates `[1, 2, 3, 4, 5]`; expand if you add more questions.
 
 That's it — `ToolGrid` filters, the sidebar, `sitemap.ts`, and the `CategoryPage` template pick it up automatically. The `ToolGrid` filter list is built dynamically from `data/categories.ts`, so no hardcoding in the component.
+
+## Brand
+
+- **Name:** Toolyland
+- **Domain:** toolyland.com
+- **Logo:** rounded square, navy `#0F172A` background, teal letter T `#14B8A6`, coral dot in top-right corner `#FB7185`
+- **Wordmark:** "toolyland" in bold sans-serif
 
 ## Notes
 
@@ -401,11 +471,12 @@ That's it — `ToolGrid` filters, the sidebar, `sitemap.ts`, and the `CategoryPa
 - **shadcn/ui on Base UI** (not Radix). Use `render={<Component />}`, not `asChild`.
 - **Icons** — only from `@animateicons/react` via direct subpath (`@animateicons/react/lucide/percent-icon`). Never `lucide-react`. **Never barrel imports** (`@animateicons/react/huge` — pulls the entire set, ~918 kB). Use `as` aliases to preserve original names in configs. Pass `isAnimated={false}` to disable built-in hover and `ref={iconRef}` for imperative `startAnimation()` / `stopAnimation()`.
 - **`useTranslations` in client components.** `getTranslations` from `next-intl/server` fails in `'use client'` with `getTranslations is not supported in Client Components`.
+- **`Link` from `@/i18n/navigation`, not `next/link`.** Any other import creates locale-agnostic URLs and breaks canonical.
 - **`CopyButton`** for copy-to-clipboard — don't hand-roll. Pass only `getValue`, `disabled`, `className`, `showLabel`, `tooltipSide`, `onSuccess`, `noTooltip`.
 - **Don't pass `CopyButton` into `OutputPanel`** — it's already there.
 - **Base UI focus-guards** break layout inside `space-y-*`. Wrap `PopoverTrigger` / `DropdownMenuTrigger` in `<div style={{display: 'contents'}}>` (see `date-picker.tsx`).
 - **`secondary[].value`** must be either a pure translation key (resolved via `tConfig.has()`) or a ready string (number, unit, percent). Never concatenate a number with a translation key — use `params` for ICU.
-- **FAQ items** are passed as translation keys (`{q: 'slug.faq.q1', a: 'slug.faq.a1'}`), not translated strings. `FAQ` accepts a `namespace` prop (`'config'` default, `'categories'` for category pages).
+- **FAQ items** are passed as translation keys (`{q: 'slug.faq.q1', a: 'slug.faq.a1'}`), not translated strings. `FAQ` accepts a `namespace` prop (`'config'` default, `'categories'` for category pages, `'home'` for HomeFaq).
 - **`n2words` v6** requires subpath imports (`n2words/en`, `n2words/ru`) and exports `toCardinal`, not `toWords`.
 - **Biome** forbids `noAssignInExpressions` — use `for (;;) { const m = regex.exec(text); if (m === null) break }`.
 - **Formatting:** single quotes, no semicolons, `bracketSpacing: false` (Biome config).
@@ -417,6 +488,7 @@ That's it — `ToolGrid` filters, the sidebar, `sitemap.ts`, and the `CategoryPa
 - **Font scaling in preview** — use `text-[Nem]` (`0.9em`, `1.35em`, `2.3em`) when the container has a `fontSize` that must scale children. Absolute `text-xs` / `text-sm` classes override the parent.
 - **`getTranslations` in server components only.** Client components must use `useTranslations`.
 - **Theme hydration** — never render theme-dependent UI before `mounted = true`. Server returns `undefined`, client reads `localStorage` → React regenerates the tree. Use `const [mounted, setMounted] = useState(false); useEffect(() => setMounted(true), [])` and `if (!mounted) return <FallbackIcon />`. See `ThemeToggle.tsx`.
+- **Env vars inlined at build time** — `NEXT_PUBLIC_*` values are baked into the bundle. After changing `NEXT_PUBLIC_SITE_URL` or `NEXT_PUBLIC_SITE_NAME` in Amvera, trigger a rebuild.
 
 ## License
 

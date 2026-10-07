@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import {useTranslations} from 'next-intl'
 import {getAllRegistryEntries} from '@/data'
+import {Link} from '@/i18n/navigation'
 
 export function Stats() {
   const t = useTranslations('home')

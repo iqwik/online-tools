@@ -91,11 +91,12 @@
     }
   },
   "category": {
-    "toolsCount": "{count} tools",
+    "toolsCount": "{count, plural, one {# tool} other {# tools}}",
     "backHome": "Back to home"
   },
   "categories": {
     "all": {
+      "title": "Categories",
       "name": "All Tools",
       "shortName": "All"
     },

@@ -1,4 +1,5 @@
 import {getLocale, getTranslations} from 'next-intl/server'
+import {getPublisher} from '@/helpers'
 import type {CalculatorConfig} from '@/types'
 import {HowToUseStep} from '../shared/HowToUseSection'
 
@@ -6,11 +7,6 @@ interface Props {
   calc: CalculatorConfig
   url: string
 }
-
-const PUBLISHER = {
-  '@type': 'Organization',
-  name: 'ProjectName',
-} as const
 
 export async function CalculatorSchema({calc, url}: Props) {
   const t = await getTranslations('config')
@@ -30,7 +26,7 @@ export async function CalculatorSchema({calc, url}: Props) {
       price: '0',
       priceCurrency: 'USD',
     },
-    publisher: PUBLISHER,
+    publisher: getPublisher(),
   }
 
   const faq =

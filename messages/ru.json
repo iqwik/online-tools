@@ -96,6 +96,7 @@
   },
   "categories": {
     "all": {
+      "title": "Категории",
       "name": "Все инструменты",
       "shortName": "Все"
     },
