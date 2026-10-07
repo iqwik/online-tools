@@ -30,9 +30,6 @@ Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, n
 | Diff | diff |
 | PDF → image | pdfjs-dist 6.3.289 |
 | ZIP archive | jszip |
-| **Hosting** | **Amvera** (tariff «Начальный», 290 ₽/mo, SLA) |
-| **Domain** | **toolyland.com** (registered at Timeweb) |
-| **SSL** | Let's Encrypt (automatic via Amvera) |
 
 ## Getting Started
 
