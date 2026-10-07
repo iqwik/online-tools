@@ -3,11 +3,13 @@
 import JSZip from 'jszip'
 import {Download, Image as ImageIcon, Loader2, Package} from 'lucide-react'
 import {useTranslations} from 'next-intl'
-import {useRef, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {useEvent} from '@/hooks/use-event'
 import {useSmoothProgress} from '@/hooks/use-smooth-progress'
 import {OutputPanel} from '../shared/OutputPanel'
 import {Button} from '../ui/button'
+import {Checkbox} from '../ui/checkbox'
+import {ColorPicker} from '../ui/color-picker'
 import {Label} from '../ui/label'
 import {SegmentedControl} from '../ui/segmented-control'
 
@@ -26,9 +28,63 @@ const SIZES: {size: number; label: string; file: string}[] = [
   {size: 48, label: '48×48', file: 'favicon-48x48.png'},
   {size: 96, label: '96×96', file: 'favicon-96x96.png'},
   {size: 180, label: '180×180', file: 'apple-touch-icon.png'},
-  {size: 192, label: '192×192', file: 'icon-192.png'},
-  {size: 512, label: '512×512', file: 'icon-512.png'},
+  {size: 192, label: '192×192', file: 'icon-192x192.png'},
+  {size: 512, label: '512×512', file: 'icon-512x512.png'},
 ]
+
+/** Sizes to embed inside the multi-size `favicon.ico` container. */
+const ICO_SIZES = [16, 32, 48] as const
+
+/**
+ * Build a multi-size `.ico` file from PNG blobs.
+ *
+ * The ICO format is a container: a 6-byte header, then one 16-byte
+ * directory entry per image, then raw image data. Vista+ allows PNG
+ * bytes directly inside ICO, so we embed the existing PNGs without
+ * re-encoding. Legacy consumers (old RSS readers, some email clients)
+ * pick the best-fitting size from the container.
+ */
+async function buildIco(sources: {size: number; blob: Blob}[]): Promise<Blob> {
+  const pngs = await Promise.all(
+    sources.map(async s => ({
+      size: s.size,
+      data: new Uint8Array(await s.blob.arrayBuffer()),
+    })),
+  )
+
+  const headerSize = 6
+  const entrySize = 16
+  const directorySize = headerSize + entrySize * pngs.length
+  const totalDataSize = pngs.reduce((sum, p) => sum + p.data.length, 0)
+  const buffer = new ArrayBuffer(directorySize + totalDataSize)
+  const view = new DataView(buffer)
+  const bytes = new Uint8Array(buffer)
+
+  // ICONDIR header
+  view.setUint16(0, 0, true) // reserved
+  view.setUint16(2, 1, true) // type: 1 = icon
+  view.setUint16(4, pngs.length, true) // number of images
+
+  // ICONDIRENTRY per image
+  let offset = directorySize
+  for (let i = 0; i < pngs.length; i++) {
+    const png = pngs[i]
+    const base = headerSize + entrySize * i
+    view.setUint8(base + 0, png.size >= 256 ? 0 : png.size) // width
+    view.setUint8(base + 1, png.size >= 256 ? 0 : png.size) // height
+    view.setUint8(base + 2, 0) // palette count
+    view.setUint8(base + 3, 0) // reserved
+    view.setUint16(base + 4, 1, true) // color planes
+    view.setUint16(base + 6, 32, true) // bits per pixel
+    view.setUint32(base + 8, png.data.length, true) // bytes in resource
+    view.setUint32(base + 12, offset, true) // offset from start
+
+    bytes.set(png.data, offset)
+    offset += png.data.length
+  }
+
+  return new Blob([buffer], {type: 'image/x-icon'})
+}
 
 function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`
@@ -79,6 +135,7 @@ function extractDominantColor(img: HTMLImageElement): string {
 
 function buildHtmlSnippet(): string {
   return [
+    '<link rel="icon" href="/favicon.ico" sizes="any">',
     '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">',
     '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">',
     '<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">',
@@ -110,6 +167,7 @@ function buildReadme(themeColor: string): string {
     '=====================',
     '',
     'Files included:',
+    '  favicon.ico             (16/32/48 multi-size, for legacy browsers)',
     '  favicon-16x16.png',
     '  favicon-32x32.png',
     '  favicon-48x48.png',
@@ -125,8 +183,12 @@ function buildReadme(themeColor: string): string {
     '',
     `Detected theme color: ${themeColor}`,
     '',
-    'Copy all PNG files to the root of your site (or /public in Next.js / Vite).',
+    'Copy all PNG files to the root of your site.',
     'The site.webmanifest should also go to the root.',
+    '',
+    '--',
+    'Toolyland - free, private, browser-based online tools.',
+    'https://toolyland.com',
   ].join('\n')
 }
 
@@ -136,6 +198,7 @@ export function FaviconGeneratorView() {
 
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [fitMode, setFitMode] = useState<FitMode>('contain')
+  const [transparentBg, setTransparentBg] = useState(false)
   const [backgroundColor, setBackgroundColor] = useState('#ffffff')
   const [icons, setIcons] = useState<GeneratedIcon[]>([])
   const [themeColor, setThemeColor] = useState('#ffffff')
@@ -167,7 +230,7 @@ export function FaviconGeneratorView() {
 
         // Фон — только для JPEG-выхода (здесь всегда PNG, но всё равно
         // заливаем для случая stretch/contain с пустыми краями, если fitMode !== 'cover')
-        if (fitMode !== 'cover') {
+        if (fitMode !== 'cover' && !transparentBg) {
           ctx.fillStyle = backgroundColor
           ctx.fillRect(0, 0, size, size)
         }
@@ -234,6 +297,21 @@ export function FaviconGeneratorView() {
     setProgress(0)
   })
 
+  // Auto-regenerate when output options change. Skips the first mount
+  // so the initial load (which already calls generate() from img.onload)
+  // isn't duplicated.
+  const didMountRef = useRef(false)
+  // biome-ignore lint/correctness/useExhaustiveDependencies: need re-render on any option change
+  useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true
+      return
+    }
+    const img = sourceImageRef.current
+    if (!img) return
+    void generate(img)
+  }, [fitMode, backgroundColor, transparentBg, generate])
+
   const handleFile = useEvent((files: FileList | File[]) => {
     const file = Array.from(files).find(f => f.type.startsWith('image/'))
     if (!file) return
@@ -274,16 +352,35 @@ export function FaviconGeneratorView() {
     setProgress(0)
 
     const zip = new JSZip()
-    const total = icons.length
-    for (let i = 0; i < total; i++) {
+    const total = icons.length + 1 // +1 for the .ico build step
+    for (let i = 0; i < icons.length; i++) {
       const icon = icons[i]
       const meta = SIZES.find(s => s.size === icon.size)
       if (meta) zip.file(meta.file, icon.blob)
       setProgress(Math.round(((i + 1) / total) * 100))
     }
 
+    // Multi-size `.ico` — 16/32/48 embedded as PNGs inside the container.
+    const icoSources = icons.filter(i =>
+      (ICO_SIZES as readonly number[]).includes(i.size),
+    )
+    if (icoSources.length > 0) {
+      const icoBlob = await buildIco(
+        icoSources.map(i => ({size: i.size, blob: i.blob})),
+      )
+      zip.file('favicon.ico', icoBlob)
+    }
+
+    setProgress(100)
+
     zip.file('site.webmanifest', buildManifest(themeColor))
-    zip.file('README.txt', buildReadme(themeColor))
+    zip.file(
+      'README.txt',
+      t('readme', {
+        themeColor,
+        htmlSnippet: buildHtmlSnippet(),
+      }),
+    )
 
     const blob = await zip.generateAsync({type: 'blob'})
     const url = URL.createObjectURL(blob)
@@ -371,28 +468,42 @@ export function FaviconGeneratorView() {
               </div>
 
               {fitMode !== 'cover' && (
-                <div className="flex flex-col gap-2">
-                  <Label
-                    htmlFor="favicon-bg"
-                    className="text-xs font-medium tracking-wide text-muted-foreground"
-                  >
-                    {t('inputs.backgroundColor')}
-                  </Label>
+                <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2">
-                    <input
-                      id="favicon-bg"
-                      type="color"
-                      value={backgroundColor}
-                      onChange={e => setBackgroundColor(e.target.value)}
-                      className="h-9 w-16 cursor-pointer rounded-md border bg-background"
+                    <Checkbox
+                      id="favicon-transparent"
+                      checked={transparentBg}
+                      onCheckedChange={checked =>
+                        setTransparentBg(checked === true)
+                      }
                     />
-                    <span className="font-mono text-sm uppercase">
-                      {backgroundColor}
-                    </span>
+                    <Label
+                      htmlFor="favicon-transparent"
+                      className="cursor-pointer text-xs font-medium tracking-wide text-muted-foreground"
+                    >
+                      {t('inputs.transparentBackground')}
+                    </Label>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    {t('hints.backgroundColor')}
-                  </p>
+
+                  {!transparentBg && (
+                    <div className="flex flex-col gap-2">
+                      <Label className="text-xs font-medium tracking-wide text-muted-foreground">
+                        {t('inputs.backgroundColor')}
+                      </Label>
+                      <div className="flex w-9 items-center gap-2">
+                        <ColorPicker
+                          value={backgroundColor}
+                          onChange={setBackgroundColor}
+                        />
+                        <span className="font-mono text-sm uppercase">
+                          {backgroundColor}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        {t('hints.backgroundColor')}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 

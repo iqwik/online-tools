@@ -95,7 +95,7 @@ export function SearchTrigger({
             {shouldAnimate && (
               <span
                 aria-hidden
-                className="ml-0.5 inline-block h-[1em] w-px align-text-bottom bg-current animate-pulse"
+                className="ml-0.5 inline-block h-[1em] w-px translate-y-[0.15em] bg-current animate-[caret-blink_1s_steps(2,start)_infinite]"
               />
             )}
           </span>

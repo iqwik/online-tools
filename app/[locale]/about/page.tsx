@@ -1,12 +1,13 @@
 import type {Metadata} from 'next'
 import {getTranslations} from 'next-intl/server'
 import {BreadCrumbs} from '@/components/shared/BreadCrumbs'
+import {SITE_NAME} from '@/helpers'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('about.meta')
   return {
     title: t('title'),
-    description: t('description'),
+    description: t('description', {project: SITE_NAME}),
   }
 }
 
@@ -14,11 +15,15 @@ export default async function AboutPage() {
   const t = await getTranslations('about')
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-12 flex flex-col gap-6 text-sm">
+    <article className="page flex flex-col gap-6 text-sm">
       <BreadCrumbs items={[{title: t('meta.title')}]} />
-      <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
+      <h1 className="text-2xl font-bold tracking-tight">
+        {t('title', {project: SITE_NAME})}
+      </h1>
 
-      <p className="text-muted-foreground">{t('intro')}</p>
+      <p className="text-muted-foreground">
+        {t('intro', {project: SITE_NAME})}
+      </p>
 
       <section className="flex flex-col gap-4">
         <h2 className="text-xl font-semibold">{t('mission.title')}</h2>
@@ -43,10 +48,10 @@ export default async function AboutPage() {
         </ul>
       </section>
 
-      <section className="mt-4 rounded-xl border bg-card p-6 flex flex-col gap-2">
+      {/* <section className="mt-4 rounded-xl border bg-card p-6 flex flex-col gap-2">
         <h2 className="text-xl font-semibold">{t('contact.title')}</h2>
         <p className="text-muted-foreground">{t('contact.text')}</p>
-      </section>
+      </section> */}
     </article>
   )
 }

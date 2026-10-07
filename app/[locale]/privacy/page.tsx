@@ -14,21 +14,21 @@ export default async function PrivacyPage() {
   const t = await getTranslations('privacy')
 
   const sections = [
-    'data',
+    // 'data',
     'storage',
     'analytics',
-    'thirdparty',
+    // 'thirdparty',
     'changes',
     'contact',
   ] as const
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-12 flex flex-col gap-6 text-sm">
+    <article className="page flex flex-col gap-6 text-sm">
       <BreadCrumbs items={[{title: t('meta.title')}]} />
       <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-bold tracking-tight">{t('title')}</h1>
+        <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
         <p className="text-xs text-muted-foreground">
-          {t('updated', {date: new Date('2026-09-27').toLocaleDateString()})}
+          {t('updated', {date: new Date('2026-09-29').toLocaleDateString()})}
         </p>
       </div>
 

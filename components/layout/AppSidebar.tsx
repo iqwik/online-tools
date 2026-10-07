@@ -4,6 +4,7 @@ import {HouseIcon} from '@animateicons/react/lucide/house-icon'
 import {LayoutGridIcon} from '@animateicons/react/lucide/layout-grid-icon'
 import {cn} from 'cn'
 import {ChevronRight} from 'lucide-react'
+import Image from 'next/image'
 import {useTranslations} from 'next-intl'
 import {
   ComponentType,
@@ -101,8 +102,15 @@ export function AppSidebar() {
               href="/"
               className="flex min-w-0 flex-1 items-center gap-1 rounded-md px-2 font-semibold"
             >
-              <span className="text-lg shrink-0">{'/'}</span>
-              <span className="truncate">{'ProjectName'}</span>
+              <Image
+                src="/brand/toolyland-compact.svg"
+                alt="Toolyland"
+                width={120}
+                height={36}
+                priority
+              />
+              {/* <span className="text-lg shrink-0">{'/'}</span>
+              <span className="truncate">{'ProjectName'}</span> */}
             </Link>
 
             <div className="flex items-center gap-0.5">

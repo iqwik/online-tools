@@ -1,5 +1,9 @@
 {
   "meta": {
+    "site": {
+      "title": "Toolyland",
+      "description": "Free online tools that run 100% in your browser. Calculators, converters, generators, and developer utilities. No signup, no tracking."
+    },
     "home": {
       "title": "Free Online Tools for Everyday Tasks",
       "description": "Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser. No signup required."
@@ -34,7 +38,7 @@
       "bmi": "bmi calculator",
       "password": "password generator",
       "json": "json formatter",
-      "tip": "tip calculator",
+      "favicon": "favicon generator",
       "word": "word counter",
       "compress": "compress image"
     },
@@ -582,66 +586,85 @@
   "about": {
     "meta": {
       "title": "About",
-      "description": "Learn about ProjectName - free, fast, privacy-first online tools."
+      "description": "{project} is a collection of free online tools for everyday tasks: finance, health, text, developer utilities, generators, and business. Runs in your browser - no signup, no tracking."
     },
-    "title": "About ProjectName",
-    "intro": "ProjectName is a collection of free online tools - calculators, text utilities, generators, and developer utilities - that run entirely in your browser.",
+    "title": "About {project}",
+    "intro": "{project} is a collection of free online tools for everyday tasks. Finance and health calculators, text utilities for writers and editors, generators for designers, developer utilities, business documents for freelancers and small business. Everything runs in your browser — no signup, no uploads, no data sent to a server.",
     "mission": {
-      "title": "Our Mission",
-      "text": "Most online tools require sign-ups, process your data on their servers, or are cluttered with ads. We build simple, fast utilities that respect your privacy. Everything runs locally - nothing is uploaded, stored, or tracked.",
+      "title": "Why this site exists",
+      "text": "Most online tools pile on signups, process your data on their servers, and drown you in ads. I wanted to build the opposite: simple, fast utilities for a wide range of tasks that get out of your way. Everything runs locally — nothing is uploaded, stored, or tracked.",
       "points": {
-        "free": "100% free - no paywalls, no hidden fees, no accounts.",
-        "fast": "Built with Next.js and React, tools load instantly on any device.",
-        "private": "All calculations happen in your browser. Your data never leaves your device."
+        "free": "100% free — no paywalls, no signups, no accounts.",
+        "fast": "Built with Next.js and React — tools load instantly on any device.",
+        "private": "All calculations happen in your browser. Your data never leaves your device.",
+        "universal": "For everyone: designers, writers, developers, students, freelancers, small business."
       }
     },
     "offer": {
-      "title": "What We Offer",
+      "title": "What's inside",
       "text": "Tools across six categories:",
-      "finance": "Financial calculators - loans, interest, returns.",
-      "health": "Health & fitness - BMI, calories, body metrics.",
-      "textTools": "Text tools - counters, converters, formatters.",
-      "developer": "Developer utilities - encoders, validators, generators.",
-      "generators": "Generators - passwords, QR codes, IDs.",
-      "business": "Business tools - invoices, quotes, salary slips."
+      "finance": "Finance calculators — loans, interest, returns, taxes.",
+      "health": "Health & fitness — BMI, calories, body metrics, heart rate zones.",
+      "textTools": "Text tools — word counter, case converter, diff checker, Lorem Ipsum.",
+      "developer": "Developer utilities — JSON, Base64, regex, JWT, UUID, hashes, CSS.",
+      "generators": "Generators — passwords, QR codes, image compression, palettes, favicons.",
+      "business": "Business tools — invoices, quotes, payslips, UTM builder, margin, break-even."
+    },
+    "audience": {
+      "title": "Who it's for",
+      "text": "Useful for anyone working with text, numbers, files, or data:",
+      "designers": "Designers — palettes, color picker, contrast checker, favicon, image compression.",
+      "copywriters": "Writers & editors — word and character counters, case converter, diff checker, Lorem Ipsum.",
+      "developers": "Developers — JSON, Base64, regex, JWT, hashes, CSS, unit converter.",
+      "marketers": "Marketers — UTM builder, QR codes, ROI, percentage calculators.",
+      "students": "Students — calculators, converters, number to words, date difference.",
+      "freelancers": "Freelancers & small business — invoices, quotes, payslips, margin, break-even."
     },
     "contact": {
-      "title": "Get in Touch",
-      "text": "Found a bug or have a suggestion? We'd love to hear from you."
+      "title": "Get in touch",
+      "text": "Found a bug or have an idea for a new tool? Email hello@toolyland.com — I read every message."
     }
   },
   "privacy": {
     "meta": {
       "title": "Privacy Policy",
-      "description": "How ProjectName handles your data - short version: we don't collect it."
+      "description": "How Toolyland handles your data: tools run in your browser, nothing is uploaded to our servers. Cookies are only used for analytics and ads."
     },
     "title": "Privacy Policy",
     "updated": "Last updated: {date}",
-    "intro": "Short version: we don't collect, store, or share your personal data. Everything runs in your browser.",
+    "intro": "Toolyland is a collection of free online tools that run entirely in your browser. All calculations happen on your device — we never see the files, text, numbers, or results you enter. We use cookies and local storage only for convenience, analytics, and advertising.",
     "sections": {
-      "data": {
-        "title": "What data we collect",
-        "text": "None. All tools run entirely in your browser using client-side JavaScript. Calculations, file conversions, text processing - everything happens on your device. Nothing is sent to our servers."
+      "tools": {
+        "title": "Tool data",
+        "text": "Every tool — calculators, converters, generators, editors — runs on client-side JavaScript. Your passwords, files, financial inputs, and any text you enter are processed only on your device and never sent to our servers. Closing the tab closes the tool — nothing is stored on our side."
       },
       "storage": {
         "title": "Local storage",
-        "text": "Some tools use your browser's localStorage to remember your preferences (for example, theme choice). This data stays on your device and is never transmitted."
+        "text": "Some tools use your browser's localStorage to remember state between visits: theme preference, sidebar position, invoice and quote drafts, field settings. This data stays on your device, is never transmitted to a server, and is removed when you clear your browser data."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "text": "We use cookies for two purposes: analytics (to understand which tools are popular) and advertising (to keep the service free). On your first visit you'll see a cookie-consent banner — accepting it grants consent. You can disable or delete cookies in your browser settings at any time. Disabling cookies does not affect the tools — they continue to run locally."
       },
       "analytics": {
         "title": "Analytics",
-        "text": "We may use privacy-friendly analytics to understand which tools are popular. This data is aggregated and cannot identify you personally."
+        "text": "We use Google Analytics 4 and Yandex Metrica to understand which pages and tools are most used. These services collect anonymised data: device type, country, referrer, time on page. They cannot identify you personally. Yandex Metrica additionally uses 'Webvisor' — a recording of anonymous on-page actions (mouse movement, clicks, scroll). Records do not contain any data you enter — only how you interact with the interface."
       },
-      "thirdparty": {
-        "title": "Third-party services",
-        "text": "We may display non-intrusive ads via Google AdSense to keep the service free. These ads follow Google's own privacy policy, independent of us."
+      "ads": {
+        "title": "Advertising",
+        "text": "We display non-intrusive ads via Google AdSense to keep the service free. Google and its partners may use cookies to serve relevant ads based on your previous visits. You can opt out of personalised advertising at https://adssettings.google.com. Learn how Google uses data: https://policies.google.com/technologies/partner-sites."
+      },
+      "rights": {
+        "title": "Your rights",
+        "text": "If you are in the EU, UK, or any jurisdiction with data-protection laws (GDPR, UK GDPR, CCPA), you have the right to request information about data that may relate to you, request its correction or deletion, and withdraw consent for processing. Since we do not collect personal data on our servers, most requests concern Google's and Yandex's data — those are controlled via the respective services' settings (links in the 'Advertising' section above)."
       },
       "changes": {
         "title": "Changes to this policy",
-        "text": "If we update this policy, we'll change the date above. Continued use of the site means you accept the updated policy."
+        "text": "If we update this policy, the date at the top of the page changes. Continuing to use the site after the update means you accept the new policy. Material changes will be additionally highlighted in the cookie-consent banner."
       },
       "contact": {
         "title": "Contact",
-        "text": "Questions about privacy? Get in touch."
+        "text": "Questions about privacy or data handling? Email privacy@toolyland.com — we respond within 48 hours."
       }
     }
   },
@@ -5533,7 +5556,8 @@
       ],
       "inputs": {
         "fitMode": "Fit mode",
-        "backgroundColor": "Background color"
+        "backgroundColor": "Background color",
+        "transparentBackground": "Transparent background"
       },
       "fitModes": {
         "contain": "Fit inside",
@@ -5553,8 +5577,9 @@
       "actions": {
         "regenerate": "Regenerate",
         "downloadZip": "Download ZIP",
-        "zippingPercent": "Zipping… {percent}%"
+        "zippingPercent": "Zipping... {percent}%"
       },
+      "readme": "Favicon + App Icon Set\n=====================\n\nGenerated by Toolyland — https://toolyland.com/favicon-generator\n\nFiles included:\n  favicon.ico             (16/32/48 multi-size, for legacy browsers)\n  favicon-16x16.png\n  favicon-32x32.png\n  favicon-48x48.png\n  favicon-96x96.png\n  apple-touch-icon.png    (180×180, for iOS home screen)\n  icon-192.png            (PWA / Android)\n  icon-512.png            (PWA / Android)\n  site.webmanifest\n\nUsage — paste into the head section of your HTML:\n\n{htmlSnippet}\n\nTheme color: {themeColor}\n\nCopy all PNG files and favicon.ico to the root of your site.\nThe site.webmanifest should also go to the root.\n\n--\nToolyland — free browser-based online tools.\nhttps://toolyland.com",
       "stats": {
         "icons": "Icons",
         "totalSize": "Total size",

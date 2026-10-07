@@ -10,7 +10,7 @@ const SUGGESTION_KEYS = [
   'bmi',
   'password',
   'json',
-  'tip',
+  'favicon',
   'word',
   'compress',
 ] as const

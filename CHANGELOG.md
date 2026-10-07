@@ -3,17 +3,15 @@
 ### TODO
 
 - **Deploy to Amvera** — create project, connect GitHub, choose "Начальный" tariff (290 ₽/mo, SLA). In Amvera → get A-record IP + TXT verification value. In Timeweb → add A `@` → Amvera IP, A `www` → same IP, TXT `@` → verification value. Wait for automatic Let's Encrypt. Test from RU (home + mobile) and world (VPN). Set env in Amvera: `NEXT_PUBLIC_SITE_URL=https://toolyland.com`, `NEXT_PUBLIC_SITE_NAME=Toolyland`. Rebuild after env set (`NEXT_PUBLIC_*` inlined at build time). Verify JSON-LD url = canonical = `https://toolyland.com/...`.
-- **OG image** — `og-default.jpg` (1200×630) based on Toolyland logo. Place in `public/`, wire up in `generateMetadata` on home, `/tools`, categories, tools.
-- **Favicon set** — generate full set via realfavicongenerator.net from 512×512 master. Files: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-{192,512}.png`, `site.webmanifest`. Wire in `metadata.icons` at `app/[locale]/layout.tsx`.
-- **`pdf-to-image`** — translations ready in `messages/{en,ru}.json` (`config.pdf-to-image` + `searchSynonyms`), but no `data/tools/developer.ts` entry and no View. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. When implemented, re-add `pdf-to-image` to `related` in `images-to-pdf` (removed in 0.13.0 to avoid broken links).
 - **Rich Results Test** — after deploy: run all JSON-LD (WebApplication, FAQPage, HowTo, CollectionPage, ItemList, BreadcrumbList) through Google Rich Results Test. Pages to test: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`. Verify URL in JSON-LD matches canonical (with locale prefix on RU pages). **Top of queue after deploy.**
-- **Regression check for remaining tools** — Stage 4 of Variant C. Systematic verification: open every View, compare against final texts. Known audit issues are all fixed, but a full pass hasn't been done. Suggested set: `InvoiceGeneratorView`, `SalarySlipGeneratorView`, `ColorPickerView`, `RegexTesterView`, `JsonFormatterView`.
+- **Regression check for remaining tools** — Stage 4 of Variant C. Systematic verification: open every View, compare against final texts. Suggested set: `InvoiceGeneratorView`, `SalarySlipGeneratorView`, `ColorPickerView`, `RegexTesterView`, `JsonFormatterView`.
 - **Final EN + RU proofread** — read through all 75 tools × 2 locales one more time in the browser.
+- **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but no `data/tools/developer.ts` entry and no View. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality (JPEG / WebP), transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()` (not `pdfDoc.destroy()`), `page.render({canvas, canvasContext, viewport})`. When implemented, re-add `pdf-to-image` to `related` in `images-to-pdf` (removed in 0.13.0 to avoid broken links).
 - **`lucide-react` cleanup** — remaining imports in `UuidGeneratorView.tsx`, `BreadCrumbs.tsx` and possibly other View / shared components. Replace with `@animateicons/react/lucide/<name>-icon`. Run `grep -rn "lucide-react" components/` for the full list. Note: in `UuidGeneratorView` `CheckCircle2` renamed to `CircleCheck` in animateicons — verify subpath.
 - **Tap targets on mobile** — toolbar buttons / inputs at `h-8` (32px) fail the ≥44px guideline. Apply `h-9 sm:h-8` or `h-10 sm:h-8` on mobile. Affected: `UuidGeneratorView` toolbar, likely other View toolbars. Sweep with `grep -rn 'size="sm"' components/tool/ components/calculator/`.
 - **P3 mobile cosmetics** — deferred items from the 0.14.0 review: spacing tweaks, font sizes in toolbars, small tap-area polish. No structural issues left.
 - **Category `metaDescription` review** — if Google starts truncating on desktop SERP or coverage drops, extend to 150–155 characters.
-- **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq`.
+- **Category FAQ expansion** — if organic performance suggests, add a 6th question to `categories.<slug>.faq`. Update `CategorySchema.tsx` FAQ loop (`[1,2,3,4,5]` → `[1,2,3,4,5,6]`) accordingly.
 - **Wave 6 — interactive trackers & builders**: `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`
 - **Locale refactor in `data/**`:** all hardcoded `'en-US'` / `'en-IN'` (and any hardcoded locale in `toLocaleString` / `toLocaleDateString` / `Intl.*`) — replace with `ctx.locale` passed from `calculate`. Run `grep -rn "toLocaleString('en\|toLocaleDateString('en\|Intl\." data/`. Affects `finance.ts` (`formatInt`, `formatAmount`, `formatINR`), `age-calculator`, `date-difference-calculator`, `pregnancy-due-date-calculator`. After refactor — delete global `formatInt` / `formatAmount`, keep only local `fmt` inside each `calculate`.
 - `SalarySlipGeneratorView`: replace `payPeriod` text input with two `<Select>` (Month + Year), localize, add `payMonth` / `payYear` to state
@@ -26,7 +24,10 @@
 - Active category link in sidebar — slug → category (currently `===`)
 - Sidebar state resets on locale switch
 - `meta-tag-generator`: preview titles (`"Google search preview"`, etc.) hardcoded in EN
-- AdSense, GA
+- **AdSense + GA** — connect `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_ADSENSE_CLIENT`. Submit for review after 2–3 months of stable traffic. Prerequisites: `privacy@toolyland.com` and `hello@toolyland.com` must exist (or a contact form must be wired).
+- **`privacy@toolyland.com` + `hello@toolyland.com`** — set up via Cloudflare Email Routing (free) or Yandex Mail for Domain. Referenced in `/about` and `/privacy` but not created yet.
+- **Cookie consent — revoke mechanism** — GDPR requires ability to withdraw consent. Add "Manage cookies" link in footer that reopens the banner or opens preferences. Required before AdSense submission.
+- **Privacy page — clickable links** — `https://adssettings.google.com` and `https://policies.google.com/technologies/partner-sites` currently plain text. Add as `<a target="_blank" rel="noopener">` below the "Advertising" section, or split `privacy.sections.ads.text` and render links in JSX.
 - `images-to-pdf`: PDF filename comes from `<title>`; consider setting `document.title = 'images-YYYY-MM-DD.pdf'` inside the print iframe before printing
 - `images-to-pdf`: image quality slider does not affect print output (browser prints originals). If needed — recompress via Canvas before printing
 - Chrome page header / footer (date, URL, page numbers) can only be disabled by the user in the print dialog — cannot be removed programmatically
@@ -36,83 +37,104 @@
 - **Custom unit plural in labels** — `global.units.{months, years, days, weeks, hours, nights}` are simple strings (не ICU plural), используются как метки полей. Если понадобится согласование с числом — надо перейти на `t(unit, {count: value})` во всех `SliderField`/`CalculatorForm` и передавать значение. Отложено.
 - **Related slug typization** — `string[]` doesn't catch typos (like the old `lorem-ipsum`). Consider `Slug` union type or `satisfies readonly string[]` assertion so typos fail at build time.
 - **`getToolCount()` is sync** — fine at 75, fine at 500. If the registry grows beyond ~1000 entries with heavy per-entry initialization, consider a cached constant or build-time inlining.
+- **favicon-generator — future improvements** — (1) SVG favicon output: `<link rel="icon" type="image/svg+xml">` for sharper retina. (2) Verify generated `.ico` opens correctly on Windows / macOS / Linux. (3) Consider `browserconfig.xml` for legacy Edge/IE — low priority, dead formats.
 
-## [0.15.0] - 2026-10-07
+## [0.16.0] - 2026-10-07
 
-### SEO finalization (static part) + domain + hosting + brand identity
+### Brand identity, favicon set, localized metadata, legal pages rewrite
 
 #### Added
 
-**JSON-LD on all page types**
+**Brand identity — logo set**
 
-- **`components/tools/ToolsSchema.tsx`** — new. `CollectionPage` + `ItemList` (all 75 tools). Mounted on `/tools` before the page header. Uses `getAllRegistryEntries()` for the item list, `tools.description` with `{count}` for the description.
-- **`components/category/CategorySchema.tsx`** — new. Four JSON-LD blocks per category: `CollectionPage` + `ItemList` (5–24 items) + `FAQPage` (5 questions) + `BreadcrumbList` (Home → Category). Mounted in `CategoryPage.tsx` before `.page` div.
-- **`helpers/site.ts`** — new. `SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? 'Toolyland'`, `getPublisher()` returns `{type: 'Organization', name: SITE_NAME, url: getBaseUrl()}`. Re-exported from `helpers/index.ts`.
+- **Three SVG variants** in `public/brand/`:
+  - `toolyland-icon.svg` — rounded square, navy `#0F172A` background, teal `#14B8A6` letter T, coral `#FB7185` dot in top-right corner. Used for favicon, app icons, avatars.
+  - `toolyland-compact.svg` — icon + "oolyland" wordmark (T in icon = first letter). Used in sidebar, mobile header.
+  - `toolyland-wordmark.svg` — "Toolyland" text-only in Inter Bold (700), navy fill. Used for documents, email signatures, OG-image.
+- **Wordmark typography** — Inter Bold 700, letter-spacing `-1.5%`, size `65`. Chosen over ExtraBold (too heavy) and Black (breaks minimalism). Color matches icon background (`#0F172A`).
+- **`components/shared/Logo/Logo.tsx`** — new component. Uses `next/image` with static import of `toolyland-compact.svg`. Rendered in `AppSidebar`.
 
-**Brand identity**
+**Favicon set (via toolyland.com/favicon-generator)**
 
-- Logo: rounded square, navy background `#0F172A`, teal letter T `#14B8A6`, coral dot in top-right corner `#FB7185`.
-- Wordmark: "toolyland" in bold sans-serif.
+- `public/favicon.ico` — multi-size (16/32/48) ICO, generated by own tool.
+- `public/favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`, `favicon-96x96.png`.
+- `public/apple-touch-icon.png` (180×180).
+- `public/icon-192x192.png`, `icon-512x512.png` (PWA).
+- `public/site.webmanifest` — `name` / `short_name` = `Toolyland`, `theme_color` / `background_color` = `#0F172A`, `display: standalone`, corrected icon paths.
 
-**Env vars**
+**Localized metadata**
 
-- `NEXT_PUBLIC_SITE_URL=https://toolyland.com`
-- `NEXT_PUBLIC_SITE_NAME=Toolyland`
+- **`meta.site` block** in `messages/{en,ru}.json` — site-wide `title` + `description` fallback for pages without own `generateMetadata` (about, privacy, 404).
+- **`generateMetadata` in `app/[locale]/layout.tsx`** — replaces old static `export const metadata`. Reads locale via `getTranslations({locale, namespace: 'meta.site'})`. Emits localized `title` + `description`.
+- **Full metadata block** — `applicationName`, `authors`, `creator`, `publisher`, icons (7 entries), `manifest`, `openGraph` (with `locale` + `alternateLocale` from `getOgLocale` / `getOgAlternateLocales`), `twitter`, `robots` (with `max-image-preview: large`, `max-snippet: -1`, `max-video-preview: -1`).
 
-**Messages**
+**Viewport theme color**
 
-- New key `categories.all.title` — "Categories" / "Категории". Used by `HomeSchema.ItemList.name`.
+- `viewport.themeColor` — array of two media-query entries: light `#ffffff`, dark `#0F172A`. Android status bar matches site theme.
+
+**About page — audience section**
+
+- New `about.audience` block in `messages/{en,ru}.json` with six audience entries: designers, copywriters, developers, marketers, students, freelancers.
+- Rendered in `about/page.tsx` after `offer`.
+
+**Privacy policy — full rewrite**
+
+- New section structure: `tools` / `storage` / `cookies` / `analytics` / `ads` / `rights` / `changes` / `contact`.
+- Explicit acknowledgment of Google Analytics 4, Yandex Metrica (with Webvisor), Google AdSense.
+- GDPR / UK GDPR / CCPA rights section.
+- Links to Google Ads Settings and Google partner-sites policy.
+- Contact email `privacy@toolyland.com`.
+
+**favicon-generator improvements** (own tool, self-hosted)
+
+- Multi-size `.ico` output — 16/32/48 PNG entries embedded in ICO container. Custom builder, no external library.
+- Transparent background checkbox — skips canvas fill when enabled.
+- Own `ColorPicker` component (`components/ui/color-picker.tsx`) instead of native `<input type="color">`.
+- `readme` template moved to `messages/{en,ru}.json` — localized, `{htmlSnippet}` and `{themeColor}` passed as ICU variables. Includes Toolyland branding + link.
+- Auto-regenerate on option change (`fitMode`, `backgroundColor`, `transparentBg`) via `useEffect` with `didMount` guard.
 
 #### Changed
 
-**JSON-LD refactor — unified publisher**
+**Voice and copy**
 
-- `HomeSchema.tsx`, `CategorySchema.tsx`, `ToolsSchema.tsx`, `CalculatorSchema.tsx`, `ToolSchema.tsx` — all import `getPublisher()` from `@/helpers` instead of hardcoding `'ProjectName'`.
-- `HomeSchema` — `WebSite` now has `@id = ${baseUrl}${localePath}#website`. `ItemList.name` changed from `categories.all.name` ("All Tools") to `categories.all.title` ("Categories") — semantically matches `numberOfItems: 6`.
-- `CategorySchema` — `isPartOf` points to the site WebSite; `publisher: getPublisher()` added.
-- `CalculatorSchema` / `ToolSchema` — `publisher: getPublisher()` (was inline objects with hardcoded name).
+- `about` block rewritten from first-person singular — "я решил сделать" instead of "мы делаем". Developer voice, but emphasis on universal audience, not just developers.
+- `about.intro` now explicitly lists audiences: finance/health calculators, text tools for writers, generators for designers, dev utilities, business docs for freelancers.
+- New `about.mission.points.universal` — "Для всех: дизайнеров, копирайтеров, разработчиков, студентов, фрилансеров, малого бизнеса."
+- Fixed duplicate line in `about.offer.textTools` (contained `text` value by mistake).
 
-**URL in JSON-LD = canonical**
+**Metadata refactor**
 
-- `CalcLayout.tsx` / `ToolLayout.tsx` — `url` now built as `${baseUrl}${localePath}/${config.slug}`, where `localePath` comes from `getLocale()`. Previously `${baseUrl}/${slug}` — mismatch with canonical on RU pages.
-- `CategorySchema` / `ToolsSchema` — same pattern: `localePath` appended.
+- `app/[locale]/layout.tsx` — `export const metadata` → `export async function generateMetadata({params})`.
+- Title template removed — was `'%s | ProjectName'`. Google SERP would truncate pages with long custom titles. Each page's `generateMetadata` sets its own title without suffix.
+- `SITE_DESCRIPTION` constant removed — moved to `messages/meta.site.description`.
 
-**Locale-aware Link everywhere**
+**SearchTrigger caret fix**
 
-- Mass replace `import Link from 'next/link'` → `import {Link} from '@/i18n/navigation'` across the whole project.
-- Affected: `EntryPreview.tsx`, `RelatedPreview.tsx`, `CategoryPage.tsx`, `BreadCrumbs.tsx`, `Footer.tsx`, and all View components with internal links.
+- Position — `align-text-bottom` removed, `translate-y-[0.15em]` added. Caret now vertically centered with text.
+- Animation — `animate-pulse` → `animate-[caret-blink_1s_steps(2,start)_infinite]` for hard blink (terminal-like). Keyframes added to `globals.css`.
 
-**ICU plural for category.toolsCount (EN)**
+**README.md**
 
-- `en.json` — `"toolsCount": "{count, plural, one {# tool} other {# tools}}"` (was `"{count} tools"`). RU already had the 4-category form.
-
-**Breadcrumb**
-
-- `CategorySchema.BreadcrumbList` position 1 — `name: nav.home` ("Home" / "Главная"), `item: ${baseUrl}${localePath}`. Was `categories.all.name` ("All Tools") — semantic mismatch with the root URL.
+- Link to live site moved to first line: `**[toolyland.com](https://toolyland.com)**`.
 
 #### Fixed
 
-- **JSON-LD url mismatch on RU pages** — schemas emitted EN URLs (`/bmi-calculator`) while canonical was RU (`/ru/bmi-calculator`). Rich Results Test would flag "url mismatch". Fixed via `localePath`.
-- **`ItemList.name` semantic mismatch** — HomeSchema had `name: "All Tools"` with `numberOfItems: 6` (categories). Rich Results Test would warn. Changed to "Categories".
-- **`next/link` on RU pages** — internal links emitted EN URLs, forcing a redirect hop on every click. Fixed via locale-aware `Link` from `@/i18n/navigation`.
-- **`category.toolsCount` EN missing plural** — would render "1 tools" if a category ever had one tool. Fixed with ICU plural.
-
-#### Removed
-
-- **`PUBLISHER_NAME` constants** from `HomeSchema.tsx` and `CategorySchema.tsx` — replaced by `getPublisher()`.
-- **Inline `publisher` objects** in `CalculatorSchema.tsx` and `ToolSchema.tsx` — replaced by `getPublisher()`.
+- **Favicon ignored** — `app/favicon.ico` from Next.js template was overriding `metadata.icons`. Removed `app/favicon.ico`, now `public/favicon.ico` is served correctly.
+- **Privacy policy contradicted reality** — claimed "we don't collect, store, or share data" while cookie-consent banner existed. Rewritten to acknowledge localStorage, GA4, Yandex Metrica, AdSense cookies, and grant explicit consent language.
+- **About page voice mismatch** — "мы делаем" replaced with "я решил сделать".
+- **About duplicate line** — `about.offer.textTools` contained the value of `about.offer.text` ("Инструменты в шести категориях:") instead of "Текстовые инструменты — ...".
 
 #### Infrastructure (decisions)
 
-- **Hosting decision** — Vercel rejected after probe deploy: not accessible from RU without VPN (IP blocking + OCSP stapling issues on Hobby plan). Amvera chosen — Russian PaaS (290 ₽/mo "Начальный" tariff, SLA, RU + world availability).
-- **Domain** — `toolyland.com` bought at Timeweb.
-- **Deployment plan** — A-record + TXT from Amvera, DNS setup in Timeweb, automatic Let's Encrypt via Amvera.
+- **OG-image deferred** — `metadata.openGraph.images` references `/og-default.jpg` which doesn't exist yet. Non-blocker: social previews fall back to a default thumbnail. Tracked in [Unreleased].
+- **Contact emails deferred** — `privacy@toolyland.com` and `hello@toolyland.com` referenced in pages but not created. Must exist before AdSense submission. Tracked in [Unreleased].
 
 #### Known limitations
 
-- **Rich Results Test not yet run** — needs deployed site. Run after Amvera deploy.
+- **OG-image missing** — `og-default.jpg` not created. Social shares will not show custom preview image.
+- **Contact emails missing** — placeholders in place. Need Cloudflare Email Routing or Yandex Mail for Domain.
+- **Cookie consent lacks revoke UI** — only "Accept" button. GDPR requires withdrawal mechanism. Tracked in [Unreleased].
+- **Privacy policy links not clickable** — Google URLs in `privacy.sections.ads.text` are plain text. Must be rendered as `<a>` before AdSense submission.
+- **Rich Results Test not yet run** — needs deployed site.
 - **Regression check not exhaustive** — 3–5 View vs texts still pending.
 - **EN + RU proofread not done** in browser.
-- **OG image + favicon set** — pending (tracked in [Unreleased]).
-- **`related` uses `string[]`** — no compile-time check for typos. Typed union still in tech debt.
-- **`publisher.name`** — now reads from `NEXT_PUBLIC_SITE_NAME`, fallback `'Toolyland'`. First deploy without env set will correctly use `'Toolyland'` — but should be set anyway to be explicit.
