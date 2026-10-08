@@ -9,7 +9,6 @@ build:
   artifacts:
     "*": /
 run:
-  scriptName: start
   scriptArguments: null
   nodeArguments: null
   command: pnpm run start
