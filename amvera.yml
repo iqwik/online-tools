@@ -1,0 +1,19 @@
+meta:
+  environment: nodejs
+  toolchain:
+    name: pnpm
+    version: "22"
+build:
+  skip: false
+  additionalCommands: null
+  artifacts:
+    "*": /
+run:
+  scriptName: start
+  scriptArguments: null
+  nodeArguments: null
+  command: pnpm run start
+  persistenceMount: /data
+  containerPort: "3000"
+  singleton: true
+  zeroDowntime: false
