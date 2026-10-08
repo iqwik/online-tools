@@ -15,7 +15,9 @@ import {
 import {routing} from '@/i18n/routing'
 import '../globals.css'
 
+import {GoogleAnalytics} from '@next/third-parties/google'
 import {Geist_Mono, Inter, JetBrains_Mono} from 'next/font/google'
+import {YandexMetrica} from '@/components/analytics/yandex-metrica'
 import {CookieConsent} from '@/components/cookie-consent'
 import {SidebarStateProvider} from '@/components/providers/sidebar-state-provider'
 import {SearchProvider} from '@/components/search/SearchProvider'
@@ -184,6 +186,12 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
             </TooltipProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        ) : null}
+        {process.env.NEXT_PUBLIC_YM_ID ? (
+          <YandexMetrica counterId={Number(process.env.NEXT_PUBLIC_YM_ID)} />
+        ) : null}
       </body>
     </html>
   )
