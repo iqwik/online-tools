@@ -39,6 +39,23 @@
 - **`getToolCount()` is sync** — fine at 75, fine at 500. If the registry grows beyond ~1000 entries with heavy per-entry initialization, consider a cached constant or build-time inlining.
 - **favicon-generator — future improvements** — (1) SVG favicon output: `<link rel="icon" type="image/svg+xml">` for sharper retina. (2) Verify generated `.ico` opens correctly on Windows / macOS / Linux. (3) Consider `browserconfig.xml` for legacy Edge/IE — low priority, dead formats.
 
+## [0.17.0] - 2026-10-08
+
+### Added
+
+- **Diff checker — word- and character-level comparison.** New granularity switch (Lines / Words / Chars). Character and word modes render an inline view with red/green highlighting inside the line, so a one-symbol change in a long ID is visible without coloring the entire line. Stats counters adapt to the selected granularity (lines / words / chars).
+- **Deploy to Amvera.** Site is live at https://toolyland.com. Tariff «Начальный», Let's Encrypt issued automatically, DNS on Timeweb.
+
+### Changed
+
+- **`about.intro`** rewritten to first-person singular. Removed the contradiction with the privacy policy ("nothing is stored or tracked") — the new text acknowledges that comparison runs locally and mentions the privacy policy link.
+- **`config.diff-checker`** (EN + RU): description, metaDescription, keywords, features (4 → 7), howToUse (added granularity step), useCases (4 → 5), FAQ (6 → 7 questions). Titles fit within 60 chars.
+- **`rent-vs-buy` FAQ a5:** replaced the jargon-filled "manually deduct the annual savings from the cash outflow" with plain wording that tells the user what to do next.
+
+### Fixed
+
+- **`diff-checker` FAQ q6** now says "yes" to inside-the-line diff — the previous q5 said "no" and directly contradicted the new UI. FAQ JSON-LD would have flagged a mismatch between markup and behaviour.
+
 ## [0.16.0] - 2026-10-07
 
 ### Brand identity, favicon set, localized metadata, legal pages rewrite
