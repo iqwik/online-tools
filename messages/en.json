@@ -592,7 +592,7 @@
     "intro": "{project} is a collection of free online tools for everyday tasks. Finance and health calculators, text utilities for writers and editors, generators for designers, developer utilities, business documents for freelancers and small business. Everything runs in your browser — no signup, no uploads, no data sent to a server.",
     "mission": {
       "title": "Why this site exists",
-      "text": "Most online tools bury you in signups, process your data on their servers, and drown you in ads. I wanted to do things differently: simple, fast utilities for everyday tasks that get out of your way. Everything is computed right in your browser: your files, text, and numbers never get uploaded anywhere. We don't ask you to sign up, we don't store your documents, and we don't show more ads than needed to keep the project running.",
+      "text": "Most online tools bury you in signups, process your data on their servers, and drown you in ads. I wanted to do things differently: simple, fast utilities for everyday tasks that get out of your way. Everything is computed right in your browser: your files, text, and numbers never get uploaded anywhere. No signups, no storing your documents, and no ads beyond what's needed to keep the project running.",
       "points": {
         "free": "100% free — no paywalls, no signups, no accounts.",
         "fast": "Built with Next.js and React — tools load instantly on any device.",
@@ -3496,11 +3496,11 @@
       }
     },
     "diff-checker": {
-      "title": "Diff Checker — Compare Two Texts Online",
-      "h1": "Diff Checker",
-      "description": "Compare two blocks of text or code and see the differences line by line. Added and removed lines are highlighted automatically. Switch between Split and Unified views — the same format developers know from git diff.",
-      "metaDescription": "Compare two texts or code files line by line. Added and removed lines highlighted automatically. Split and unified views, like git diff.",
-      "keywords": "diff checker,text compare,compare two texts,text diff,difference checker,compare code",
+      "title": "Compare Text Online — Diff Checker",
+      "h1": "Compare Text",
+      "description": "Compare two texts or code snippets by line, word, or character — differences are highlighted right in the text. Three comparison modes and two layouts for line-level diff: Split and Unified.",
+      "metaDescription": "Compare two texts by line, word, or character. Real-time difference highlighting, no signup and no server upload.",
+      "keywords": "compare text,diff checker,text diff,find differences,compare two texts,code diff,character diff,word diff",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
@@ -3508,67 +3508,85 @@
           "description": "Put the first version in the left panel."
         },
         {
-          "title": "Paste the changed text",
+          "title": "Paste the modified text",
           "description": "Put the second version in the right panel."
         },
         {
-          "title": "Review the differences",
-          "description": "Added and removed lines are highlighted automatically."
+          "title": "Pick the granularity",
+          "description": "Lines for code and configs, Words for prose, Chars for when individual characters matter."
         },
         {
-          "title": "Switch views",
-          "description": "Toggle between Split and Unified view depending on your preference."
+          "title": "Read the highlights",
+          "description": "Added fragments are highlighted in green, removed ones in red. The result updates as you type."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "Line-by-line comparison",
-          "description": "Added and removed lines are highlighted clearly."
+          "title": "Three comparison modes",
+          "description": "Line-level, word-level, or character-level — switch in one click. Pick the mode that fits the task: code is easier to compare line by line, while IDs and serial numbers make more sense character by character."
+        },
+        {
+          "title": "Real-time difference highlighting",
+          "description": "Added fragments in green, removed in red. The result updates immediately — no Compare button to press."
         },
         {
           "title": "Split and Unified views",
-          "description": "Side-by-side alignment or a single column with +/- markers."
+          "description": "Line mode offers two layouts: parallel columns or a single stream with +/- markers, just like a git diff."
         },
         {
-          "title": "Works for code and prose",
-          "description": "Treats input as plain text — works for code, JSON, config files and any line-based content."
+          "title": "Diff inside the line",
+          "description": "In Words and Chars modes you see exactly what changed inside the line — down to a single character. Only the differences are highlighted; the rest of the text stays untouched."
         },
         {
-          "title": "Swap input",
-          "description": "Swap the two panels with one click if you put them in the wrong order."
+          "title": "Works with code and prose",
+          "description": "Processes text as-is — equally good for code, JSON, config files, articles, contracts, and any other text."
+        },
+        {
+          "title": "Change statistics",
+          "description": "Counters at the top show how many lines, words, or characters were added and removed. The metric adapts to the selected mode."
+        },
+        {
+          "title": "Swap and clear",
+          "description": "The Swap button flips the two texts, Clear resets both fields. Both act instantly."
         }
       ],
-      "useCasesTitle": "Common use cases",
+      "useCasesTitle": "When it helps",
       "useCases": [
-        "Compare two versions of a document",
-        "Check what changed between two code files",
-        "Spot differences in JSON or config files",
-        "Review edits between draft versions"
+        "Compare two revisions of a document or contract",
+        "See what changed between two versions of a code file",
+        "Diff JSON or config files across environments",
+        "Review edits between drafts of an article",
+        "Find the mismatch between two long numbers, IDs, or hashes"
       ],
       "split": "Split",
       "unified": "Unified",
       "swap": "Swap",
       "clear": "Clear",
+      "lines": "Lines",
+      "words": "Words",
+      "chars": "Chars",
       "leftLabel": "Original",
-      "rightLabel": "Changed",
-      "leftPlaceholder": "Paste the original text here...",
-      "rightPlaceholder": "Paste the changed text here...",
+      "rightLabel": "Modified",
+      "leftPlaceholder": "Paste the original text...",
+      "rightPlaceholder": "Paste the modified text...",
       "added": "added",
       "removed": "removed",
       "faq": {
-        "q1": "How does the diff checker work?",
-        "a1": "It compares the two texts line by line and highlights lines that were added or removed. Unchanged lines are shown without highlighting so you can quickly scan the differences.",
-        "q2": "What is the difference between Split and Unified view?",
-        "a2": "Split view shows the original and changed texts side by side with matched lines aligned. Unified view merges everything into one column with +/- markers, like a git diff.",
-        "q3": "Can I compare code?",
-        "a3": "Yes. The diff checker treats the input as plain text and works equally well for code, prose, JSON, configuration files and any line-based content.",
-        "q4": "Is my text uploaded anywhere?",
-        "a4": "No. The comparison runs entirely in your browser. Your text never leaves your device.",
-        "q5": "Does it detect character-level differences within a line?",
-        "a5": "No. This tool highlights whole lines. If a single character changed inside a line, the entire line is marked as changed. For character-level diffs (intra-line highlighting), use a dedicated diff tool or a git diff viewer.",
-        "q6": "Is there a size limit?",
-        "a6": "The practical limit is browser memory. Texts up to a few hundred thousand lines compare instantly. Very large files (over ~10 MB) may slow down the browser — for those, use a command-line tool like diff or git diff."
+        "q1": "How does the comparison work?",
+        "a1": "Texts are compared at the selected level — by line, word, or character. Added fragments are highlighted in green, removed ones in red, and matching text stays unhighlighted. The result updates in real time.",
+        "q2": "What is the difference between Lines, Words, and Chars modes?",
+        "a2": "Lines mode looks for differences between whole lines — best for code and config files. Words mode compares word by word while preserving whitespace — good for editing prose. Chars mode finds every difference at the individual-character level — useful when two strings are almost identical but differ in one or two characters.",
+        "q3": "What is the difference between Split and Unified views?",
+        "a3": "Split shows both texts in parallel: the original on the left with red highlighting for removed content, the modified version on the right with green highlighting for added content. Unified renders a single stream with +/- markers, just like git diff output. Both layouts are available only in Lines mode.",
+        "q4": "Can I compare code?",
+        "a4": "Yes. The tool works with plain text, so it is equally good for code, prose, JSON, config files, and any other text data.",
+        "q5": "Are my texts stored on the server?",
+        "a5": "No. All comparison runs locally in your browser. Texts never leave your device and are not kept after the page is closed.",
+        "q6": "Does it find differences inside a line?",
+        "a6": "Yes. In Words and Chars modes, differences are highlighted inside the line rather than across the whole line. If a single character in a long ID changed, only that character gets highlighted — not the entire line.",
+        "q7": "Is there a size limit?",
+        "a7": "The practical limit is your browser's memory. Line-level comparison handles texts of several hundred thousand lines instantly. Character-level comparison of very long texts (over ~100,000 characters) may slow down the browser — use Lines mode for those."
       }
     },
     "number-to-words-converter": {

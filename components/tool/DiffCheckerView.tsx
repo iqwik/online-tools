@@ -1,6 +1,6 @@
 'use client'
 
-import {type Change, diffLines} from 'diff'
+import {type Change, diffChars, diffLines, diffWordsWithSpace} from 'diff'
 import {ArrowRightLeft, Trash2} from 'lucide-react'
 import {useTranslations} from 'next-intl'
 import {useMemo, useState} from 'react'
@@ -8,28 +8,39 @@ import {Button} from '@/components/ui/button'
 import {InputPanel} from '../shared/InputPanel'
 import {SegmentedControl} from '../ui/segmented-control'
 
+type Granularity = 'lines' | 'words' | 'chars'
+type ViewMode = 'split' | 'unified'
+
 export function DiffCheckerView() {
   const t = useTranslations('config')
 
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
-  const [mode, setMode] = useState<'split' | 'unified'>('split')
+  const [view, setView] = useState<ViewMode>('split')
+  const [granularity, setGranularity] = useState<Granularity>('lines')
 
   const changes = useMemo<Change[]>(() => {
     if (!left && !right) return []
+    if (granularity === 'chars') return diffChars(left, right)
+    if (granularity === 'words') return diffWordsWithSpace(left, right)
     return diffLines(left, right)
-  }, [left, right])
+  }, [left, right, granularity])
 
   const stats = useMemo(() => {
     let added = 0
     let removed = 0
     for (const part of changes) {
-      const lines = part.value.split('\n').length
-      if (part.added) added += lines
-      else if (part.removed) removed += lines
+      const count =
+        granularity === 'lines'
+          ? part.value.split('\n').length
+          : granularity === 'words'
+            ? part.value.trim().split(/\s+/).filter(Boolean).length
+            : part.value.length
+      if (part.added) added += count
+      else if (part.removed) removed += count
     }
     return {added, removed}
-  }, [changes])
+  }, [changes, granularity])
 
   function handleClear() {
     setLeft('')
@@ -46,14 +57,27 @@ export function DiffCheckerView() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-3">
         <SegmentedControl
-          name="diff-mode"
-          value={mode}
-          onChange={setMode}
+          name="diff-granularity"
+          value={granularity}
+          onChange={setGranularity}
           options={[
-            {value: 'split', label: t('diff-checker.split')},
-            {value: 'unified', label: t('diff-checker.unified')},
+            {value: 'lines', label: t('diff-checker.lines')},
+            {value: 'words', label: t('diff-checker.words')},
+            {value: 'chars', label: t('diff-checker.chars')},
           ]}
         />
+
+        {granularity === 'lines' && (
+          <SegmentedControl
+            name="diff-view"
+            value={view}
+            onChange={setView}
+            options={[
+              {value: 'split', label: t('diff-checker.split')},
+              {value: 'unified', label: t('diff-checker.unified')},
+            ]}
+          />
+        )}
 
         <Button
           type="button"
@@ -109,10 +133,14 @@ export function DiffCheckerView() {
             </span>
           </div>
 
-          {mode === 'split' ? (
-            <SplitView changes={changes} />
+          {granularity === 'lines' ? (
+            view === 'split' ? (
+              <SplitView changes={changes} />
+            ) : (
+              <UnifiedView changes={changes} />
+            )
           ) : (
-            <UnifiedView changes={changes} />
+            <InlineView changes={changes} />
           )}
         </>
       )}
@@ -217,6 +245,31 @@ function UnifiedView({changes}: ViewProps) {
             </div>
           ))
         })}
+      </div>
+    </div>
+  )
+}
+
+function InlineView({changes}: ViewProps) {
+  return (
+    <div className="overflow-hidden rounded-xl border bg-card">
+      <div className="max-h-[500px] overflow-auto p-4 font-mono text-xs leading-relaxed">
+        <div className="whitespace-pre-wrap break-words">
+          {changes.map((part, i) => (
+            <span
+              key={i}
+              className={
+                part.added
+                  ? 'bg-green-600 text-white dark:bg-green-700'
+                  : part.removed
+                    ? 'bg-red-600 text-white dark:bg-red-700'
+                    : ''
+              }
+            >
+              {part.value}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )
