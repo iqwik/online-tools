@@ -46,6 +46,7 @@ export type ToolKind =
   | 'base64-image-optimizer'
   | 'images-to-pdf'
   | 'screenshot-beautifier'
+  | 'hidden-character-finder'
 
 export interface UnitDef {
   value: string
@@ -240,6 +241,10 @@ export interface ScreenshotBeautifierConfig extends BaseConfig {
   kind: 'screenshot-beautifier'
 }
 
+export interface HiddenCharacterFinderConfig extends BaseConfig {
+  kind: 'hidden-character-finder'
+}
+
 export type ToolConfig =
   | UnitConverterConfig
   | JsonFormatterConfig
@@ -286,3 +291,4 @@ export type ToolConfig =
   | Base64ImageOptimizerConfig
   | ImagesToPdfConfig
   | ScreenshotBeautifierConfig
+  | HiddenCharacterFinderConfig

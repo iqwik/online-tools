@@ -17,7 +17,7 @@ export function DiffCheckerView() {
   const [left, setLeft] = useState('')
   const [right, setRight] = useState('')
   const [view, setView] = useState<ViewMode>('split')
-  const [granularity, setGranularity] = useState<Granularity>('lines')
+  const [granularity, setGranularity] = useState<Granularity>('chars')
 
   const changes = useMemo<Change[]>(() => {
     if (!left && !right) return []
@@ -61,9 +61,9 @@ export function DiffCheckerView() {
           value={granularity}
           onChange={setGranularity}
           options={[
-            {value: 'lines', label: t('diff-checker.lines')},
-            {value: 'words', label: t('diff-checker.words')},
             {value: 'chars', label: t('diff-checker.chars')},
+            {value: 'words', label: t('diff-checker.words')},
+            {value: 'lines', label: t('diff-checker.lines')},
           ]}
         />
 

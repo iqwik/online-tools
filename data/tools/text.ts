@@ -1,7 +1,8 @@
 import {LeftToRightListNumberIcon, TextFontIcon} from '@animateicons/react/huge'
-import {TextSearchIcon} from '@animateicons/react/lucide'
+import {DiffIcon} from '@animateicons/react/lucide/diff-icon'
 import {NotebookPenIcon as FileText} from '@animateicons/react/lucide/notebook-pen-icon'
 import {SpellCheckIcon as SpellCheck} from '@animateicons/react/lucide/spell-check-icon'
+import {TextSearchIcon} from '@animateicons/react/lucide/text-search-icon'
 import type {ToolConfig} from '@/types'
 
 export const textTools: ToolConfig[] = [
@@ -95,7 +96,7 @@ export const textTools: ToolConfig[] = [
     description: 'diff-checker.description',
     metaDescription: 'diff-checker.metaDescription',
     keywords: ['diff-checker.keywords'],
-    Icon: TextSearchIcon,
+    Icon: DiffIcon,
     tags: ['text'],
     faq: [
       {q: 'diff-checker.faq.q1', a: 'diff-checker.faq.a1'},
@@ -151,6 +152,47 @@ export const textTools: ToolConfig[] = [
       },
     ],
     publishedAt: '2026-09-29',
+    related: [
+      'word-counter',
+      'case-converter',
+      'lorem-ipsum-generator',
+      'diff-checker',
+    ],
+  },
+  {
+    kind: 'hidden-character-finder',
+    slug: 'hidden-character-finder',
+    category: 'text',
+    title: 'hidden-character-finder.title',
+    h1: 'hidden-character-finder.h1',
+    description: 'hidden-character-finder.description',
+    metaDescription: 'hidden-character-finder.metaDescription',
+    keywords: ['hidden-character-finder.keywords'],
+    Icon: TextSearchIcon,
+    tags: ['text'],
+    faq: [
+      {
+        q: 'hidden-character-finder.faq.q1',
+        a: 'hidden-character-finder.faq.a1',
+      },
+      {
+        q: 'hidden-character-finder.faq.q2',
+        a: 'hidden-character-finder.faq.a2',
+      },
+      {
+        q: 'hidden-character-finder.faq.q3',
+        a: 'hidden-character-finder.faq.a3',
+      },
+      {
+        q: 'hidden-character-finder.faq.q4',
+        a: 'hidden-character-finder.faq.a4',
+      },
+      {
+        q: 'hidden-character-finder.faq.q5',
+        a: 'hidden-character-finder.faq.a5',
+      },
+    ],
+    publishedAt: '2026-10-08',
     related: [
       'word-counter',
       'case-converter',

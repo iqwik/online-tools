@@ -3658,6 +3658,98 @@
         "a6": "In the short scale (used in English-speaking countries), 1 billion = 1,000 million. In the long scale (used historically in some European countries), 1 billion = 1,000,000 million. This converter uses the short scale."
       }
     },
+    "hidden-character-finder": {
+      "title": "Hidden Character Finder — Invisible Characters & Homoglyphs",
+      "h1": "Hidden Character Finder",
+      "description": "Find invisible characters, lookalike letters from other alphabets, and mixed-alphabet words in your text. Paste text and the tool shows every suspicious character with its code and name.",
+      "metaDescription": "Find invisible characters and homoglyphs in text. Shows codepoint, script, and issue type for every suspicious character.",
+      "keywords": "hidden characters,invisible characters,homoglyph finder,lookalike letters,unicode inspector,zero-width space,text cleaning",
+      "howToUseTitle": "How to use",
+      "howToUse": [
+        {
+          "title": "Paste your text",
+          "description": "Copy text from a document, chat, or email into the input field."
+        },
+        {
+          "title": "Review the highlights",
+          "description": "Suspicious characters are highlighted right in the text. Hover to see the codepoint and name."
+        },
+        {
+          "title": "Check the table",
+          "description": "Below is a table with every found character: position, codepoint, script, and issue type."
+        },
+        {
+          "title": "Copy cleaned text",
+          "description": "Click 'Copy cleaned text' to remove invisible characters and paste a clean version."
+        }
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        {
+          "title": "Invisible character detection",
+          "description": "Finds zero-width spaces, BOM, soft hyphens, direction marks, and other characters that are invisible when reading."
+        },
+        {
+          "title": "Homoglyph detection",
+          "description": "Identifies characters from other alphabets that look like regular letters: Cyrillic 'а' instead of Latin 'a', Greek 'ο' instead of 'o'."
+        },
+        {
+          "title": "Mixed alphabet detection",
+          "description": "Flags words that mix Cyrillic and Latin characters — a common cause of search and copy-paste issues."
+        },
+        {
+          "title": "In-text highlighting",
+          "description": "Problem characters are highlighted right in the original text — you see exactly where they are."
+        },
+        {
+          "title": "Details table",
+          "description": "For each character: position, codepoint (U+XXXX), Unicode name, script, and issue type."
+        },
+        {
+          "title": "Text cleaning",
+          "description": "The 'Copy cleaned text' button removes invisible characters and keeps only visible ones."
+        }
+      ],
+      "useCasesTitle": "When it helps",
+      "useCases": [
+        "Check an email or message for hidden characters that break search or copy-paste.",
+        "Find lookalike letters in a domain or email — protection against phishing.",
+        "Clean text copied from a PDF or web page from invisible artifacts.",
+        "Check code or config for non-printable control characters.",
+        "Find mixed Cyrillic and Latin characters in words that break document search."
+      ],
+      "faq": {
+        "q1": "What are hidden characters?",
+        "a1": "These are Unicode characters that are not visually rendered but are present in the text: zero-width space, BOM, soft hyphen, direction marks, and others. They can get into text when copying from PDFs, web pages, or messengers and break search, sorting, or string comparison.",
+        "q2": "What are homoglyphs?",
+        "a2": "These are characters from different alphabets that look identical. For example, Cyrillic 'а' and Latin 'a', Cyrillic 'р' and Latin 'p'. They look like regular letters but have different codepoints — a common cause of phishing and search issues.",
+        "q3": "Is my text sent anywhere?",
+        "a3": "No. All analysis runs in your browser via JavaScript. Text never leaves your device and is not stored after the page is closed.",
+        "q4": "How do I clean text from invisible characters?",
+        "a4": "Click 'Copy cleaned text' — the tool removes all invisible characters and copies the result to your clipboard. Paste it into your document.",
+        "q5": "Which alphabets are supported?",
+        "a5": "The tool works with Unicode and detects the script for each character: Cyrillic, Latin, Greek, Arabic, Hebrew, and others. The homoglyph map covers Cyrillic, Latin, and basic Greek characters."
+      },
+      "inputLabel": "Text to check",
+      "inputPlaceholder": "Paste text to find hidden characters...",
+      "clearButton": "Clear",
+      "copyCleanedButton": "Copy cleaned text",
+      "copyCleanedDone": "Copied",
+      "resultsTitle": "Found characters",
+      "noResults": "No suspicious characters found.",
+      "tablePosition": "Position",
+      "tableChar": "Char",
+      "tableCode": "Code",
+      "tableName": "Name",
+      "tableScript": "Script",
+      "tableIssue": "Issue",
+      "issueInvisible": "Invisible",
+      "issueHomoglyph": "Homoglyph",
+      "issueMixed": "Mixed alphabet",
+      "legendInvisible": "Invisible characters",
+      "legendHomoglyph": "Homoglyphs",
+      "legendMixed": "Mixed alphabets"
+    },
 
     "unit-converter": {
       "title": "Unit Converter — Length, Weight, Temperature & More",

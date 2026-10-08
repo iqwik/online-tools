@@ -15,6 +15,7 @@ import {DiffCheckerView} from './DiffCheckerView'
 import {FaviconGeneratorView} from './FaviconGeneratorView'
 import {GitignoreGeneratorView} from './GitignoreGeneratorView'
 import {HashGeneratorView} from './HashGeneratorView'
+import {HiddenCharacterFinderView} from './HiddenCharacterFinderView'
 import {ImageCompressorView} from './ImageCompressorView'
 import {ImageConverterView} from './ImageConverterView'
 import {ImagesToPdfView} from './ImagesToPdfView'
@@ -142,6 +143,8 @@ export function ToolView({config}: Props) {
       return <ImagesToPdfView />
     case 'screenshot-beautifier':
       return <ScreenshotBeautifierView />
+    case 'hidden-character-finder':
+      return <HiddenCharacterFinderView />
     default:
       return assertNever(config)
   }
