@@ -1,5 +1,5 @@
 import type {Metadata} from 'next'
-import {getTranslations} from 'next-intl/server'
+import {getLocale, getTranslations} from 'next-intl/server'
 import {BreadCrumbs} from '@/components/shared/BreadCrumbs'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PrivacyPage() {
   const t = await getTranslations('privacy')
+  const locale = await getLocale()
 
   const sections = [
     // 'data',
@@ -28,7 +29,9 @@ export default async function PrivacyPage() {
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
         <p className="text-xs text-muted-foreground">
-          {t('updated', {date: new Date('2026-09-29').toLocaleDateString()})}
+          {t('updated', {
+            date: new Date('2026-09-29').toLocaleDateString(locale),
+          })}
         </p>
       </div>
 

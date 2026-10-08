@@ -993,7 +993,7 @@ export const healthCalculators: CalculatorConfig[] = [
         type: 'date',
       },
     ],
-    calculate: ({method, date}) => {
+    calculate: ({method, date}, {locale}) => {
       if (!date) return {value: '—'}
 
       const start = new Date(String(date))
@@ -1020,7 +1020,7 @@ export const healthCalculators: CalculatorConfig[] = [
       const trimester =
         weeksPregnant < 13 ? 'first' : weeksPregnant < 28 ? 'second' : 'third'
 
-      const dueStr = due.toLocaleDateString('en-US', {
+      const dueStr = due.toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
