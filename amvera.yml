@@ -1,0 +1,14 @@
+meta:
+  environment: node
+  toolchain:
+    name: pnpm
+    version: 22
+
+build:
+  additionalCommands:
+    - pnpm install --frozen-lockfile
+    - pnpm build
+
+run:
+  command: pnpm start
+  containerPort: 3000
