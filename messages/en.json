@@ -592,7 +592,7 @@
     "intro": "{project} is a collection of free online tools for everyday tasks. Finance and health calculators, text utilities for writers and editors, generators for designers, developer utilities, business documents for freelancers and small business. Everything runs in your browser — no signup, no uploads, no data sent to a server.",
     "mission": {
       "title": "Why this site exists",
-      "text": "Most online tools pile on signups, process your data on their servers, and drown you in ads. I wanted to build the opposite: simple, fast utilities for a wide range of tasks that get out of your way. Everything runs locally — nothing is uploaded, stored, or tracked.",
+      "text": "Most online tools bury you in signups, process your data on their servers, and drown you in ads. I wanted to do things differently: simple, fast utilities for everyday tasks that get out of your way. Everything is computed right in your browser: your files, text, and numbers never get uploaded anywhere. We don't ask you to sign up, we don't store your documents, and we don't show more ads than needed to keep the project running.",
       "points": {
         "free": "100% free — no paywalls, no signups, no accounts.",
         "fast": "Built with Next.js and React — tools load instantly on any device.",
@@ -664,7 +664,7 @@
       },
       "contact": {
         "title": "Contact",
-        "text": "Questions about privacy or data handling? Email privacy@toolyland.com — we respond within 48 hours."
+        "text": "Questions about privacy or data handling? Email info@toolyland.com — we respond within 48 hours."
       }
     }
   },
@@ -1879,7 +1879,7 @@
         "q5": "What appreciation rate should I assume?",
         "a5": "Historically, US home prices have appreciated at roughly 3–5% per year in nominal terms, or 1–2% above inflation. In some markets and periods, prices fall or stagnate for a decade. Use a conservative 2–3% for planning and stress-test with 0%.",
         "q6": "Does this account for the tax benefits of owning?",
-        "a6": "No. Mortgage interest and property tax deductions can significantly improve the buy scenario, especially for high earners in high-tax areas. Consult a tax advisor for your jurisdiction, or manually subtract the annual tax savings from the buy-side cash outflow."
+        "a6": "No. Mortgage interest and property tax deductions can noticeably improve the buy scenario, but the rules vary widely by country. If such deductions exist where you live, calculate the annual savings separately and compare them against the rent-vs-buy difference shown by the calculator."
       }
     },
     "fixed-deposit-calculator": {

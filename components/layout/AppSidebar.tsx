@@ -109,8 +109,6 @@ export function AppSidebar() {
                 height={36}
                 priority
               />
-              {/* <span className="text-lg shrink-0">{'/'}</span>
-              <span className="truncate">{'ProjectName'}</span> */}
             </Link>
 
             <div className="flex items-center gap-0.5">

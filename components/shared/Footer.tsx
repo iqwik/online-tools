@@ -1,4 +1,5 @@
 import {useTranslations} from 'next-intl'
+import {SITE_NAME} from '@/helpers'
 import {Link} from '@/i18n/navigation'
 
 export function Footer() {
@@ -14,7 +15,7 @@ export function Footer() {
           {t('privacy')}
         </Link>
       </div>
-      <div>&copy; 2026 ProjectName</div>
+      <div>&copy; 2026 {SITE_NAME}</div>
     </footer>
   )
 }

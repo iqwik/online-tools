@@ -7,6 +7,7 @@ import {OutputPanel} from '@/components/shared/OutputPanel'
 import {Button} from '@/components/ui/button'
 import {Checkbox} from '@/components/ui/checkbox'
 import {Input} from '@/components/ui/input'
+import {SITE_NAME} from '@/helpers'
 import {ColorPicker} from '../ui/color-picker'
 import {SegmentedControl} from '../ui/segmented-control'
 
@@ -30,7 +31,7 @@ const DEFAULTS: MetaFields = {
     'Free, fast, privacy-first online tools. Calculators, text utilities, generators, and developer tools that run 100% in your browser.',
   imageUrl: 'https://example.com/og-default.png',
   siteUrl: 'https://example.com',
-  author: 'ProjectName Team',
+  author: `${SITE_NAME} Team`,
   themeColor: '#2563eb',
   keywords: 'online tools, free tools, developer tools, calculators',
   robots: true,
@@ -248,7 +249,7 @@ export function MetaTagGeneratorView() {
                 id="meta-author"
                 value={fields.author}
                 onChange={e => update('author', e.target.value)}
-                placeholder="ProjectName Team"
+                placeholder={`${SITE_NAME} Team`}
               />
             </div>
 
