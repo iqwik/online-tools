@@ -1,5 +1,5 @@
 {
-  "name": "tools",
+  "name": "toolyland",
   "version": "0.16.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "ts:check": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "test -d .git && husky || echo 'husky skipped (no git)'"
   },
   "dependencies": {
     "@animateicons/react": "^0.9.0",
@@ -69,6 +69,13 @@
     ]
   },
   "optionalDependencies": {
+    "@biomejs/cli-linux-x64": "2.5.15",
     "@biomejs/cli-win32-x64": "2.5.15"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core"
+    ]
   }
 }
