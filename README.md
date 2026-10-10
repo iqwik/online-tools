@@ -29,7 +29,7 @@ Built with Next.js 16 + React 19 + TypeScript + Tailwind CSS 4. Monorepo-free, n
 | Hashing | spark-md5 (MD5) + Web Crypto (SHA) |
 | Diff | diff |
 | PDF → image | pdfjs-dist 6.3.289 |
-| ZIP archive | jszip |
+| ZIP archive | jszip | 
 
 ## Getting Started
 
