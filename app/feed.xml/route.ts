@@ -1,12 +1,12 @@
-import {getTranslations} from 'next-intl/server'
 import {getAllNews} from '@/data'
 import {buildRssFeed, getBaseUrl, SITE_NAME} from '@/helpers'
+import enMessages from '@/messages/en.json'
 
 export const dynamic = 'force-static'
 
 export async function GET() {
   const baseUrl = getBaseUrl()
-  const t = await getTranslations({locale: 'en', namespace: 'news'})
+  const news = enMessages.news
   const items = getAllNews().slice(0, 20)
 
   const xml = buildRssFeed({
@@ -14,14 +14,18 @@ export async function GET() {
     localePath: '',
     language: 'en',
     siteName: SITE_NAME,
-    channelTitle: `${SITE_NAME} — ${t('h1')}`,
-    channelDescription: t('metaDescription'),
-    items: items.map(item => ({
-      slug: item.slug,
-      date: item.date,
-      title: t(`items.${item.slug}.title`),
-      description: t(`items.${item.slug}.excerpt`),
-    })),
+    channelTitle: `${SITE_NAME} — ${news.h1}`,
+    channelDescription: news.metaDescription,
+    items: items.map(item => {
+      const key = item.slug as keyof typeof news.items
+      const entry = news.items[key]
+      return {
+        slug: item.slug,
+        date: item.date,
+        title: entry?.title ?? item.slug,
+        description: entry?.text ?? '',
+      }
+    }),
   })
 
   return new Response(xml, {

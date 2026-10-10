@@ -23,7 +23,7 @@ export async function GET() {
         slug: item.slug,
         date: item.date,
         title: entry?.title ?? item.slug,
-        description: entry?.excerpt ?? '',
+        description: entry?.text ?? '',
       }
     }),
   })

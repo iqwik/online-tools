@@ -688,11 +688,11 @@
     "items": {
       "percentage-calculator-rework": {
         "title": "Percentage Calculator rebuilt with 5 modes and Smart parsing",
-        "excerpt": "The percentage calculator now has five calculation modes and a Smart mode that understands plain-English expressions like \"20% of 95\" or \"from 80 to 100\". Results update live as you type, and every answer includes a step-by-step solution."
+        "text": "The percentage calculator now has five calculation modes and a Smart mode that understands plain-English expressions like \"20% of 95\" or \"from 80 to 100\". Results update live as you type, and every answer includes a step-by-step solution."
       },
       "toolyland-launch": {
         "title": "Toolyland is live",
-        "excerpt": "The site is now online at toolyland.com - 74 free online tools across finance, health, text, developer, generators and business. No signup, no limits, works in any browser."
+        "text": "The site is now online at toolyland.com - 74 free online tools across finance, health, text, developer, generators and business. No signup, no limits, works in any browser."
       }
     }
   },
