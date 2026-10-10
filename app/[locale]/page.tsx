@@ -5,6 +5,7 @@ import {FeaturedTools} from '@/components/home/FeaturedTools'
 import {Hero} from '@/components/home/Hero'
 import {HomeFaq} from '@/components/home/HomeFaq'
 import {HomeSchema} from '@/components/home/HomeSchema'
+import {NewsTeaser} from '@/components/home/NewsTeaser'
 import {PrivacyNote} from '@/components/home/PrivacyNote'
 import {RecentlyAdded} from '@/components/home/RecentlyAdded'
 import {getBaseUrl, getOgAlternateLocales, getOgLocale} from '@/helpers'
@@ -58,6 +59,7 @@ export default function HomePage() {
       <FeaturedTools />
       <RecentlyAdded />
       <HomeFaq />
+      <NewsTeaser />
       <PrivacyNote />
     </>
   )

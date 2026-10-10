@@ -47,6 +47,7 @@ export type ToolKind =
   | 'images-to-pdf'
   | 'screenshot-beautifier'
   | 'hidden-character-finder'
+  | 'percentage-calculator'
 
 export interface UnitDef {
   value: string
@@ -245,6 +246,10 @@ export interface HiddenCharacterFinderConfig extends BaseConfig {
   kind: 'hidden-character-finder'
 }
 
+export interface PercentageCalculatorConfig extends BaseConfig {
+  kind: 'percentage-calculator'
+}
+
 export type ToolConfig =
   | UnitConverterConfig
   | JsonFormatterConfig
@@ -292,3 +297,4 @@ export type ToolConfig =
   | ImagesToPdfConfig
   | ScreenshotBeautifierConfig
   | HiddenCharacterFinderConfig
+  | PercentageCalculatorConfig

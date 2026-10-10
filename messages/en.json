@@ -69,7 +69,8 @@
     "description": "{count} free tools across six categories — finance, health, text, developer, generators and business. Everything runs locally in your browser, nothing is uploaded."
   },
   "nav": {
-    "home": "Home"
+    "home": "Home",
+    "news": "What's new"
   },
   "sidebar": {
     "search": {
@@ -664,57 +665,93 @@
       },
       "contact": {
         "title": "Contact",
-        "text": "Questions about privacy or data handling? Email info@toolyland.com — we respond within 48 hours."
+        "text": "Questions about privacy or data handling? Email support@toolyland.com — we respond within 48 hours."
       }
     }
   },
+
+  "news": {
+    "metaTitle": "What's new - Toolyland",
+    "metaDescription": "Latest releases, new tools and improvements on Toolyland.",
+    "h1": "What's new",
+    "description": "Short announcements of new tools, features and fixes.",
+    "rssLabel": "RSS",
+    "empty": "No updates yet.",
+    "tryIt": "Try it",
+    "tags": {
+      "release": "Release",
+      "feature": "New feature",
+      "fix": "Fix",
+      "announcement": "Announcement"
+    },
+    "seeAll": "See all news",
+    "items": {
+      "percentage-calculator-rework": {
+        "title": "Percentage Calculator rebuilt with 5 modes and Smart parsing",
+        "excerpt": "The percentage calculator now has five calculation modes and a Smart mode that understands plain-English expressions like \"20% of 95\" or \"from 80 to 100\". Results update live as you type, and every answer includes a step-by-step solution."
+      },
+      "toolyland-launch": {
+        "title": "Toolyland is live",
+        "excerpt": "The site is now online at toolyland.com - 74 free online tools across finance, health, text, developer, generators and business. No signup, no limits, works in any browser."
+      }
+    }
+  },
+
   "config": {
     "percentage-calculator": {
-      "title": "Percentage Calculator — Percent Of, Change, Discount & VAT",
+      "title": "Percentage Calculator — Percent Of, Change, Reverse, ± %",
       "h1": "Percentage Calculator",
-      "description": "Work out percentages in seconds: find X% of a number, see what percent one value is of another, or measure the change between two numbers. One-click presets for discounts, tips, VAT and markup.",
-      "metaDescription": "Find X% of a number, what percent one value is of another, or the percentage change. Discount, tip, VAT and markup presets included.",
-      "keywords": "percentage calculator,percent calculator,percentage of a number,what percent,percentage change,percent increase,percent off,vat calculator",
+      "description": "Work out percentages in seconds — find X% of a number, see what percent one value is of another, reverse a percentage, measure the change between two values, or add and subtract a percent. The result updates live as you type.",
+      "metaDescription": "Find X% of a number, what percent one value is of another, reverse a percentage, measure the change, or add and subtract a percent. Live results as you type.",
+      "keywords": "percentage calculator,percent calculator,percentage of a number,what percent,percentage change,percent increase,percent decrease,percent off,reverse percentage,add percent,subtract percent,vat calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
         {
           "title": "Pick a mode",
-          "description": "Choose percent of a number, what percent one number is of another, or percentage change."
+          "description": "Choose one of five modes: percent of a number, what percent one number is of another, reverse percentage, change from A to B, or add / subtract a percent."
         },
         {
-          "title": "Enter the two values",
-          "description": "Fill in X and Y. Decimals and large numbers are supported."
+          "title": "Enter the values",
+          "description": "Type the numbers into the fields. Decimals and comma separators are accepted."
         },
         {
-          "title": "Read the result",
-          "description": "The answer appears instantly along with the formula used."
+          "title": "Read the live result",
+          "description": "The answer updates as you type — there is no Calculate button."
         },
         {
-          "title": "Reset to start over",
-          "description": "Clear both fields to run a new calculation with different numbers."
+          "title": "Check the formula",
+          "description": "Every result shows the formula with the substituted values, so you can verify the math."
+        },
+        {
+          "title": "Share or bookmark",
+          "description": "The current mode and values are stored in the URL — copy the link to reopen the same setup later."
         }
       ],
       "featuresTitle": "Features",
       "features": [
         {
-          "title": "Three calculation modes",
-          "description": "Percent of a number, what percent one number is of another, or percentage change — pick the one that matches your problem."
+          "title": "Five calculation modes",
+          "description": "Percent of a number, what percent one number is of another, reverse percentage, percentage change, and add / subtract a percent."
         },
         {
-          "title": "One-click presets",
-          "description": "Four common scenarios: store discount, restaurant tip, VAT extraction from a gross amount, and markup."
+          "title": "Live calculation",
+          "description": "Results update on every keystroke — there is no Calculate button to press."
         },
         {
           "title": "Shows the formula",
-          "description": "Every result includes the formula and intermediate steps so you can verify the math."
+          "description": "Each result includes the formula with substituted values so you can verify the math."
+        },
+        {
+          "title": "Shareable links",
+          "description": "The current mode and values are captured in the URL, so you can bookmark or send the exact setup."
         },
         {
           "title": "Decimals and large numbers",
-          "description": "Handles values up to millions with up to four decimal places."
+          "description": "Accepts up to four decimal places and values in the millions."
         },
         {
-          "title": "Works offline",
-          "description": "Runs entirely in your browser — nothing is sent to a server."
+          "title": "Runs in your browser",
+          "description": "All math happens on the client — nothing is sent to a server."
         }
       ],
       "useCasesTitle": "Common use cases",
@@ -723,24 +760,72 @@
         "Split a restaurant bill and work out the tip",
         "Extract the VAT portion from a gross invoice amount",
         "See how much a price or metric grew between two periods",
-        "Compare two values as percentages at a glance"
+        "Reverse a percentage to find the original price before a discount"
       ],
-      "inputs": {
-        "mode": "Calculation type",
-        "valueX": "Value X",
-        "valueY": "Value Y"
+      "modes": {
+        "of": "% of",
+        "what": "What %",
+        "ofwhat": "Reverse",
+        "change": "Change",
+        "plusminus": "± %",
+        "smart": "Smart"
       },
-      "options": {
-        "of": "What is X% of Y?",
-        "what": "X is what percent of Y?",
-        "change": "Percentage change from X to Y"
+      "fields": {
+        "x": {
+          "percent": "Percentage (X)",
+          "number": "Number (X)"
+        },
+        "y": "Number (Y)",
+        "a": "From (A)",
+        "b": "To (B)",
+        "base": "Base",
+        "p": "Percentage (P)",
+        "q": "Expression",
+        "operation": {
+          "label": "Operation",
+          "plus": "Add",
+          "minus": "Subtract"
+        }
       },
       "resultLabel": "Result",
-      "secondary": {
+      "steps": {
+        "title": "Step-by-step solution",
         "formula": "Formula",
-        "from": "From",
-        "to": "To",
-        "difference": "Difference"
+        "substitution": "Substitution",
+        "calculation": "Calculation",
+        "answer": "Answer",
+        "formulas": {
+          "of": "X = P% × Y ÷ 100",
+          "what": "P% = X ÷ Y × 100",
+          "ofwhat": "Y = X ÷ (P ÷ 100)",
+          "change": "Δ% = (B − A) ÷ |A| × 100",
+          "plusminusPlus": "R = base × (1 + P ÷ 100)",
+          "plusminusMinus": "R = base × (1 − P ÷ 100)"
+        }
+      },
+      "smartPlaceholder": "Type your calculation — e.g. 20% of 95",
+      "smartExamples": [
+        "20% of 95",
+        "15 is what percent of 60",
+        "45 is 30% of what",
+        "from 80 to 100",
+        "100 + 20%"
+      ],
+      "history": {
+        "title": "Recent calculations",
+        "clear": "Clear"
+      },
+      "secondary": {
+        "change": {
+          "diff": "Difference",
+          "from": "From",
+          "to": "To"
+        },
+        "plusminus": {
+          "base": "Base",
+          "delta": "Change",
+          "percent": "Percent"
+        }
       },
       "faq": {
         "q1": "How do I calculate a percentage of a number?",

@@ -1,4 +1,5 @@
 export * from './calculators'
 export * from './categories'
+export * from './news'
 export * from './registry'
 export * from './tools'

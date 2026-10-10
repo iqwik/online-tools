@@ -49,6 +49,8 @@ export interface BaseConfig {
   faq?: FAQItem[]
   related?: string[]
   publishedAt?: string
+  /** Optional sort priority within its category. Higher — first. Default 0. */
+  priority?: number
   Icon: ComponentType<IconProps & RefAttributes<IconHandle>>
 }
 

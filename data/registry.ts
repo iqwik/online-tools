@@ -33,7 +33,7 @@ export function getToolsCount() {
 export function getRegistryEntriesByCategory(
   category: CategorySlug,
 ): RegistryEntry[] {
-  return getAllRegistryEntries().filter(
-    entry => entry.config.category === category,
-  )
+  return getAllRegistryEntries()
+    .filter(entry => entry.config.category === category)
+    .sort((a, b) => (b.config.priority ?? 0) - (a.config.priority ?? 0))
 }

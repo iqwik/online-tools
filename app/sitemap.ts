@@ -37,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {path: '/tools', priority: 0.9},
     {path: '/about', priority: 0.6},
     {path: '/privacy', priority: 0.6},
+    {path: '/news', priority: 0.3},
   ]
 
   for (const locale of routing.locales) {

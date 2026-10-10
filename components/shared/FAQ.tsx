@@ -22,7 +22,7 @@ export function FAQ({items, namespace = 'config'}: Props) {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-2xl font-bold">{tGlobal('faq')}</h2>
+      <h2 className="text-2xl font-semibold">{tGlobal('faq')}</h2>
       <Accordion className="w-full" multiple>
         {items.map((item, i) => (
           <AccordionItem key={`item-${i}`} value={`item-${i}`}>

@@ -22,7 +22,7 @@ export async function RecentlyAdded() {
   return (
     <section className="page">
       <div className="mb-4">
-        <h2 className="text-xl font-bold tracking-tight">{t('h2')}</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">{t('h2')}</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">

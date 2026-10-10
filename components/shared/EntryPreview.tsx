@@ -1,6 +1,6 @@
 'use client'
 
-import {ArrowRight02Icon} from '@animateicons/react/huge'
+import {ArrowRight02Icon} from '@animateicons/react/huge/arrow-right-0-2-icon'
 import {cn} from 'cn'
 import {useTranslations} from 'next-intl'
 import {useMemo, useRef} from 'react'

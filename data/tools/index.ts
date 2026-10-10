@@ -1,6 +1,7 @@
 import type {ToolConfig} from '@/types'
 import {businessTools} from './business'
 import {developerTools} from './developer'
+import {financeTools} from './finance'
 import {generatorTools} from './generators'
 import {textTools} from './text'
 
@@ -9,6 +10,7 @@ export const tools: ToolConfig[] = [
   ...textTools,
   ...generatorTools,
   ...businessTools,
+  ...financeTools,
 ]
 
 export function getAllTools(): ToolConfig[] {

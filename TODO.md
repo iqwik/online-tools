@@ -6,20 +6,22 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ---
 
-## 🔥 Next up (v0.17.0)
+## 🔥 Next up (v0.19.0)
 
-### Deploy to Amvera — TOP PRIORITY
-- [ ] Create project in Amvera, connect GitHub repo.
-- [ ] Choose tariff «Начальный» (290 ₽/mo, SLA) — not «Пробный» (no SLA).
-- [ ] In Amvera project settings → add custom domain `toolyland.com` (HTTPS, own domain).
-- [ ] Copy A-record IP + TXT verification value from Amvera.
-- [ ] In Timeweb DNS for `toolyland.com`: add A `@` → Amvera IP, A `www` → same IP, TXT `@` → verification value.
-- [ ] Wait for DNS propagation (15 min – few hours).
-- [ ] Confirm domain in Amvera → automatic Let's Encrypt SSL issuance.
-- [ ] Set env vars in Amvera: `NEXT_PUBLIC_SITE_URL=https://toolyland.com`, `NEXT_PUBLIC_SITE_NAME=Toolyland`.
-- [ ] Rebuild project after env set (`NEXT_PUBLIC_*` inlined at build time).
-- [ ] Verify accessibility: home internet (RU), mobile internet (MTS/Megafon/Beeline/Tele2), VPN (world).
-- [ ] Verify canonical + JSON-LD url = `https://toolyland.com/...` (both EN and RU pages).
+### SEO indexing — TOP PRIORITY
+- [ ] **GSC**: check sitemap status in 24–48 hours → should flip to «Success». Do not delete or resubmit during the first 24 hours.
+- [ ] **GSC**: «URL Inspection» → request indexing for `/`, `/tools`, 6 categories, `/ru/` versions. **No more than 10–15 per day.** Do not force specific tools — target hubs.
+- [ ] **Yandex.Webmaster**: «Indexing → Sitemap files» → `https://toolyland.com/sitemap.xml` (full URL, not filename).
+- [ ] **Yandex.Webmaster**: «Indexing → Reindex pages» → top-10 URLs (hubs and categories).
+- [ ] **Yandex.Webmaster**: «Settings → Metrica» → attach counter `113572886` + enable «Send data on new pages».
+- [ ] **Yandex.Webmaster**: «Settings → Regionality» → «Russia» or «Not determined».
+- [ ] **Yandex.Webmaster**: verify Clean-param in «Tools → robots.txt analysis».
+
+### Analytics gating behind cookie consent (GDPR) — must have before AdSense
+- [ ] `analyticsAllowed` state in context.
+- [ ] `CookieConsent` toggles it → GA4 and Metrica load only on consent.
+- [ ] Currently load unconditionally, regardless of consent — formally violates GDPR.
+- [ ] **Prerequisite for AdSense.** Close before connecting ads.
 
 ### OG image — last brand asset
 - [ ] Create `og-default.jpg` (1200×630) in Figma — navy `#0F172A` background, `toolyland-wordmark.svg` left, tagline «Free online tools. No signup.» right.
@@ -42,53 +44,70 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] `https://adssettings.google.com` and `https://policies.google.com/technologies/partner-sites` in `privacy.sections.ads.text` are plain text.
 - [ ] Add `<a target="_blank" rel="noopener">` below the "Advertising" section (simplest), or split the ICU string + render links in JSX.
 
-### Rich Results Test (after Amvera deploy)
-- [ ] Run all JSON-LD through Google Rich Results Test. Pages: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`.
-- [ ] Verify URL in JSON-LD matches canonical (with locale prefix on RU pages) — fixed in 0.15.0.
+### Rich Results Test (site is live)
+- [ ] Run all JSON-LD through Google Rich Results Test. Pages: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`.
+- [ ] Verify URL in JSON-LD matches canonical (with locale prefix on RU pages).
 - [ ] Verify HowTo `step` has both `name` and `text`.
 - [ ] Verify FAQPage renders for both calculators and tools.
 - [ ] Verify home — WebSite (`@id`) + ItemList (6 categories) + FAQPage (3 Q).
 - [ ] Verify one category page — CollectionPage + ItemList + FAQPage (5 Q) + BreadcrumbList.
-- [ ] Verify `/tools` — CollectionPage + ItemList (75 tools).
+- [ ] Verify `/tools` — CollectionPage + ItemList (76 tools).
 - [ ] Verify `related` cards don't break schema.
-- [ ] Fix any schema errors before submitting sitemap.
+- [ ] Fix any schema errors.
 
 ### Final EN + RU proofread
-- [ ] Read through all 75 tools × 2 locales in the browser (not in JSON).
+- [ ] Read through all 76 tools × 2 locales in the browser (not in JSON).
 - [ ] Catch awkward phrasing, natural-language errors, inconsistency between description and metaDescription tone.
 - [ ] Verify each `title` fits in mobile SERP (~50 chars visible).
-- [ ] Verify `home.featured.viewAll` ICU plural renders correctly in both locales at current count (76 after pdf-to-image).
+- [ ] Verify `home.featured.viewAll` ICU plural renders correctly in both locales at current count (76 → 77 after pdf-to-image).
 - [ ] Spot-check `home.search.placeholderTry` typewriter in both locales (EN `Try {q}` / RU `Попробуйте {q}`).
-- [ ] Spot-check new `about.audience` section — 6 audience entries render correctly.
-- [ ] Spot-check rewritten `privacy` sections — 8 sections render correctly (tools / storage / cookies / analytics / ads / rights / changes / contact).
+- [ ] Spot-check `about.audience` section — 6 audience entries render correctly.
+- [ ] Spot-check rewritten `privacy` sections — 8 sections render correctly.
+- [ ] Spot-check `percentage-calculator` — all 6 modes + Smart + steps + URL sync.
+- [ ] Spot-check `/news` (EN + RU) — cards, anchors, RSS button, autodiscovery in `<head>`.
+- [ ] Spot-check `/feed.xml` and `/ru/feed.xml` via https://validator.w3.org/feed/.
 
 ### Regression check — Variant C Stage 4
 - [~] **Systematic check: every View vs. its final texts.** Pattern documented in `CONTEXT.md` → «Правило: соответствие текста и кода». Open `components/tool/<Name>View.tsx` or `data/calculators/*.ts`, list every control/result, compare against `config.<slug>` in `messages/*.json`.
 - [x] `word-counter` — fixed: removed «pages» metric, added TikTok to social limits.
 - [x] `password-generator` — 4 modes + entropy + bulk implemented, texts synced.
 - [x] `image-compressor` — target file size removed from texts.
-- [x] `images-to-pdf` — drag → «стрелки», quality removed from features.
+- [x] `images-to-pdf` — drag → arrows, quality removed from features.
 - [x] `number-to-words-converter` — EN reformulated.
 - [x] `meta-tag-generator` — inputs described in texts.
-- [ ] **Remaining ~69 tools** — spot-check at least 10 random (one from each category) plus any tool mentioned as «readability», «pages», or another feature that might not exist in View. Suggested: `InvoiceGeneratorView`, `SalarySlipGeneratorView`, `ColorPickerView`, `RegexTesterView`, `JsonFormatterView`.
-
-### Yandex Webmaster
-- [ ] Verify `Clean-param` directive is read correctly (Yandex Webmaster → Tools → robots.txt analysis).
-- [ ] Verify `priority` in sitemap is parsed.
-- [ ] Submit sitemap to Yandex Webmaster.
+- [x] `diff-checker` — FAQ q6 fixed (↩ 0.17.0 / 0.18.0).
+- [x] `percentage-calculator` — all texts rewritten for 6 modes + Smart (↩ 0.19.0).
+- [ ] **Remaining ~68 tools** — spot-check at least 10 random (one from each category). Suggested: `InvoiceGeneratorView`, `SalarySlipGeneratorView`, `ColorPickerView`, `RegexTesterView`, `JsonFormatterView`, `HiddenCharacterFinderView`.
 
 ### Google Search Console
-- [ ] Verify site ownership (DNS TXT or HTML file).
-- [ ] Submit `sitemap.xml`.
+- [x] Verify site ownership (DNS TXT).
+- [x] Submit `sitemap.xml` (filename only).
 - [ ] Check Coverage report after 1–2 weeks.
 - [ ] Check Core Web Vitals after traffic starts.
+
+### Yandex Webmaster
+- [x] Verify site ownership (DNS TXT).
+- [ ] Submit sitemap.
+- [ ] Attach Metrica counter.
+- [ ] Configure regionality.
+- [ ] Run page reindex for top URLs.
 
 ### Tools
 - [ ] **`pdf-to-image`** — translations ready in `messages/{en,ru}.json`, but **no `data/tools/developer.ts` entry** and **no View**. Currently orphaned. `pdfjs-dist@6.3.289` installed. Plan: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, `related: ['images-to-pdf', 'image-converter', 'svg-to-base64', 'base64-to-image']`, worker via `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range parser (`1-5, 8, 11-13`), format PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, quality, transparent background (PNG only), grid preview + ZIP download, `useSmoothProgress`. Destroy via `loadingTask.destroy()`. **After implementing — restore `pdf-to-image` in `images-to-pdf.related` (first) and `image-converter.related` (third).**
 - [ ] **Wave 6 — interactive trackers & builders** (10 tools): `pomodoro-timer`, `habit-tracker`, `decision-maker`, `meeting-cost-calculator`, `trip-planner`, `bill-splitter`, `lead-tracker`, `resume-builder`, `visiting-card-generator`, `api-response-mock-generator`. Needs architecture decision: separate `TrackerConfig` or new `ToolConfig` kinds.
 
+### News page (`/news`) — follow-up
+- [ ] **Pagination: `Load more` vs `Next / Prev`.** Currently the page renders all entries in a single list — works while entries < 20. When 15+ accumulate, pick a pattern:
+  - **(A) Client-side «Load more»** — all data already in DOM, button reveals hidden entries. Pros: no routes, no content duplication, simple URL. Cons: everything loads upfront (fine for 50 short entries, not for 500).
+  - **(B) Classic pagination `/news/page/2`, `/news/page/3`** — separate routes, `generateStaticParams`, `rel=next/prev`, `noindex` on pages 2+. Pros: clean SEO pattern for blogs. Cons: content duplication, extra route file, hreflang cascades, `NewsPagination.tsx` (deferred in 0.19.0).
+  - **(C) Infinite scroll** — not recommended: bad for SEO, bad for accessibility, hard to test.
+  - **Decide** before entries reach 15+. Benchmark: if /news stays "announcements" → A. If we start writing long posts → B.
+- [ ] **OG-image for /news** — currently the page uses the shared `og-default.jpg`. A dedicated OG isn't critical, but worth considering once entries accumulate.
+- [ ] **RSS link in footer** — currently the RSS button lives only in the /news page header. Duplicate in footer next to «What's new» if desired.
+- [ ] **First announcement per release** — process: ship a feature → add entry in `data/news/<date>-<slug>.ts` + texts in `messages/{en,ru}.json`. Not automated (manual).
+
 ### P3 mobile cleanup (deferred from v0.14.0)
-- [ ] **`lucide-react` → `@animateicons/react` sweep.** Known files: `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, possibly others. Run `grep -rn "lucide-react" components/`. Replace with per-file subpath. Gotcha: `CheckCircle2` → `CircleCheck` in animateicons — verify subpath exists before bulk replace.
+- [ ] **`lucide-react` → `@animateicons/react` sweep.** Known files: `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`, possibly others. Run `grep -rn "lucide-react" components/`. Replace with per-file subpath. Gotcha: `CheckCircle2` → `CircleCheck` in animateicons — verify subpath exists before bulk replace.
 - [ ] **Tap targets ≥ 44px on mobile.** Toolbar buttons / inputs at `h-8` (32px) fail the guideline. Fix pattern: `h-9 sm:h-8` or `h-10 sm:h-8`. Affected: `UuidGeneratorView` toolbar, likely other View toolbars. Sweep with `grep -rn 'size="sm"' components/tool/ components/calculator/ components/shared/`.
 - [ ] **Small spacing / font polish** across toolbars, forms, and previews on 320–375px. No structural issues left — only cosmetic.
 
@@ -124,44 +143,54 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **`Intl.NumberFormat` for currency** — confirm JPY produces `¥1,235` (no decimals) in both locales. Not tested in browser yet.
 - [ ] **`ShareIcon` `<title>` id collision risk** — 2 ShareButton instances exist but mutually exclusive via breakpoints. If a third instance is ever added (e.g. in SidebarSettings), either drop `<title>` + `aria-hidden="true"` or switch to `useId()`.
 - [ ] **Related slug typization** — `string[]` doesn't catch typos (like the old `lorem-ipsum`). Consider `Slug` union type or `satisfies readonly string[]` assertion so typos fail at build time.
-- [ ] **`getToolCount()` is sync** — fine at 75, fine at 500. If registry grows beyond ~1000 entries with heavy per-entry initialization, consider a cached constant or build-time inlining.
+- [ ] **`getToolCount()` is sync** — fine at 76, fine at 500. If registry grows beyond ~1000 entries with heavy per-entry initialization, consider a cached constant or build-time inlining.
 - [ ] **favicon-generator — future improvements** — (1) SVG favicon output: `<link rel="icon" type="image/svg+xml">` for sharper retina. (2) Verify generated `.ico` opens correctly on Windows / macOS / Linux. (3) Consider `browserconfig.xml` for legacy Edge/IE — low priority, dead formats.
+
+### Percentage-calculator — polish (deferred from 0.19.0)
+- [ ] **Calculation history** — `PercentageHistory` + `helpers/percentage-history.ts` (localStorage, max 20, dedupe by mode+values, relative time, click-to-restore, debounce 700 ms). Components commented out in `PercentageCalculatorView.tsx`, not implemented. UX reference — Timbrica.
+- [ ] **Copy expression** — Timbrica shows two buttons under the result: «Copy result» and «Copy expression». Our built-in CopyButton in OutputPanel only copies `value`. Options: (a) via `actions` prop, (b) new `secondaryCopy` prop in OutputPanel, (c) replace the panel with a custom one.
+- [ ] **Circular chart** — SVG to the right of the result. Logic decision pending: (a) universal (always shows the entered percentage) or (b) adaptive per mode.
 
 ### Decisions pending
 - [ ] **`useCases` format** — keep as `string[]` (via `ContentSection`) or migrate to `{title, description}[]` (new `UseCaseSection`)?
-- [ ] **Bonus tool**: `text-to-svg-generator` (84th) — regex + shape / color / icon dictionary, offline. Discuss after Wave 6.
+- [ ] **Bonus tool**: `text-to-svg-generator` (85th) — regex + shape / color / icon dictionary, offline. Discuss after Wave 6.
+- [ ] **/news pagination** — Load more (A) vs Next/Prev (B). See dedicated block above.
 
 ---
 
 ## 🚀 Production
 
-### Hosting — Amvera (decided)
-- [x] ~~Deploy to Vercel~~ — **REJECTED**: IP blocking + OCSP stapling issues in RU. Probe deploy on `vercel-probe` confirmed inaccessible without VPN.
-- [x] Choose hosting — **Amvera** (Russian PaaS, RU + world availability).
-- [ ] Deploy to Amvera (tariff «Начальный»).
-- [ ] Custom domain `toolyland.com` — DNS setup in Timeweb.
-- [ ] HTTPS via Let's Encrypt (automatic in Amvera).
+### Hosting — Amvera (DONE ↩ 0.17.0)
+- [x] ~~Deploy to Vercel~~ — **REJECTED**: IP blocking + OCSP stapling issues in RU.
+- [x] Choose hosting — **Amvera** (Russian PaaS).
+- [x] Deploy to Amvera (tariff «Начальный»).
+- [x] Custom domain `toolyland.com` — DNS setup in Timeweb (A `toolyland.com`, A `www.toolyland.com` → `81.26.184.189`).
+- [x] HTTPS via Let's Encrypt (automatic).
 
-### Domain — toolyland.com (decided)
+### Domain — toolyland.com (DONE ↩ 0.17.0)
 - [x] Domain purchased at Timeweb.
-- [ ] Verify DNS setup.
-- [ ] Verify accessibility from RU + world.
+- [x] DNS setup verified.
+- [x] Accessibility from RU (home + mobile) and world (VPN) confirmed.
 
-### Env vars
-- [ ] Set `NEXT_PUBLIC_SITE_URL=https://toolyland.com` (in Amvera dashboard).
-- [ ] Set `NEXT_PUBLIC_SITE_NAME=Toolyland` (in Amvera dashboard).
-- [ ] Rebuild after env set.
+### Env vars (DONE ↩ 0.18.0)
+- [x] `NEXT_PUBLIC_SITE_URL=https://toolyland.com` (Amvera, stage **Build**).
+- [x] `NEXT_PUBLIC_SITE_NAME=Toolyland` (Amvera, stage **Build**).
+- [x] `NEXT_PUBLIC_GA_ID=G-SFL7WLPZQ9` (Amvera, stage **Build**).
+- [x] `NEXT_PUBLIC_YM_ID=113572886` (Amvera, stage **Build**).
+- [x] `SWC_NATIVE_BINDING_CACHE=/tmp/swc-cache` (stage **Run**).
+- [x] `XDG_CACHE_HOME=/tmp/.cache` (stage **Run**).
+- [x] Rebuild after env set.
 
 ### Analytics & monetization
-- [ ] Connect Google Analytics (`NEXT_PUBLIC_GA_ID`).
-- [ ] Connect Google AdSense (`NEXT_PUBLIC_ADSENSE_CLIENT`).
-- [ ] Submit AdSense for review (after 2–3 months of stable traffic; prerequisites: contact emails + cookie revoke + OG image).
-- [ ] Connect Yandex Metrica (optional, for RU audience).
+- [x] Google Analytics 4 connected (`G-SFL7WLPZQ9`) — ↩ 0.18.0.
+- [x] Yandex Metrica connected (`113572886`, Webvisor + scroll map + form analytics) — ↩ 0.18.0.
+- [ ] Google AdSense — connect `NEXT_PUBLIC_ADSENSE_CLIENT`. Submit for review after 2–3 months of stable traffic. Prerequisites: contact emails + cookie revoke + OG image + **analytics gating**.
 
 ### Search engines
-- [ ] Submit `sitemap.xml` to Google Search Console.
-- [ ] Submit to Yandex Webmaster.
-- [ ] Verify `robots.txt` in both consoles.
+- [x] Google Search Console — domain verified via DNS TXT, sitemap submitted.
+- [x] Yandex.Webmaster — domain verified via DNS TXT, role: Owner.
+- [ ] Yandex.Webmaster — sitemap submitted, Metrica attached, regionality configured.
+- [x] `robots.txt` verified (Clean-param for Yandex).
 
 ---
 
@@ -201,9 +230,12 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] **Test Yandex robots** — `robots.txt` Clean-param visible in Yandex Webmaster.
 - [ ] **Test typewriter placeholder** — cycle of 6 strings in Hero, correct restart on locale switch, `prefers-reduced-motion` fallback.
 - [ ] **Test safe-area** — CookieConsent / Footer on iPhone with notch (both orientations).
-- [ ] **Test Amvera deploy** — accessibility from RU (home + mobile) and world (VPN).
+- [ ] **Test Amvera deploy** — accessibility from RU (home + mobile) and world (VPN). ✔ checked 0.17.0.
 - [ ] **Test favicon set** — light + dark browser theme, iOS add-to-home, Android install prompt, manifest.
 - [ ] **Test SearchTrigger caret** — hard blink (not smooth pulse), centered with text on 320 / 375 / desktop.
+- [ ] **Test percentage-calculator** — all 6 modes + Smart parser (EN + RU) + URL sync + steps. Spot-check on 320/375.
+- [ ] **Test RSS** — `/feed.xml` and `/ru/feed.xml` in W3C Feed Validator. Autodiscovery in `<head>` on `/news`.
+- [ ] **Test `/news` anchors** — `/#percentage-calculator-rework` scrolls to the card.
 
 ---
 
@@ -217,8 +249,9 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [ ] Keyboard shortcuts reference page
 - [ ] CSV / JSON export for calculators that produce tables
 - [ ] Open Graph image per tool (dynamic via `next/og`)
-- [ ] Changelog page in the app (`/changelog`)
-- [ ] RSS feed for new tools
+- [ ] Changelog page in the app (`/changelog`) — effectively duplicates `/news`, consider merging
+- [x] ~~RSS feed for new tools~~ — implemented in 0.19.0 (`/feed.xml` and `/ru/feed.xml`)
+- [ ] **/news pagination (`Load more` vs `Next / Prev`)** — decision pending, see Next up → News page follow-up
 - [ ] Additional locales (`de`, `es`, `fr`)
 - [ ] `output: 'export'` build option for hosting without Node.js (requires `localePrefix: 'always'` and no middleware)
 - [ ] Search analytics — log top queries (privacy-friendly, aggregate only)
@@ -227,6 +260,94 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 ---
 
 ## ✅ Done
+
+### v0.19.0 — 2026-10-10
+
+**Percentage-calculator rework + /news page + RSS**
+
+**Percentage-calculator — migration to ToolConfig + Smart + 6 modes**
+- [x] Migrated from `CalculatorConfig` to `ToolConfig`. New file `data/tools/finance.ts`, wired into aggregator.
+- [x] `ToolKind += 'percentage-calculator'`, `PercentageCalculatorConfig`, added to union.
+- [x] 6 modes: `smart` (default) / `of` / `what` / `ofwhat` / `change` / `plusminus`.
+- [x] Smart parser — 10 regexes, EN + RU.
+- [x] Live recalc, no Calculate button.
+- [x] URL sync via `history.replaceState`.
+- [x] Clickable suggestion chips (5, EN + RU).
+- [x] Step-by-step solution (`<details>` + 4 steps) across all 6 modes.
+- [x] FAQ restored after migration (6 questions).
+- [x] All SEO texts rewritten: `howToUse` (5), `features` (6), `useCases` (5), `description`, `metaDescription`, `keywords`.
+- [x] Translations: `modes.*`, `fields.*`, `steps.*` (incl. `steps.formulas.*`), `smartPlaceholder`, `smartExamples` (array), `secondary.change.*`, `secondary.plusminus.*`.
+- [x] Removed obsolete keys: `inputs.*`, `options.*`, `secondary.formula/from/to/difference`, `smartWip`.
+
+**`priority?: number` in `BaseConfig`**
+- [x] Optional sort priority within a category. Higher — first.
+- [x] Used by `getAllCategories()` (sidebar) and `getRegistryEntriesByCategory()`.
+- [x] `percentage-calculator` — `priority: 1`, first in `finance`.
+- [x] `data/categories.ts` — `sortByPriority` helper.
+
+**`/news` page**
+- [x] New page `/[locale]/news` (EN + RU) — short announcements of changes.
+- [x] `data/news/{types,index}.ts` + one file per entry `<YYYY-MM-DD>-<slug>.ts`. `getAllNews()` sorts desc.
+- [x] UI: `app/[locale]/news/page.tsx`, `components/news/NewsPage.tsx`, `components/news/NewsCard.tsx`.
+- [x] Texts in `messages/{en,ru}.json` under `news.items.<slug>.{title,excerpt}`.
+- [x] Tags: `release` / `feature` / `fix` / `announcement` — visual badges.
+- [x] First two entries: `toolyland-launch` (08.10), `percentage-calculator-rework` (10.10).
+- [x] Entries addressable via anchors `#<slug>`.
+
+**RSS 2.0**
+- [x] `helpers/rss.ts` → `buildRssFeed(options)`, custom XML builder without external dependencies.
+- [x] `app/feed.xml/route.ts` (EN), `app/[locale]/feed.xml/route.ts` (RU).
+- [x] Last 20 entries. `Content-Type: application/rss+xml; charset=utf-8`, cache `max-age=3600`.
+- [x] Autodiscovery via `generateMetadata.alternates.types`.
+- [x] **Route Handlers do not use `next-intl`** — fix for `import('next/root-params').locale() inside a Route Handler` crash. Read translations directly from JSON.
+
+**Home + Sitemap**
+- [x] `NewsTeaser` on home page — between `HomeFaq` and `PrivacyNote`. 2 latest entries + «See all updates →».
+- [x] `app/sitemap.ts` — `/news` + `/ru/news` with priority 0.3.
+- [x] Sidebar: «What's new» link with RSS icon before «All tools».
+- [x] Footer: «What's new» link.
+
+**Fixed**
+- [x] FAQ silently disappeared after percentage-calculator migration — missed `faq` field in the new ToolConfig.
+- [x] `news.seeAll` rendered as raw key — forgot the translation key.
+- [x] RSS Route Handlers crashed on `next-intl` in Route Handlers.
+
+### v0.18.0 — 2026-10-09
+
+**Diff-checker rework + hidden-character-finder + analytics + SEO finalization**
+
+**Tools**
+- [x] `diff-checker` — three comparison granularities: Lines / Words / Chars. Inline highlighting, Word export. Stats counters adapt.
+- [x] `hidden-character-finder` — new tool in the `text` category. RadioGroup, customizable color, Word export.
+- [x] `text` cluster related — updated: `word-counter ↔ case-converter ↔ lorem-ipsum-generator ↔ diff-checker ↔ number-to-words-converter ↔ hidden-character-finder`.
+- [x] `diff-checker` FAQ q6 — contradiction with the new inline UI closed.
+
+**Analytics**
+- [x] Google Analytics 4 — `G-SFL7WLPZQ9`. `<GoogleAnalytics>` from `@next/third-parties/google`. Env `NEXT_PUBLIC_GA_ID`.
+- [x] Yandex Metrica — counter `113572886`, Webvisor + scroll map + form analytics. Own component `components/analytics/yandex-metrica.tsx` with SPA navigation hook and `<noscript>` fallback. Env `NEXT_PUBLIC_YM_ID`.
+- [x] Env vars in Amvera dashboard — all `NEXT_PUBLIC_*` on stage **Build**.
+
+**Search engines**
+- [x] Google Search Console — domain verified via DNS TXT. Sitemap submitted.
+- [x] Yandex.Webmaster — domain verified via DNS TXT, role: Owner.
+
+**SEO finalization (static)**
+- [x] JSON-LD coverage: HomeSchema (WebSite + Organization + ItemList 6 + FAQPage 3), ToolsSchema (CollectionPage + ItemList 76), CategorySchema (CollectionPage + ItemList + FAQPage 5 + BreadcrumbList), CalculatorSchema / ToolSchema (WebApplication + FAQPage + HowTo).
+- [x] `helpers/site.ts → getPublisher()` — single publisher for all JSON-LD.
+- [x] All `<Link>` locale-aware — mass replace to `@/i18n/navigation`.
+- [x] `getToolCount()` + ICU plural for `category.toolsCount` (RU: 4 forms).
+- [x] Yandex SEO — Clean-param in `robots.ts`, `changefreq` removed from `sitemap.ts`.
+
+### v0.17.0 — 2026-10-08
+
+**Deploy to Amvera + diff-checker word/char mode**
+
+- [x] Deploy to Amvera. Site is live at https://toolyland.com. Tariff «Начальный», Let's Encrypt issued automatically, DNS on Timeweb.
+- [x] Diff checker — word- and character-level comparison. New granularity switch (Lines / Words / Chars).
+- [x] `about.intro` rewritten to first-person singular.
+- [x] `config.diff-checker` (EN + RU) — description, metaDescription, keywords, features (4 → 7), howToUse, useCases, FAQ (6 → 7).
+- [x] `rent-vs-buy` FAQ a5 — rewritten without jargon.
+- [x] `diff-checker` FAQ q6 — contradiction with the new UI closed.
 
 ### v0.16.0 — 2026-10-07
 
@@ -270,7 +391,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - [x] Multi-size `.ico` output (16/32/48 PNG embedded in ICO container). Custom builder, no external library.
 - [x] Transparent background checkbox.
 - [x] Own `ColorPicker` (`components/ui/color-picker.tsx`) instead of native `<input type="color">`.
-- [x] Localized `README.txt` via `messages/{en,ru}.json` — `{htmlSnippet}` and `{themeColor}` passed as ICU variables. Includes Toolyland branding + link.
+- [x] Localized `README.txt` via `messages/{en,ru}.json` — `{htmlSnippet}` and `{themeColor}` passed as ICU variables.
 - [x] Auto-regenerate on option change (`fitMode`, `backgroundColor`, `transparentBg`) via `useEffect` with `didMount` guard.
 
 **SearchTrigger**
@@ -289,7 +410,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 **SEO finalization (static part) + domain + hosting + brand identity**
 
 **JSON-LD on all page types**
-- [x] `components/tools/ToolsSchema.tsx` — new. `CollectionPage` + `ItemList` (75 tools). Mounted on `/tools`.
+- [x] `components/tools/ToolsSchema.tsx` — new. `CollectionPage` + `ItemList`. Mounted on `/tools`.
 - [x] `components/category/CategorySchema.tsx` — new. `CollectionPage` + `ItemList` + `FAQPage` (5 Q) + `BreadcrumbList`. Mounted in `CategoryPage`.
 - [x] `helpers/site.ts` — new. `SITE_NAME` + `getPublisher()`.
 - [x] All 5 schema components use `getPublisher()`.
@@ -315,8 +436,8 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 **Verified (static check)**
 - [x] Related links — 300 slugs, 0 broken, 0 self-ref, 0 duplicates.
-- [x] FAQ structure — 6 Q × 75 tools (7 for images-to-pdf), 3 Q home, 5 Q categories.
-- [x] searchSynonyms for 75 × 2 locales.
+- [x] FAQ structure — 6 Q × 76 tools (7 for images-to-pdf), 3 Q home, 5 Q categories.
+- [x] searchSynonyms for 76 × 2 locales.
 - [x] Titles ≤ 60 (spot-checked).
 - [x] metaDescription ≤ 155 (spot-checked).
 
@@ -337,9 +458,9 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 ### v0.13.0 — 2026-10-06
 
-**Related links for all 75 tools, Yandex SEO, global units, SliderField refactor**
+**Related links for all 76 tools, Yandex SEO, global units, SliderField refactor**
 
-- [x] `related: Slug[]` (4 items each) — all 75 tools.
+- [x] `related: Slug[]` (4 items each) — all 76 tools.
 - [x] Semantic clusters.
 - [x] Fixed broken slug — `lorem-ipsum` → `lorem-ipsum-generator`.
 - [x] Removed `pdf-to-image` orphan reference.
@@ -371,8 +492,8 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 **Universal SEO content rewrite (Variant C, Stages 1–3) + `metaDescription` split**
 
-- [x] Rewrote titles, descriptions, metaDescription, features, howToUse, useCases, faq — 75 × 2 locales.
-- [x] All 75 `searchSynonyms`.
+- [x] Rewrote titles, descriptions, metaDescription, features, howToUse, useCases, faq — 76 × 2 locales.
+- [x] All 76 `searchSynonyms`.
 - [x] «Free»/«Бесплатный» policy.
 - [x] Fixed `BreadCrumbs`, `ThemeToggle`, `globals.css` scrollbar, `.vscode/settings.json`.
 
@@ -413,7 +534,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 **Smart search (Fuse.js) + animated icons + scrollbar + theme tokens**
 
 - [x] `useSearchIndex` — Fuse.js index.
-- [x] `searchSynonyms` — 75 tools.
+- [x] `searchSynonyms` — 76 tools.
 - [x] Lucide → `@animateicons/react@0.9.0`.
 - [x] New types: `IconHandle`, `IconProps`.
 - [x] Theme tokens, custom scrollbar.
@@ -461,16 +582,16 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 
 | Metric | Current | Target |
 |---|---|---|
-| Tools shipped | 75 / 83 | 83 |
-| Tools with SEO blocks | 75 / 75 | 75 |
-| Tools with `metaDescription` | 75 / 75 | 75 |
-| Tools with `searchSynonyms` | 75 / 75 | 75 |
-| Tools with `related` (4 links each) | 75 / 75 | 75 |
+| Tools shipped | 76 / 84 | 84 |
+| Tools with SEO blocks | 76 / 76 | 76 |
+| Tools with `metaDescription` | 76 / 76 | 76 |
+| Tools with `searchSynonyms` | 76 / 76 | 76 |
+| Tools with `related` (4 links each) | 76 / 76 | 76 |
 | Categories with SEO blocks | 6 / 6 | 6 |
 | Locales | 2 / 2 | 2 (then 5) |
 | SSG coverage | 100% | 100% |
-| Internal links (from related) | ~300 | — |
-| Mobile adaptation | Done (P0–P2) | — |
+| Internal links (from related) | ~304 | — |
+| Mobile adaptation | Done (P0–P3) | — |
 | JSON-LD coverage | Done (all page types) | — |
 | Brand identity | Done | — |
 | Favicon set | Done | — |
@@ -478,19 +599,63 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 | Legal pages (About, Privacy) | Done | — |
 | Domain | toolyland.com (Timeweb) | — |
 | Hosting | Amvera «Начальный» | — |
+| Deployed | **Yes** (↩ 0.17.0) | — |
+| Analytics (GA4 + Metrica) | **Done** (↩ 0.18.0) | — |
+| GSC / Yandex.Webmaster | **Verified** (↩ 0.18.0) | — |
+| `/news` page | Done (↩ 0.19.0) | — |
+| `/news` pagination | Pending (decision) | — |
+| RSS feeds (EN + RU) | Done (↩ 0.19.0) | — |
 | OG image | No | Yes |
 | Contact emails | No | Yes |
-| Deployed | No | Yes |
+| Cookie consent revoke | No | Yes |
 | AdSense ready | No | Yes |
 
 ---
 
 ## 🔍 Audit trail
 
+### 2026-10-10 (v0.19.0)
+
+**FAQ silently disappeared after `percentage-calculator` migration to ToolConfig:**
+- When migrating the config from `CalculatorConfig` to `ToolConfig`, the `faq` field was missed. `ToolLayout` renders FAQ conditionally (`{config.faq && config.faq.length > 0 && <FAQ />}`) — so the build passed without errors, the page rendered, but the FAQ accordion disappeared and the `FAQPage` JSON-LD vanished. Diagnosis: compared the old `finance.ts` with the new `tools/finance.ts` — found the missing block by eye. Fix: restored `faq` from the old translations. **Rule recorded in CONTEXT (rule 123).**
+
+**`news.seeAll` rendered as raw key:**
+- In `NewsPage.tsx` we called `t('seeAll')` from the `news` namespace, but the key was not added to `messages/{en,ru}.json`. next-intl does not fail on missing keys — it renders the string as-is. On the screenshot: «Что нового ... news.seeAll →». Fix: added the key.
+
+**RSS Route Handlers crashed with `import('next/root-params').locale() inside a Route Handler`:**
+- The first version of `app/[locale]/feed.xml/route.ts` used `getTranslations({locale, namespace: 'news'})` from `next-intl/server`. Requests returned 500. Root cause: `next-intl` v4 in `getRequestConfig` calls `getRootLocale()` from `next/root-params`, and this API is not supported in Next.js 16 Route Handlers (planned for future versions). Fix: do not use `next-intl` in Route Handlers at all — import `messages/{en,ru}.json` directly and pick the needed keys.
+- The EN route `app/feed.xml/route.ts` had the same problem, plus no `[locale]` segment — but the fix is the same.
+
+**Moving `percentage-calculator` to the top of the `finance` category:**
+- After migrating to ToolConfig, percentage-calculator ended up at the bottom of the category list — because `getAllRegistryEntries()` sorts calculators before tools. Fix: added `priority?: number` to `BaseConfig`, `percentage-calculator` — `priority: 1`, sort in `getAllCategories()` (sidebar) and `getRegistryEntriesByCategory()` (category page).
+
+### 2026-10-09 (v0.18.0)
+
+**`@` in the «Host» field in Timeweb DNS is rejected:**
+- Trying to add a TXT record for Google Search Console with host `@` returned «Во время создания DNS-записи произошла ошибка» from Timeweb. Fix: leave the «Host» field empty — Timeweb substitutes the zone root automatically. Both TXT records (Google, Yandex) were added with empty host. **Rule recorded in CONTEXT (rule 108).**
+
+**`NEXT_PUBLIC_*` did not pick up after adding env in Amvera:**
+- Added `NEXT_PUBLIC_GA_ID` in Amvera, restarted the container — GA did not appear on the pages. Root cause: `NEXT_PUBLIC_*` are inlined into the bundle at build-time, not runtime. Container restart does not help. Fix: **rebuild** (Rebuild) in Amvera. **Rule recorded in CONTEXT (rule 107).**
+
+**GA4 new interface — no fixed «Acquisition»/«Engagement» sections:**
+- In the new GA4 UI, the left panel is reworked: «Business goals» + search at the top + cards on «Overview». Fastest path — find reports via search. **Rule recorded in CONTEXT (rule 117).**
+
+**Yandex Metrica — counter is created via a 4-step wizard:**
+- For Toolyland: Cloud app / Online services / CMS: Next.js / CRM: blank / Role: Owner. Do NOT copy the counter code from the Metrica interface — we use our own `YandexMetrica` component. **Rule recorded in CONTEXT.**
+
+**Sitemap in GSC — filename only, not URL:**
+- Submitting `https://toolyland.com/sitemap.xml` to GSC returned «Недопустимый адрес». Fix: submit only `sitemap.xml`. In Yandex.Webmaster — the opposite, full URL. **Rule recorded in CONTEXT (rule 110).**
+
+**GSC: «Couldn't fetch» for the first 24–48 hours is normal:**
+- Right after sitemap submission GSC shows «Couldn't fetch». Do not delete, do not resubmit, do not panic. After 24–48 hours the status flips to «Success». **Rule recorded in CONTEXT (rule 112).**
+
+**`curl` on Windows with Schannel — `CRYPT_E_REVOCATION_OFFLINE`:**
+- Checking the Amvera deploy via `curl` on Windows returned a certificate revocation check error. Workaround: `curl --ssl-revoke-best-effort` or `--ssl-no-revoke`. **Rule recorded in CONTEXT.**
+
 ### 2026-10-07 (v0.16.0)
 
 **Favicon ignored by Next.js App Router:**
-- `app/favicon.ico` (from `create-next-app` template) silently overrode `metadata.icons` in `app/[locale]/layout.tsx`. Next.js App Router prioritises file conventions over metadata. Symptom: browser tab showed Next.js triangle instead of Toolyland T. Fix: removed `app/favicon.ico`, kept favicon set in `public/` root. Verified in incognito window.
+- `app/favicon.ico` (from the `create-next-app` template) silently overrode `metadata.icons` in `app/[locale]/layout.tsx`. Next.js App Router prioritises file conventions over metadata. Symptom: browser tab showed the Next.js triangle instead of the Toolyland T. Fix: removed `app/favicon.ico`, kept the favicon set in `public/` root. Verified in incognito window.
 
 **SVG imported as React component:**
 - `import {ToolylandCompactIcon} from './icons'` then `<ToolylandCompactIcon />` failed with `Element type is invalid: expected a string but got: object`. Next.js static import of SVG returns `{src, height, width, blurDataURL}` — not a React component. Fix: switched to `next/image` with `src={icon}` (static import object) or `src={icon.src}` for `<img>`.
@@ -499,10 +664,10 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - `export const metadata` cannot access `locale` — hardcoded EN text for all locales. Fix: replaced with `export async function generateMetadata({params})`, reads locale via `getTranslations({locale, namespace: 'meta.site'})`.
 
 **Title template would exceed SERP limits:**
-- `title: {default: 'ProjectName', template: '%s | ProjectName'}` would append 11 chars to every page title. Long titles in `config.<slug>` (up to 60) would exceed Google's ~60-char SERP limit. Fix: removed template, each page sets its own title in its own `generateMetadata`.
+- `title: {default: 'ProjectName', template: '%s | ProjectName'}` would append 11 chars to every page title. Long titles in `config.<slug>` (up to 60) would exceed Google's ~60-char SERP limit. Fix: removed the template, each page sets its own title in its own `generateMetadata`.
 
 **Privacy policy contradicted cookie banner:**
-- Claimed «we don't collect, store, or share data» while cookie-consent banner existed on every page. For AdSense compliance + honesty, rewrote with explicit acknowledgment of localStorage, GA4, Yandex Metrica (Webvisor), AdSense cookies. Added GDPR/UK GDPR/CCPA rights section, links to Google policies, contact email.
+- Claimed «we don't collect, store, or share data» while a cookie-consent banner existed on every page. For AdSense compliance + honesty, rewrote with explicit acknowledgment of localStorage, GA4, Yandex Metrica (Webvisor), AdSense cookies. Added GDPR/UK GDPR/CCPA rights section, links to Google policies, contact email.
 
 **About voice mismatch:**
 - "Мы делаем простые..." — plural "we" is wrong for a solo-developer project. Rewrote from first-person singular — "я решил сделать". Also emphasized universal audience (designers, copywriters, developers, marketers, students, freelancers), not just developers.
@@ -511,7 +676,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - `about.offer.textTools` in `ru.json` contained the value of `about.offer.text` («Инструменты в шести категориях:») instead of «Текстовые инструменты — ...». Fixed.
 
 **SearchTrigger caret positioning + animation:**
-- `align-text-bottom` placed caret below text baseline — visible on screenshot. `animate-pulse` is smooth fade (opacity 1 → 0.5), not hard blink. Fix: `translate-y-[0.15em]` for centering, custom `caret-blink` keyframes with `steps(2,start)` for terminal-like hard blink.
+- `align-text-bottom` placed the caret below text baseline — visible on screenshot. `animate-pulse` is a smooth fade (opacity 1 → 0.5), not a hard blink. Fix: `translate-y-[0.15em]` for centering, custom `caret-blink` keyframes with `steps(2,start)` for terminal-like hard blink.
 
 ### 2026-10-07 (v0.15.0)
 
@@ -519,7 +684,7 @@ Legend: `[x]` done · `[ ]` pending · `[~]` in progress · `[!]` blocked
 - `CalcLayout` / `ToolLayout` / `CategorySchema` / `ToolsSchema` were building JSON-LD urls as `${baseUrl}/${slug}` — without locale prefix. RU canonical is `https://toolyland.com/ru/bmi-calculator`, but JSON-LD emitted `https://toolyland.com/bmi-calculator`. Rich Results Test would flag "url mismatch". Fixed via `localePath`.
 
 **`next/link` on RU pages:**
-- `EntryPreview`, `RelatedPreview`, `CategoryPage`, `BreadCrumbs` used `next/link` — internal links emitted EN URLs. RU visitor clicking related card got a 301 redirect hop. Fixed via mass replace to `@/i18n/navigation`.
+- `EntryPreview`, `RelatedPreview`, `CategoryPage`, `BreadCrumbs` used `next/link` — internal links emitted EN URLs. RU visitor clicking a related card got a 301 redirect hop. Fixed via mass replace to `@/i18n/navigation`.
 
 **`ItemList.name` semantic mismatch:**
 - `HomeSchema.ItemList.name` was `categories.all.name` («All Tools»), but `numberOfItems: 6` (categories). Fixed: new key `categories.all.title` («Categories»), `name` set to `all.title`. Same fix in `CategorySchema.BreadcrumbList` position 1 — `nav.home`.

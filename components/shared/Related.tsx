@@ -43,7 +43,7 @@ export function Related({slugs}: Props) {
 
   return (
     <section>
-      <h2 className="mb-4 text-xl font-bold">{t('related')}</h2>
+      <h2 className="mb-4 text-2xl font-semibold">{t('related')}</h2>
       <div className="grid sm:grid-cols-4 gap-2">
         {items.map(item => (
           <RelatedPreview

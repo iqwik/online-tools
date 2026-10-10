@@ -144,12 +144,10 @@ export function getCategory(slug: string) {
 }
 
 type ToolConfig = RegistryEntry['config']
+type ToolShort = Pick<ToolConfig, 'slug' | 'title' | 'Icon' | 'priority'>
 
 export function getAllCategories() {
-  const map = new Map<
-    CategorySlug,
-    Category & {tools: Array<Pick<ToolConfig, 'slug' | 'title' | 'Icon'>>}
-  >()
+  const map = new Map<CategorySlug, Category & {tools: ToolShort[]}>()
 
   for (const category of categories) {
     map.set(category.slug, {...category, tools: []})
@@ -165,13 +163,21 @@ export function getAllCategories() {
         slug: tool.slug,
         title: tool.title,
         Icon: tool.Icon,
+        priority: tool.priority,
       })
       map.set(tool.category, {...category, tools})
     }
   }
-  return Array.from(map.values())
+  return Array.from(map.values()).map(cat => ({
+    ...cat,
+    tools: sortByPriority(cat.tools),
+  }))
 
   function isCategory(v: Category | undefined): v is Category {
     return !!v && typeof v === 'object'
+  }
+
+  function sortByPriority(arr: ToolShort[]): ToolShort[] {
+    return [...arr].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
   }
 }

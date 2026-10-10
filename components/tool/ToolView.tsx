@@ -31,6 +31,7 @@ import {MarkdownPreviewerView} from './MarkdownPreviewerView'
 import {MetaTagGeneratorView} from './MetaTagGeneratorView'
 import {NumberToWordsView} from './NumberToWordsView'
 import {PasswordGeneratorView} from './PasswordGeneratorView'
+import {PercentageCalculatorView} from './PercentageCalculatorView'
 import {ProfitMarginCalculatorView} from './ProfitMarginCalculatorView'
 import {QrCodeGeneratorView} from './QrCodeGeneratorView'
 import {QuotationGeneratorView} from './QuotationGeneratorView'
@@ -145,6 +146,8 @@ export function ToolView({config}: Props) {
       return <ScreenshotBeautifierView />
     case 'hidden-character-finder':
       return <HiddenCharacterFinderView />
+    case 'percentage-calculator':
+      return <PercentageCalculatorView />
     default:
       return assertNever(config)
   }

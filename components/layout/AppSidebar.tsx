@@ -2,6 +2,7 @@
 
 import {HouseIcon} from '@animateicons/react/lucide/house-icon'
 import {LayoutGridIcon} from '@animateicons/react/lucide/layout-grid-icon'
+import {RssIcon} from '@animateicons/react/lucide/rss-icon'
 import {cn} from 'cn'
 import {ChevronRight} from 'lucide-react'
 import Image from 'next/image'
@@ -135,6 +136,11 @@ export function AppSidebar() {
               title={tNav('home')}
               slug="/"
               Icon={HouseIcon}
+            />
+            <SidebarMenuLinkWithAnimatedIcon
+              title={tNav('news')}
+              slug="news"
+              Icon={RssIcon}
             />
             <SidebarMenuLinkWithAnimatedIcon
               title={tCategories('all.name')}
