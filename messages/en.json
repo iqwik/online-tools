@@ -686,6 +686,10 @@
     },
     "seeAll": "See all news",
     "items": {
+      "service-restored": {
+        "title": "Service restored",
+        "text": "Toolyland was temporarily unavailable due to a technical incident on our hosting side. The site is back online and working as usual."
+      },
       "percentage-calculator-rework": {
         "title": "Percentage Calculator rebuilt with 5 modes and Smart parsing",
         "text": "The percentage calculator now has five calculation modes and a Smart mode that understands plain-English expressions like \"20% of 95\" or \"from 80 to 100\". Results update live as you type, and every answer includes a step-by-step solution."
