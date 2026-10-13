@@ -1,7 +1,12 @@
 import type {Metadata} from 'next'
 import {getTranslations} from 'next-intl/server'
 import {NewsPage} from '@/components/news/NewsPage'
-import {getBaseUrl} from '@/helpers'
+import {
+  getBaseUrl,
+  getOgAlternateLocales,
+  getOgLocale,
+  SITE_NAME,
+} from '@/helpers'
 import {routing} from '@/i18n/routing'
 
 interface PageProps {
@@ -13,12 +18,15 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
   const t = await getTranslations({locale, namespace: 'news'})
   const baseUrl = getBaseUrl()
   const localePath = locale === routing.defaultLocale ? '' : `/${locale}`
+  const canonical = `${baseUrl}${localePath}/news`
+  const title = t('metaTitle')
+  const description = t('metaDescription')
 
   return {
-    title: t('metaTitle'),
-    description: t('metaDescription'),
+    title,
+    description,
     alternates: {
-      canonical: `${baseUrl}${localePath}/news`,
+      canonical,
       languages: {
         en: `${baseUrl}/news`,
         ru: `${baseUrl}/ru/news`,
@@ -26,6 +34,22 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
       types: {
         'application/rss+xml': `${baseUrl}${localePath}/feed.xml`,
       },
+    },
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      title,
+      description,
+      url: canonical,
+      locale: getOgLocale(locale),
+      alternateLocale: getOgAlternateLocales(locale),
+      images: [{url: '/og-default.jpg', width: 1200, height: 630, alt: title}],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-default.jpg'],
     },
   }
 }

@@ -1,10 +1,10 @@
-// helpers/category-metadata.ts
 import type {Metadata} from 'next'
 import {getTranslations} from 'next-intl/server'
 import {routing} from '@/i18n/routing'
 import type {CategorySlug} from '@/types'
 import {getBaseUrl} from './get-base-url'
 import {getOgAlternateLocales, getOgLocale} from './og-locale'
+import {SITE_NAME} from './site'
 
 export async function buildCategoryMetadata(
   locale: string,
@@ -31,17 +31,20 @@ export async function buildCategoryMetadata(
     keywords: t(`${slug}.keywords`),
     alternates: {canonical, languages},
     openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
       title,
       description,
       url: canonical,
-      type: 'website',
       locale: getOgLocale(locale),
       alternateLocale: getOgAlternateLocales(locale),
+      images: [{url: '/og-default.jpg', width: 1200, height: 630, alt: title}],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: ['/og-default.jpg'],
     },
   }
 }
