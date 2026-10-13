@@ -4,7 +4,8 @@ import {cn} from 'cn'
 import {enUS, ru} from 'date-fns/locale'
 import {CalendarIcon} from 'lucide-react'
 import {useLocale, useTranslations} from 'next-intl'
-import {useEffect, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
+import {useEvent} from '@/hooks/use-event'
 import {Button} from './button'
 import {Calendar} from './calendar'
 import {Popover, PopoverContent, PopoverTrigger} from './popover'
@@ -58,6 +59,7 @@ export function DatePicker({
     appLocale === 'ru' ? 'ru-RU' : 'en-US',
   )
   const [open, setOpen] = useState(false)
+  const [month, setMonth] = useState<Date>(() => isoToDate(value) ?? new Date())
 
   useEffect(() => {
     setDisplayLocale(pickDisplayLocale(appLocale))
@@ -65,7 +67,7 @@ export function DatePicker({
 
   const calendarLocale = appLocale === 'ru' ? ru : enUS
 
-  function formatDate(date: Date): string {
+  const formatDate = useEvent(function formatDate(date: Date): string {
     try {
       return new Intl.DateTimeFormat(displayLocale, {
         year: 'numeric',
@@ -75,9 +77,17 @@ export function DatePicker({
     } catch {
       return date.toISOString().slice(0, 10)
     }
-  }
+  })
 
-  const date = isoToDate(value)
+  const date = useMemo(() => isoToDate(value), [value])
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: update on visible state was changed
+  useEffect(() => {
+    if (!open) {
+      return
+    }
+    setMonth(date ?? new Date())
+  }, [open])
 
   return (
     <Popover open={open} onOpenChange={setOpen} modal={false}>
@@ -105,7 +115,8 @@ export function DatePicker({
         <Calendar
           mode="single"
           selected={date}
-          defaultMonth={date}
+          month={month}
+          onMonthChange={setMonth}
           locale={calendarLocale}
           onSelect={next => {
             onChange(next ? dateToIso(next) : '')
@@ -113,22 +124,21 @@ export function DatePicker({
           }}
           autoFocus
         />
-        {date && (
-          <div className="border-t p-2">
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className="w-full"
-              onClick={() => {
-                onChange('')
-                setOpen(false)
-              }}
-            >
-              {tGlobal('clear')}
-            </Button>
-          </div>
-        )}
+        <div className="border-t p-2">
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="w-full"
+            disabled={!date}
+            onClick={() => {
+              onChange('')
+              setOpen(false)
+            }}
+          >
+            {tGlobal('clear')}
+          </Button>
+        </div>
       </PopoverContent>
     </Popover>
   )

@@ -697,6 +697,10 @@
       "toolyland-launch": {
         "title": "Toolyland is live",
         "text": "The site is now online at toolyland.com - 74 free online tools across finance, health, text, developer, generators and business. No signup, no limits, works in any browser."
+      },
+      "age-calculator-rework": {
+        "title": "Age calculator reworked",
+        "text": "You can now pick month and year directly in the calendar - no more clicking through years one by one. The result updates instantly, and new fun facts show up below: your age on Mercury and Mars, approximate heartbeats, breaths, and full moons. A separate block tells you how many days remain until your next birthday."
       }
     }
   },
@@ -2240,16 +2244,24 @@
       "howToUseTitle": "How to use",
       "howToUse": [
         {
-          "title": "Enter your date of birth",
-          "description": "Select your birth date using the calendar picker."
+          "title": "Pick your date of birth",
+          "description": "Choose your birthday in the calendar — the result updates instantly, no Calculate button."
         },
         {
-          "title": "Choose the target date",
-          "description": "Select a date to calculate age as of. Leave empty to use today."
+          "title": "Choose a reference date",
+          "description": "Today by default, but you can set any date from the past or future — the age recalculates for that moment."
         },
         {
-          "title": "Read your age",
-          "description": "See your age in years, months and days, plus total days and weeks."
+          "title": "See your full age breakdown",
+          "description": "Full years, months and days, plus the same age in weeks, hours, minutes and seconds."
+        },
+        {
+          "title": "Check your next birthday",
+          "description": "The card shows the exact date, days remaining and the age you will turn."
+        },
+        {
+          "title": "Explore fun facts",
+          "description": "Compare your age on Mercury, Venus, Mars, Jupiter and Saturn, and estimate your lifetime heartbeats and breaths."
         }
       ],
       "featuresTitle": "Features",
@@ -2290,6 +2302,45 @@
         "days": "Days",
         "totalDays": "Total days",
         "totalWeeks": "Total weeks"
+      },
+      "fields": {
+        "from": "Date of birth",
+        "to": "Age at date",
+        "toPlaceholder": "Today"
+      },
+      "result": {
+        "main": "{years, plural, one {# year} other {# years}}, {months, plural, one {# month} other {# months}}, {days, plural, one {# day} other {# days}}"
+      },
+      "units": {
+        "totalMonths": "Total months",
+        "totalWeeks": "Total weeks",
+        "totalDays": "Total days",
+        "totalHours": "Total hours",
+        "totalMinutes": "Total minutes",
+        "totalSeconds": "Total seconds"
+      },
+      "nextBirthday": {
+        "title": "Next birthday",
+        "date": "Date",
+        "turning": "Turning",
+        "daysLeft": "Days left"
+      },
+      "planets": {
+        "title": "Your age on other planets",
+        "mercury": "Mercury",
+        "venus": "Venus",
+        "mars": "Mars",
+        "jupiter": "Jupiter",
+        "saturn": "Saturn",
+        "unit": "yrs"
+      },
+      "facts": {
+        "title": "Interesting facts",
+        "heartbeats": "Heartbeats (approx.)",
+        "breaths": "Breaths taken (approx.)",
+        "newYears": "New Years celebrated",
+        "sleep": "Hours slept (approx.)",
+        "fullMoons": "Full moons seen"
       },
       "faq": {
         "q1": "How is age calculated?",

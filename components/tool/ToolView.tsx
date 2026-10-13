@@ -1,5 +1,6 @@
 import {assertNever} from '@/helpers'
 import type {ToolConfig} from '@/types'
+import {AgeCalculatorView} from './AgeCalculatorView'
 import {Base64ImageOptimizerView} from './Base64ImageOptimizerView'
 import {Base64ToImageView} from './Base64ToImageView'
 import {Base64View} from './Base64View'
@@ -148,6 +149,8 @@ export function ToolView({config}: Props) {
       return <HiddenCharacterFinderView />
     case 'percentage-calculator':
       return <PercentageCalculatorView />
+    case 'age-calculator':
+      return <AgeCalculatorView />
     default:
       return assertNever(config)
   }

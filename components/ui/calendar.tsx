@@ -2,24 +2,34 @@
 
 import {cn} from 'cn'
 import {ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon} from 'lucide-react'
-import {ComponentProps, useEffect, useRef} from 'react'
+import {
+  ChangeEvent,
+  ComponentProps,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import {
   type DayButton,
   DayPicker,
+  DropdownProps,
   getDefaultClassNames,
   type Locale,
 } from 'react-day-picker'
-import {Button, buttonVariants} from '@/components/ui/button'
+import {Button, buttonVariants} from './button'
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
-  captionLayout = 'label',
+  captionLayout = 'dropdown',
   buttonVariant = 'ghost',
   locale,
   formatters,
   components,
+  startMonth = new Date(1900, 0),
+  endMonth = new Date(new Date().getFullYear() + 1, 11),
   ...props
 }: ComponentProps<typeof DayPicker> & {
   buttonVariant?: ComponentProps<typeof Button>['variant']
@@ -36,6 +46,8 @@ function Calendar({
         className,
       )}
       captionLayout={captionLayout}
+      startMonth={startMonth}
+      endMonth={endMonth}
       locale={locale}
       formatters={{
         formatMonthDropdown: date =>
@@ -175,6 +187,7 @@ function Calendar({
             </td>
           )
         },
+        Dropdown: CalendarDropdown,
         ...components,
       }}
       {...props}
@@ -217,6 +230,113 @@ function CalendarDayButton({
       )}
       {...props}
     />
+  )
+}
+
+function CalendarDropdown({
+  value,
+  onChange,
+  options,
+  className,
+  'aria-label': ariaLabel,
+}: DropdownProps) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
+  const selectedRef = useRef<HTMLButtonElement>(null)
+  const currentValue = Array.isArray(value) ? value[0] : value?.toString()
+  const selectedLabel = options?.find(
+    o => o.value.toString() === currentValue,
+  )?.label
+
+  useEffect(() => {
+    if (!open) return
+    function onPointerDown(e: PointerEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [open])
+
+  useLayoutEffect(() => {
+    if (!open) return
+    const list = listRef.current
+    const selected = selectedRef.current
+    if (!list || !selected) return
+    const offset =
+      selected.offsetTop - list.clientHeight / 2 + selected.offsetHeight / 2
+    list.scrollTop = Math.max(0, offset)
+  }, [open])
+
+  return (
+    <div ref={ref} className={cn('relative', className)}>
+      <button
+        type="button"
+        aria-label={ariaLabel}
+        aria-expanded={open}
+        onClick={e => {
+          e.stopPropagation()
+          setOpen(v => !v)
+        }}
+        className={cn(
+          'inline-flex h-7 cursor-pointer items-center gap-1 rounded-md px-1.5',
+          'text-sm font-medium text-foreground',
+          'hover:bg-accent focus-visible:bg-accent focus-visible:outline-none',
+          open && 'bg-accent',
+        )}
+      >
+        <span>{selectedLabel ?? currentValue}</span>
+        <ChevronDownIcon className="size-3.5 text-muted-foreground" />
+      </button>
+
+      {open && (
+        <div
+          ref={listRef}
+          role="listbox"
+          className={cn(
+            'absolute top-full left-0 z-[60] mt-1',
+            'max-h-64 min-w-full overflow-y-auto',
+            'rounded-md border bg-popover p-1 text-popover-foreground shadow-md',
+            'animate-in fade-in-0',
+          )}
+        >
+          {options?.map(option => {
+            const isSelected = option.value.toString() === currentValue
+            return (
+              <button
+                key={option.value}
+                ref={isSelected ? selectedRef : undefined}
+                type="button"
+                role="option"
+                aria-selected={isSelected}
+                disabled={option.disabled}
+                onClick={e => {
+                  e.stopPropagation()
+                  onChange?.({
+                    target: {value: option.value.toString()},
+                  } as ChangeEvent<HTMLSelectElement>)
+                  setOpen(false)
+                }}
+                className={cn(
+                  'flex w-full cursor-pointer items-center justify-between gap-2',
+                  'rounded-sm px-2 py-1.5 text-sm outline-none',
+                  'hover:bg-accent focus-visible:bg-accent',
+                  'disabled:pointer-events-none disabled:opacity-50',
+                  isSelected && 'bg-accent/50',
+                )}
+              >
+                <span>{option.label}</span>
+                {isSelected ? (
+                  <span className="text-xs text-muted-foreground">✓</span>
+                ) : null}
+              </button>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }
 

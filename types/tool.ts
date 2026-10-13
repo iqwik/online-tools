@@ -48,6 +48,7 @@ export type ToolKind =
   | 'screenshot-beautifier'
   | 'hidden-character-finder'
   | 'percentage-calculator'
+  | 'age-calculator'
 
 export interface UnitDef {
   value: string
@@ -250,6 +251,10 @@ export interface PercentageCalculatorConfig extends BaseConfig {
   kind: 'percentage-calculator'
 }
 
+export interface AgeCalculatorConfig extends BaseConfig {
+  kind: 'age-calculator'
+}
+
 export type ToolConfig =
   | UnitConverterConfig
   | JsonFormatterConfig
@@ -298,3 +303,4 @@ export type ToolConfig =
   | ScreenshotBeautifierConfig
   | HiddenCharacterFinderConfig
   | PercentageCalculatorConfig
+  | AgeCalculatorConfig

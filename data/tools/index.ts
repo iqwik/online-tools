@@ -3,6 +3,7 @@ import {businessTools} from './business'
 import {developerTools} from './developer'
 import {financeTools} from './finance'
 import {generatorTools} from './generators'
+import {healthTools} from './health'
 import {textTools} from './text'
 
 export const tools: ToolConfig[] = [
@@ -11,6 +12,7 @@ export const tools: ToolConfig[] = [
   ...generatorTools,
   ...businessTools,
   ...financeTools,
+  ...healthTools,
 ]
 
 export function getAllTools(): ToolConfig[] {

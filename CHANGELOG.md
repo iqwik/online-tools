@@ -4,17 +4,17 @@
 
 - **SEO-индексация** — дожать GSC sitemap («Успешно» через 24–48 часов), добавить sitemap в Яндекс.Вебмастер, привязать Метрику к Вебмастеру, настроить региональность, запустить переобход топ-10 URL (хабы и категории).
 - **Гейтинг аналитики за cookie consent (GDPR)** — GA4 и Метрика грузятся всегда, независимо от согласия. Нужно: `analyticsAllowed` в контексте, CookieConsent переключает. **Обязательно до AdSense.**
-- **Rich Results Test** — прогнать все JSON-LD через Google Rich Results Test. Страницы: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`. Проверить, что URL в JSON-LD = canonical.
-- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView. Spot-check на 320 / 360 / 375.
+- **Rich Results Test** — прогнать все JSON-LD через Google Rich Results Test. Страницы: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`, **`/age-calculator`**, **`/ru/age-calculator`**. Проверить, что URL в JSON-LD = canonical.
+- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView, **AgeCalculatorView**. Spot-check на 320 / 360 / 375.
 - **Final EN + RU proofread** — все 76 инструментов × 2 локали в браузере.
 - **`pdf-to-image`** — translations готовы, нет `data/tools/developer.ts` entry и View. `pdfjs-dist@6.3.289` установлен. План: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker через `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range (`1-5, 8, 11-13`), PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, grid preview + ZIP. `loadingTask.destroy()`. При реализации — вернуть `pdf-to-image` в `related` у `images-to-pdf`.
-- **`lucide-react` cleanup** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`. `grep -rn "lucide-react" components/`.
+- **`lucide-react` cleanup** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`, **`components/ui/calendar.tsx`**, **`components/ui/date-picker.tsx`**. `grep -rn "lucide-react" components/`.
 - **Tap targets** — `h-8` → `h-9 sm:h-8` или `h-10 sm:h-8`. Sweep с `grep -rn 'size="sm"' components/tool/`.
 - **OG-image** — `og-default.jpg` (1200×630). Figma: navy фон, `toolyland-wordmark.svg` слева, tagline «Free online tools. No signup.» справа.
 - **Contact emails** — `privacy@toolyland.com`, `hello@toolyland.com` через Cloudflare Email Routing или Yandex Mail for Domain.
 - **Cookie consent — revoke mechanism** — GDPR требует возможность отзыва. Ссылка «Manage cookies» в футере.
 - **Privacy page — clickable links** — `adssettings.google.com`, `policies.google.com/technologies/partner-sites` сейчас plain text. Обернуть в `<a target="_blank" rel="noopener">`.
-- **Locale refactor в `data/**`** — hardcoded `'en-US'` → `ctx.locale`. Affects: `finance.ts` (`formatInt` / `formatAmount`), `age-calculator`, `date-difference-calculator`, `pregnancy-due-date-calculator`.
+- **Locale refactor в `data/**`** — hardcoded `'en-US'` → `ctx.locale`. Affects: `finance.ts` (`formatInt` / `formatAmount`), **`age-calculator`** (мигрирован в `ToolConfig`, но `totalDays.toLocaleString('en-US')` мог остаться в других калькуляторах), `date-difference-calculator`, `pregnancy-due-date-calculator`.
 - **Percentage-calculator — polish**: история вычислений (localStorage, max 20), копирование выражения (OutputPanel `actions` или `secondaryCopy`), круговая диаграмма (SVG).
 - **/news — развитие**: client-side «Load more» при 20+ записях, отдельный OG-образ.
 - **`salary-slip-generator.payPeriod`** — text input → два `<Select>` (Month + Year).
@@ -31,6 +31,43 @@
 - **`getToolCount()` is sync** — ок до ~1000 entries.
 - **Custom unit plural in labels** — `global.units.{months, years, ...}` как простые строки.
 - **Sidebar state resets on locale switch**, **active category link** (сейчас `===`), **meta-tag-generator preview titles** hardcoded EN.
+- **`CalendarDropdown` — вернуть shadcn `Select`, когда Base UI выпустит фикс для issue #2480.** PR #4820 смержен в master, ожидает стабильного релиза. Замене подлежит только override `Dropdown` в `components/ui/calendar.tsx`, остальная логика не затрагивается.
+- **`age-calculator` SEO-тексты** — привести `features`, `useCases`, `description`, `metaDescription`, `keywords` в соответствие с новым View (планеты, факты, следующий ДР). Rule 42 — тексты должны описывать реальный функционал.
+- **`age-calculator` — `to` в будущем** — сейчас View рендерит возраст, но проверка на `target < birth` возвращает `null`. Уточнить UX: сообщение об ошибке или пустое состояние.
+
+### Added
+
+- **`/news` entry** — `age-calculator-rework` (13.10), tag `feature`, link to `/age-calculator`. Short announcement covering the Calendar / DatePicker improvements and the new View.
+- **`CalendarDropdown`** — кастомный inline-дропдаун для выбора месяца и года в `components/ui/calendar.tsx`. Заменяет shadcn `Select` внутри `Popover` (Base UI bug #2480 — вложенный `Select` / `DropdownMenu` не открывается). Обычный `<button>` + абсолютно позиционированный `<div>`, без портала. Стилизован под shadcn: `bg-popover`, `hover:bg-accent`, `animate-in fade-in-0`. Авто-скролл к выбранной опции через `useLayoutEffect` + `offsetTop` (без `scrollIntoView`, чтобы не дёргать страницу). Закрытие по клику снаружи через `document` pointerdown.
+- **`AgeCalculatorView`** (`components/tool/AgeCalculatorView.tsx`) — новый View для `age-calculator`. Переведён из `CalculatorConfig` в `ToolConfig`. По образцу `PercentageCalculatorView`: живой пересчёт без кнопки Calculate, URL-синхронизация через `history.replaceState` (`?from=1984-05-19&to=2026-10-13`), `OutputPanel` с расшифровкой возраста.
+  - **Планеты:** Меркурий, Венера, Марс, Юпитер, Сатурн — возраст в «местных» годах (деление земных дней на период обращения).
+  - **Забавные факты:** удары сердца (~70 bpm), вдохи (~15/мин), новые годы, часы сна (~8/день), полнолуния (~каждые 29.53 дня).
+  - **Следующий день рождения:** точная дата, сколько дней осталось, какой возраст исполнится.
+- **5-шаговый `howToUse`** для `age-calculator` — симметрично источнику (Timbrica): дата рождения → опорная дата → расшифровка → следующий ДР → забавные факты.
+
+### Fixed
+
+- **Calendar month/year dropdowns did nothing.** `captionLayout` defaulted to `'label'`, so `react-day-picker` rendered only prev/next arrows — no month or year selectors. Age calculator required scrolling year by year. Default changed to `'dropdown'`, added `startMonth` (1900) / `endMonth` (currentYear+1) props.
+- **DatePicker inside Popover — dropdowns wouldn't open.** shadcn `Select` / `DropdownMenu` rendered via portal to `document.body`, and the outer Popover dismissed itself on their `pointerdown` before the list could open. Known Base UI bug (issue #2480), not fixed in 1.8.0. Replaced with custom inline `CalendarDropdown` — no portal, no conflict.
+- **CalendarDropdown auto-scroll.** On open, list scrolls so selected month/year is centered. Implemented via `useLayoutEffect` + `offsetTop` + manual `list.scrollTop` — no `scrollIntoView`, which scrolled the whole page and caused visible layout jumps.
+- **DatePicker popover jumped/flickered on date select.** The `Clear` button was conditionally rendered (`{date && ...}`), so `PopoverContent` changed height after selection → Popover re-positioned (flip / side-change) for one frame before closing. Now the block is always rendered and the button is `disabled` when the value is empty — constant height, stable position.
+- **DatePicker `defaultMonth` caused calendar re-layout on selection.** When the parent updated `value`, `defaultMonth` changed from `undefined` to a `Date`, and `react-day-picker` recalculated its internal month mid-interaction. Replaced with controlled `month` + `onMonthChange`; `Date` object memoized with `useMemo` to keep the reference stable while `value` is unchanged.
+
+### Changed
+
+- **`components/ui/calendar.tsx`** — `captionLayout` default `'label'` → `'dropdown'`; new `startMonth` / `endMonth` props; new standalone `CalendarDropdown` component (replaces shadcn `Select` for month/year). `lucide-react` icons still in use here (see TODO).
+- **`components/ui/date-picker.tsx`** — Clear button always rendered; `defaultMonth` → controlled `month`; `date` memoized.
+- **`age-calculator` migrated from `CalculatorConfig` to `ToolConfig`.** New file `data/tools/health.ts`. Removed from `data/calculators/health.ts`. Slug, category (`health`) and related links unchanged.
+- **`types/tool.ts`** — `ToolKind += 'age-calculator'`, new `AgeCalculatorConfig` interface, added to `ToolConfig` union.
+- **`components/tool/ToolView.tsx`** — new case `'age-calculator'` → `<AgeCalculatorView />`.
+- **Translations restructured** (`config.age-calculator.*`) — new `fields.{from,to,toPlaceholder}`, `result.main` (ICU plural EN + RU), `units.*`, `planets.*`, `facts.*`, `nextBirthday.*`. Removed unused: `inputs.*`, `secondary.*`.
+
+### Notes
+
+- **Base UI bug #2480** — nested `Select` / `DropdownMenu` inside `Popover` cannot be opened with public API in 1.8.0. Fix is merged (PR #4820) but not yet in a stable release. When it lands, `CalendarDropdown` can be swapped back to shadcn `Select` — only the `Dropdown` override in `calendar.tsx` needs to change.
+- **Age calculator now usable** — year selection no longer requires manual scrolling; month/year dropdowns center on the currently selected value.
+- **Migration recipe CalculatorConfig → ToolConfig (second case).** Same pitfalls as with `percentage-calculator`: check that `faq`, `related`, `publishedAt` are carried over. `faq` is conditional-render and fails silently.
+- **Планеты и факты — оценочные.** `~70 bpm`, `~15 breaths/min`, `~8h sleep/day`, `~29.53d moon cycle` — это средние значения, они не являются медицинскими показателями. В `metaDescription` не упоминать как «точные».
 
 ## [0.19.0] - 2026-10-10
 

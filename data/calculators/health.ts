@@ -3,7 +3,6 @@ import {CalendarHeartIcon as CalendarHeart} from '@animateicons/react/lucide/cal
 import {DropletIcon as Droplet} from '@animateicons/react/lucide/droplet-icon'
 import {DumbbellIcon as Weight} from '@animateicons/react/lucide/dumbbell-icon'
 import {FlameIcon as Flame} from '@animateicons/react/lucide/flame-icon'
-import {GiftIcon as Cake} from '@animateicons/react/lucide/gift-icon'
 import {HeartIcon as Heart} from '@animateicons/react/lucide/heart-icon'
 import {LeafIcon as Flower} from '@animateicons/react/lucide/leaf-icon'
 import {MoonIcon as Bed} from '@animateicons/react/lucide/moon-icon'
@@ -190,94 +189,94 @@ export const healthCalculators: CalculatorConfig[] = [
       'body-fat-calculator',
     ],
   },
-  {
-    slug: 'age-calculator',
-    category: 'health',
-    title: 'age-calculator.title',
-    h1: 'age-calculator.h1',
-    description: 'age-calculator.description',
-    metaDescription: 'age-calculator.metaDescription',
-    keywords: ['age-calculator.keywords'],
-    Icon: Cake,
-    tags: ['health'],
-    inputs: [
-      {
-        name: 'birthDate',
-        label: 'age-calculator.inputs.birthDate',
-        type: 'date',
-      },
-      {
-        name: 'targetDate',
-        label: 'age-calculator.inputs.targetDate',
-        type: 'date',
-        hint: 'age-calculator.hints.targetDate',
-      },
-    ],
-    calculate: ({birthDate, targetDate}) => {
-      const birth = new Date(String(birthDate))
-      const target = targetDate ? new Date(String(targetDate)) : new Date()
+  // {
+  //   slug: 'age-calculator',
+  //   category: 'health',
+  //   title: 'age-calculator.title',
+  //   h1: 'age-calculator.h1',
+  //   description: 'age-calculator.description',
+  //   metaDescription: 'age-calculator.metaDescription',
+  //   keywords: ['age-calculator.keywords'],
+  //   Icon: Cake,
+  //   tags: ['health'],
+  //   inputs: [
+  //     {
+  //       name: 'birthDate',
+  //       label: 'age-calculator.inputs.birthDate',
+  //       type: 'date',
+  //     },
+  //     {
+  //       name: 'targetDate',
+  //       label: 'age-calculator.inputs.targetDate',
+  //       type: 'date',
+  //       hint: 'age-calculator.hints.targetDate',
+  //     },
+  //   ],
+  //   calculate: ({birthDate, targetDate}) => {
+  //     const birth = new Date(String(birthDate))
+  //     const target = targetDate ? new Date(String(targetDate)) : new Date()
 
-      let years = target.getFullYear() - birth.getFullYear()
-      let months = target.getMonth() - birth.getMonth()
-      let days = target.getDate() - birth.getDate()
+  //     let years = target.getFullYear() - birth.getFullYear()
+  //     let months = target.getMonth() - birth.getMonth()
+  //     let days = target.getDate() - birth.getDate()
 
-      if (days < 0) {
-        months--
-        const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0)
-        days += prevMonth.getDate()
-      }
-      if (months < 0) {
-        years--
-        months += 12
-      }
+  //     if (days < 0) {
+  //       months--
+  //       const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0)
+  //       days += prevMonth.getDate()
+  //     }
+  //     if (months < 0) {
+  //       years--
+  //       months += 12
+  //     }
 
-      const totalDays = Math.floor(
-        (target.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24),
-      )
+  //     const totalDays = Math.floor(
+  //       (target.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24),
+  //     )
 
-      return {
-        value: `${years} / ${months} / ${days}`,
-        secondary: [
-          {
-            label: 'age-calculator.secondary.years',
-            value: String(years),
-          },
-          {
-            label: 'age-calculator.secondary.months',
-            value: String(months),
-          },
-          {
-            label: 'age-calculator.secondary.days',
-            value: String(days),
-          },
-          {
-            label: 'age-calculator.secondary.totalDays',
-            value: totalDays.toLocaleString('en-US'),
-          },
-          {
-            label: 'age-calculator.secondary.totalWeeks',
-            value: Math.floor(totalDays / 7).toLocaleString('en-US'),
-          },
-        ],
-      }
-    },
-    resultLabel: 'age-calculator.resultLabel',
-    faq: [
-      {q: 'age-calculator.faq.q1', a: 'age-calculator.faq.a1'},
-      {q: 'age-calculator.faq.q2', a: 'age-calculator.faq.a2'},
-      {q: 'age-calculator.faq.q3', a: 'age-calculator.faq.a3'},
-      {q: 'age-calculator.faq.q4', a: 'age-calculator.faq.a4'},
-      {q: 'age-calculator.faq.q5', a: 'age-calculator.faq.a5'},
-      {q: 'age-calculator.faq.q6', a: 'age-calculator.faq.a6'},
-    ],
-    publishedAt: '2026-10-02',
-    related: [
-      'heart-rate-zones-calculator',
-      'vo2-max-estimator',
-      'calorie-calculator',
-      'water-intake-calculator',
-    ],
-  },
+  //     return {
+  //       value: `${years} / ${months} / ${days}`,
+  //       secondary: [
+  //         {
+  //           label: 'age-calculator.secondary.years',
+  //           value: String(years),
+  //         },
+  //         {
+  //           label: 'age-calculator.secondary.months',
+  //           value: String(months),
+  //         },
+  //         {
+  //           label: 'age-calculator.secondary.days',
+  //           value: String(days),
+  //         },
+  //         {
+  //           label: 'age-calculator.secondary.totalDays',
+  //           value: totalDays.toLocaleString('en-US'),
+  //         },
+  //         {
+  //           label: 'age-calculator.secondary.totalWeeks',
+  //           value: Math.floor(totalDays / 7).toLocaleString('en-US'),
+  //         },
+  //       ],
+  //     }
+  //   },
+  //   resultLabel: 'age-calculator.resultLabel',
+  //   faq: [
+  //     {q: 'age-calculator.faq.q1', a: 'age-calculator.faq.a1'},
+  //     {q: 'age-calculator.faq.q2', a: 'age-calculator.faq.a2'},
+  //     {q: 'age-calculator.faq.q3', a: 'age-calculator.faq.a3'},
+  //     {q: 'age-calculator.faq.q4', a: 'age-calculator.faq.a4'},
+  //     {q: 'age-calculator.faq.q5', a: 'age-calculator.faq.a5'},
+  //     {q: 'age-calculator.faq.q6', a: 'age-calculator.faq.a6'},
+  //   ],
+  //   publishedAt: '2026-10-02',
+  //   related: [
+  //     'heart-rate-zones-calculator',
+  //     'vo2-max-estimator',
+  //     'calorie-calculator',
+  //     'water-intake-calculator',
+  //   ],
+  // },
   {
     slug: 'tdee-macro-calculator',
     category: 'health',
