@@ -701,6 +701,14 @@
       "age-calculator-rework": {
         "title": "Age calculator reworked",
         "text": "You can now pick month and year directly in the calendar - no more clicking through years one by one. The result updates instantly, and new fun facts show up below: your age on Mercury and Mars, approximate heartbeats, breaths, and full moons. A separate block tells you how many days remain until your next birthday."
+      },
+      "password-generator-rework": {
+        "title": "Password generator reworked: 4 modes, entropy meter, .txt export",
+        "text": "The password generator now has four modes — random, pronounceable, PIN, and pattern-based. Every password comes with a live entropy reading in bits and an estimated crack time. You can generate up to 500 passwords at once and export them as a .txt file. The pattern mode builds passwords from a mask like Cccdds."
+      },
+      "timestamp-converter-rework": {
+        "title": "Timestamp converter reworked: unit picker, RFC 2822, relative time",
+        "text": "The timestamp converter now has a unit selector — auto, seconds, or milliseconds — so timestamps from different sources parse correctly without guessing. Output includes ISO 8601, UTC (RFC 2822), local time, and a localized relative label like \"4 days ago\". Every output row is one-click copyable."
       }
     }
   },
@@ -1183,10 +1191,10 @@
       }
     },
     "sales-tax-calculator": {
-      "title": "Sales Tax Calculator — Add or Remove VAT & GST",
+      "title": "Sales Tax Calculator - Add or Remove VAT/GST in Seconds",
       "h1": "Sales Tax Calculator",
       "description": "Add tax to a net price or extract it from a gross price — works for sales tax, VAT and GST at any rate. See the net, tax and gross amounts side by side so you can verify the calculation instantly.",
-      "metaDescription": "Add tax to a net price or extract tax from a gross price. Works for sales tax, VAT and GST rates worldwide. Net, tax and gross amounts side by side.",
+      "metaDescription": "Add tax to a net price or extract it from a gross price. Works for sales tax, VAT and GST at any rate. See net, tax and gross side by side - free, no signup.",
       "keywords": "sales tax calculator,vat calculator,gst calculator,add tax,remove tax,reverse tax calculator,tax inclusive exclusive",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3636,10 +3644,10 @@
       }
     },
     "diff-checker": {
-      "title": "Compare Text Online — Diff Checker",
+      "title": "Diff Checker - Compare Text, Code & Files Online Free",
       "h1": "Compare Text",
       "description": "Compare two texts or code snippets by line, word, or character — differences are highlighted right in the text. Three comparison modes and two layouts for line-level diff: Split and Unified.",
-      "metaDescription": "Compare two texts by line, word, or character. Real-time difference highlighting, no signup and no server upload.",
+      "metaDescription": "Compare two texts by line, word, or character — instantly in your browser. See differences highlighted in real time. Split and Unified views. Free, private, no signup.",
       "keywords": "compare text,diff checker,text diff,find differences,compare two texts,code diff,character diff,word diff",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4431,10 +4439,10 @@
       }
     },
     "timestamp-converter": {
-      "title": "Timestamp Converter — Unix Time to Date",
+      "title": "Timestamp Converter - Unix to Date, UTC, ISO & Milliseconds",
       "h1": "Timestamp Converter",
-      "description": "Convert Unix timestamps to ISO, UTC, local and relative time — and back. Choose seconds or milliseconds, use the quick +/- buttons for hours and days, or paste a whole list of timestamps to convert in one batch.",
-      "metaDescription": "Convert Unix timestamps to ISO, UTC, local and relative time, and back. Batch conversion, seconds or milliseconds, quick +/- buttons.",
+      "description": "Convert Unix timestamps to ISO, UTC, local and relative time - and back. Choose seconds or milliseconds, use the quick +/- buttons for hours and days, or paste a whole list of timestamps to convert in one batch.",
+      "metaDescription": "Convert Unix timestamps to UTC, ISO 8601, local time or milliseconds - and back. Batch conversion, seconds or milliseconds. Free, instant, no signup.",
       "keywords": "timestamp converter,unix time,epoch converter,unix timestamp,iso 8601 converter",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -4481,8 +4489,25 @@
         "Convert an ISO date to a Unix timestamp",
         "Batch-convert log timestamps"
       ],
+      "unit": "Unit",
+      "unitAuto": "Auto",
       "unitSeconds": "Seconds",
       "unitMilliseconds": "Milliseconds",
+      "batchError": "Invalid",
+      "relative": {
+        "past": {
+          "seconds": "{n, plural, one {# second ago} other {# seconds ago}}",
+          "minutes": "{n, plural, one {# minute ago} other {# minutes ago}}",
+          "hours": "{n, plural, one {# hour ago} other {# hours ago}}",
+          "days": "{n, plural, one {# day ago} other {# days ago}}"
+        },
+        "future": {
+          "seconds": "in {n, plural, one {# second} other {# seconds}}",
+          "minutes": "in {n, plural, one {# minute} other {# minutes}}",
+          "hours": "in {n, plural, one {# hour} other {# hours}}",
+          "days": "in {n, plural, one {# day} other {# days}}"
+        }
+      },
       "now": "Now",
       "timestampLabel": "Unix timestamp",
       "timestampPlaceholder": "e.g. 1700000000",
@@ -4500,6 +4525,7 @@
       "quickPlusHour": "+1h",
       "quickMinusDay": "-1d",
       "formats": {
+        "utc": "UTC (RFC 2822)",
         "unixSeconds": "Unix (seconds)",
         "unixMs": "Unix (ms)",
         "iso": "ISO 8601",
@@ -5946,10 +5972,10 @@
     },
 
     "password-generator": {
-      "title": "Password Generator — Strong Random Passwords",
+      "title": "Strong Password Generator — Free, Secure & No Signup",
       "h1": "Password Generator",
       "description": "Create strong random passwords of any length right in your browser. Four modes: random, pronounceable, numeric PIN, and pattern-based. See the entropy in bits and estimated time to crack. Exclude ambiguous characters. Bulk generate up to 500 at once.",
-      "metaDescription": "Create strong random passwords in your browser. Four modes — random, pronounceable, PIN, pattern. Entropy meter, crack time, bulk up to 500.",
+      "metaDescription": "Generate strong random passwords in your browser. Choose from random, passphrase, PIN, or memorable modes. See entropy and crack time. 100% private, no signup, no uploads.",
       "keywords": "password generator,strong password,random password,secure password,generate password,password online,password entropy",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -6014,6 +6040,27 @@
       "excludeAmbiguous": "Exclude ambiguous (i, l, 1, O, 0)",
       "generate": "Generate",
       "regenerate": "Regenerate",
+      "modeRandom": "Random",
+      "modePronounceable": "Pronounceable",
+      "modePin": "PIN",
+      "modePattern": "Pattern",
+      "entropy": "Entropy",
+      "bits": "bits",
+      "crackTime": "Crack time",
+      "count": "Count",
+      "patternLabel": "Pattern",
+      "patternHint": "c = lowercase, C = uppercase, d = digit, s = symbol, x = any",
+      "excludeAwkward": "Exclude awkward symbols ('{' '}' [ ] / \\ ' '' \" `)",
+      "downloadTxt": "Download .txt",
+      "crack": {
+        "instant": "< 1 sec",
+        "seconds": "{n} sec",
+        "minutes": "{n} min",
+        "hours": "{n} h",
+        "days": "{n} d",
+        "years": "{n} yr",
+        "forever": "longer than the universe"
+      },
       "strengthLabel": "Strength",
       "strength": {
         "weak": "Weak",

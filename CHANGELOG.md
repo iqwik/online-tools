@@ -5,10 +5,10 @@
 - **SEO-индексация** — дожать GSC sitemap («Успешно» через 24–48 часов), добавить sitemap в Яндекс.Вебмастер, привязать Метрику к Вебмастеру, настроить региональность, запустить переобход топ-10 URL (хабы и категории).
 - **Гейтинг аналитики за cookie consent (GDPR)** — GA4 и Метрика грузятся всегда, независимо от согласия. Нужно: `analyticsAllowed` в контексте, CookieConsent переключает. **Обязательно до AdSense.**
 - **Rich Results Test** — прогнать все JSON-LD через Google Rich Results Test. Страницы: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`, **`/age-calculator`**, **`/ru/age-calculator`**. Проверить, что URL в JSON-LD = canonical.
-- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView, **AgeCalculatorView**. Spot-check на 320 / 360 / 375.
+- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView, **AgeCalculatorView**, **PasswordGeneratorView**, **TimestampConverterView**. Spot-check на 320 / 360 / 375.
 - **Final EN + RU proofread** — все 76 инструментов × 2 локали в браузере.
 - **`pdf-to-image`** — translations готовы, нет `data/tools/developer.ts` entry и View. `pdfjs-dist@6.3.289` установлен. План: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker через `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range (`1-5, 8, 11-13`), PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, grid preview + ZIP. `loadingTask.destroy()`. При реализации — вернуть `pdf-to-image` в `related` у `images-to-pdf`.
-- **`lucide-react` cleanup** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`, **`components/ui/calendar.tsx`**, **`components/ui/date-picker.tsx`**. `grep -rn "lucide-react" components/`.
+- **`lucide-react` cleanup** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`, **`PasswordGeneratorView.tsx`**, **`TimestampConverterView.tsx`**, **`components/ui/calendar.tsx`**, **`components/ui/date-picker.tsx`**. `grep -rn "lucide-react" components/`.
 - **Tap targets** — `h-8` → `h-9 sm:h-8` или `h-10 sm:h-8`. Sweep с `grep -rn 'size="sm"' components/tool/`.
 - **OG-image** — `og-default.jpg` (1200×630). Figma: navy фон, `toolyland-wordmark.svg` слева, tagline «Free online tools. No signup.» справа.
 - **Contact emails** — `privacy@toolyland.com`, `hello@toolyland.com` через Cloudflare Email Routing или Yandex Mail for Domain.
@@ -37,37 +37,50 @@
 
 ### Added
 
-- **`/news` entry** — `age-calculator-rework` (13.10), tag `feature`, link to `/age-calculator`. Short announcement covering the Calendar / DatePicker improvements and the new View.
-- **`CalendarDropdown`** — кастомный inline-дропдаун для выбора месяца и года в `components/ui/calendar.tsx`. Заменяет shadcn `Select` внутри `Popover` (Base UI bug #2480 — вложенный `Select` / `DropdownMenu` не открывается). Обычный `<button>` + абсолютно позиционированный `<div>`, без портала. Стилизован под shadcn: `bg-popover`, `hover:bg-accent`, `animate-in fade-in-0`. Авто-скролл к выбранной опции через `useLayoutEffect` + `offsetTop` (без `scrollIntoView`, чтобы не дёргать страницу). Закрытие по клику снаружи через `document` pointerdown.
-- **`AgeCalculatorView`** (`components/tool/AgeCalculatorView.tsx`) — новый View для `age-calculator`. Переведён из `CalculatorConfig` в `ToolConfig`. По образцу `PercentageCalculatorView`: живой пересчёт без кнопки Calculate, URL-синхронизация через `history.replaceState` (`?from=1984-05-19&to=2026-10-13`), `OutputPanel` с расшифровкой возраста.
-  - **Планеты:** Меркурий, Венера, Марс, Юпитер, Сатурн — возраст в «местных» годах (деление земных дней на период обращения).
-  - **Забавные факты:** удары сердца (~70 bpm), вдохи (~15/мин), новые годы, часы сна (~8/день), полнолуния (~каждые 29.53 дня).
-  - **Следующий день рождения:** точная дата, сколько дней осталось, какой возраст исполнится.
-- **5-шаговый `howToUse`** для `age-calculator` — симметрично источнику (Timbrica): дата рождения → опорная дата → расшифровка → следующий ДР → забавные факты.
-
-### Fixed
-
-- **Calendar month/year dropdowns did nothing.** `captionLayout` defaulted to `'label'`, so `react-day-picker` rendered only prev/next arrows — no month or year selectors. Age calculator required scrolling year by year. Default changed to `'dropdown'`, added `startMonth` (1900) / `endMonth` (currentYear+1) props.
-- **DatePicker inside Popover — dropdowns wouldn't open.** shadcn `Select` / `DropdownMenu` rendered via portal to `document.body`, and the outer Popover dismissed itself on their `pointerdown` before the list could open. Known Base UI bug (issue #2480), not fixed in 1.8.0. Replaced with custom inline `CalendarDropdown` — no portal, no conflict.
-- **CalendarDropdown auto-scroll.** On open, list scrolls so selected month/year is centered. Implemented via `useLayoutEffect` + `offsetTop` + manual `list.scrollTop` — no `scrollIntoView`, which scrolled the whole page and caused visible layout jumps.
-- **DatePicker popover jumped/flickered on date select.** The `Clear` button was conditionally rendered (`{date && ...}`), so `PopoverContent` changed height after selection → Popover re-positioned (flip / side-change) for one frame before closing. Now the block is always rendered and the button is `disabled` when the value is empty — constant height, stable position.
-- **DatePicker `defaultMonth` caused calendar re-layout on selection.** When the parent updated `value`, `defaultMonth` changed from `undefined` to a `Date`, and `react-day-picker` recalculated its internal month mid-interaction. Replaced with controlled `month` + `onMonthChange`; `Date` object memoized with `useMemo` to keep the reference stable while `value` is unchanged.
+- **`/news` entries** — `password-generator-rework` (14.10) и `timestamp-converter-rework` (14.10), обе tag `feature`, link на `/password-generator` и `/timestamp-converter`. Короткие анонсы переписанных View.
+- **`PasswordGeneratorView` rewritten** (`components/tool/PasswordGeneratorView.tsx`) — четыре режима (random / pronounceable / PIN / pattern), энтропия в битах, локализованное время взлома, массовая генерация до 500, экспорт в `.txt`, URL-синхронизация.
+  - **Mode tabs** — через shared `SegmentedControl` (rule 23). Вариант `primary`, `w-full`, `buttonClassName="flex-1 justify-center py-2"`.
+  - **Pattern mode** — маска с токенами `c` (lowercase), `C` (uppercase), `d` (digit), `s` (symbol), `x` (any alphanumeric). Ползунок длины скрыт — длину задаёт сама маска.
+  - **Entropy** — `log2(charset.length) * length`. Для PIN и pronounceable — приближения `log2(10)` и `log2(20)` соответственно.
+  - **Crack time** — базовая линия `10^11` guesses/sec, локализуется через `crack.{instant,seconds,minutes,hours,days,years,forever}`.
+  - **Random helpers** — `randomInt` с rejection sampling для устранения modulo bias (`Uint32Array` + `crypto.getRandomValues`).
+  - **Exclusion toggles** — неоднозначные (`il1Lo0O`) и неудобные (`{}[]/\'"\``) символы.
+  - **URL sync** — `?mode=&length=&count=&pattern=&lowercase=1&...`, только non-default значения, `history.replaceState`.
+- **`TimestampConverterView` rewritten** (`components/tool/TimestampConverterView.tsx`) — двусторонняя конвертация Unix ↔ дата, выбор единиц, RFC 2822 в выводе, локализованное относительное время, URL-синхронизация.
+  - **Unit selector** — auto / seconds / milliseconds через `SegmentedControl`.
+  - **Auto-detect** — значения ≥ 10^12 трактуются как миллисекунды.
+  - **Output formats** — Unix seconds, Unix ms, ISO 8601, UTC (RFC 2822), local time, relative time.
+  - **17 timezones** — включая `Europe/Moscow`.
+  - **URL sync** — `?mode=&unit=&ts=`, `history.replaceState`.
+  - **Live clock** — hydration-safe: `null` в initial state, установка в `useEffect`.
+- **Translation keys** — `config.password-generator.{modeRandom,modePronounceable,modePin,modePattern,entropy,bits,crackTime,count,patternLabel,patternHint,excludeAwkward,downloadTxt}` + `config.password-generator.crack.{instant,seconds,minutes,hours,days,years,forever}`. `config.timestamp-converter.{unit,unitAuto,unitSeconds,unitMilliseconds,batchError}` + `config.timestamp-converter.relative.{past,future}.{seconds,minutes,hours,days}` с ICU plural.
+- **`SegmentedControl` reuse** — оба инструмента переведены на общий компонент для переключателей режимов.
 
 ### Changed
 
-- **`components/ui/calendar.tsx`** — `captionLayout` default `'label'` → `'dropdown'`; new `startMonth` / `endMonth` props; new standalone `CalendarDropdown` component (replaces shadcn `Select` for month/year). `lucide-react` icons still in use here (see TODO).
-- **`components/ui/date-picker.tsx`** — Clear button always rendered; `defaultMonth` → controlled `month`; `date` memoized.
-- **`age-calculator` migrated from `CalculatorConfig` to `ToolConfig`.** New file `data/tools/health.ts`. Removed from `data/calculators/health.ts`. Slug, category (`health`) and related links unchanged.
-- **`types/tool.ts`** — `ToolKind += 'age-calculator'`, new `AgeCalculatorConfig` interface, added to `ToolConfig` union.
-- **`components/tool/ToolView.tsx`** — new case `'age-calculator'` → `<AgeCalculatorView />`.
-- **Translations restructured** (`config.age-calculator.*`) — new `fields.{from,to,toPlaceholder}`, `result.main` (ICU plural EN + RU), `units.*`, `planets.*`, `facts.*`, `nextBirthday.*`. Removed unused: `inputs.*`, `secondary.*`.
+- **`SegmentedControl` adopted in `PasswordGeneratorView`** — заменяет inline `<button>` табы. `variant="primary"`, `className="w-full"`, `buttonClassName="flex-1 justify-center py-2"`.
+- **`SegmentedControl` adopted in `TimestampConverterView`** — переключатель режима (single / batch) и единиц (auto / seconds / milliseconds).
+- **`PasswordGeneratorView` layout** — блок настроек переехал **выше** блока результата. Кнопки действий («Сгенерировать» и «Скачать .txt») перенесены **вниз**, в блок результата, `size="sm"` (h-8) вместо `default` (h-10). Иконки без ручных `h-4 w-4` — размер подтягивается из варианта.
+- **`TimestampConverterView`** — quick-adjust кнопки (−1h, +1h, −1d, Now) сохранены; batch-режим расширен — на каждую строку выводятся ISO и human-readable дата; ошибки локализованы.
+- **`data/news/index.ts`** — добавлены два новых импорта; `getAllNews()` сортирует по дате desc.
+
+### Fixed
+
+- **Hydration mismatch in `TimestampConverterView`** — `new Date()` в state-инициализаторе давало разные значения на сервере и клиенте, React бросал `Hydration failed because the server rendered text didn't match the client`. Fix: `null` в initial state + `setNow(new Date())` внутри `useEffect`. До монтирования рендерится placeholder `—`. `handleShift` / `handleRefresh` / `handleUseAsInput` проверяют `now !== null`. Кнопки с `disabled={!now}`.
+- **`relativeTime` показывал сырые ключи** (`config.relative.past.seconds`) — функция вызывала `t()` с префиксом `config`, но ключи лежат под `config.timestamp-converter.relative.*`. Fix: полный путь в каждом вызове.
+- **`crackTime` возвращал захардкоженный английский** — `< 1 sec`, `longer than the universe` и т.д. протекали на RU-страницы. Fix: `crackTime(entropy, t)` принимает переводчик и резолвит ключи `crack.*`.
+- **`config.password-generator.excludeAwkward` рендерился как сырой ключ** — отсутствовал перевод. Добавлено в `messages/{en,ru}.json`.
+- **`EMPTY_ARGUMENT` на `excludeAwkward`** — литеральные `{` и `}` в ICU-строке парсились как начало placeholder. Fix: экранирование `'{'` и `'}'` (ICU literal syntax, rule 13). Второй вариант — описать словами («скобки, слэши, кавычки»).
+- **Russian ICU plural для `relative.*`** — `{n} дней назад` давало «4 дней назад» вместо «4 дня назад» и «2 часов назад» вместо «2 часа назад». Fix: полные ICU-формы `one / few / many / other` для seconds / minutes / hours / days в `past` и `future`.
 
 ### Notes
 
-- **Base UI bug #2480** — nested `Select` / `DropdownMenu` inside `Popover` cannot be opened with public API in 1.8.0. Fix is merged (PR #4820) but not yet in a stable release. When it lands, `CalendarDropdown` can be swapped back to shadcn `Select` — only the `Dropdown` override in `calendar.tsx` needs to change.
-- **Age calculator now usable** — year selection no longer requires manual scrolling; month/year dropdowns center on the currently selected value.
-- **Migration recipe CalculatorConfig → ToolConfig (second case).** Same pitfalls as with `percentage-calculator`: check that `faq`, `related`, `publishedAt` are carried over. `faq` is conditional-render and fails silently.
-- **Планеты и факты — оценочные.** `~70 bpm`, `~15 breaths/min`, `~8h sleep/day`, `~29.53d moon cycle` — это средние значения, они не являются медицинскими показателями. В `metaDescription` не упоминать как «точные».
+- **View rework recipe (second and third cases).** Проверять, что все поля конфига выживают: `faq`, `related`, `publishedAt`, `priority`. Оба инструмента — уже `ToolConfig`, миграция не требовалась, переписан только View.
+- **URL sync convention.** `history.replaceState` (rule 120), не `pushState`. Писать только non-default значения — URL остаётся коротким. Читать на mount с валидацией, ставить `isReady`, синхронизировать только после.
+- **Hydration safety.** Никогда не вызывать `new Date()` / `Date.now()` / `Math.random()` в state-инициализаторе или в рендере. Использовать `null` + `useEffect` или mounted-флаг.
+- **ICU literal braces.** Литеральные `{` и `}` в messages экранировать как `'{'` / `'}'` — иначе `INVALID_MESSAGE: EMPTY_ARGUMENT`.
+- **Russian plurals.** RU требует `one / few / many / other`; `{n} дней` — неверно для n, оканчивающихся на 2–4, и для 1. Использовать ICU plural.
+- **`/news` tag — единственное число** (rule 127). Именно `tag: 'feature'`, а не `tags: ['feature']`. `version?` — опционально и только для релизов; для фич оставлять пустым.
 
 ## [0.19.0] - 2026-10-10
 
