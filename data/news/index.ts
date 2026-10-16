@@ -4,11 +4,13 @@ import {item as item20261011ServiceRestored} from './2026-10-11-service-restored
 import {item as item20261213AgeCalculatorRework} from './2026-10-13-age-calculator-rework'
 import {item as item20261014Password} from './2026-10-14-password-generator-rework'
 import {item as item20261014Timestamp} from './2026-10-14-timestamp-converter-rework'
+import {item as item20261016IncomeTaxPresets} from './2026-10-16-income-tax-presets'
 import type {NewsItem} from './types'
 
 export type {NewsItem, NewsTag} from './types'
 
 const allNews: NewsItem[] = [
+  item20261016IncomeTaxPresets,
   item20261014Password,
   item20261014Timestamp,
   item20261213AgeCalculatorRework,

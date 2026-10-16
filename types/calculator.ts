@@ -11,10 +11,17 @@ export interface CalcContext {
   locale: string
 }
 
+export interface CalculatorPreset {
+  id: string
+  label: string
+  values: Values
+}
+
 export interface CalculatorConfig extends BaseConfig {
   inputs: InputField[]
   calculate: (values: Values, ctx: CalcContext) => OperationResult
   resultLabel: string
   resultUnit?: string
   ranges?: ResultRange[]
+  presets?: CalculatorPreset[]
 }

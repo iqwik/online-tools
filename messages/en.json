@@ -709,6 +709,10 @@
       "timestamp-converter-rework": {
         "title": "Timestamp converter reworked: unit picker, RFC 2822, relative time",
         "text": "The timestamp converter now has a unit selector — auto, seconds, or milliseconds — so timestamps from different sources parse correctly without guessing. Output includes ISO 8601, UTC (RFC 2822), local time, and a localized relative label like \"4 days ago\". Every output row is one-click copyable."
+      },
+      "income-tax-presets": {
+        "title": "Income tax calculator: US, UK, Canada & Australia presets",
+        "text": "The income tax calculator now has quick presets for the US, UK, Canada and Australia. Click a country to fill in the typical 2024/25 brackets, then adjust any value manually. The selected preset is saved in the URL — share a link that opens with the right country already applied."
       }
     }
   },
@@ -1602,10 +1606,10 @@
       }
     },
     "income-tax-calculator": {
-      "title": "Income Tax Calculator — Custom Brackets & Take-Home Pay",
+      "title": "Income Tax Calculator - US, UK, CA Brackets & Take-Home",
       "h1": "Income Tax Calculator",
-      "description": "Estimate income tax with custom brackets that work for any country. Enter gross income, deductions, base and higher rates to see total tax, effective rate, marginal rate and take-home pay.",
-      "metaDescription": "Estimate income tax with custom brackets for any country. Get total tax, effective rate, marginal rate and take-home pay side by side.",
+      "description": "Estimate income tax with custom brackets for the US, UK, Canada, Australia or any country. Enter gross income, deductions and rates to see total tax, effective rate and take-home pay.",
+      "metaDescription": "Estimate income tax with custom brackets for US, UK, Canada or any country. Get total tax, effective and marginal rates, and take-home pay side by side.",
       "keywords": "income tax calculator,tax calculator,progressive tax,effective tax rate,marginal tax rate,take home pay calculator",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -1671,6 +1675,14 @@
         "higherRate": "The tax rate applied to income above the higher rate threshold.",
         "taxCredit": "A fixed amount subtracted from your final tax bill."
       },
+      "presetsLabel": "Quick presets",
+      "presetsHint": "Typical rates for 2024/25. This calculator uses 2 brackets — adjust for your income level.",
+      "presets": {
+        "us2025": "US 2025",
+        "uk2024": "UK 2024/25",
+        "ca2024": "Canada 2024",
+        "au2024": "Australia 2024/25"
+      },
       "resultLabel": "Total income tax",
       "secondary": {
         "taxable": "Taxable income",
@@ -1691,7 +1703,13 @@
         "q5": "Why is my take-home pay lower than I calculated?",
         "a5": "Most likely because of payroll taxes, social security, and local taxes that are separate from income tax. This calculator covers income tax only. Add social contributions and any regional taxes for an accurate net figure.",
         "q6": "Can I model multi-bracket tax systems?",
-        "a6": "This calculator uses two brackets (base and higher). For systems with three or more brackets, split the calculation: run the base portion first, then the portion above the threshold at the higher rate. For very complex systems, a spreadsheet may be more precise."
+        "a6": "This calculator uses two brackets (base and higher). For systems with three or more brackets, split the calculation: run the base portion first, then the portion above the threshold at the higher rate. For very complex systems, a spreadsheet may be more precise.",
+        "q7": "Does this calculator work for US federal income tax?",
+        "a7": "Yes. Enter the 2025 US federal brackets manually: 10% up to $11,925, 12% up to $48,475, 22% up to $103,350 (single filer). This calculator uses two brackets — for multi-bracket systems, use the base rate for most of your income and the higher rate for the top portion.",
+        "q8": "Can I use it for UK income tax?",
+        "a8": "Yes. For 2024/25, the UK personal allowance is £12,570, basic rate is 20% up to £50,270, and higher rate is 40% up to £125,140. Enter these figures directly. Deductions field accepts the personal allowance.",
+        "q9": "Does it support Canadian or Australian tax brackets?",
+        "a9": "The calculator supports any two-tier system. For Canada, enter the federal base rate and the rate above the threshold. For Australia, enter the 16% base rate up to $45,000 and the 30% rate above. For multi-tier systems, use the base rate for most income and higher rate for the top slice."
       }
     },
     "savings-goal-calculator": {
@@ -3116,10 +3134,10 @@
       }
     },
     "menstrual-cycle-calculator": {
-      "title": "Menstrual Cycle Calculator — Period & Ovulation",
+      "title": "Menstrual Cycle Calculator - Ovulation & Pregnancy",
       "h1": "Menstrual Cycle Calculator",
-      "description": "Predict your next period, ovulation date and fertile window from your last period and average cycle length. See your next three period dates and the current day of your cycle. Based on the standard luteal-phase method used by cycle trackers.",
-      "metaDescription": "Predict your next period, ovulation date and fertile window from your last period and average cycle length. Free, private and instant.",
+      "description": "Predict your ovulation date, fertile window and next period from your last period and average cycle length. Designed for both pregnancy planning and cycle tracking. Based on the standard luteal-phase method.",
+      "metaDescription": "Predict your ovulation date and fertile window for pregnancy planning - from your last period and cycle length. Also forecasts your next 3 periods. Free, private, no signup.",
       "keywords": "period calculator,ovulation calculator,menstrual cycle calculator,fertile window calculator,next period predictor,cycle tracker",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3165,8 +3183,8 @@
       ],
       "useCasesTitle": "Common use cases",
       "useCases": [
+        "Identify your fertile window for pregnancy planning",
         "Predict your next period date",
-        "Identify your fertile window for family planning",
         "Track your cycle for health monitoring",
         "Plan around anticipated period dates"
       ],
@@ -3195,13 +3213,15 @@
         "q2": "How do you calculate the fertile window?",
         "a2": "Ovulation typically occurs about 14 days before the next period. The fertile window is the 5 days leading up to ovulation plus the day of ovulation itself, because sperm can survive up to 5 days in the reproductive tract.",
         "q3": "Can I use this for contraception?",
-        "a3": "No. This calculator is for planning and education only. The rhythm method is not a reliable form of contraception — speak to a healthcare provider about effective options.",
+        "a3": "No. This calculator is for planning and education only. The rhythm method is not a reliable form of contraception - speak to a healthcare provider about effective options.",
         "q4": "Is my data sent to any server?",
         "a4": "No. Everything runs 100% locally in your browser. Your cycle dates never leave your device.",
         "q5": "How do I measure my luteal phase?",
-        "a5": "Track your basal body temperature (BBT) every morning before getting out of bed. Ovulation causes a small temperature rise (0.3–0.5°C) that lasts until your next period. Count the days from that rise to the day before your period — that is your luteal phase.",
+        "a5": "Track your basal body temperature (BBT) every morning before getting out of bed. Ovulation causes a small temperature rise (0.3–0.5°C) that lasts until your next period. Count the days from that rise to the day before your period - that is your luteal phase.",
         "q6": "What if my cycle is irregular?",
-        "a6": "This calculator assumes a regular cycle. If your cycles vary by more than 7–9 days between months, predictions are less reliable. Consider tracking BBT or using ovulation test strips, and speak with a doctor — very irregular cycles can indicate PCOS, thyroid issues or other conditions."
+        "a6": "This calculator assumes a regular cycle. If your cycles vary by more than 7–9 days between months, predictions are less reliable. Consider tracking BBT or using ovulation test strips, and speak with a doctor - very irregular cycles can indicate PCOS, thyroid issues or other conditions.",
+        "q7": "Can this calculator help me get pregnant?",
+        "a7": "Yes. The fertile window - the 5 days before ovulation plus ovulation day - is when conception is most likely. Track your cycle for 2–3 months to confirm your average length, then check the fertile window each month. For higher accuracy, combine with basal body temperature or ovulation test strips."
       }
     },
     "calorie-deficit-planner": {
@@ -3740,10 +3760,10 @@
       }
     },
     "number-to-words-converter": {
-      "title": "Number to Words Converter — Spell Out Numbers",
+      "title": "Number to Words Converter - Spell Numbers in Words",
       "h1": "Number to Words Converter",
       "description": "Convert any number into words. See the number spelled out in English, with Russian added alongside if your browser language is Russian. Handles negatives and integers from −1 trillion to 1 trillion, with correct grammatical forms.",
-      "metaDescription": "Convert any number into words in English. Russian added if your browser language is Russian. Handles negatives and integers up to a trillion.",
+      "metaDescription": "Convert any number into words. Spell numbers in words with correct grammar - English, with Russian alongside. Handles negatives up to one trillion.",
       "keywords": "number to words,number to words converter,spell out numbers,write numbers in words,numbers in english,number spelling",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3795,17 +3815,19 @@
       },
       "faq": {
         "q1": "How does the converter handle large numbers?",
-        "a1": "It supports integers from −1 trillion to 1 trillion using the short scale (thousand, million, billion, trillion). Anything outside this range is rejected to avoid ambiguity and precision loss.",
+        "a1": "It supports integers from -1 trillion to 1 trillion using the short scale (thousand, million, billion, trillion). Anything outside this range is rejected to avoid ambiguity and precision loss.",
         "q2": "Does it support negative numbers?",
-        "a2": "Yes. Negative values are prefixed with \"minus\" in English and «минус» in Russian. For example, −42 becomes \"minus forty-two\" and «минус сорок два».",
+        "a2": "Yes. Negative values are prefixed with \"minus\" in English and «минус» in Russian. For example, -42 becomes \"minus forty-two\" and «минус сорок два».",
         "q3": "How are Russian plurals handled?",
         "a3": "Russian requires different word forms depending on the number: одна тысяча, две тысячи, пять тысяч. The converter uses the Intl.PluralRules API (CLDR data) to select the correct grammatical form automatically.",
         "q4": "Is my input sent to any server?",
         "a4": "No. Everything runs 100% locally in your browser. Your numbers never leave your device.",
         "q5": "Does it support decimal numbers?",
-        "a5": "No, only integers. Decimal amounts are common in financial documents — the convention is to write the integer part in words and the decimal part as a fraction (e.g. \"one hundred and twenty-three and 45/100\").",
+        "a5": "No, only integers. Decimal amounts are common in financial documents - the convention is to write the integer part in words and the decimal part as a fraction (e.g. \"one hundred and twenty-three and 45/100\").",
         "q6": "What is the difference between short scale and long scale?",
-        "a6": "In the short scale (used in English-speaking countries), 1 billion = 1,000 million. In the long scale (used historically in some European countries), 1 billion = 1,000,000 million. This converter uses the short scale."
+        "a6": "In the short scale (used in English-speaking countries), 1 billion = 1,000 million. In the long scale (used historically in some European countries), 1 billion = 1,000,000 million. This converter uses the short scale.",
+        "q7": "How do I spell a number in words?",
+        "a7": "Type the number into the input field - English spelling appears instantly. Russian is shown alongside if your browser language is Russian. Handles negatives and integers up to one trillion."
       }
     },
     "hidden-character-finder": {
@@ -5365,10 +5387,10 @@
       }
     },
     "svg-to-base64": {
-      "title": "SVG to Base64 & Data URI Converter",
+      "title": "SVG to Base64 Converter - Data URI for CSS, HTML & URL",
       "h1": "SVG to Base64 Converter",
-      "description": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. Get ready-to-use snippets in four flavours: URL-encoded CSS background, Base64 CSS background, HTML img tag and raw Data URI. Live SVG preview confirms the rendering before you copy.",
-      "metaDescription": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. URL-encoded and Base64 output, HTML img tag, live SVG preview.",
+      "description": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. Get ready-to-use snippets in four flavours: URL-encoded CSS background, Base64 CSS background, HTML img tag and raw Data URI for src, url() and embed. Live SVG preview confirms the rendering before you copy.",
+      "metaDescription": "Turn SVG markup into a Data URI for CSS backgrounds or inline HTML. URL-encoded and Base64 output for img src, css url() and embed - live preview.",
       "keywords": "svg to base64,svg data uri generator,svg to css background,inline svg base64,frontend svg tools",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -5422,21 +5444,23 @@
       "cssUrlEncoded": "CSS Background (URL Encoded)",
       "cssBase64": "CSS Background (Base64)",
       "htmlImg": "HTML Img Tag",
-      "rawDataUri": "Raw Base64 Data URI",
+      "rawDataUri": "Base64 Data URI (for src / url)",
       "optimalBadge": "Optimal",
       "faq": {
         "q1": "When should I use Base64 SVGs?",
         "a1": "Base64 and Data URIs are useful for small icons and to reduce HTTP requests, especially for CSS backgrounds. They eliminate an extra round trip to the server and can improve load time for above-the-fold elements.",
-        "q2": "Base64 or URL-encoded — which is better?",
+        "q2": "Base64 or URL-encoded - which is better?",
         "a2": "For SVGs, URL-encoding (percent-encoding) is usually the better choice. It produces a smaller string and compresses better with GZIP and Brotli. Base64 increases file size by about 33% but is universally supported and simpler to embed in some build tools.",
         "q3": "Do Data URI SVGs work in all browsers?",
         "a3": "Yes. Data URIs are supported in every modern browser including Chrome, Firefox, Safari, and Edge. Extremely long URIs can hit URL length limits in very old browsers, but for typical icons this is not a concern.",
         "q4": "Is my SVG code sent to a server?",
-        "a4": "No. All conversion runs 100% locally in your browser using JavaScript. Your SVG code never leaves your device — nothing is uploaded, logged, or stored anywhere.",
+        "a4": "No. All conversion runs 100% locally in your browser using JavaScript. Your SVG code never leaves your device - nothing is uploaded, logged, or stored anywhere.",
         "q5": "Can I embed fonts in an SVG Data URI?",
-        "a5": "Yes, but it is inefficient — fonts make the Data URI very large. The better approach is to convert text to paths before embedding, which removes the font dependency entirely. Tools like Illustrator, Figma and Inkscape do this when exporting SVG.",
+        "a5": "Yes, but it is inefficient - fonts make the Data URI very large. The better approach is to convert text to paths before embedding, which removes the font dependency entirely. Tools like Illustrator, Figma and Inkscape do this when exporting SVG.",
         "q6": "Why does my SVG look different after Data URI encoding?",
-        "a6": "Common causes: missing viewBox attribute (the SVG renders at an unexpected size), unencoded # characters in fill colors (breaks URL-encoded form), or external references (fonts, images) that cannot be embedded. Check the preview before copying — it uses the encoded string, so what you see is what will render."
+        "a6": "Common causes: missing viewBox attribute (the SVG renders at an unexpected size), unencoded # characters in fill colors (breaks URL-encoded form), or external references (fonts, images) that cannot be embedded. Check the preview before copying - it uses the encoded string, so what you see is what will render.",
+        "q7": "How do I use a Base64 SVG as a URL?",
+        "a7": "Both output formats work as URLs. Use the URL-encoded version in CSS background-image: url('data:image/svg+xml,...') - it is smaller and compresses better. Use the raw Base64 Data URI in HTML img src or a data attribute. Both are ready to copy from the snippets panel."
       }
     },
     "base64-to-image": {

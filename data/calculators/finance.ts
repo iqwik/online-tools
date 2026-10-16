@@ -1003,6 +1003,56 @@ export const financeCalculators: CalculatorConfig[] = [
         hint: 'income-tax-calculator.hints.taxCredit',
       },
     ],
+    presets: [
+      {
+        id: 'us-2025',
+        label: 'income-tax-calculator.presets.us2025',
+        values: {
+          annualIncome: 75000,
+          deductions: 0,
+          baseRate: 12,
+          higherThreshold: 48475,
+          higherRate: 22,
+          taxCredit: 0,
+        },
+      },
+      {
+        id: 'uk-2024',
+        label: 'income-tax-calculator.presets.uk2024',
+        values: {
+          annualIncome: 50000,
+          deductions: 12570,
+          baseRate: 20,
+          higherThreshold: 37700,
+          higherRate: 40,
+          taxCredit: 0,
+        },
+      },
+      {
+        id: 'ca-2024',
+        label: 'income-tax-calculator.presets.ca2024',
+        values: {
+          annualIncome: 60000,
+          deductions: 15705,
+          baseRate: 15,
+          higherThreshold: 40162,
+          higherRate: 20.5,
+          taxCredit: 0,
+        },
+      },
+      {
+        id: 'au-2024',
+        label: 'income-tax-calculator.presets.au2024',
+        values: {
+          annualIncome: 80000,
+          deductions: 0,
+          baseRate: 16,
+          higherThreshold: 45000,
+          higherRate: 30,
+          taxCredit: 0,
+        },
+      },
+    ],
     calculate: (
       {
         annualIncome,

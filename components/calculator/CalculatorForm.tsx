@@ -1,8 +1,10 @@
 'use client'
 
+import {useSearchParams} from 'next/navigation'
 import {useLocale, useTranslations} from 'next-intl'
 import {SyntheticEvent, useEffect, useMemo, useState} from 'react'
 import {getCalculatorBySlug} from '@/data'
+import {usePathname, useRouter} from '@/i18n/navigation'
 import type {OperationResult, ResultRange, Values} from '@/types'
 import {Button} from '../ui/button'
 import {DatePicker} from '../ui/date-picker'
@@ -43,7 +45,12 @@ export function CalculatorForm({slug}: Props) {
   const tConfig = useTranslations('config')
   const tGlobal = useTranslations('global')
 
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const calc = useMemo(() => getCalculatorBySlug(slug), [slug])
+  const presets = calc?.presets
 
   const [values, setValues] = useState<Values>(() => {
     if (!calc) return {}
@@ -55,11 +62,23 @@ export function CalculatorForm({slug}: Props) {
   })
 
   const [result, setResult] = useState<OperationResult | null>(null)
+  const [activePreset, setActivePreset] = useState<string | null>(null)
 
   const hasSliders = useMemo(
     () => calc?.inputs.some(i => i.type === 'slider') ?? false,
     [calc],
   )
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: mount-only
+  useEffect(() => {
+    if (!presets || presets.length === 0) return
+    const id = searchParams.get('preset')
+    if (!id) return
+    const preset = presets.find(p => p.id === id)
+    if (!preset) return
+    setValues(prev => ({...prev, ...preset.values}))
+    setActivePreset(id)
+  }, [])
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: calc and locale are stable
   useEffect(() => {
@@ -70,7 +89,31 @@ export function CalculatorForm({slug}: Props) {
 
   if (!calc) return null
 
+  function applyPreset(id: string) {
+    if (!presets) return
+    const preset = presets.find(p => p.id === id)
+    if (!preset) return
+
+    setValues(prev => ({...prev, ...preset.values}))
+    setActivePreset(id)
+
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('preset', id)
+    router.replace(`${pathname}?${params.toString()}`, {scroll: false})
+  }
+
+  function clearPresetParam() {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('preset')
+    const qs = params.toString()
+    router.replace(qs ? `${pathname}?${qs}` : pathname, {scroll: false})
+  }
+
   function handleChange(name: string, value: string | number) {
+    if (activePreset) {
+      setActivePreset(null)
+      clearPresetParam()
+    }
     setValues(prev => ({...prev, [name]: value}))
   }
 
@@ -88,12 +131,41 @@ export function CalculatorForm({slug}: Props) {
     }
     setValues(init)
     setResult(null)
+    setActivePreset(null)
+    clearPresetParam()
   }
 
   const range = result ? findRange(calc.ranges, result.raw) : undefined
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {presets && presets.length > 0 && (
+        <div className="space-y-2">
+          <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            {tConfig(`${calc.slug}.presetsLabel`)}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {presets.map(p => (
+              <Button
+                key={p.id}
+                type="button"
+                variant={activePreset === p.id ? 'default' : 'outline'}
+                size="sm"
+                aria-pressed={activePreset === p.id}
+                onClick={() => applyPreset(p.id)}
+              >
+                {tConfig(p.label)}
+              </Button>
+            ))}
+          </div>
+          {tConfig.has(`${calc.slug}.presetsHint`) && (
+            <p className="text-xs text-muted-foreground">
+              {tConfig(`${calc.slug}.presetsHint`)}
+            </p>
+          )}
+        </div>
+      )}
+
       {calc.inputs.map(input => {
         if (input.type === 'slider') {
           return (
@@ -172,7 +244,7 @@ export function CalculatorForm({slug}: Props) {
         )
       })}
 
-      <div className="flex justify-end w-full gap-2 pt-2">
+      <div className="flex w-full justify-end gap-2 pt-2">
         {!hasSliders && (
           <Button size="sm" variant="alternative" type="submit">
             {tGlobal('calculate')}
@@ -185,7 +257,7 @@ export function CalculatorForm({slug}: Props) {
 
       {result && (
         <div className="mt-6 rounded-xl bg-secondary p-5">
-          <div className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             {tConfig(calc.resultLabel)}
           </div>
 

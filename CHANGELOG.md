@@ -4,8 +4,8 @@
 
 - **SEO-индексация** — дожать GSC sitemap («Успешно» через 24–48 часов), добавить sitemap в Яндекс.Вебмастер, привязать Метрику к Вебмастеру, настроить региональность, запустить переобход топ-10 URL (хабы и категории).
 - **Гейтинг аналитики за cookie consent (GDPR)** — GA4 и Метрика грузятся всегда, независимо от согласия. Нужно: `analyticsAllowed` в контексте, CookieConsent переключает. **Обязательно до AdSense.**
-- **Rich Results Test** — прогнать все JSON-LD через Google Rich Results Test. Страницы: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`, **`/age-calculator`**, **`/ru/age-calculator`**. Проверить, что URL в JSON-LD = canonical.
-- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView, **AgeCalculatorView**, **PasswordGeneratorView**, **TimestampConverterView**. Spot-check на 320 / 360 / 375.
+- **Rich Results Test** — прогнать все JSON-LD через Google Rich Results Test. Страницы: `/`, `/tools`, `/finance`, `/ru/finance`, `/bmi-calculator`, `/ru/bmi-calculator`, `/invoice-generator`, `/json-formatter`, `/images-to-pdf`, `/income-tax-calculator`, `/unit-converter`, `/salary-slip-generator`, `/diff-checker`, `/hidden-character-finder`, `/percentage-calculator`, **`/age-calculator`**, **`/ru/age-calculator`**, **`/number-to-words-converter`**, **`/svg-to-base64`**, **`/menstrual-cycle-calculator`**. Проверить, что URL в JSON-LD = canonical.
+- **Regression check** — открыть InvoiceGeneratorView, SalarySlipGeneratorView, ColorPickerView, RegexTesterView, JsonFormatterView, DiffCheckerView, HiddenCharacterFinderView, PercentageCalculatorView, **AgeCalculatorView**, **PasswordGeneratorView**, **TimestampConverterView**, **CalculatorForm (presets)**. Spot-check на 320 / 360 / 375.
 - **Final EN + RU proofread** — все 76 инструментов × 2 локали в браузере.
 - **`pdf-to-image`** — translations готовы, нет `data/tools/developer.ts` entry и View. `pdfjs-dist@6.3.289` установлен. План: `kind: 'pdf-to-image'`, category `developer`, `isWide: true`, worker через `new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url)`, page range (`1-5, 8, 11-13`), PNG / JPEG / WebP, scale 1× / 1.5× / 2× / 3×, grid preview + ZIP. `loadingTask.destroy()`. При реализации — вернуть `pdf-to-image` в `related` у `images-to-pdf`.
 - **`lucide-react` cleanup** — `UuidGeneratorView.tsx`, `BreadCrumbs.tsx`, `DiffCheckerView.tsx`, `HiddenCharacterFinderView.tsx`, **`PasswordGeneratorView.tsx`**, **`TimestampConverterView.tsx`**, **`components/ui/calendar.tsx`**, **`components/ui/date-picker.tsx`**. `grep -rn "lucide-react" components/`.
@@ -34,6 +34,8 @@
 - **`CalendarDropdown` — вернуть shadcn `Select`, когда Base UI выпустит фикс для issue #2480.** PR #4820 смержен в master, ожидает стабильного релиза. Замене подлежит только override `Dropdown` в `components/ui/calendar.tsx`, остальная логика не затрагивается.
 - **`age-calculator` SEO-тексты** — привести `features`, `useCases`, `description`, `metaDescription`, `keywords` в соответствие с новым View (планеты, факты, следующий ДР). Rule 42 — тексты должны описывать реальный функционал.
 - **`age-calculator` — `to` в будущем** — сейчас View рендерит возраст, но проверка на `target < birth` возвращает `null`. Уточнить UX: сообщение об ошибке или пустое состояние.
+- **Presets — обновление ставок.** US federal / UK personal allowance / Canadian federal / Australian brackets зафиксированы на 2024/25. Обновлять ежегодно. Рассмотреть `helpers/tax-presets.ts` с версионированием (`us-2025`, `us-2026`).
+- **Presets — миграция в `fixed-deposit-calculator` и `loan-payment-calculator`.** FD: типичные ставки по валютам (USD / EUR / INR / RUB). Loan: 30-year / 15-year / 5-year terms.
 
 ### Added
 
@@ -55,6 +57,11 @@
   - **Live clock** — hydration-safe: `null` в initial state, установка в `useEffect`.
 - **Translation keys** — `config.password-generator.{modeRandom,modePronounceable,modePin,modePattern,entropy,bits,crackTime,count,patternLabel,patternHint,excludeAwkward,downloadTxt}` + `config.password-generator.crack.{instant,seconds,minutes,hours,days,years,forever}`. `config.timestamp-converter.{unit,unitAuto,unitSeconds,unitMilliseconds,batchError}` + `config.timestamp-converter.relative.{past,future}.{seconds,minutes,hours,days}` с ICU plural.
 - **`SegmentedControl` reuse** — оба инструмента переведены на общий компонент для переключателей режимов.
+- **`CalculatorPreset` type + presets support in `CalculatorConfig`** (`types/calculator.ts`) — новый интерфейс `CalculatorPreset` (`id`, `label`, `values`) и опциональное поле `presets?: CalculatorPreset[]` в `CalculatorConfig`. Первый пользователь — `income-tax-calculator`.
+- **Presets UI + URL sync in `CalculatorForm`** (`components/calculator/CalculatorForm.tsx`) — кнопки-пресеты над формой, активное состояние через `aria-pressed`, `?preset=<id>` пишется в URL через `router.replace` (не `pushState`). Пресет применяется при монтировании из URL (hydration-safe: применяется только после первого рендера). Ручное изменение любого поля снимает маркер пресета и удаляет query-параметр. `Reset` очищает всё.
+- **Country presets для `income-tax-calculator`** (`data/calculators/finance.ts`) — US 2025 / UK 2024/25 / Canada 2024 / Australia 2024/25. Каждый пресет заполняет: annual income, deductions, base rate, higher threshold, higher rate и tax credit. Использует существующую 2-бакетную модель — точно для типичных доходов, приближённо для высоких.
+- **`/news` entry — `income-tax-presets`** (16.10, tag `feature`, link `/income-tax-calculator`). Короткий анонс четырёх страновых пресетов и sharing через URL.
+- **`presetsLabel` / `presetsHint` / `presets.*`** в `messages/{en,ru}.json` под `config.income-tax-calculator`. `presetsHint` честно сообщает про 2-бакетную модель и необходимость ручной правки для высоких доходов.
 
 ### Changed
 
@@ -63,6 +70,13 @@
 - **`PasswordGeneratorView` layout** — блок настроек переехал **выше** блока результата. Кнопки действий («Сгенерировать» и «Скачать .txt») перенесены **вниз**, в блок результата, `size="sm"` (h-8) вместо `default` (h-10). Иконки без ручных `h-4 w-4` — размер подтягивается из варианта.
 - **`TimestampConverterView`** — quick-adjust кнопки (−1h, +1h, −1d, Now) сохранены; batch-режим расширен — на каждую строку выводятся ISO и human-readable дата; ошибки локализованы.
 - **`data/news/index.ts`** — добавлены два новых импорта; `getAllNews()` сортирует по дате desc.
+- **SEO alignment for 5 tools closest to top positions in GSC** — diff-checker (RU), number-to-words-converter (EN), svg-to-base64 (EN), menstrual-cycle-calculator (EN), income-tax-calculator (EN + RU). Изменения ограничены `title`, `h1`, `description`, `metaDescription`, порядком `useCases` и одним добавленным FAQ-пунктом на инструмент. View и логика расчёта не тронуты. Обоснование — verbatim совпадение с поисковыми запросами, по которым страницы уже ранжируются на 1–2 странице GSC (`сравнение двух текстов онлайн`, `spell numbers in words`, `svg to base64 url`, `menstrual cycle calculator pregnancy`, `income tax calculator`).
+  - **`diff-checker` (RU)** — `h1` → «Сравнение двух текстов онлайн», title выровнен, добавлен `faq.q8` под «сверка текста онлайн». `faq.q8` попадает в FAQPage JSON-LD.
+  - **`number-to-words-converter`** — title выровнен под «Spell Numbers in Words», `metaDescription` содержит verbatim запрос, добавлен `faq.q7` («How do I spell a number in words?»).
+  - **`svg-to-base64`** — title теперь содержит «for CSS, HTML & URL», `metaDescription` и `description` упоминают `img src`, `css url()`, `embed`. Добавлен `faq.q7` про использование в URL. UI-строка `rawDataUri` переформулирована с `src` / `url`.
+  - **`menstrual-cycle-calculator`** — title сменён с «Period & Ovulation» на «Ovulation & Pregnancy» (порядок слов отражает интент). `description` и `useCases` переупорядочены — планирование беременности теперь первым. Добавлен `faq.q7`.
+  - **`income-tax-calculator`** — title теперь содержит «US, UK, CA», `metaDescription` и `description` добавляют страновые модификаторы. Добавлены `faq.q7`–`q9` (EN) про US federal / UK / Canadian / Australian brackets. Добавлен `faq.q7` (RU) про НДФЛ.
+- **`data/calculators/finance.ts` → `income-tax-calculator`** — поле `presets` добавлено между `inputs` и `calculate`. Не меняет поведение при отсутствии query-параметра.
 
 ### Fixed
 
@@ -72,6 +86,9 @@
 - **`config.password-generator.excludeAwkward` рендерился как сырой ключ** — отсутствовал перевод. Добавлено в `messages/{en,ru}.json`.
 - **`EMPTY_ARGUMENT` на `excludeAwkward`** — литеральные `{` и `}` в ICU-строке парсились как начало placeholder. Fix: экранирование `'{'` и `'}'` (ICU literal syntax, rule 13). Второй вариант — описать словами («скобки, слэши, кавычки»).
 - **Russian ICU plural для `relative.*`** — `{n} дней назад` давало «4 дней назад» вместо «4 дня назад» и «2 часов назад» вместо «2 часа назад». Fix: полные ICU-формы `one / few / many / other` для seconds / minutes / hours / days в `past` и `future`.
+- **`CalculatorForm` — preset effect объявлен до `setValues`** — TDZ-риск при рефакторинге. Fix: `useState` для `values` поднят выше preset-effect'а.
+- **`CalculatorForm` — `handleReset` не сбрасывал пресет** — `activePreset` оставался, `?preset=` оставался в URL, при reload пресет снова применялся. Fix: добавлены `setActivePreset(null)` и `clearPresetParam()` в `handleReset`.
+- **`CalculatorForm` — `new URLSearchParams(searchParams)`** — `ReadonlyURLSearchParams` не принимался конструктором в strict TS. Fix: `new URLSearchParams(searchParams.toString())`.
 
 ### Notes
 
@@ -81,6 +98,11 @@
 - **ICU literal braces.** Литеральные `{` и `}` в messages экранировать как `'{'` / `'}'` — иначе `INVALID_MESSAGE: EMPTY_ARGUMENT`.
 - **Russian plurals.** RU требует `one / few / many / other`; `{n} дней` — неверно для n, оканчивающихся на 2–4, и для 1. Использовать ICU plural.
 - **`/news` tag — единственное число** (rule 127). Именно `tag: 'feature'`, а не `tags: ['feature']`. `version?` — опционально и только для релизов; для фич оставлять пустым.
+- **Presets — generic, не tool-specific.** `CalculatorPreset` живёт в shared type, UI живёт в `CalculatorForm`. Любой `CalculatorConfig` может объявить `presets?:` без кастомной View. Первый use case — income-tax. Следующие кандидаты: `fixed-deposit-calculator` (типичные ставки по валютам), `loan-payment-calculator` (30/15/5 лет).
+- **Presets URL — `router.replace`, не `history.replaceState`.** Из-за `next-intl` navigation. Пресет применяется только на mount — реактивных обновлений при изменении URL в рамках сессии нет. Это осознанное решение: пресет — это явное действие пользователя, а не состояние, которое должно триггерить пересчёт.
+- **Preset numbers — 2024/25.** US federal, UK personal allowance + basic/higher rates, Canadian federal brackets, Australian 2024/25. Обновлять ежегодно. `presetsHint` в messages честно сообщает про 2-бакетную модель и необходимость ручной правки для высоких доходов.
+- **SEO-правки были metadata-only.** Нулевой риск для логики расчёта, нулевые изменения View. Ожидаемый эффект — в GSC в течение 2–4 недель. Не деплоить все правки одновременно с другими изменениями — иначе не понять, что сработало.
+- **Прежде чем править `title`/`h1` — смотреть GSC.** Правки в этих полях вызывают переоценку страницы. Делать по одной странице, ждать 3–7 дней, сверять позиции, потом следующая.
 
 ## [0.19.0] - 2026-10-10
 
