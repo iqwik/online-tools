@@ -3645,9 +3645,9 @@
     },
     "diff-checker": {
       "title": "Diff Checker - Compare Text, Code & Files Online Free",
-      "h1": "Compare Text",
-      "description": "Compare two texts or code snippets by line, word, or character — differences are highlighted right in the text. Three comparison modes and two layouts for line-level diff: Split and Unified.",
-      "metaDescription": "Compare two texts by line, word, or character — instantly in your browser. See differences highlighted in real time. Split and Unified views. Free, private, no signup.",
+      "h1": "Compare Two Texts Online",
+      "description": "Compare two texts or code snippets by line, word, or character - differences are highlighted right in the text. Fast side-by-side text comparison, free and without signup.",
+      "metaDescription": "Compare two texts by line, word, or character - instantly in your browser. See differences highlighted in real time. Split and Unified views. Free, private, no signup.",
       "keywords": "compare text,diff checker,text diff,find differences,compare two texts,code diff,character diff,word diff",
       "howToUseTitle": "How to use",
       "howToUse": [
@@ -3672,11 +3672,11 @@
       "features": [
         {
           "title": "Three comparison modes",
-          "description": "Line-level, word-level, or character-level — switch in one click. Pick the mode that fits the task: code is easier to compare line by line, while IDs and serial numbers make more sense character by character."
+          "description": "Line-level, word-level, or character-level - switch in one click. Pick the mode that fits the task: code is easier to compare line by line, while IDs and serial numbers make more sense character by character."
         },
         {
           "title": "Real-time difference highlighting",
-          "description": "Added fragments in green, removed in red. The result updates immediately — no Compare button to press."
+          "description": "Added fragments in green, removed in red. The result updates immediately - no Compare button to press."
         },
         {
           "title": "Split and Unified views",
@@ -3684,11 +3684,11 @@
         },
         {
           "title": "Diff inside the line",
-          "description": "In Words and Chars modes you see exactly what changed inside the line — down to a single character. Only the differences are highlighted; the rest of the text stays untouched."
+          "description": "In Words and Chars modes you see exactly what changed inside the line - down to a single character. Only the differences are highlighted; the rest of the text stays untouched."
         },
         {
           "title": "Works with code and prose",
-          "description": "Processes text as-is — equally good for code, JSON, config files, articles, contracts, and any other text."
+          "description": "Processes text as-is - equally good for code, JSON, config files, articles, contracts, and any other text."
         },
         {
           "title": "Change statistics",
@@ -3722,9 +3722,9 @@
       "removed": "removed",
       "faq": {
         "q1": "How does the comparison work?",
-        "a1": "Texts are compared at the selected level — by line, word, or character. Added fragments are highlighted in green, removed ones in red, and matching text stays unhighlighted. The result updates in real time.",
+        "a1": "Texts are compared at the selected level - by line, word, or character. Added fragments are highlighted in green, removed ones in red, and matching text stays unhighlighted. The result updates in real time.",
         "q2": "What is the difference between Lines, Words, and Chars modes?",
-        "a2": "Lines mode looks for differences between whole lines — best for code and config files. Words mode compares word by word while preserving whitespace — good for editing prose. Chars mode finds every difference at the individual-character level — useful when two strings are almost identical but differ in one or two characters.",
+        "a2": "Lines mode looks for differences between whole lines - best for code and config files. Words mode compares word by word while preserving whitespace - good for editing prose. Chars mode finds every difference at the individual-character level - useful when two strings are almost identical but differ in one or two characters.",
         "q3": "What is the difference between Split and Unified views?",
         "a3": "Split shows both texts in parallel: the original on the left with red highlighting for removed content, the modified version on the right with green highlighting for added content. Unified renders a single stream with +/- markers, just like git diff output. Both layouts are available only in Lines mode.",
         "q4": "Can I compare code?",
@@ -3732,9 +3732,11 @@
         "q5": "Are my texts stored on the server?",
         "a5": "No. All comparison runs locally in your browser. Texts never leave your device and are not kept after the page is closed.",
         "q6": "Does it find differences inside a line?",
-        "a6": "Yes. In Words and Chars modes, differences are highlighted inside the line rather than across the whole line. If a single character in a long ID changed, only that character gets highlighted — not the entire line.",
+        "a6": "Yes. In Words and Chars modes, differences are highlighted inside the line rather than across the whole line. If a single character in a long ID changed, only that character gets highlighted - not the entire line.",
         "q7": "Is there a size limit?",
-        "a7": "The practical limit is your browser's memory. Line-level comparison handles texts of several hundred thousand lines instantly. Character-level comparison of very long texts (over ~100,000 characters) may slow down the browser — use Lines mode for those."
+        "a7": "The practical limit is your browser's memory. Line-level comparison handles texts of several hundred thousand lines instantly. Character-level comparison of very long texts (over ~100,000 characters) may slow down the browser - use Lines mode for those.",
+        "q8": "Is this diff checker free and private?",
+        "a8": "Yes. The tool is completely free - no signup, no paywall, no limits on text size. Paste both versions into the panels, pick Line, Word, or Char mode, and differences highlight automatically. Your texts never leave your device."
       }
     },
     "number-to-words-converter": {
